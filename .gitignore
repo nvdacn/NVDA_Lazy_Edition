@@ -1,0 +1,10 @@
+/Addons/*.nvda-addon
+/Others/VVTTS.exe
+/Others/aisound.zip
+/Others/vcredist_x86.exe
+/Others/VE.zip
+/Others/voice.zip
+
+/Application
+/Output/*.zip
+/*.exe
