@@ -5,7 +5,7 @@ VersionInfoVersion=1.0
 AppVerName=NVDA ≈‰÷√ª÷∏¥π§æﬂ
 DefaultDirName={userappdata}\NVDA
 AllowNoIcons=yes
-OutputDir=.
+OutputDir=Output
 OutputBaseFilename=NVDA ≈‰÷√ª÷∏¥π§æﬂ
 Compression=lzma
 DisableDirPage=Yes
@@ -13,7 +13,7 @@ DisableProgramGroupPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
-SetupIconFile=Application\images\nvda.ico
+SetupIconFile=Temp\NVDA\images\nvda.ico
 ArchitecturesInstallIn64BitMode=x64 ia64 arm64
 AllowCancelDuringInstall=No
 AlwaysShowComponentsList=No
@@ -36,7 +36,7 @@ begin
     DelTree(ExpandConstant('{userappdata}\NVDA'), True, True, True);
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.dll')));
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.exe')));
-    Exec(ExpandConstant('{tmp}\7z.exe'), 'x "'+ ExpandConstant('{userdocs}\NVDABackup\NVDABackup.zip" -aoa -o"'+ ExpandConstant('{userappdata}\NVDA')+'"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
+    Exec(ExpandConstant('{tmp}\7z.exe'), 'x "'+ ExpandConstant('{userdocs}\NVDABackup\NVDABackup.zip')+'" -aoa -o"'+ ExpandConstant('{userappdata}\NVDA')+'"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
     DelTree(ExpandConstant('{userdocs}\NVDABackup'), True, True, True);
     DeleteIniSection('globalPlugins.DragAndDrop.GlobalPlugin', ExpandConstant('{commonpf32}\NVDA\locale\zh_CN\gestures.ini'));
     ShellExec('', ExpandConstant('{commonpf32}\NVDA\nvda.exe'), '', '', SW_SHOW, ewNoWait, ResultCode);
@@ -55,5 +55,5 @@ begin
 end;
 
 [Files]
-Source: "Others\7z.dll"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
-Source: "Others\7z.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
+Source: "Tools\7Zip\7z.dll"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
+Source: "Tools\7Zip\7z.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion

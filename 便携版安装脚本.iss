@@ -1,12 +1,12 @@
 [Setup]
 ;修改下两行等号后面的值为NVDA安装程序对应的版本号
-VersionInfoVersion=2023.3.0.29780
-AppVersion=2023.3
+VersionInfoVersion=2024.1.0.31509
+AppVersion=2024.1
 AppName=NVDA
 AppVerName=NVDA
 DefaultDirName={src}\Application
 AllowNoIcons=yes
-OutputDir=.
+OutputDir=Temp
 OutputBaseFilename=Application
 Compression=lzma
 SolidCompression=yes
@@ -18,8 +18,8 @@ DisableReadyPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
-LicenseFile=Application\documentation\copying.txt
-SetupIconFile=Application\images\nvda.ico
+LicenseFile=Temp\NVDA\documentation\copying.txt
+SetupIconFile=Temp\NVDA\images\nvda.ico
 AllowCancelDuringInstall=No
 ShowLanguageDialog=No
 
@@ -55,5 +55,5 @@ FileName: "{app}\userConfig\NVDA.ini"; Section: "speech"; Key: "	synth "; String
 FileName: "{app}\userConfig\NVDA.ini"; Section: "keyboard"; Key: "	useCapsLockAsNVDAModifierKey "; String: " True"; Check: UILanguage
 
 [Files]
-Source: "Application\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Temp\NVDA\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "userConfig\nvda.ini"; DestDir: "{app}\userConfig"; Flags: ignoreversion; Check: UILanguage

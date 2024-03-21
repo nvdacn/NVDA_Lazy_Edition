@@ -1,12 +1,12 @@
 [Setup]
 ;修改下两行等号后面的值为NVDA安装程序对应的版本号
-VersionInfoVersion=2023.3.0.29780
-AppVersion=2023.3
+VersionInfoVersion=2024.1.0.31509
+AppVersion=2024.1
 AppName=NVDA 懒人版
 AppVerName=NVDA 懒人版
 DefaultDirName={userappdata}\NVDA
 AllowNoIcons=yes
-OutputDir=.
+OutputDir=Output
 OutputBaseFilename=NVDA 懒人版
 Compression=lzma
 DisableDirPage=Yes
@@ -14,9 +14,9 @@ DisableProgramGroupPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
-LicenseFile=Application\documentation\copying.txt
-SetupIconFile=Application\images\nvda.ico
-InfoBeforeFile=Readme.txt
+LicenseFile=Temp\NVDA\documentation\copying.txt
+SetupIconFile=Temp\NVDA\images\nvda.ico
+InfoBeforeFile=Readme.md
 MinVersion=6.03
 ArchitecturesInstallIn64BitMode=x64 ia64 arm64
 AllowCancelDuringInstall=No
@@ -297,42 +297,42 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*"" -aoa -o""{app}\Addons\xyO
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\YYPatch*"" -aoa -o""{app}\Addons\YYPatch"""; Components: "Addons\YYPatch"
 
 [Files]
-Source: "Application.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
-Source: "Others\7z.dll"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
-Source: "Others\7z.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
+Source: "Temp\Application.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
+Source: "Tools\7Zip\7z.dll"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
+Source: "Tools\7Zip\7z.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
 Source: "userConfig\nvda.ini"; DestDir: "{app}"; Components: "Settings"; Flags: ignoreversion
 Source: "userConfig\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4"; Tasks: "VVTTSDicts"; Flags: ignoreversion
-Source: "Others\VVTTS.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
-Source: "Others\aisound.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5 or Voices\WorldVoice"
-Source: "Others\vcredist_x86.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Others\VE.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Others\voice.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Addons\AiSound5*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5"
-Source: "Addons\IBMTTS*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS\IBMTTS"
-Source: "Addons\WorldVoice*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
+Source: "Resource\speech\VVTTS.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
+Source: "Resource\speech\aisound.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5 or Voices\WorldVoice"
+Source: "Resource\vcredist_x86.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "Resource\speech\VE.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "Resource\speech\voice.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "Resource\Addons\AiSound5*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5"
+Source: "Resource\Addons\IBMTTS*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS\IBMTTS"
+Source: "Resource\Addons\WorldVoice*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "Resource\Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
 Source: "userConfig\nvda3208.pickle"; DestDir: "{app}"; Components: "Settings and Addons\addonUpdater"; Flags: ignoreversion
-Source: "Addons\addonUpdater*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonUpdater"
-Source: "Addons\AudioControl*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\AudioControl"
-Source: "Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
-Source: "Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
-Source: "Addons\WakeSpeaker*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WakeSpeaker"
-Source: "Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
-Source: "Addons\DragAndDrop*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\DragAndDrop"
-Source: "Addons\enhancedTouchGestures*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\enhancedTouchGestures"
-Source: "Addons\goldenCursor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\goldenCursor"
-Source: "Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\imeExpressive"
-Source: "Addons\MSEdgeDiscardAnnouncements*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\MSEdgeDiscardAnnouncements"
-Source: "Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
-Source: "Addons\NVBox*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVBox"
-Source: "Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
-Source: "Addons\QuickAdjustment*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QuickAdjustment"
-Source: "Addons\remote*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\remote"
-Source: "Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
-Source: "Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
-Source: "Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVDACNMirror"
-Source: "Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
-Source: "Addons\wintenApps*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\wintenApps"
-Source: "Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
-Source: "Addons\YYPatch*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\YYPatch"
+Source: "Resource\Addons\addonUpdater*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonUpdater"
+Source: "Resource\Addons\AudioControl*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\AudioControl"
+Source: "Resource\Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
+Source: "Resource\Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
+Source: "Resource\Addons\WakeSpeaker*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WakeSpeaker"
+Source: "Resource\Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
+Source: "Resource\Addons\DragAndDrop*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\DragAndDrop"
+Source: "Resource\Addons\enhancedTouchGestures*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\enhancedTouchGestures"
+Source: "Resource\Addons\goldenCursor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\goldenCursor"
+Source: "Resource\Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\imeExpressive"
+Source: "Resource\Addons\MSEdgeDiscardAnnouncements*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\MSEdgeDiscardAnnouncements"
+Source: "Resource\Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
+Source: "Resource\Addons\NVBox*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVBox"
+Source: "Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
+Source: "Resource\Addons\QuickAdjustment*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QuickAdjustment"
+Source: "Resource\Addons\remote*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\remote"
+Source: "Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
+Source: "Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
+Source: "Resource\Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVDACNMirror"
+Source: "Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
+Source: "Resource\Addons\wintenApps*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\wintenApps"
+Source: "Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
+Source: "Resource\Addons\YYPatch*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\YYPatch"
 
