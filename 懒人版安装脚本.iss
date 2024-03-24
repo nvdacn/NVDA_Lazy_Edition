@@ -1,22 +1,26 @@
-[Setup]
-;ĞŞ¸ÄÏÂÁ½ĞĞµÈºÅºóÃæµÄÖµÎªNVDA°²×°³ÌĞò¶ÔÓ¦µÄ°æ±¾ºÅ
-VersionInfoVersion=2023.3.0.29780
-AppVersion=2023.3
-AppName=NVDA ÀÁÈË°æ
-AppVerName=NVDA ÀÁÈË°æ
+ï»¿[Setup]
+;ä¿®æ”¹ä¸‹ä¸¤è¡Œç­‰å·åé¢çš„å€¼ä¸ºNVDAå®‰è£…ç¨‹åºå¯¹åº”çš„ç‰ˆæœ¬å·
+VersionInfoVersion=2024.1.0.31509
+AppVersion=2024.1
+AppName=NVDA æ‡’äººç‰ˆ
+AppVerName=NVDA æ‡’äººç‰ˆ
+AppPublisher=NVDACN
+AppPublisherURL=https://www.nvdacn.com/
+AppSupportURL=https://github.com/nvdacn/NVDA_Lazy_Edition
+AppUpdatesURL=https://github.com/nvdacn/NVDA_Lazy_Edition/releases
 DefaultDirName={userappdata}\NVDA
 AllowNoIcons=yes
-OutputDir=.
-OutputBaseFilename=NVDA ÀÁÈË°æ
+OutputDir=Output
+OutputBaseFilename=NVDA æ‡’äººç‰ˆ
 Compression=lzma
 DisableDirPage=Yes
 DisableProgramGroupPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
-LicenseFile=Application\documentation\copying.txt
-SetupIconFile=Application\images\nvda.ico
-InfoBeforeFile=Readme.txt
+LicenseFile=Temp\NVDA\documentation\copying.txt
+SetupIconFile=Temp\NVDA\images\nvda.ico
+InfoBeforeFile=Readme.md
 MinVersion=6.03
 ArchitecturesInstallIn64BitMode=x64 ia64 arm64
 AllowCancelDuringInstall=No
@@ -31,65 +35,63 @@ Name: "english"; MessagesFile: "compiler:Languages\English.isl"
 Name: "chinesesimp"; MessagesFile: "compiler:Default.isl"
 
 [Messages]
-ReadyLabel2a=µ¥»÷¡°°²×°¡±ÒÔ¿ªÊ¼°²×°½ø³Ì¡£
-FinishedHeadingLabel=[name] °²×°Ïòµ¼Íê³É£¬ÇëÊÖ¶¯Æô¶¯ NVDA ÒÑ¿ªÊ¼Ê¹ÓÃ
+ReadyLabel2a=å•å‡»â€œå®‰è£…â€ä»¥å¼€å§‹å®‰è£…è¿›ç¨‹ã€‚
+FinishedHeadingLabel=[name] å®‰è£…å‘å¯¼å®Œæˆï¼Œè¯·æ‰‹åŠ¨å¯åŠ¨ NVDA å·²å¼€å§‹ä½¿ç”¨
 
 [Types]
-Name: "default"; Description: "Ä¬ÈÏ°²×°"
-Name: "compact"; Description: "×îĞ¡°²×°"
-Name: Full; Description: "ÍêÕû°²×°"
-Name: "custom"; Description: "×Ô¶¨Òå°²×°"; Flags: iscustom
+Name: "default"; Description: "é»˜è®¤å®‰è£…"
+Name: "compact"; Description: "æœ€å°å®‰è£…"
+Name: Full; Description: "å®Œæ•´å®‰è£…"
+Name: "custom"; Description: "è‡ªå®šä¹‰å®‰è£…"; Flags: iscustom
 
 [Components]
-Name: "Settings"; Types: Full default compact custom; Description: "ĞŞ¸Ä²¿·Ö NVDA ÉèÖÃ"; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini'))
-Name: "Settings"; Description: "ĞŞ¸Ä²¿·Ö NVDA ÉèÖÃ"; Check: FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini'))
-Name: "Voices"; Types: Full default custom; Description: "ÓïÒôÒıÇæ";
-Name: "Voices\VVTTS"; Types: Full default custom; Description: "VVTTS ÓïÒôÒıÇæ"
-Name: "Voices\VVTTS\IBMTTS"; Types: Full default custom; Description: "IBMTTS ÓïÒôÒıÇæ£¨VVTTS ²å¼ş°æ£©"
-Name: "Voices\AiSound5"; Types: Full custom; Description: "AiSound5 ÓïÒôÒıÇæ"
-Name: "Voices\WorldVoice"; Types: Full default custom; Description: "WorldVoice £¨Vocalizer Expressive ÓïÒô£©"
-Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "¿ÉÑ¡²å¼ş"
-Name: "Addons\addonsHelp"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "²å¼şÎÄµµ"
-Name: "Addons\addonUpdater"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "²å¼ş¸üĞÂÆ÷"
-Name: "Addons\AudioControl"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "ÒôÆµ¿ØÖÆ"; OnlyBelowVersion: 10.0
-Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "ÒôÆµ¹ÜÀíÆ÷"; MinVersion: 10.0
-Name: "Addons\baiduTranslation"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "°Ù¶È·­Òë"
-Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "¼ôÌù°åÀÊ¶ÁÔöÇ¿"
-Name: "Addons\DragAndDrop"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "DragAndDrop £¨¶ÔÏóÍÏ·Å£©"
-Name: "Addons\enhancedTouchGestures"; Types: Full custom; Flags: disablenouninstallwarning; Description: "´¥ÃşÊÖÊÆÔöÇ¿"
-Name: "Addons\goldenCursor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "½ğÉ«¹â±ê"
-Name: "Addons\imeExpressive"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "ÖĞÎÄÊäÈë·¨Ö§³Ö"
-Name: "Addons\MSEdgeDiscardAnnouncements"; Types: Full custom; Flags: disablenouninstallwarning; Description: "½ûÖ¹ Microsoft Edge UIA Í¨Öª"
-Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "Êı×Ö´¦Àí"
-Name: "Addons\NVBox"; Types: Full custom; Flags: disablenouninstallwarning; Description: "NV±¦ºĞ"
-Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA ÖĞÎÄÉçÇø¸üĞÂ¾µÏñÔ´"
-Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQÔöÇ¿"
-Name: "Addons\QuickAdjustment"; Types: Full custom; Flags: disablenouninstallwarning; Description: "¿ìËÙµ÷½Ú"
-Name: "Addons\remote"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Ô¶³ÌÖ§³Ö"
-Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "×ÊÔ´¼à¿ØÆ÷"
-Name: "Addons\unmute"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "È¡ÏûÏµÍ³¾²Òô"
-Name: "Addons\WakeSpeaker"; Types: Full custom; Flags: disablenouninstallwarning; Description: "»½ĞÑÑïÉùÆ÷"
-Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PCÎ¢ĞÅÔöÇ¿"
-Name: "Addons\wintenApps"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Windows Ó¦ÓÃÔöÇ¿"; MinVersion: 10.0
-Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "ĞÂÒíOCR"
-Name: "Addons\YYPatch"; Types: Full custom; Flags: disablenouninstallwarning; Description: "YY ²¹¶¡"
+Name: "Settings"; Types: Full default compact custom; Description: "ä¿®æ”¹éƒ¨åˆ† NVDA è®¾ç½®"; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini'))
+Name: "Settings"; Description: "ä¿®æ”¹éƒ¨åˆ† NVDA è®¾ç½®"; Check: FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini'))
+Name: "Voices"; Types: Full default custom; Description: "è¯­éŸ³å¼•æ“";
+Name: "Voices\VVTTS"; Types: Full default custom; Description: "VVTTS è¯­éŸ³å¼•æ“"
+Name: "Voices\VVTTS\IBMTTS"; Types: Full default custom; Description: "IBMTTS è¯­éŸ³å¼•æ“ï¼ˆVVTTS æ’ä»¶ç‰ˆï¼‰"
+Name: "Voices\AiSound5"; Types: Full custom; Description: "AiSound5 è¯­éŸ³å¼•æ“"
+Name: "Voices\WorldVoice"; Types: Full default custom; Description: "WorldVoice ï¼ˆVocalizer Expressive è¯­éŸ³ï¼‰"
+Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "å¯é€‰æ’ä»¶"
+Name: "Addons\addonsHelp"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "æ’ä»¶æ–‡æ¡£"
+Name: "Addons\addonUpdater"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "æ’ä»¶æ›´æ–°å™¨"
+Name: "Addons\AudioControl"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "éŸ³é¢‘æ§åˆ¶"; OnlyBelowVersion: 10.0
+Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "éŸ³é¢‘ç®¡ç†å™¨"; MinVersion: 10.0
+Name: "Addons\baiduTranslation"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "ç™¾åº¦ç¿»è¯‘"
+Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "å‰ªè´´æ¿æœ—è¯»å¢å¼º"
+Name: "Addons\DragAndDrop"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "DragAndDrop ï¼ˆå¯¹è±¡æ‹–æ”¾ï¼‰"
+Name: "Addons\enhancedTouchGestures"; Types: Full custom; Flags: disablenouninstallwarning; Description: "è§¦æ‘¸æ‰‹åŠ¿å¢å¼º"
+Name: "Addons\goldenCursor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "é‡‘è‰²å…‰æ ‡"
+Name: "Addons\imeExpressive"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "ä¸­æ–‡è¾“å…¥æ³•æ”¯æŒ"
+Name: "Addons\MSEdgeDiscardAnnouncements"; Types: Full custom; Flags: disablenouninstallwarning; Description: "ç¦æ­¢ Microsoft Edge UIA é€šçŸ¥"
+Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "æ•°å­—å¤„ç†"
+Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA ä¸­æ–‡ç¤¾åŒºæ›´æ–°é•œåƒæº"
+Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQå¢å¼º"
+Name: "Addons\QuickAdjustment"; Types: Full custom; Flags: disablenouninstallwarning; Description: "å¿«é€Ÿè°ƒèŠ‚"
+Name: "Addons\remote"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "è¿œç¨‹æ”¯æŒ"
+Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "èµ„æºç›‘æ§å™¨"
+Name: "Addons\unmute"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "å–æ¶ˆç³»ç»Ÿé™éŸ³"
+Name: "Addons\WakeSpeaker"; Types: Full custom; Flags: disablenouninstallwarning; Description: "å”¤é†’æ‰¬å£°å™¨"
+Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PCå¾®ä¿¡å¢å¼º"
+Name: "Addons\wintenApps"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Windows åº”ç”¨å¢å¼º"; MinVersion: 10.0
+Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "æ–°ç¿¼OCR"
+Name: "Addons\YYPatch"; Types: Full custom; Flags: disablenouninstallwarning; Description: "YY è¡¥ä¸"
 
 [Tasks]
-Name: "StartOnLogon"; Description: "ÔÚ»¶Ó­½çÃæÆôÓÃ NVDA"
-Name: "Voices"; Description: "ÓïÒôºÏ³ÉÆ÷ÉèÖÃ"; Components: Settings; OnlyBelowVersion: 10.0
-Name: "Voices"; Description: "ÓïÒôºÏ³ÉÆ÷ÉèÖÃ"; Components: Settings and Voices; Flags: Unchecked; MinVersion: 10.0
-Name: "Voices\WorldVoice"; Description: "ÇĞ»»ÓïÒôºÏ³ÉÆ÷µ½ WorldVoice"; Components: Voices\WorldVoice; Flags: exclusive Unchecked
-Name: "Voices\AiSound5"; Description: "ÇĞ»»ÓïÒôºÏ³ÉÆ÷µ½ AiSound5"; Components: Voices\AiSound5; Flags: exclusive Unchecked
-Name: "Voices\IBMTTS"; Description: "ÇĞ»»ÓïÒôºÏ³ÉÆ÷µ½ IBMTTS"; Components: Voices\VVTTS\IBMTTS; Flags: exclusive Unchecked
-Name: "Voices\sapi4"; Description: "ÇĞ»»ÓïÒôºÏ³ÉÆ÷µ½ Microsoft Speech API version 4 ÒÑÊ¹ÓÃ VVTTS ÒıÇæ"; Components: Voices\VVTTS; Flags: exclusive Unchecked
-Name: "Voices\sapi5"; Description: "ÇĞ»»ÓïÒôºÏ³ÉÆ÷µ½ Microsoft Speech API version 5"; OnlyBelowVersion: 10.0; Components: Settings; Flags: exclusive
-Name: "Voices\nvbox"; Description: "ÇĞ»»ÓïÒôºÏ³ÉÆ÷µ½ NV ±¦ºĞÓïÒôºÏ³ÉÆ÷"; Components: Addons\NVBox; Flags: exclusive Unchecked
-Name: "VVTTSDicts"; Description: "µ¼Èë VVTTS ÓïÒô×Öµä£¨½öÓÃÓÚ SAPI4£©"; Components: Settings and Voices\VVTTS; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-ÖĞÎÄ-¼òÌå_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
-Name: "VVTTSDicts"; Description: "µ¼Èë VVTTS ÓïÒô×Öµä£¨½öÓÃÓÚ SAPI4£©"; Components: Settings and Voices\VVTTS; Flags: Unchecked; Check: FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-ÖĞÎÄ-¼òÌå_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
-Name: "DragAndDropGestures"; Description: "ĞŞ¸Ä DragAndDrop ²å¼şµÄÌ¨Ê½»ú¿ì½İ¼üÓë±Ê¼Ç±¾¼üÅÌ·½°¸ÏàÍ¬"; Components: "Addons\DragAndDrop"
-Name: "DeleteProfile"; Description: "Çå¿ÕÓÃ»§ÅäÖÃÎÄ¼ş¼Ğ"; Check: FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini')); Flags: Unchecked
-Name: "DeleteProfile\Backup"; Description: "±¸·İÏÖÓĞ NVDA ÅäÖÃ"; Flags: exclusive
-Name: "DeleteProfile\NoBackup"; Description: "²»±¸·İÏÖÓĞ NVDA ÅäÖÃ"; Flags: exclusive Unchecked
+Name: "StartOnLogon"; Description: "åœ¨æ¬¢è¿ç•Œé¢å¯ç”¨ NVDA"
+Name: "Voices"; Description: "è¯­éŸ³åˆæˆå™¨è®¾ç½®"; Components: Settings; OnlyBelowVersion: 10.0
+Name: "Voices"; Description: "è¯­éŸ³åˆæˆå™¨è®¾ç½®"; Components: Settings and Voices; Flags: Unchecked; MinVersion: 10.0
+Name: "Voices\WorldVoice"; Description: "åˆ‡æ¢è¯­éŸ³åˆæˆå™¨åˆ° WorldVoice"; Components: Voices\WorldVoice; Flags: exclusive Unchecked
+Name: "Voices\AiSound5"; Description: "åˆ‡æ¢è¯­éŸ³åˆæˆå™¨åˆ° AiSound5"; Components: Voices\AiSound5; Flags: exclusive Unchecked
+Name: "Voices\IBMTTS"; Description: "åˆ‡æ¢è¯­éŸ³åˆæˆå™¨åˆ° IBMTTS"; Components: Voices\VVTTS\IBMTTS; Flags: exclusive Unchecked
+Name: "Voices\sapi4"; Description: "åˆ‡æ¢è¯­éŸ³åˆæˆå™¨åˆ° Microsoft Speech API version 4 å·²ä½¿ç”¨ VVTTS å¼•æ“"; Components: Voices\VVTTS; Flags: exclusive Unchecked
+Name: "Voices\sapi5"; Description: "åˆ‡æ¢è¯­éŸ³åˆæˆå™¨åˆ° Microsoft Speech API version 5"; OnlyBelowVersion: 10.0; Components: Settings; Flags: exclusive
+Name: "VVTTSDicts"; Description: "å¯¼å…¥ VVTTS è¯­éŸ³å­—å…¸ï¼ˆä»…ç”¨äº SAPI4ï¼‰"; Components: Settings and Voices\VVTTS; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-ä¸­æ–‡-ç®€ä½“_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
+Name: "VVTTSDicts"; Description: "å¯¼å…¥ VVTTS è¯­éŸ³å­—å…¸ï¼ˆä»…ç”¨äº SAPI4ï¼‰"; Components: Settings and Voices\VVTTS; Flags: Unchecked; Check: FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-ä¸­æ–‡-ç®€ä½“_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
+Name: "DragAndDropGestures"; Description: "ä¿®æ”¹ DragAndDrop æ’ä»¶çš„å°å¼æœºå¿«æ·é”®ä¸ç¬”è®°æœ¬é”®ç›˜æ–¹æ¡ˆç›¸åŒ"; Components: "Addons\DragAndDrop"
+Name: "DeleteProfile"; Description: "æ¸…ç©ºç”¨æˆ·é…ç½®æ–‡ä»¶å¤¹"; Check: FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini')); Flags: Unchecked
+Name: "DeleteProfile\Backup"; Description: "å¤‡ä»½ç°æœ‰ NVDA é…ç½®"; Flags: exclusive
+Name: "DeleteProfile\NoBackup"; Description: "ä¸å¤‡ä»½ç°æœ‰ NVDA é…ç½®"; Flags: exclusive Unchecked
 
 [code]
 var
@@ -112,12 +114,12 @@ function CHSUI: Boolean;
 begin
   If not FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini')) Then
   begin
-    ResultCode := SuppressibleMsgBox('»¶Ó­Ê¹ÓÃ NVDA ÀÁÈË°æ¡£' #13#13 '±¾³ÌĞò¿É×Ô¶¯ÎªÄú°²×° NVDA Ö÷³ÌĞò¼°²¿·Ö³£ÓÃ²å¼ş¡£' #13#13 '³ÌĞò¼ì²âµ½ÄúÎ´°²×° NVDA »òÉĞÎ´¶ÔÆä½øĞĞÅäÖÃ£¬Äú¿ÉÑ¡Ôñ¿ìËÙ°²×°Ä£Ê½ÒÔ×Ô¶¯°²×°ºÍÅäÖÃ NVDA¡£' #13#13 'ÄúÒªÖ´ĞĞ¿ìËÙ°²×°Âğ£¿' #13#13 'µ¥»÷¡°ÊÇ¡±Ö´ĞĞ¿ìËÙ°²×°£¬µ¥»÷¡°·ñ¡±Ö´ĞĞ¸ß¼¶°²×°£¬µ¥»÷¡°È¡Ïû¡±ÍË³ö±¾³ÌĞò¡£', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
+    ResultCode := SuppressibleMsgBox('æ¬¢è¿ä½¿ç”¨ NVDA æ‡’äººç‰ˆã€‚' #13#13 'æœ¬ç¨‹åºå¯è‡ªåŠ¨ä¸ºæ‚¨å®‰è£… NVDA ä¸»ç¨‹åºåŠéƒ¨åˆ†å¸¸ç”¨æ’ä»¶ã€‚' #13#13 'ç¨‹åºæ£€æµ‹åˆ°æ‚¨æœªå®‰è£… NVDA æˆ–å°šæœªå¯¹å…¶è¿›è¡Œé…ç½®ï¼Œæ‚¨å¯é€‰æ‹©å¿«é€Ÿå®‰è£…æ¨¡å¼ä»¥è‡ªåŠ¨å®‰è£…å’Œé…ç½® NVDAã€‚' #13#13 'æ‚¨è¦æ‰§è¡Œå¿«é€Ÿå®‰è£…å—ï¼Ÿ' #13#13 'å•å‡»â€œæ˜¯â€æ‰§è¡Œå¿«é€Ÿå®‰è£…ï¼Œå•å‡»â€œå¦â€æ‰§è¡Œé«˜çº§å®‰è£…ï¼Œå•å‡»â€œå–æ¶ˆâ€é€€å‡ºæœ¬ç¨‹åºã€‚', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
   end else begin
-    ResultCode := SuppressibleMsgBox('»¶Ó­Ê¹ÓÃ NVDA ÀÁÈË°æ¡£' #13#13 '±¾³ÌĞò¿É×Ô¶¯ÎªÄú°²×° NVDA Ö÷³ÌĞò¼°²¿·Ö³£ÓÃ²å¼ş¡£' #13#13 '³ÌĞò¼ì²âµ½ÄúµÄ NVDA ÅäÖÃÎÄ¼ş¼ĞÖĞ´æÔÚ NVDAÅäÖÃÎÄ¼ş£¬±£Áô¸ÃÅäÖÃ¼ÌĞø°²×°£¬Ä³Ğ©ÎÄ¼ş¿ÉÄÜ²»»á±»Ìæ»»¡£' #13#13 'ÄúÒªÇå³ı¸ÃÅäÖÃÂğ£¿' #13#13 'µ¥»÷¡°ÊÇ¡±Çå¿Õ NVDA ÅäÖÃÎÄ¼ş¼Ğ£¬µ¥»÷¡°·ñ¡±±£ÁôÅäÖÃ²¢Ö´ĞĞ¸ß¼¶°²×°£¬µ¥»÷¡°È¡Ïû¡±ÍË³ö±¾³ÌĞò¡£', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
+    ResultCode := SuppressibleMsgBox('æ¬¢è¿ä½¿ç”¨ NVDA æ‡’äººç‰ˆã€‚' #13#13 'æœ¬ç¨‹åºå¯è‡ªåŠ¨ä¸ºæ‚¨å®‰è£… NVDA ä¸»ç¨‹åºåŠéƒ¨åˆ†å¸¸ç”¨æ’ä»¶ã€‚' #13#13 'ç¨‹åºæ£€æµ‹åˆ°æ‚¨çš„ NVDA é…ç½®æ–‡ä»¶å¤¹ä¸­å­˜åœ¨ NVDAé…ç½®æ–‡ä»¶ï¼Œä¿ç•™è¯¥é…ç½®ç»§ç»­å®‰è£…ï¼ŒæŸäº›æ–‡ä»¶å¯èƒ½ä¸ä¼šè¢«æ›¿æ¢ã€‚' #13#13 'æ‚¨è¦æ¸…é™¤è¯¥é…ç½®å—ï¼Ÿ' #13#13 'å•å‡»â€œæ˜¯â€æ¸…ç©º NVDA é…ç½®æ–‡ä»¶å¤¹ï¼Œå•å‡»â€œå¦â€ä¿ç•™é…ç½®å¹¶æ‰§è¡Œé«˜çº§å®‰è£…ï¼Œå•å‡»â€œå–æ¶ˆâ€é€€å‡ºæœ¬ç¨‹åºã€‚', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
     If ResultCode=IDYES Then
     begin
-      ResultCode := SuppressibleMsgBox('ÄúÒª±¸·İÏÖÓĞµÄ NVDA ÅäÖÃÂğ£¿' #13#13 '±¸·İµÄÎÄ¼ş½«±»´æ´¢ÔÚ '+ ExpandConstant('{userdocs}\NVDABackup')+ ' ÎÄ¼ş¼ĞÖĞ¡£' #13#13 'µ¥»÷¡°ÊÇ¡±±¸·İ²¢Çå¿ÕÏÖÓĞÅäÖÃÎÄ¼ş¼Ğ£¬µ¥»÷¡°·ñ¡±Ö±½ÓÇå¿ÕÏÖÓĞÅäÖÃÎÄ¼ş¼Ğ£¬µ¥»÷¡°È¡Ïû¡±±£ÁôÅäÖÃ²¢Ö´ĞĞ¸ß¼¶°²×°¡£', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDYES)
+      ResultCode := SuppressibleMsgBox('æ‚¨è¦å¤‡ä»½ç°æœ‰çš„ NVDA é…ç½®å—ï¼Ÿ' #13#13 'å¤‡ä»½çš„æ–‡ä»¶å°†è¢«å­˜å‚¨åœ¨ '+ ExpandConstant('{userdocs}\NVDABackup')+ ' æ–‡ä»¶å¤¹ä¸­ã€‚' #13#13 'å•å‡»â€œæ˜¯â€å¤‡ä»½å¹¶æ¸…ç©ºç°æœ‰é…ç½®æ–‡ä»¶å¤¹ï¼Œå•å‡»â€œå¦â€ç›´æ¥æ¸…ç©ºç°æœ‰é…ç½®æ–‡ä»¶å¤¹ï¼Œå•å‡»â€œå–æ¶ˆâ€ä¿ç•™é…ç½®å¹¶æ‰§è¡Œé«˜çº§å®‰è£…ã€‚', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDYES)
       If ResultCode=IDCANCEL Then
       begin
         ResultCode := IDNO;
@@ -127,7 +129,7 @@ begin
 BackupNVDAProfile();
         end;
         DelTree(ExpandConstant('{userappdata}\NVDA'), True, True, True);
-        ResultCode := SuppressibleMsgBox('³ÌĞòÒÑÇå¿ÕÄúÏÖÓĞµÄ NVDA ÅäÖÃÎÄ¼ş¼Ğ£¬ÏÖÔÚÄú¿ÉÑ¡Ôñ¿ìËÙ°²×°Ä£Ê½ÒÔ×Ô¶¯°²×°ºÍÅäÖÃ NVDA¡£' #13#13 'ÄúÒªÖ´ĞĞ¿ìËÙ°²×°Âğ£¿' #13#13 'µ¥»÷¡°ÊÇ¡±Ö´ĞĞ¿ìËÙ°²×°£¬µ¥»÷¡°·ñ¡±Ö´ĞĞ¸ß¼¶°²×°£¬µ¥»÷¡°È¡Ïû¡±ÍË³ö±¾³ÌĞò¡£', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
+        ResultCode := SuppressibleMsgBox('ç¨‹åºå·²æ¸…ç©ºæ‚¨ç°æœ‰çš„ NVDA é…ç½®æ–‡ä»¶å¤¹ï¼Œç°åœ¨æ‚¨å¯é€‰æ‹©å¿«é€Ÿå®‰è£…æ¨¡å¼ä»¥è‡ªåŠ¨å®‰è£…å’Œé…ç½® NVDAã€‚' #13#13 'æ‚¨è¦æ‰§è¡Œå¿«é€Ÿå®‰è£…å—ï¼Ÿ' #13#13 'å•å‡»â€œæ˜¯â€æ‰§è¡Œå¿«é€Ÿå®‰è£…ï¼Œå•å‡»â€œå¦â€æ‰§è¡Œé«˜çº§å®‰è£…ï¼Œå•å‡»â€œå–æ¶ˆâ€é€€å‡ºæœ¬ç¨‹åºã€‚', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
       end;
     end;
   end;
@@ -188,7 +190,6 @@ FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " aisound
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi4"; Tasks: "Voices\sapi4"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi5"; Tasks: "Voices\sapi5"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " WorldVoice"; Tasks: "Voices\WorldVoice"
-FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " nvbox"; Tasks: "Voices\nvbox"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " ibmeci"; Tasks: "Voices\IBMTTS"
 
 [InstallDelete]
@@ -216,7 +217,6 @@ Type: files; Name: "{app}\Addons\goldenCursor\manifest.ini"; Tasks: "not DeleteP
 Type: filesandordirs; Name: "{app}\Addons\ime_expressive"; Tasks: "not DeleteProfile"; Components: "Addons\imeExpressive"
 Type: filesandordirs; Name: "{app}\Addons\MSEdgeDiscardAnnouncements"; Tasks: "not DeleteProfile"; Components: "Addons\MSEdgeDiscardAnnouncements"
 Type: filesandordirs; Name: "{app}\Addons\numberProcessing"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
-Type: filesandordirs; Name: "{app}\Addons\NVBox"; Tasks: "not DeleteProfile"; Components: "Addons\NVBox"
 Type: filesandordirs; Name: "{app}\Addons\QQEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
 Type: filesandordirs; Name: "{app}\Addons\QuickAdjustment"; Tasks: "not DeleteProfile"; Components: "Addons\QuickAdjustment"
 Type: filesandordirs; Name: "{app}\Addons\remote"; Tasks: "not DeleteProfile"; Components: "Addons\remote"
@@ -245,7 +245,6 @@ Type: files; Name: "{app}\Addons\goldenCursor.json"; Tasks: "not DeleteProfile";
 Type: files; Name: "{app}\Addons\ime_expressive.json"; Tasks: "not DeleteProfile"; Components: "Addons\imeExpressive"
 Type: files; Name: "{app}\Addons\MSEdgeDiscardAnnouncements.json"; Tasks: "not DeleteProfile"; Components: "Addons\MSEdgeDiscardAnnouncements"
 Type: files; Name: "{app}\Addons\numberProcessing.json"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
-Type: files; Name: "{app}\Addons\NVBox.json"; Tasks: "not DeleteProfile"; Components: "Addons\NVBox"
 Type: files; Name: "{app}\Addons\QQEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
 Type: files; Name: "{app}\Addons\QuickAdjustment.json"; Tasks: "not DeleteProfile"; Components: "Addons\QuickAdjustment"
 Type: files; Name: "{app}\Addons\remote.json"; Tasks: "not DeleteProfile"; Components: "Addons\remote"
@@ -284,7 +283,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\goldenCursor*"" -aoa -o""{app}\Add
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\ime_expressive*"" -aoa -o""{app}\Addons\ime_expressive"""; Components: "Addons\imeExpressive"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\MSEdgeDiscardAnnouncements*"" -aoa -o""{app}\Addons\MSEdgeDiscardAnnouncements"""; Components: "Addons\MSEdgeDiscardAnnouncements"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\numberProcessing*"" -aoa -o""{app}\Addons\numberProcessing"""; Components: "Addons\numberProcessing"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\NVBox*"" -aoa -o""{app}\Addons\NVBox"""; Components: "Addons\NVBox"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\QQEnhancement*"" -aoa -o""{app}\Addons\QQEnhancement"""; Components: "Addons\QQEnhancement"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\QuickAdjustment*"" -aoa -o""{app}\Addons\QuickAdjustment"""; Components: "Addons\QuickAdjustment"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\remote*"" -aoa -o""{app}\Addons\remote"""; Components: "Addons\remote"
@@ -297,42 +295,41 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*"" -aoa -o""{app}\Addons\xyO
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\YYPatch*"" -aoa -o""{app}\Addons\YYPatch"""; Components: "Addons\YYPatch"
 
 [Files]
-Source: "Application.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
-Source: "Others\7z.dll"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
-Source: "Others\7z.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
+Source: "Temp\Application.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
+Source: "Tools\7Zip\7z.dll"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
+Source: "Tools\7Zip\7z.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
 Source: "userConfig\nvda.ini"; DestDir: "{app}"; Components: "Settings"; Flags: ignoreversion
-Source: "userConfig\sapi4-ÖĞÎÄ-¼òÌå_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4"; Tasks: "VVTTSDicts"; Flags: ignoreversion
-Source: "Others\VVTTS.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
-Source: "Others\aisound.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5 or Voices\WorldVoice"
-Source: "Others\vcredist_x86.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Others\VE.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Others\voice.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Addons\AiSound5*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5"
-Source: "Addons\IBMTTS*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS\IBMTTS"
-Source: "Addons\WorldVoice*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
+Source: "userConfig\sapi4-ä¸­æ–‡-ç®€ä½“_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4"; Tasks: "VVTTSDicts"; Flags: ignoreversion
+Source: "Resource\speech\VVTTS.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
+Source: "Resource\speech\aisound.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5 or Voices\WorldVoice"
+Source: "Resource\vcredist_x86.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "Resource\speech\VE.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "Resource\speech\voice.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "Resource\Addons\AiSound5*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5"
+Source: "Resource\Addons\IBMTTS*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS\IBMTTS"
+Source: "Resource\Addons\WorldVoice*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "Resource\Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
 Source: "userConfig\nvda3208.pickle"; DestDir: "{app}"; Components: "Settings and Addons\addonUpdater"; Flags: ignoreversion
-Source: "Addons\addonUpdater*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonUpdater"
-Source: "Addons\AudioControl*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\AudioControl"
-Source: "Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
-Source: "Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
-Source: "Addons\WakeSpeaker*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WakeSpeaker"
-Source: "Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
-Source: "Addons\DragAndDrop*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\DragAndDrop"
-Source: "Addons\enhancedTouchGestures*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\enhancedTouchGestures"
-Source: "Addons\goldenCursor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\goldenCursor"
-Source: "Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\imeExpressive"
-Source: "Addons\MSEdgeDiscardAnnouncements*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\MSEdgeDiscardAnnouncements"
-Source: "Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
-Source: "Addons\NVBox*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVBox"
-Source: "Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
-Source: "Addons\QuickAdjustment*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QuickAdjustment"
-Source: "Addons\remote*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\remote"
-Source: "Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
-Source: "Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
-Source: "Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVDACNMirror"
-Source: "Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
-Source: "Addons\wintenApps*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\wintenApps"
-Source: "Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
-Source: "Addons\YYPatch*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\YYPatch"
+Source: "Resource\Addons\addonUpdater*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonUpdater"
+Source: "Resource\Addons\AudioControl*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\AudioControl"
+Source: "Resource\Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
+Source: "Resource\Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
+Source: "Resource\Addons\WakeSpeaker*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WakeSpeaker"
+Source: "Resource\Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
+Source: "Resource\Addons\DragAndDrop*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\DragAndDrop"
+Source: "Resource\Addons\enhancedTouchGestures*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\enhancedTouchGestures"
+Source: "Resource\Addons\goldenCursor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\goldenCursor"
+Source: "Resource\Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\imeExpressive"
+Source: "Resource\Addons\MSEdgeDiscardAnnouncements*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\MSEdgeDiscardAnnouncements"
+Source: "Resource\Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
+Source: "Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
+Source: "Resource\Addons\QuickAdjustment*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QuickAdjustment"
+Source: "Resource\Addons\remote*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\remote"
+Source: "Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
+Source: "Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
+Source: "Resource\Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVDACNMirror"
+Source: "Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
+Source: "Resource\Addons\wintenApps*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\wintenApps"
+Source: "Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
+Source: "Resource\Addons\YYPatch*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\YYPatch"
 

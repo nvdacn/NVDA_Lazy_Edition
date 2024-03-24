@@ -1,24 +1,28 @@
 @echo off
-Rem ĞŞ¸ÄÏÂÒ»ĞĞµÈºÅºóÃæµÄÖµÎªNVDAÔ´³ÌĞòÎÄ¼şÃûµÄ°æ±¾ºÅ²¿·Ö¼´¿É³É¹¦Éú³É£¬Éú³ÉµÄÎÄ¼şÎ»ÓÚ Output ÎÄ¼ş¼ĞÖĞ¡£
-set nvda=2023.3
-IF EXIST "%~dp0Application" (rd /s /q "%~dp0Application")
+chcp 65001
+
+Rem ä¿®æ”¹ä¸‹ä¸€è¡Œç­‰å·åé¢çš„å€¼ä¸ºNVDAæºç¨‹åºæ–‡ä»¶åå³å¯æˆåŠŸç”Ÿæˆï¼Œç”Ÿæˆçš„æ–‡ä»¶ä½äº Output æ–‡ä»¶å¤¹ä¸­ã€‚
+set nvda=nvda_2024.1rc1
+
+Rem åˆ é™¤å·²ç»å­˜åœ¨çš„æ‡’äººç‰ˆç›¸å…³æ–‡ä»¶
 IF EXIST "%~dp0Output" (rd /s /q "%~dp0Output")
-IF EXIST "%~dp0Application.exe" (del /f /q "%~dp0Application.exe")
-IF EXIST "%~dp0NVDA ÀÁÈË°æ.exe" (del /f /q "%~dp0NVDA ÀÁÈË°æ.exe")
-IF EXIST "%~dp0ReadMe.txt" (del /f /q "%~dp0ReadMe.txt")
-"%~dp0nvda_%nvda%.exe" --create-portable-silent --portable-path="%~dp0Application"
+IF EXIST "%~dp0Temp" (rd /s /q "%~dp0Temp")
+
+Rem åˆ›å»ºä¾¿æºç‰ˆ NVDA
+"%~dp0Resource\%nvda%.exe" --create-portable-silent --portable-path="%~dp0Temp\NVDA"
 if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
 Start /D  "%ProgramFiles%\NVDA" NVDA
 ) else (
 Start /D  "%ProgramFiles(x86)%\NVDA" NVDA
 )
-COPY /B /V  /Y "%~dp0ReadMe.md" "%~dp0ReadMe.txt"
-"%~dp0InnoSetup\Compil32" /cc "%~dp0±ãĞ¯°æNVDA.iss"
-"%~dp0InnoSetup\Compil32" /cc "%~dp0NVDA ÀÁÈË°æ.iss"
-"%~dp0Others\7z.exe" a -y -tzip "%~dp0Output\NVDA_Lazy_Edition_%nvda%.zip" "%~dp0NVDA ÀÁÈË°æ.exe" "%~dp0ReadMe.txt" "%~dp0»Ö¸´±¸·İµÄ NVDA ÅäÖÃ.exe"
-"%~dp0Others\7z.exe" a -y -tzip "%~dp0Output\NVDAÀÁÈË°æÔ´´úÂë.zip" "%~dp0Addons" "%~dp0InnoSetup" "%~dp0Others" "%~dp0userConfig" "%~dp0NVDA ÀÁÈË°æ.iss" "%~dp0%nvda%.exe" "%~dp0ReadMe.txt" "%~dp0±ãĞ¯°æNVDA.iss" "%~dp0»Ö¸´±¸·İµÄ NVDA ÅäÖÃ.exe" "%~dp0Ö´ĞĞ½Å±¾.bat"
-IF EXIST "%~dp0Application" (rd /s /q "%~dp0Application")
-IF EXIST "%~dp0Application.exe" (del /f /q "%~dp0Application.exe")
-IF EXIST "%~dp0ReadMe.txt" (del /f /q "%~dp0ReadMe.txt")
+
+Rem å¼€å§‹ç”Ÿæˆ
+MKDir "%~dp0Output"
+COPY /B /V  /Y "%~dp0ReadMe.md" "%~dp0Output\ReadMe.txt"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0ä¾¿æºç‰ˆå®‰è£…è„šæœ¬.iss"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0æ‡’äººç‰ˆå®‰è£…è„šæœ¬.iss"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0æ¢å¤å¤‡ä»½çš„ NVDA é…ç½®.iss"
+"%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\NVDA_Lazy_Edition_%date:~3,4%.%date:~8,2%.%date:~11,2%.zip" "%~dp0Output\NVDA æ‡’äººç‰ˆ.exe" "%~dp0Output\ReadMe.txt" "%~dp0Output\NVDA é…ç½®æ¢å¤å·¥å…·.exe"
+"%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\Source_Code_And_Dependency_Files_%date:~3,4%.%date:~8,2%.%date:~11,2%.zip" "%~dp0Resource" "%~dp0Tools" "%~dp0userConfig" "%~dp0ReadMe.md" "%~dp0ä¾¿æºç‰ˆå®‰è£…è„šæœ¬.iss" "%~dp0æ¢å¤å¤‡ä»½çš„ NVDA é…ç½®.iss" "%~dp0æ‡’äººç‰ˆå®‰è£…è„šæœ¬.iss" "%~dp0æ‰§è¡Œè„šæœ¬.bat"
 
 Exit
