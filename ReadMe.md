@@ -5,7 +5,7 @@
 
 ## 对于设置选项的修改
 
-1. 语音设置：关闭 eSpeak NG、 Microsoft Speech API version 4、 Microsoft Speech API version 5、 Windows OneCore、AiSound5、WorldVoice、NV 宝盒语音合成器、IBMTTS 等接口的“激活拼读功能”选项，以避免出现个别字符发音怪异的现象；
+1. 语音设置：关闭 eSpeak NG、 Microsoft Speech API version 4、 Microsoft Speech API version 5、 Windows OneCore、AiSound5、WorldVoice、IBMTTS 等接口的“激活拼读功能”选项，以避免出现个别字符发音怪异的现象；
 2. 输入法设置：关闭“自动读出所有可用的候选”，以避免中文输入过程中对所有候选字的连续朗读，干扰输入；
 3. 对象查看：启用“读出工具提示”，用以自动读出文件大小等信息；
 4. 浏览模式：关闭“页面加载完成后朗读所有内容”，避免影响操作；
@@ -27,7 +27,6 @@
 - IBMTTS 语音引擎（VVTTS 插件版，为实现最佳使用效果，该插件需与 VVTTS 语音引擎一同安装，默认安装）
 - AiSound5 语音引擎
 - WorldVoice 语音（默认安装）
-- NV 宝盒语音合成器（由 NV宝盒插件提供）
 
 上述标有“默认安装”的语音引擎及所需运行库，在安装程序的“选择组件”页面，选择“默认安装”时会自动安装，其他语音引擎需选择“完整安装”才会被自动安装，亦可选择“自定义安装”进行选择性安装。
 
@@ -48,7 +47,6 @@
 - 中文输入法支持（默认安装）
 - 禁止 Microsoft Edge UIA 通知
 - 数字处理
-- NV宝盒）
 - NVDA 中文社区更新镜像源（默认安装）
 - PC QQ增强（默认安装）
 - 快速调节
@@ -258,7 +256,7 @@
   - 修正：通过本程序更新从插件商店安装的插件后，在插件商店仍然能检测到相同版本插件的问题；
   - 完善ReadMe文档；
   - 新增插件：；
-  - 不在集成的插件：；
+  - 不在集成的插件：NV宝盒；
   - 更新插件。
 - #### NVDA设置
   - 更新了部分 WorldVoice 插件的设置参数；
