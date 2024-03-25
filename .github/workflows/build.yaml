@@ -12,11 +12,10 @@ on:
   workflow_dispatch:
 
 env:
-  - NVDA:
-    name: nvda_2023.3.exe
-    version: 2023.3
-    URL: https://www.nvaccess.org/files/nvda/releases/2023.3/nvda_2023.3.exe
-    sha256: f9898950beae6024939d00cc88121ac9e96a7d2cb76056539557c70bb0f6eacc
+  NVDA: nvda_2023.3.exe
+  NVDA_VERSION: 2023.3
+  NVDA_URL: https://www.nvaccess.org/files/nvda/releases/2023.3/nvda_2023.3.exe
+  NVDA_SHAh256: f9898950beae6024939d00cc88121ac9e96a7d2cb76056539557c70bb0f6eacc
 
 jobs:
   download-NVDA:
@@ -25,19 +24,19 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ./nvda*.exe
-          key: nvda_${{ env.NVDA.version }}_${{ env.NVDA.sha256 }}
+          key: nvda_${{ env.NVDA_VERSION }}_${{ env.NVDA_SHAh256 }}
           restore-keys: |
-            ${{ env.NVDA.name }}
+            ${{ env.NVDA }}
           enableCrossOsArchive: true
       - name: Download NVDA
         id: download-nvda
         uses: carlosperate/download-file-action@v2
         with:
-          file-url: ${{ env.NVDA.url }}
-          sha256: ${{ env.NVDA.sha256 }}
+          file-url: ${{ env.NVDA_URL }}
+          sha256: ${{ env.NVDA_SHAh256 }}
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.NVDA.name }}
+          name: ${{ env.NVDA }}
           path: ${{ steps.download-nvda.outputs.file-path }}
           if-no-files-found: error
   download-addons:
@@ -240,7 +239,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
-          name: nvda_2023.3.exe
+          name: ${{ env.NVDA }}
       - uses: actions/download-artifact@v4
         with:
           path: Resource/Addons
