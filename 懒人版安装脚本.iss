@@ -74,7 +74,6 @@ Name: "Addons\WakeSpeaker"; Types: Full custom; Flags: disablenouninstallwarning
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
 Name: "Addons\wintenApps"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Windows 应用增强"; MinVersion: 10.0
 Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
-Name: "Addons\YYPatch"; Types: Full custom; Flags: disablenouninstallwarning; Description: "YY 补丁"
 
 [Tasks]
 Name: "StartOnLogon"; Description: "在欢迎界面启用 NVDA"
@@ -226,7 +225,6 @@ Type: filesandordirs; Name: "{app}\Addons\viyfMirror"; Tasks: "not DeleteProfile
 Type: filesandordirs; Name: "{app}\Addons\WeChatEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
 Type: filesandordirs; Name: "{app}\Addons\wintenApps"; Tasks: "not DeleteProfile"; Components: "Addons\wintenApps"
 Type: filesandordirs; Name: "{app}\Addons\xyOCR"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
-Type: filesandordirs; Name: "{app}\Addons\YYPatch"; Tasks: "not DeleteProfile"; Components: "Addons\YYPatch"
 Type: files; Name: "{app}\Addons\AiSound5.json"; Tasks: "not DeleteProfile"; Components: "Voices\AiSound5"
 Type: files; Name: "{app}\Addons\IBMTTS.json"; Tasks: "not DeleteProfile"; Components: "Voices\VVTTS\IBMTTS"
 Type: files; Name: "{app}\Addons\WorldVoice.json"; Tasks: "not DeleteProfile"; Components: "Voices\WorldVoice"
@@ -252,7 +250,6 @@ Type: files; Name: "{app}\Addons\NVDACNMirror.json"; Tasks: "not DeleteProfile";
 Type: files; Name: "{app}\Addons\WeChatEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
 Type: files; Name: "{app}\Addons\wintenApps.json"; Tasks: "not DeleteProfile"; Components: "Addons\wintenApps"
 Type: files; Name: "{app}\Addons\xyOCR.json"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
-Type: files; Name: "{app}\Addons\YYPatch.json"; Tasks: "not DeleteProfile"; Components: "Addons\YYPatch"
 
 [Run]
 Filename: "{tmp}\Application\nvda"; Parameters: "-m --install-silent --enable-start-on-logon=True"; Tasks: "StartOnLogon"
@@ -289,7 +286,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\NVDACNMirror*"" -aoa -o""{app}\Add
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\WeChatEnhancement*"" -aoa -o""{app}\Addons\WeChatEnhancement"""; Components: "Addons\WeChatEnhancement"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\wintenApps*"" -aoa -o""{app}\Addons\wintenApps"""; Components: "Addons\wintenApps"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*"" -aoa -o""{app}\Addons\xyOCR"""; Components: "Addons\xyOCR"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\YYPatch*"" -aoa -o""{app}\Addons\YYPatch"""; Components: "Addons\YYPatch"
 
 [Files]
 Source: "Temp\Application.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
@@ -327,5 +323,4 @@ Source: "Resource\Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deletea
 Source: "Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
 Source: "Resource\Addons\wintenApps*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\wintenApps"
 Source: "Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
-Source: "Resource\Addons\YYPatch*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\YYPatch"
 
