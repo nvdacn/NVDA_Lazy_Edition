@@ -55,7 +55,6 @@ Name: "Voices\WorldVoice"; Types: Full default custom; Description: "WorldVoice 
 Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "可选插件"
 Name: "Addons\addonsHelp"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件文档"
 Name: "Addons\addonUpdater"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件更新器"
-Name: "Addons\AudioControl"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频控制"; OnlyBelowVersion: 10.0
 Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
 Name: "Addons\baiduTranslation"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "百度翻译"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
@@ -201,7 +200,7 @@ Type: filesandordirs; Name: "{app}\Addons\WorldVoice"; Tasks: "not DeleteProfile
 Type: filesandordirs; Name: "{app}\Addons\addonsHelp"; Tasks: "not DeleteProfile"; Components: "Addons\addonsHelp"
 Type: filesandordirs; Name: "{app}\Addons\addonUpdater"; Tasks: "not DeleteProfile"; Components: "Addons\addonUpdater"
 Type: filesandordirs; Name: "{app}\Addons\audioManager"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
-Type: filesandordirs; Name: "{app}\Addons\AudioControl"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager or Addons\AudioControl"
+Type: filesandordirs; Name: "{app}\Addons\AudioControl"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: filesandordirs; Name: "{app}\Addons\baiduTranslation"; Tasks: "not DeleteProfile"; Components: "Addons\baiduTranslation"
 Type: filesandordirs; Name: "{app}\Addons\bluetoothaudio"; Tasks: "not DeleteProfile"; Components: "Addons\WakeSpeaker"
 Type: filesandordirs; Name: "{app}\Addons\WakeSpeaker"; Tasks: "not DeleteProfile"; Components: "Addons\WakeSpeaker"
@@ -234,7 +233,6 @@ Type: files; Name: "{app}\Addons\WorldVoice.json"; Tasks: "not DeleteProfile"; C
 Type: files; Name: "{app}\Addons\addonsHelp.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonsHelp"
 Type: files; Name: "{app}\Addons\addonUpdater.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonUpdater"
 Type: files; Name: "{app}\Addons\audioManager.json"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
-Type: files; Name: "{app}\Addons\AudioControl.json"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager or Addons\AudioControl"
 Type: files; Name: "{app}\Addons\baiduTranslation.json"; Tasks: "not DeleteProfile"; Components: "Addons\baiduTranslation"
 Type: files; Name: "{app}\Addons\bluetoothaudio.json"; Tasks: "not DeleteProfile"; Components: "Addons\WakeSpeaker"
 Type: files; Name: "{app}\Addons\WakeSpeaker.json"; Tasks: "not DeleteProfile"; Components: "Addons\WakeSpeaker"
@@ -272,7 +270,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""VE.zip"" -aoa -o""{app}\WorldVoice-worksp
 Filename: "{tmp}\7z"; Parameters: "x ""voice.zip"" -aoa -o""{app}\WorldVoice-workspace"""; Components: "Voices\WorldVoice"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsHelp*"" -aoa -o""{app}\Addons\addonsHelp"""; Components: "Addons\addonsHelp"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonUpdater*"" -aoa -o""{app}\Addons\addonUpdater"""; Components: "Addons\addonUpdater"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\AudioControl*"" -aoa -o""{app}\Addons\AudioControl"""; Components: "Addons\AudioControl"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\audioManager*"" -aoa -o""{app}\Addons\audioManager"""; Components: "Addons\audioManager"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\baiduTranslation*"" -aoa -o""{app}\Addons\baiduTranslation"""; Components: "Addons\baiduTranslation"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\WakeSpeaker*"" -aoa -o""{app}\Addons\WakeSpeaker"""; Components: "Addons\WakeSpeaker"
@@ -311,7 +308,6 @@ Source: "Resource\Addons\WorldVoice*"; DestDir: "{tmp}\Addons"; Flags: deleteaft
 Source: "Resource\Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
 Source: "userConfig\nvda3208.pickle"; DestDir: "{app}"; Components: "Settings and Addons\addonUpdater"; Flags: ignoreversion
 Source: "Resource\Addons\addonUpdater*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonUpdater"
-Source: "Resource\Addons\AudioControl*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\AudioControl"
 Source: "Resource\Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
 Source: "Resource\Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
 Source: "Resource\Addons\WakeSpeaker*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WakeSpeaker"
