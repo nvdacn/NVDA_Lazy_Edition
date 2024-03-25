@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  NVDA: |
+  - NVDA:
     name: nvda_2023.3.exe
     version: 2023.3
     URL: https://www.nvaccess.org/files/nvda/releases/2023.3/nvda_2023.3.exe
