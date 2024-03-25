@@ -243,7 +243,7 @@
 
 ### 2024--
 - #### 全局
-  - 自本版起，本程序的源代码将托管至[GitHub](https://github.com/wmhn1872265132/NVDA_Lazy_Edition)；
+  - 自本版起，本程序的源代码将托管至[GitHub](https://github.com/nvdacn/NVDA_Lazy_Edition)；
   - 改进：调整 ReadMe 文件，已使其在 GitHub 正确显示；
   - 改进：优化存储库文件夹结构；
   - 调整：支持的操作系统现为 Windows 8.1及以上；
