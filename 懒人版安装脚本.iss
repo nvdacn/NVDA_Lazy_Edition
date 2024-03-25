@@ -323,4 +323,3 @@ Source: "Resource\Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deletea
 Source: "Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
 Source: "Resource\Addons\wintenApps*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\wintenApps"
 Source: "Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
-
