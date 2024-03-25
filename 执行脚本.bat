@@ -1,12 +1,14 @@
 @echo off
-Rem ĞŞ¸ÄÏÂÒ»ĞĞµÈºÅºóÃæµÄÖµÎªNVDAÔ´³ÌĞòÎÄ¼şÃû¼´¿É³É¹¦Éú³É£¬Éú³ÉµÄÎÄ¼şÎ»ÓÚ Output ÎÄ¼ş¼ĞÖĞ¡£
+chcp 65001
+
+Rem ä¿®æ”¹ä¸‹ä¸€è¡Œç­‰å·åé¢çš„å€¼ä¸ºNVDAæºç¨‹åºæ–‡ä»¶åå³å¯æˆåŠŸç”Ÿæˆï¼Œç”Ÿæˆçš„æ–‡ä»¶ä½äº Output æ–‡ä»¶å¤¹ä¸­ã€‚
 set nvda=nvda_2024.1rc1
 
-Rem É¾³ıÒÑ¾­´æÔÚµÄÀÁÈË°æÏà¹ØÎÄ¼ş
+Rem åˆ é™¤å·²ç»å­˜åœ¨çš„æ‡’äººç‰ˆç›¸å…³æ–‡ä»¶
 IF EXIST "%~dp0Output" (rd /s /q "%~dp0Output")
 IF EXIST "%~dp0Temp" (rd /s /q "%~dp0Temp")
 
-Rem ´´½¨±ãĞ¯°æ NVDA
+Rem åˆ›å»ºä¾¿æºç‰ˆ NVDA
 "%~dp0Resource\%nvda%.exe" --create-portable-silent --portable-path="%~dp0Temp\NVDA"
 if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
 Start /D  "%ProgramFiles%\NVDA" NVDA
@@ -14,13 +16,13 @@ Start /D  "%ProgramFiles%\NVDA" NVDA
 Start /D  "%ProgramFiles(x86)%\NVDA" NVDA
 )
 
-Rem ¿ªÊ¼Éú³É
+Rem å¼€å§‹ç”Ÿæˆ
 MKDir "%~dp0Output"
 COPY /B /V  /Y "%~dp0ReadMe.md" "%~dp0Output\ReadMe.txt"
-"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0±ãĞ¯°æ°²×°½Å±¾.iss"
-"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0ÀÁÈË°æ°²×°½Å±¾.iss"
-"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0»Ö¸´±¸·İµÄ NVDA ÅäÖÃ.iss"
-"%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\NVDA_Lazy_Edition_%date:~0,4%.%date:~5,2%.%date:~8,2%.zip" "%~dp0Output\NVDA ÀÁÈË°æ.exe" "%~dp0Output\ReadMe.txt" "%~dp0Output\NVDA ÅäÖÃ»Ö¸´¹¤¾ß.exe"
-"%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\Source_Code_And_Dependency_Files_%date:~0,4%.%date:~5,2%.%date:~8,2%.zip" "%~dp0Resource" "%~dp0Tools" "%~dp0userConfig" "%~dp0ReadMe.md" "%~dp0±ãĞ¯°æ°²×°½Å±¾.iss" "%~dp0»Ö¸´±¸·İµÄ NVDA ÅäÖÃ.iss" "%~dp0ÀÁÈË°æ°²×°½Å±¾.iss" "%~dp0Ö´ĞĞ½Å±¾.bat"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0ä¾¿æºç‰ˆå®‰è£…è„šæœ¬.iss"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0æ‡’äººç‰ˆå®‰è£…è„šæœ¬.iss"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0æ¢å¤å¤‡ä»½çš„ NVDA é…ç½®.iss"
+"%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\NVDA_Lazy_Edition_%date:~3,4%.%date:~8,2%.%date:~11,2%.zip" "%~dp0Output\NVDA æ‡’äººç‰ˆ.exe" "%~dp0Output\ReadMe.txt" "%~dp0Output\NVDA é…ç½®æ¢å¤å·¥å…·.exe"
+"%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\Source_Code_And_Dependency_Files_%date:~3,4%.%date:~8,2%.%date:~11,2%.zip" "%~dp0Resource" "%~dp0Tools" "%~dp0userConfig" "%~dp0ReadMe.md" "%~dp0ä¾¿æºç‰ˆå®‰è£…è„šæœ¬.iss" "%~dp0æ¢å¤å¤‡ä»½çš„ NVDA é…ç½®.iss" "%~dp0æ‡’äººç‰ˆå®‰è£…è„šæœ¬.iss" "%~dp0æ‰§è¡Œè„šæœ¬.bat"
 
 Exit

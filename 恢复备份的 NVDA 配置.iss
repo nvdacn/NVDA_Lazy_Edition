@@ -1,8 +1,8 @@
-[Setup]
-AppName=NVDA ÅäÖÃ»Ö¸´¹¤¾ß
+ï»¿[Setup]
+AppName=NVDA é…ç½®æ¢å¤å·¥å…·
 AppVersion=1.0
 VersionInfoVersion=1.0
-AppVerName=NVDA ÅäÖÃ»Ö¸´¹¤¾ß
+AppVerName=NVDA é…ç½®æ¢å¤å·¥å…·
 AppPublisher=NVDACN
 AppPublisherURL=https://www.nvdacn.com/
 AppSupportURL=https://github.com/nvdacn/NVDA_Lazy_Edition
@@ -10,7 +10,7 @@ AppUpdatesURL=https://github.com/nvdacn/NVDA_Lazy_Edition/releases
 DefaultDirName={userappdata}\NVDA
 AllowNoIcons=yes
 OutputDir=Output
-OutputBaseFilename=NVDA ÅäÖÃ»Ö¸´¹¤¾ß
+OutputBaseFilename=NVDA é…ç½®æ¢å¤å·¥å…·
 Compression=lzma
 DisableDirPage=Yes
 DisableProgramGroupPage=yes
@@ -34,7 +34,7 @@ procedure RestoreNVDAProfile();
 var
   ResultCode: Integer;
 begin
-  if MsgBox('±¾³ÌĞò½«»Ö¸´ÄúÔÚ NVDA ÀÁÈË°æ°²×°³ÌĞòËù±¸·İµÄÅäÖÃµ½ NVDA ÅäÖÃÎÄ¼ş¼Ğ£¬²¢»¹Ô­¶Ô¼òÌåÖĞÎÄ°´¼üÓëÊÖÊÆµÄ×Ô¶¨ÒåÉèÖÃ¡£' #13#13 '±¸·İµÄÅäÖÃÎÄ¼ş³É¹¦»Ö¸´ºó½«»á±»É¾³ı¡£' #13#13 '»Ö¸´¹ı³ÌĞèÖØÆôÄúµÄ NVDA£¬ÄúÒªÏÖÔÚ»Ö¸´Âğ£¿', mbConfirmation, MB_YESNO)= IDYES then
+  if MsgBox('æœ¬ç¨‹åºå°†æ¢å¤æ‚¨åœ¨ NVDA æ‡’äººç‰ˆå®‰è£…ç¨‹åºæ‰€å¤‡ä»½çš„é…ç½®åˆ° NVDA é…ç½®æ–‡ä»¶å¤¹ï¼Œå¹¶è¿˜åŸå¯¹ç®€ä½“ä¸­æ–‡æŒ‰é”®ä¸æ‰‹åŠ¿çš„è‡ªå®šä¹‰è®¾ç½®ã€‚' #13#13 'å¤‡ä»½çš„é…ç½®æ–‡ä»¶æˆåŠŸæ¢å¤åå°†ä¼šè¢«åˆ é™¤ã€‚' #13#13 'æ¢å¤è¿‡ç¨‹éœ€é‡å¯æ‚¨çš„ NVDAï¼Œæ‚¨è¦ç°åœ¨æ¢å¤å—ï¼Ÿ', mbConfirmation, MB_YESNO)= IDYES then
   begin
     ShellExec('', ExpandConstant('{commonpf32}\NVDA\nvda.exe'), '-q', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
     DelTree(ExpandConstant('{userappdata}\NVDA'), True, True, True);
@@ -44,7 +44,7 @@ begin
     DelTree(ExpandConstant('{userdocs}\NVDABackup'), True, True, True);
     DeleteIniSection('globalPlugins.DragAndDrop.GlobalPlugin', ExpandConstant('{commonpf32}\NVDA\locale\zh_CN\gestures.ini'));
     ShellExec('', ExpandConstant('{commonpf32}\NVDA\nvda.exe'), '', '', SW_SHOW, ewNoWait, ResultCode);
-    MsgBox('¹§Ï²£¬²Ù×÷³É¹¦!', mbInformation, MB_OK);
+    MsgBox('æ­å–œï¼Œæ“ä½œæˆåŠŸ!', mbInformation, MB_OK);
   end;
 end;
 function InitializeSetup: Boolean;
@@ -53,7 +53,7 @@ begin
   begin
     RestoreNVDAProfile();
   end else begin
-    MsgBox('Î´¼ì²âµ½ÅäÖÃ±¸·İÎÄ¼ş£¬ÎŞ·¨»Ö¸´!', mbCriticalError, MB_OK)
+    MsgBox('æœªæ£€æµ‹åˆ°é…ç½®å¤‡ä»½æ–‡ä»¶ï¼Œæ— æ³•æ¢å¤!', mbCriticalError, MB_OK)
   end;
   Result := False;
 end;

@@ -1,4 +1,4 @@
-[Setup]
+﻿[Setup]
 ;修改下两行等号后面的值为NVDA安装程序对应的版本号
 VersionInfoVersion=2024.1.0.31509
 AppVersion=2024.1
