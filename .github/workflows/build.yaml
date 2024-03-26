@@ -91,7 +91,7 @@ jobs:
         addons:
           - addonId: AiSound5
             URL: https://dl.nvdacn.com/NVDA-Addons/New/AISound5.nvda-addon
-            sha256: 1D98373B897F9DC482C0AF00DABA7A53AF55767BF0E21F32D25269FE8E8397CF
+            sha256: B67640578F524471B38098B45E8F7BA1C9E80EA407D5D6147E3B511AD9614AFA
             addonVersionName: '23.04'
           - addonId: DragAndDrop
             URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2dev/DragAndDrop-2.2dev.nvda-addon
