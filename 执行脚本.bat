@@ -1,4 +1,4 @@
-@echo on
+@echo off
 chcp 65001
 
 Rem 修改下一行等号后面的值为NVDA源程序文件名即可成功生成，生成的文件位于 Output 文件夹中。
@@ -10,10 +10,14 @@ IF EXIST "%~dp0Temp" (rd /s /q "%~dp0Temp")
 
 Rem 创建便携版 NVDA
 "%~dp0Resource\%nvda%.exe" --create-portable-silent --portable-path="%~dp0Temp\NVDA"
-if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
-Start /D  "%ProgramFiles%\NVDA" NVDA
+if "%1" == "GITHUB_ACTIONS" (
+    Rem 在 GitHub Actions 中无需运行 NVDA
 ) else (
-Start /D  "%ProgramFiles(x86)%\NVDA" NVDA
+    if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
+    Start /D  "%ProgramFiles%\NVDA" NVDA
+    ) else (
+    Start /D  "%ProgramFiles(x86)%\NVDA" NVDA
+    )
 )
 
 Rem 开始生成
