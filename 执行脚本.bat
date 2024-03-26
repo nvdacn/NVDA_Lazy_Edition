@@ -12,6 +12,7 @@ Rem 创建便携版 NVDA
 "%~dp0Resource\%nvda%.exe" --create-portable-silent --portable-path="%~dp0Temp\NVDA"
 if "%1" == "GITHUB_ACTIONS" (
     Rem 在 GitHub Actions 中无需运行 NVDA
+    @echo on
 ) else (
     if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
     Start /D  "%ProgramFiles%\NVDA" NVDA
