@@ -32,7 +32,7 @@ jobs:
         id: download-nvda
         uses: carlosperate/download-file-action@v2
         with:
-          file-url: ${{ env.NVDA_URL }}
+          file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ env.NVDA_VERSION }}/${{ env.NVDA }}
           sha256: ${{ env.NVDA_SHAh256 }}
       - uses: actions/upload-artifact@v4
         with:
