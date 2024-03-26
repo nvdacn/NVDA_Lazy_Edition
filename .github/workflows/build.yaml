@@ -24,7 +24,7 @@ jobs:
       - name: Cache ${{ env.NVDA }}
         uses: actions/cache@v4
         with:
-          path: ./nvda*.exe
+          path: ${{ github.workspace }}/${{ env.NVDA }}
           key: nvda_${{ env.NVDA_VERSION }}_${{ env.NVDA_SHAh256 }}
           restore-keys: |
             ${{ env.NVDA }}
@@ -66,7 +66,7 @@ jobs:
       - name: Cache ${{ matrix.resource.file }}
         uses: actions/cache@v4
         with:
-          path: ./*
+          path: ${{ github.workspace }}/*
           key: ${{ matrix.resource.file }}-${{ matrix.resource.sha256 }}
           restore-keys: |
             ${{ matrix.resource.file }}
@@ -186,7 +186,7 @@ jobs:
       - name: Cache ${{ matrix.addons.addonId }}-${{ matrix.addons.addonVersionName }} Addon
         uses: actions/cache@v4
         with:
-          path: ./*.nvda-addon
+          path: ${{ github.workspace }}/*.nvda-addon
           key: ${{ matrix.addons.addonId }}-${{ matrix.addons.addonVersionName }}-${{ matrix.addons.sha256 }}
           restore-keys: |
             ${{ matrix.addons.addonId }}-${{ matrix.addons.addonVersionName }}.nvda-addon
@@ -215,28 +215,30 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ env.NVDA }}
+          path: ${{ github.workspace }}/
       - name: Download vcredist_x86.exe
         uses: actions/download-artifact@v4
         with:
           name: vcredist_x86.exe
-          path: Resource/vcredist_x86.exe
+          path: ${{ github.workspace }}/Resource/vcredist_x86.exe
       - name: Download Speech Resource
         uses: actions/download-artifact@v4
         with:
-          path: Resource/speech
+          path: ${{ github.workspace }}/Resource/speech/
           pattern: speech-*
+          merge-multiple: true
       - name: Download Resource Addons
         uses: actions/download-artifact@v4
         with:
-          path: Resource/Addons
+          path: ${{ github.workspace }}/Resource/Addons/
           pattern: "*.nvda-addon"
           merge-multiple: true
-      - run: ./执行脚本.bat
+      - run: ${{ github.workspace }}/执行脚本.bat
       - name: Upload Output
         uses: actions/upload-artifact@v4
         with:
           name: NVDA_Lazy_Edition
-          path: ./Output/Archive/*
+          path: ${{ github.workspace }}/Output/Archive/*
 
   upload_release:
     runs-on: ubuntu-latest
