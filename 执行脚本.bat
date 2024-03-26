@@ -1,4 +1,4 @@
-@echo off
+@echo on
 chcp 65001
 
 Rem 修改下一行等号后面的值为NVDA源程序文件名即可成功生成，生成的文件位于 Output 文件夹中。
