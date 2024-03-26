@@ -223,8 +223,8 @@ jobs:
       - name: Download Speech Resource
         uses: actions/download-artifact@v4
         with:
-          name: speech-*
           path: Resource/speech
+          pattern: speech-*
       - name: Download Resource Addons
         uses: actions/download-artifact@v4
         with:
