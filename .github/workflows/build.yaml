@@ -215,7 +215,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ env.NVDA }}
-          path: ${{ github.workspace }}/
+          path: ${{ github.workspace }}/Resource/
       - name: Download vcredist_x86.exe
         uses: actions/download-artifact@v4
         with:
