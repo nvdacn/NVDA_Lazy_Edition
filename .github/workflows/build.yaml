@@ -244,8 +244,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.ref, 'refs/tags/') }}
     needs: build
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           name: NVDA_Lazy_Edition
@@ -255,5 +256,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: NVDA_Lazy_Edition/*
+          files: "*.zip"
+          fail_on_unmatched_files: true
           prerelease: ${{ contains(github.ref, 'rc') }}
