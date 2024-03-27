@@ -111,7 +111,6 @@ jobs:
             addonVersionName: 0.6.3
           - addonId: QQEnhancement
             URL: https://github.com/nvdacn/QQEnhancement/releases/download/v1.0.2/QQEnhancement-1.0.2.nvda-addon
-            description: Enhance the experience of using PC QQ for NVDA users.
             sha256: a09a836356de60be6dd9dd34a9e31a77f4d89069aaacd78ac627c85855865459
             addonVersionName: 1.0.2
           - addonId: WakeSpeaker
