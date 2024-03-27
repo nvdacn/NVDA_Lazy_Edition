@@ -16,6 +16,7 @@ Rem 运行 NVDA（不含 GitHub Actions），设置版本日期变量
 if "%1" == "GITHUB_ACTIONS" (
     @echo on
 set VersionDate=2024.03.27
+echo %date%
 ) else (
     if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
     Start /D  "%ProgramFiles%\NVDA" NVDA
