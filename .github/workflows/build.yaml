@@ -220,7 +220,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: vcredist_x86.exe
-          path: ${{ github.workspace }}/Resource/vcredist_x86.exe
+          path: ${{ github.workspace }}/Resource/
       - name: Download Speech Resource
         uses: actions/download-artifact@v4
         with:
@@ -233,9 +233,6 @@ jobs:
           path: ${{ github.workspace }}/Resource/Addons/
           pattern: "*.nvda-addon"
           merge-multiple: true
-      - run: |
-          chcp 65001
-          tree /F /A
       - run: ${{ github.workspace }}/执行脚本.bat GITHUB_ACTIONS
       - name: Upload Output
         uses: actions/upload-artifact@v4
