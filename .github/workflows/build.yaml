@@ -256,6 +256,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: "*.zip"
+          files: NVDA_Lazy_Edition/*
           fail_on_unmatched_files: true
           prerelease: ${{ contains(github.ref, 'rc') }}
