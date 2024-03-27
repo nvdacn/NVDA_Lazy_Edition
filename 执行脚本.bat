@@ -41,7 +41,7 @@ pause
   "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0恢复备份的 NVDA 配置.iss"
 )
 
-Rem 压缩所需文件
+Rem 创建压缩包
 "%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\NVDA_Lazy_Edition_%VersionDate%.zip" "%~dp0Output\NVDA 懒人版.exe" "%~dp0Output\更新日志.txt" "%~dp0Output\说明.txt" "%~dp0Output\NVDA 配置恢复工具.exe"
 "%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\Source_Code_And_Dependency_Files_%VersionDate%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Tools" "%~dp0userConfig" "%~dp0ReadMe.md" "%~dp0便携版安装脚本.iss" "%~dp0恢复备份的 NVDA 配置.iss" "%~dp0懒人版安装脚本.iss" "%~dp0执行脚本.bat"
 
