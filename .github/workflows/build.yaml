@@ -249,6 +249,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: NVDA_Lazy_Edition
+          path: NVDA_Lazy_Edition
       - name: Display structure of downloaded files
         run: ls -R
       - name: Release
