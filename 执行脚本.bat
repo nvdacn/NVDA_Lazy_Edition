@@ -13,18 +13,16 @@ Rem 创建便携版 NVDA
 
 Rem 运行 NVDA（不含 GitHub Actions），设置版本日期变量
 if "%1" == "GITHUB_ACTIONS" (
-    @echo on
-set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
+  @echo on
+  set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
 ) else (
-    if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
+  if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
     Start /D  "%ProgramFiles%\NVDA" NVDA
-    ) else (
+  ) else (
     Start /D  "%ProgramFiles(x86)%\NVDA" NVDA
-    )
-set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
+  )
+  set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
 )
-
-echo %VersionDate%
 
 Rem 开始生成
 MKDir "%~dp0Output"
