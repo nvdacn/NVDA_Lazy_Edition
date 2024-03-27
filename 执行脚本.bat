@@ -21,9 +21,9 @@ if "%1" == "GITHUB_ACTIONS" (
   Rem 开始生成
   @echo on
   set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
-  "%~dp0Tools\InnoSetup\ISCC" /Qp "%~dp0便携版安装脚本.iss" >d:\1.txt
-  "%~dp0Tools\InnoSetup\ISCC" /Qp "%~dp0懒人版安装脚本.iss"
-  "%~dp0Tools\InnoSetup\ISCC" /Qp "%~dp0恢复备份的 NVDA 配置.iss"
+  "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0便携版安装脚本.iss"
+  "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0懒人版安装脚本.iss"
+  "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0恢复备份的 NVDA 配置.iss"
 pause
 ) else (
   Rem 简体中文操作系统构建流程
