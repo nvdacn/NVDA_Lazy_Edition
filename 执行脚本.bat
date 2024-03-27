@@ -24,7 +24,6 @@ if "%1" == "GITHUB_ACTIONS" (
   "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0便携版安装脚本.iss"
   "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0懒人版安装脚本.iss"
   "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0恢复备份的 NVDA 配置.iss"
-pause
 ) else (
   Rem 简体中文操作系统构建流程
   Rem 运行 NVDA
