@@ -11,12 +11,11 @@ IF EXIST "%~dp0Temp" (rd /s /q "%~dp0Temp")
 Rem 创建便携版 NVDA
 "%~dp0Resource\%nvda%.exe" --create-portable-silent --portable-path="%~dp0Temp\NVDA"
 
-
 Rem 运行 NVDA（不含 GitHub Actions），设置版本日期变量
 if "%1" == "GITHUB_ACTIONS" (
     @echo on
-set VersionDate=2024.03.27
-echo %date%
+set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
+echo %VersionDate%
 ) else (
     if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
     Start /D  "%ProgramFiles%\NVDA" NVDA
