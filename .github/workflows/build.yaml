@@ -220,7 +220,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: vcredist_x86.exe
-          path: ${{ github.workspace }}/Resource/vcredist_x86.exe
+          path: ${{ github.workspace }}/Resource/
       - name: Download Speech Resource
         uses: actions/download-artifact@v4
         with:
