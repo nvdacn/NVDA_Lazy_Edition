@@ -15,7 +15,6 @@ Rem 运行 NVDA（不含 GitHub Actions），设置版本日期变量
 if "%1" == "GITHUB_ACTIONS" (
     @echo on
 set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
-echo %VersionDate%
 ) else (
     if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
     Start /D  "%ProgramFiles%\NVDA" NVDA
@@ -24,6 +23,8 @@ echo %VersionDate%
     )
 set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
 )
+
+echo %VersionDate%
 
 Rem 开始生成
 MKDir "%~dp0Output"
