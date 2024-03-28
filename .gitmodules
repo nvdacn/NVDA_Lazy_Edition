@@ -1,0 +1,5 @@
+[submodule "addon-datastore"]
+	path = addon-datastore
+	url = https://github.com/nvaccess/addon-datastore.git
+	branch = views
+	shallow = true
