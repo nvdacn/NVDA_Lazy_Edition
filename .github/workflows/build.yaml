@@ -192,10 +192,10 @@ jobs:
       - download-addons-from-addonStore
     steps:
       - uses: actions/checkout@v4
-      - name: Download ${{ env.jobs.download-NVDA.outputs.NVDA }}
+      - name: Download ${{ needs.download-NVDA.outputs.NVDA }}
         uses: actions/download-artifact@v4
         with:
-          name: ${{ env.jobs.download-NVDA.outputs.NVDA }}
+          name: ${{ needs.download-NVDA.outputs.NVDA }}
           path: ${{ github.workspace }}/Resource/
       - name: Download vcredist_x86.exe
         uses: actions/download-artifact@v4
