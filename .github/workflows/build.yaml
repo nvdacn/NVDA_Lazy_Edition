@@ -11,15 +11,14 @@ on:
       - master
   workflow_dispatch:
 
-env:
-  NVDA: nvda_2024.1rc1.exe
-  NVDA_VERSION: 2024.1rc1
-  NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases/
-  NVDA_SHAh256: 47380091cab8e817cfa37aadbbd077d15a38c4713ca888cf6f674783a3210987
-
 jobs:
   download-NVDA:
     runs-on: ubuntu-latest
+    env:
+      NVDA: nvda_2024.1rc1.exe
+      NVDA_VERSION: 2024.1rc1
+      NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases/
+      NVDA_SHAh256: 47380091cab8e817cfa37aadbbd077d15a38c4713ca888cf6f674783a3210987
     steps:
       - name: Cache ${{ env.NVDA }}
         uses: actions/cache@v4
@@ -192,12 +191,13 @@ jobs:
       - download-NVDA
       - download-resource
       - download-addons
+      - download-addons-from-addonStore
     steps:
       - uses: actions/checkout@v4
-      - name: Download ${{ env.NVDA }}
+      - name: Download ${{ download-NVDA.env.NVDA }}
         uses: actions/download-artifact@v4
         with:
-          name: ${{ env.NVDA }}
+          name: ${{ download-NVDA.env.NVDA }}
           path: ${{ github.workspace }}/Resource/
       - name: Download vcredist_x86.exe
         uses: actions/download-artifact@v4
