@@ -88,7 +88,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        addons:
+        addon:
           - addonId: AiSound5
             URL: https://dl.nvdacn.com/NVDA-Addons/New/AISound5.nvda-addon
             sha256: B67640578F524471B38098B45E8F7BA1C9E80EA407D5D6147E3B511AD9614AFA
@@ -101,106 +101,90 @@ jobs:
             URL: https://dl.nvdacn.com/NVDA-Addons/New/IBMTTS-23.12.1.nvda-addon
             sha256: F96353B0329FB66319FC98B5748AB9D03C2A236762CF29F3B99EBACD04635451
             addonVersionName: 23.12.1
-          - addonId: MSEdgeDiscardAnnouncements
-            URL: https://github.com/beqabeqa473/MSEdgeDiscardAnnouncements/releases/download/v0.9/MSEdgeDiscardAnnouncements-0.9.nvda-addon
-            sha256: b2b4cee15b12caef8d7b0766d82a36992df9ccf422825d0db2b22855eff2a156
-            addonVersionName: '0.9'
-          - addonId: NVDACNMirror
-            URL: https://dl.nvdacn.com/NVDA-Addons/New/NVDACNMirror-0.6.3.nvda-addon
-            sha256: 06fe14c721dce045cf75a5a55442efad6ee21c119eb07ec276b132dd9f82a66d
-            addonVersionName: 0.6.3
-          - addonId: QQEnhancement
-            URL: https://github.com/nvdacn/QQEnhancement/releases/download/v1.0.2/QQEnhancement-1.0.2.nvda-addon
-            sha256: a09a836356de60be6dd9dd34a9e31a77f4d89069aaacd78ac627c85855865459
-            addonVersionName: 1.0.2
-          - addonId: WakeSpeaker
-            URL: https://github.com/davidacm/WakeSpeaker/releases/download/0.4.0/WakeSpeaker-0.4.0.nvda-addon
-            sha256: 65f7fb5d76f9941da914b9cf74bed430af885e0b4e48342dddb9dab5211773e5
-            addonVersionName: 0.4.0
-          - addonId: WeChatEnhancement
-            URL: https://github.com/cary-rowen/WeChatEnhancement/releases/download/v1.8.1/WeChatEnhancement-1.8.1.nvda-addon
-            sha256: 0d0d4098903b60af6d0e73d7341a07f8741de4f6096a4cf7c38eddfc9fed7d1e
-            addonVersionName: 1.8.1
+          - addonId: numberProcessing
+            URL: https://github.com/ABuffEr/numberProcessing/releases/download/20230310-dev/numberProcessing-20230310-dev.nvda-addon
+            sha256: E57468DD9A995E087EB1F9A7A140C6303EC518292DE9D2185316FDC3CAD6FA8B
+            addonVersionName: 20230310-dev
           - addonId: WorldVoice
             URL: https://github.com/tsengwoody/WorldVoice/releases/download/v3.7/WorldVoice-3.7.nvda-addon
             sha256: 8E25B0741769E6C84B2964D9701E0BE174605C795C3515524A6036C570AE35A9
             addonVersionName: 3.7
-          - addonId: addonUpdater
-            URL: https://github.com/josephsl/addonUpdater/releases/download/v24.2.1/addonUpdater-24.2.1.nvda-addon
-            sha256: 3e9bbf22227fa4eebe2cf44fbaa48c87876be60058e15ce93023b9da7b658ba8
-            addonVersionName: 24.2.1
-          - addonId: addonsHelp
-            URL: https://github.com/ruifontes/addonsHelp/releases/download/2024.03.20/addonsHelp-2024.03.20.nvda-addon
-            sha256: 7c151abad0544157872f9247641db926ecfd7d0a2ac10703f898bc040b544ad6
-            addonVersionName: 2024.03.20
-          - addonId: audioManager
-            URL: https://github.com/huaiyinfeilong/audiomanager/releases/download/v1.0.4/audioManager-1.0.4.nvda-addon
-            sha256: 733870053211b3adec12bd33fce14085aa1da6932f2aaf3458aec5ec2dffa450
-            addonVersionName: 1.0.4
-          - addonId: baiduTranslation
-            URL: https://github.com/huaiyinfeilong/baidutranslation/releases/download/v1.7.2/baiduTranslation-1.7.2.nvda-addon
-            sha256: 053b50e68df6ee66a76621b37a9cfa6f95023c4e487023fdd60448341bd8eeb9
-            addonVersionName: 1.7.2
-          - addonId: clipboardEnhancement
-            URL: https://github.com/cary-rowen/clipboardEnhancement/releases/download/v2.8.1/clipboardEnhancement-2.8.1.nvda-addon
-            sha256: 7525118c089a26ae725ab138a98b2ec70880d27cc1d3a9d69589a40dc8b33924
-            addonVersionName: 2.8.1
-          - addonId: enhancedTouchGestures
-            URL: https://github.com/kefaslungu/enhancedTouchGestures/releases/download/23.06.1/enhancedTouchGestures-23.06.1.nvda-addon
-            sha256: 1dbba2473874237fab0698e034fa34539b8eed7db0327bbebbb0751f226a2c4c
-            addonVersionName: 23.06.1
-          - addonId: goldenCursor
-            URL: https://github.com/nvda-es/goldenCursor/releases/download/6.3/goldenCursor-6.3.nvda-addon
-            sha256: a46cb46740e12d319fba29aefc5ea8971d2d37dd872c04f6cb68535d9e0c3d82
-            addonVersionName: '6.3'
-          - addonId: ime_expressive
-            URL: https://github.com/nvdacn/ime_expressive/releases/download/2024.3.21/ime_expressive-2024.3.21.nvda-addon
-            sha256: df2588afa530d937a6c4ba7824cd2eb06b051aac89081ad0afedd6137d219965
-            addonVersionName: 2024.3.21
-          - addonId: numberProcessing
-            URL: https://github.com/ABuffEr/numberProcessing/releases/download/20230310-dev/numberProcessing-20230310-dev.nvda-addon
-            sha256: E57468DD9A995E087EB1F9A7A140C6303EC518292DE9D2185316FDC3CAD6FA8B
-            addonVersionName: '20230310-dev'
-          - addonId: remote
-            URL: https://github.com/NVDARemote/NVDARemote/releases/download/v2.6.4/remote-2.6.4.nvda-addon
-            sha256: 5dec96e279b3f4b36e1f61cfd4f63230c93db3d65335833afd4aef6fcdb390be
-            addonVersionName: 2.6.4
-          - addonId: resourceMonitor
-            URL: https://github.com/kefaslungu/resourceMonitor/releases/download/23.11/resourceMonitor-24.03.nvda-addon
-            sha256: 93ede13cd5655c3ab996de5fe1a92f746ecfe59259ce7bb704396a1e1def6eb1
-            addonVersionName: '24.03'
-          - addonId: unmute
-            URL: https://github.com/grisov/unmute/releases/download/v1.5.7/unmute-1.5.7.nvda-addon
-            sha256: 0e5f2d997f449d65c1a13b855e34d2a82ee3be1040d37260f1decfeacf481791
-            addonVersionName: 1.5.7
-          - addonId: wintenApps
-            URL: https://github.com/josephsl/wintenApps/releases/download/24.03/wintenApps-24.03.30.nvda-addon
-            sha256: 26605b44865e13c62257d5c8fadb0af175236b03f8a32c87d3228744f113a91a
-            addonVersionName: 24.03.30
-          - addonId: xyOCR
-            URL: https://github.com/huaiyinfeilong/xyOCR/releases/download/v3.0.1/xyOCR-3.0.1.nvda-addon
-            sha256: 4ad0ff558e22a4917b2ac720dc2fcb7506dd3939d144a5285387f3bebcc1fe7d
-            addonVersionName: 3.0.1
     steps:
-      - name: Cache ${{ matrix.addons.addonId }}-${{ matrix.addons.addonVersionName }} Addon
+      - name: Cache ${{ matrix.addon.addonId }}-${{ matrix.addon.addonVersionName }} Addon
         uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/*.nvda-addon
-          key: ${{ matrix.addons.addonId }}-${{ matrix.addons.addonVersionName }}-${{ matrix.addons.sha256 }}
+          key: ${{ matrix.addon.addonId }}-${{ matrix.addon.addonVersionName }}-${{ matrix.addon.sha256 }}
           restore-keys: |
-            ${{ matrix.addons.addonId }}-${{ matrix.addons.addonVersionName }}.nvda-addon
+            ${{ matrix.addon.addonId }}-${{ matrix.addon.addonVersionName }}.nvda-addon
           enableCrossOsArchive: true
-      - name: Download ${{ matrix.addons.addonId }}-${{ matrix.addons.addonVersionName }} Addon
+      - name: Download ${{ matrix.addon.addonId }}-${{ matrix.addon.addonVersionName }} Addon
         id: download-addon
         uses: carlosperate/download-file-action@v2
         with:
-          file-url: ${{ matrix.addons.URL }}
-          sha256: ${{ matrix.addons.sha256 }}
+          file-url: ${{ matrix.addon.URL }}
+          sha256: ${{ matrix.addon.sha256 }}
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.addons.addonId }}-${{ matrix.addons.addonVersionName }}.nvda-addon
+          name: ${{ matrix.addon.addonId }}-${{ matrix.addon.addonVersionName }}.nvda-addon
           path: ${{ steps.download-addon.outputs.file-path }}
           if-no-files-found: error
+
+  download-addons-from-addonStore:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        addon:
+          - addonId: addonsHelp
+          - addonId: addonUpdater
+          - addonId: audioManager
+          - addonId: baiduTranslation
+          - addonId: clipboardEnhancement
+          - addonId: enhancedTouchGestures
+          - addonId: goldenCursor
+          - addonId: ime_expressive
+          - addonId: MSEdgeDiscardAnnouncements
+          - addonId: NVDACNMirror
+          - addonId: QQEnhancement
+          - addonId: remote
+          - addonId: resourceMonitor
+          - addonId: unmute
+          - addonId: WakeSpeaker
+          - addonId: WeChatEnhancement
+          - addonId: wintenApps
+          - addonId: xyOCR
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: zlatko-ms/varfiletoenv@v3
+        with:
+          file: ${{ github.workspace}}/addon-datastore/views/zh_CN/latest/${{ matrix.addon.addonId }}/stable.json
+          override: true
+          select: |
+            URL
+            sha256
+            addonVersionName
+      - name: Cache ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/*.nvda-addon
+          key: ${{ matrix.addon.addonId }}-${{ env.addonVersionName }}-${{ env.sha256 }}
+          restore-keys: |
+            ${{ matrix.addon.addonId }}-${{ env.addonVersionName }}.nvda-addon
+          enableCrossOsArchive: true
+      - name: Download ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon
+        id: download-addon
+        uses: carlosperate/download-file-action@v2
+        with:
+          file-url: ${{ env.URL }}
+          sha256: ${{ env.sha256 }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.addon.addonId }}-${{ env.addonVersionName }}.nvda-addon
+          path: ${{ steps.download-addon.outputs.file-path }}
+          if-no-files-found: error
+
 
   build:
     runs-on: windows-latest
