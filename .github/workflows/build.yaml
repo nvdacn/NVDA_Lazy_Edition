@@ -131,7 +131,7 @@ jobs:
           if-no-files-found: error
 
   download-addons-from-addonStore:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         addon:
