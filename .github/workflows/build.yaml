@@ -159,27 +159,26 @@ jobs:
         with:
           submodules: true
       - name: get ${{ matrix.addon.addonId }} addon data
-        id: addon
-        uses: notiz-dev/github-action-json-property@release
+        uses: antifree/json-to-variables@v1.1.2
         with:
-          path: ${{ github.workspace}}/addon-datastore/views/zh_CN/latest/${{ matrix.addon.addonId }}/stable.json
-      - name: Cache ${{ matrix.addon.addonId }}-${{ steps.addon.outputs.addonVersionName }} Addon
+          filename: ${{ github.workspace}}/addon-datastore/views/zh_CN/latest/${{ matrix.addon.addonId }}/stable.json
+      - name: Cache ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon
         uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/*.nvda-addon
-          key: ${{ matrix.addon.addonId }}-${{ steps.addon.outputs.addonVersionName }}-${{ steps.addon.outputs.sha256 }}
+          key: ${{ matrix.addon.addonId }}-${{ env.addonVersionName }}-${{ env.sha256 }}
           restore-keys: |
-            ${{ matrix.addon.addonId }}-${{ steps.addon.outputs.addonVersionName }}.nvda-addon
+            ${{ matrix.addon.addonId }}-${{ env.addonVersionName }}.nvda-addon
           enableCrossOsArchive: true
-      - name: Download ${{ matrix.addon.addonId }}-${{ steps.addon.outputs.addonVersionName }} Addon
+      - name: Download ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon
         id: download-addon
         uses: carlosperate/download-file-action@v2
         with:
-          file-url: ${{ steps.addon.outputs.URL }}
-          sha256: ${{ steps.addon.outputs.sha256 }}
+          file-url: ${{ env.URL }}
+          sha256: ${{ env.sha256 }}
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.addon.addonId }}-${{ steps.addon.outputs.addonVersionName }}.nvda-addon
+          name: ${{ matrix.addon.addonId }}-${{ env.addonVersionName }}.nvda-addon
           path: ${{ steps.download-addon.outputs.file-path }}
           if-no-files-found: error
 
