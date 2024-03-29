@@ -160,14 +160,14 @@ jobs:
           repository: nvaccess/addon-datastore.git
           ref: views
           sparse-checkout: |
-            views/en/latest/${{ matrix.addon.addonId }}
+            views/zh_CN/latest/${{ matrix.addon.addonId }}
           path: ${{ github.workspace }}/addon-datastore
       - run: ls -R
 
       - name: get ${{ matrix.addon.addonId }} addon data
         uses: antifree/json-to-variables@v1.1.2
         with:
-          filename: ${{ github.workspace}}/addon-datastore/addon-datastore/views/en/latest/${{ matrix.addon.addonId }}/stable.json
+          filename: ${{ github.workspace}}/addon-datastore/addon-datastore/views/zh_CN/latest/${{ matrix.addon.addonId }}/stable.json
       - name: Cache ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon
         uses: actions/cache@v4
         with:
