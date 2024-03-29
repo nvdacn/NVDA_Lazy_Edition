@@ -41,8 +41,8 @@ if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
 )
 
 Rem 开始生成
-set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%"
-%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0便携版安装脚本.iss"
+set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0便携版安装脚本.iss"
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0懒人版安装脚本.iss"
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0恢复备份的 NVDA 配置.iss"
 
