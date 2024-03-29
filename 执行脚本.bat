@@ -1,19 +1,19 @@
 @echo off
-chcp 936
+chcp 65001
 
-Rem É¾³ıÒÑ¾­´æÔÚµÄÀÁÈË°æÏà¹ØÎÄ¼ş
+Rem åˆ é™¤å·²ç»å­˜åœ¨çš„æ‡’äººç‰ˆç›¸å…³æ–‡ä»¶
 IF EXIST "%~dp0Output" (rd /s /q "%~dp0Output")
 IF EXIST "%~dp0Temp" (rd /s /q "%~dp0Temp")
 
-Rem ´´½¨±ãĞ¯°æ NVDA
+Rem åˆ›å»ºä¾¿æºç‰ˆ NVDA
 for /r "%~dp0Resource" %%i in (nvda_20*.exe) do (
   %%i --create-portable-silent --portable-path="%~dp0Temp\NVDA"
 )
 
-Rem Éú³ÉÎÄµµµÄ txt °æ±¾
+Rem ç”Ÿæˆæ–‡æ¡£çš„ txt ç‰ˆæœ¬
 MKDir "%~dp0Output"
-COPY /B /V  /Y "%~dp0documentation\changes.md" "%~dp0Output\¸üĞÂÈÕÖ¾.txt"
-COPY /B /V  /Y "%~dp0documentation\ReadMe.md" "%~dp0Output\ËµÃ÷.txt"
+COPY /B /V  /Y "%~dp0documentation\changes.md" "%~dp0Output\æ›´æ–°æ—¥å¿—.txt"
+COPY /B /V  /Y "%~dp0documentation\ReadMe.md" "%~dp0Output\è¯´æ˜.txt"
 
 if "%1" == "GITHUB_ACTIONS" (
   @echo on
@@ -22,32 +22,33 @@ if "%1" == "GITHUB_ACTIONS" (
   GOTO Local
 )
 
-Rem GitHub Actions ¹¹½¨Á÷³Ì
+Rem GitHub Actions æ„å»ºæµç¨‹
 :GitHub
-Rem ¿ªÊ¼Éú³É
+Rem å¼€å§‹ç”Ÿæˆ
 set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
-"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0±ãĞ¯°æ°²×°½Å±¾.iss"
-"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0ÀÁÈË°æ°²×°½Å±¾.iss"
-"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0»Ö¸´±¸·İµÄ NVDA ÅäÖÃ.iss"
+"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0ä¾¿æºç‰ˆå®‰è£…è„šæœ¬.iss"
+"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0æ‡’äººç‰ˆå®‰è£…è„šæœ¬.iss"
+"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0æ¢å¤å¤‡ä»½çš„ NVDA é…ç½®.iss"
 GOTO Archive
 
-Rem ±¾µØ¹¹½¨Á÷³Ì
+Rem æœ¬åœ°æ„å»ºæµç¨‹
 :Local
-Rem ÔËĞĞ NVDA
+Rem è¿è¡Œ NVDA
 if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
   Start /D  "%ProgramFiles%\NVDA" NVDA
 ) else (
   Start /D  "%ProgramFiles(x86)%\NVDA" NVDA
 )
 
-Rem ¿ªÊ¼Éú³É
-set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0±ãĞ¯°æ°²×°½Å±¾.iss"
-"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0ÀÁÈË°æ°²×°½Å±¾.iss"
-"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0»Ö¸´±¸·İµÄ NVDA ÅäÖÃ.iss"
+Rem å¼€å§‹ç”Ÿæˆ
+set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%"
+%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0ä¾¿æºç‰ˆå®‰è£…è„šæœ¬.iss"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0æ‡’äººç‰ˆå®‰è£…è„šæœ¬.iss"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0æ¢å¤å¤‡ä»½çš„ NVDA é…ç½®.iss"
 
 :Archive
-Rem Éú³É³ÌĞòÑ¹ËõÎÄ¼ş
-"%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\NVDA_Lazy_Edition_%VersionDate%.zip" "%~dp0Output\NVDA ÀÁÈË°æ.exe" "%~dp0Output\¸üĞÂÈÕÖ¾.txt" "%~dp0Output\ËµÃ÷.txt" "%~dp0Output\NVDA ÅäÖÃ»Ö¸´¹¤¾ß.exe"
-"%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\Source_Code_And_Dependency_Files_%VersionDate%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Tools" "%~dp0userConfig" "%~dp0ReadMe.md" "%~dp0±ãĞ¯°æ°²×°½Å±¾.iss" "%~dp0»Ö¸´±¸·İµÄ NVDA ÅäÖÃ.iss" "%~dp0ÀÁÈË°æ°²×°½Å±¾.iss" "%~dp0Ö´ĞĞ½Å±¾.bat"
+Rem ç”Ÿæˆç¨‹åºå‹ç¼©æ–‡ä»¶
+"%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\NVDA_Lazy_Edition_%VersionDate%.zip" "%~dp0Output\NVDA æ‡’äººç‰ˆ.exe" "%~dp0Output\æ›´æ–°æ—¥å¿—.txt" "%~dp0Output\è¯´æ˜.txt" "%~dp0Output\NVDA é…ç½®æ¢å¤å·¥å…·.exe"
+"%~dp0Tools\7Zip\7z.exe" a -y -tzip "%~dp0Output\Archive\Source_Code_And_Dependency_Files_%VersionDate%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Tools" "%~dp0userConfig" "%~dp0ReadMe.md" "%~dp0ä¾¿æºç‰ˆå®‰è£…è„šæœ¬.iss" "%~dp0æ¢å¤å¤‡ä»½çš„ NVDA é…ç½®.iss" "%~dp0æ‡’äººç‰ˆå®‰è£…è„šæœ¬.iss" "%~dp0æ‰§è¡Œè„šæœ¬.bat"
 
 Exit
