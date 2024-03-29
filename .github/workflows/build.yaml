@@ -157,11 +157,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-    repository: 'nvaccess/addon-datastore.git'
+    repository: nvaccess/addon-datastore.git
     ref: views
     sparse-checkout: |
       views/en/latest
-          path: ${{ github.workspace }}/
+          path: ${{ github.workspace }}
 
       - name: get ${{ matrix.addon.addonId }} addon data
         uses: antifree/json-to-variables@v1.1.2
