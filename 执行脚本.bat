@@ -24,12 +24,8 @@ if "%1" == "GITHUB_ACTIONS" (
 
 Rem GitHub Actions 构建流程
 :GitHub
-Rem 设置必要变量
-set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
-echo AppVersion=%VersionDate% >"%~dp0\Temp\Version.txt"
-echo VersionInfoVersion=%VersionDate% >>"%~dp0\Temp\Version.txt"
-
 Rem 开始生成
+set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0便携版安装脚本.iss"
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0懒人版安装脚本.iss"
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0恢复备份的 NVDA 配置.iss"
@@ -44,13 +40,8 @@ if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
   Start /D  "%ProgramFiles(x86)%\NVDA" NVDA
 )
 
-Rem 设置必要变量
-set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
-echo AppVersion=%VersionDate% >"%~dp0\Temp\Version.txt"
-echo VersionInfoVersion=%VersionDate% >>"%~dp0\Temp\Version.txt"
-
 Rem 开始生成
-"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0便携版安装脚本.iss"
+set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0便携版安装脚本.iss"
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0懒人版安装脚本.iss"
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0恢复备份的 NVDA 配置.iss"
 
