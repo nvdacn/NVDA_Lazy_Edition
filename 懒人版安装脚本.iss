@@ -1,9 +1,9 @@
-﻿[Setup]
-;修改下两行等号后面的值为NVDA安装程序对应的版本号
-VersionInfoVersion=2024.1.0.31509
-AppVersion=2024.1
+﻿#define Version GetDateTimeString('yyyy.mm.dd', '.', '')
+
+[Setup]
+VersionInfoVersion={#Version}
 AppName=NVDA 懒人版
-AppVerName=NVDA 懒人版
+AppVerName=NVDA 懒人版-{#Version}
 AppPublisher=NVDACN
 AppPublisherURL=https://www.nvdacn.com/
 AppSupportURL=https://github.com/nvdacn/NVDA_Lazy_Edition
