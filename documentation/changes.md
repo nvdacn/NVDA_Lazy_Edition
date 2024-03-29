@@ -4,8 +4,7 @@
 
 - #### 全局
 
-  - 自本版起，本程序的源代码将托管至[GitHub](https://github.com/nvdacn/NVDA_Lazy_Edition)；
-  - 同时，发布的构建改为由 GitHub Actions 自动生成；
+  - 自本版起，本程序的源代码将托管至[GitHub](https://github.com/nvdacn/NVDA_Lazy_Edition)，并由 GitHub Actions 自动更新来自插件商店的插件、生成构建、发布新版本；
   - 改进：优化存储库文件夹结构；
   - 调整：支持的操作系统现为 Windows 8.1及以上；
 
@@ -19,6 +18,7 @@
   - 改进：调整说明文档，已使其在 GitHub 正确显示；
   - 改进：将更新日志从说明文档中拆分；
   - 改进：重新组织更新日志的结构；
+  - 新增：说明文档的“主要贡献者”章节；
   - 完善说明文档；
 
 - #### 安装程序
