@@ -99,7 +99,7 @@ jobs:
           - Name: IBMTTS-23.12.1
             URL: https://dl.nvdacn.com/NVDA-Addons/New/IBMTTS-23.12.1.nvda-addon
             sha256: F96353B0329FB66319FC98B5748AB9D03C2A236762CF29F3B99EBACD04635451
-          - Name: numberProcessing20230310-dev
+          - Name: numberProcessing-20230310-dev
             URL: https://github.com/ABuffEr/numberProcessing/releases/download/20230310-dev/numberProcessing-20230310-dev.nvda-addon
             sha256: E57468DD9A995E087EB1F9A7A140C6303EC518292DE9D2185316FDC3CAD6FA8B
           - Name: WorldVoice-3.7
