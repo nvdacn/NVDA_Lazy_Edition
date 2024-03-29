@@ -162,6 +162,7 @@ jobs:
           sparse-checkout: |
             views/en/latest
           path: ${{ github.workspace }}/addon-datastore
+      - run: ls -R
 
       - name: get ${{ matrix.addon.addonId }} addon data
         uses: antifree/json-to-variables@v1.1.2
