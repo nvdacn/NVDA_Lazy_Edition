@@ -1,15 +1,14 @@
 @echo off
 chcp 65001
 
-Rem 修改下一行等号后面的值为NVDA源程序文件名即可成功生成，生成的文件位于 Output 文件夹中。
-set nvda=nvda_2024.1rc1
-
 Rem 删除已经存在的懒人版相关文件
 IF EXIST "%~dp0Output" (rd /s /q "%~dp0Output")
 IF EXIST "%~dp0Temp" (rd /s /q "%~dp0Temp")
 
 Rem 创建便携版 NVDA
-"%~dp0Resource\%nvda%.exe" --create-portable-silent --portable-path="%~dp0Temp\NVDA"
+for /r "%~dp0Resource" %%i in (nvda_20*.exe) do (
+  %%i --create-portable-silent --portable-path="%~dp0Temp\NVDA"
+)
 
 Rem 生成文档的 txt 版本
 MKDir "%~dp0Output"
@@ -25,8 +24,12 @@ if "%1" == "GITHUB_ACTIONS" (
 
 Rem GitHub Actions 构建流程
 :GitHub
+Rem 设置必要变量
+set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
+echo AppVersion=%VersionDate% >"%~dp0\Temp\Version.txt"
+echo VersionInfoVersion=%VersionDate% >>"%~dp0\Temp\Version.txt"
+
 Rem 开始生成
-  set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0便携版安装脚本.iss"
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0懒人版安装脚本.iss"
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0恢复备份的 NVDA 配置.iss"
@@ -41,8 +44,12 @@ if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
   Start /D  "%ProgramFiles(x86)%\NVDA" NVDA
 )
 
-Rem 开始生成
+Rem 设置必要变量
 set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
+echo AppVersion=%VersionDate% >"%~dp0\Temp\Version.txt"
+echo VersionInfoVersion=%VersionDate% >>"%~dp0\Temp\Version.txt"
+
+Rem 开始生成
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0便携版安装脚本.iss"
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0懒人版安装脚本.iss"
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0恢复备份的 NVDA 配置.iss"
