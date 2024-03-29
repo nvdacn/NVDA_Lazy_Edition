@@ -160,7 +160,7 @@ jobs:
           repository: nvaccess/addon-datastore.git
           ref: views
           sparse-checkout: |
-            views/en/latest
+            views/en/latest/${{ matrix.addon.addonId }}
           path: ${{ github.workspace }}/addon-datastore
       - run: ls -R
 
