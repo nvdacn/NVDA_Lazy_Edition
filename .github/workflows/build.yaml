@@ -90,36 +90,31 @@ jobs:
     strategy:
       matrix:
         addon:
-          - Name: AiSound5
+          - Name: AiSound5-23.04
             URL: https://dl.nvdacn.com/NVDA-Addons/New/AISound5.nvda-addon
             sha256: B67640578F524471B38098B45E8F7BA1C9E80EA407D5D6147E3B511AD9614AFA
-            Version: '23.04'
-          - Name: DragAndDrop
+          - Name: DragAndDrop-2.2dev
             URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2dev/DragAndDrop-2.2dev.nvda-addon
             sha256: F7056F62968C1F432D99641E030AD58A8BF49EDF3A7975205F65015D5A334679
-            Version: 2.2dev
-          - Name: IBMTTS
+          - Name: IBMTTS-23.12.1
             URL: https://dl.nvdacn.com/NVDA-Addons/New/IBMTTS-23.12.1.nvda-addon
             sha256: F96353B0329FB66319FC98B5748AB9D03C2A236762CF29F3B99EBACD04635451
-            Version: 23.12.1
-          - Name: numberProcessing
+          - Name: numberProcessing20230310-dev
             URL: https://github.com/ABuffEr/numberProcessing/releases/download/20230310-dev/numberProcessing-20230310-dev.nvda-addon
             sha256: E57468DD9A995E087EB1F9A7A140C6303EC518292DE9D2185316FDC3CAD6FA8B
-            Version: 20230310-dev
-          - Name: WorldVoice
+          - Name: WorldVoice-3.7
             URL: https://github.com/tsengwoody/WorldVoice/releases/download/v3.7/WorldVoice-3.7.nvda-addon
             sha256: 8E25B0741769E6C84B2964D9701E0BE174605C795C3515524A6036C570AE35A9
-            Version: 3.7
     steps:
-      - name: Cache ${{ matrix.addon.Name }}-${{ matrix.addon.Version }} Addon
+      - name: Cache ${{ matrix.addon.Name }} Addon
         uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/*.nvda-addon
-          key: ${{ matrix.addon.Name }}-${{ matrix.addon.Version }}-${{ matrix.addon.sha256 }}
+          key: ${{ matrix.addon.Name }}-${{ matrix.addon.sha256 }}
           restore-keys: |
-            ${{ matrix.addon.Name }}-${{ matrix.addon.Version }}.nvda-addon
+            ${{ matrix.addon.Name }}.nvda-addon
           enableCrossOsArchive: true
-      - name: Download ${{ matrix.addon.Name }}-${{ matrix.addon.Version }} Addon
+      - name: Download ${{ matrix.addon.Name }} Addon
         id: download-addon
         uses: carlosperate/download-file-action@v2
         with:
@@ -127,7 +122,7 @@ jobs:
           sha256: ${{ matrix.addon.sha256 }}
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.addon.Name }}-${{ matrix.addon.Version }}.nvda-addon
+          name: ${{ matrix.addon.Name }}.nvda-addon
           path: ${{ steps.download-addon.outputs.file-path }}
           if-no-files-found: error
 
