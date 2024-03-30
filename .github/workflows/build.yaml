@@ -131,6 +131,7 @@ jobs:
     strategy:
       matrix:
         addon:
+          - addonId: Access8Math
           - addonId: addonsHelp
           - addonId: addonUpdater
           - addonId: audioManager
