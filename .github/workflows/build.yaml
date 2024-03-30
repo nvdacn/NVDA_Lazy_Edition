@@ -133,6 +133,7 @@ jobs:
         addon:
           - addonId: Access8Math
           - addonId: addonsHelp
+          - addonId: addonsTools
           - addonId: addonUpdater
           - addonId: audioManager
           - addonId: baiduTranslation
