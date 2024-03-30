@@ -131,7 +131,9 @@ jobs:
     strategy:
       matrix:
         addon:
+          - addonId: Access8Math
           - addonId: addonsHelp
+          - addonId: addonsTools
           - addonId: addonUpdater
           - addonId: audioManager
           - addonId: baiduTranslation
@@ -139,6 +141,7 @@ jobs:
           - addonId: enhancedTouchGestures
           - addonId: goldenCursor
           - addonId: ime_expressive
+          - addonId: inputLock
           - addonId: MSEdgeDiscardAnnouncements
           - addonId: NVDACNMirror
           - addonId: QQEnhancement
