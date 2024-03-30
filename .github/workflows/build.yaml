@@ -141,6 +141,7 @@ jobs:
           - addonId: enhancedTouchGestures
           - addonId: goldenCursor
           - addonId: ime_expressive
+          - addonId: inputLock
           - addonId: MSEdgeDiscardAnnouncements
           - addonId: NVDACNMirror
           - addonId: QQEnhancement
