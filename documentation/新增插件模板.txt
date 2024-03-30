@@ -1,0 +1,56 @@
+# 新增插件模板
+# 只需将没有注释（#）开头的行下方不空行的内容更改成要添加插件的必要信息后整理成一行，粘贴入注释行要求的文件的相应段落即可，目标文件的插件原则上按照插件ID的顺序排列。
+# 注意：如插件的"installTasks.py"文件中有特殊安装任务，请根据该文件的代码在"懒人版安装脚本.iss"文件中做相应处理。
+
+# build.yaml
+# 非商店插件（download-addons:）：
+          - Name: 
+插件文件名（不含扩展名）
+
+            URL: 
+插件下载地址
+
+            sha256: 
+插件sha256
+
+# 商店插件（download-addons-from-addonStore:）：
+          - addonId: 
+插件ID
+
+
+# 懒人版安装脚本.iss
+# [Components]段
+Name: "Addons\
+插件ID
+"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "
+插件中文名称
+"
+
+# [InstallDelete]段
+Type: filesandordirs; Name: "{app}\Addons\
+插件ID
+"; Tasks: "not DeleteProfile"; Components: "Addons\
+插件ID
+"
+
+Type: files; Name: "{app}\Addons\
+插件ID
+.json"; Tasks: "not DeleteProfile"; Components: "Addons\
+插件ID
+"
+
+# [Run] 段
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\
+插件ID
+*"" -aoa -o""{app}\Addons\
+插件ID
+"""; Components: "Addons\
+插件ID
+"
+
+# [Files] 段
+Source: "Resource\Addons\
+插件ID
+*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\
+插件ID
+"
