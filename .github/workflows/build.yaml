@@ -17,29 +17,36 @@ jobs:
     env:
       NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases/
     outputs:
-      NVDA: nvda_${{ steps.nvda.outputs.release }}.exe
+      NVDA: nvda_${{ steps.nvda.outputs.replaced }}.exe
     steps:
-      - id: nvda
+      - id: nvda-tag
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: nvaccess/nvda
-      - name: Cache nvda_${{ steps.nvda.outputs.release }}.exe
+          excludes: ${{  !contains('2024.1rc1', 'rc') && 'prerelease, draft' || '' }}
+      - id: nvda
+        uses: frabert/replace-string-action@v2
+        with:
+          pattern: 'release-(.*)'
+          string: ${{ steps.nvda-tag.outputs.release }}
+          replace-with: '$1'
+      - name: Cache nvda_${{ steps.nvda.outputs.replaced }}.exe
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}/nvda_${{ steps.nvda.outputs.release }}.exe
-          key: nvda_${{ steps.nvda.outputs.release }}_${{ hashFiles('**/nvda_*..exe') }}
+          path: ${{ github.workspace }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
+          key: nvda_${{ steps.nvda.outputs.replaced }}_${{ hashFiles('**/nvda_*..exe') }}
           restore-keys: |
-            nvda_${{ steps.nvda.outputs.release }}.exe
+            nvda_${{ steps.nvda.outputs.replaced }}.exe
           enableCrossOsArchive: true
-      - name: Download nvda_${{ steps.nvda.outputs.release }}.exe
+      - name: Download nvda_${{ steps.nvda.outputs.replaced }}.exe
         id: download-nvda
         uses: carlosperate/download-file-action@v2
         with:
-          file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.release }}/nvda_${{ steps.nvda.outputs.release }}.exe
-      - name: Upload nvda_${{ steps.nvda.outputs.release }}.exe
+          file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.replaced }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
+      - name: Upload nvda_${{ steps.nvda.outputs.replaced }}.exe
         uses: actions/upload-artifact@v4
         with:
-          name: nvda_${{ steps.nvda.outputs.release }}.exe
+          name: nvda_${{ steps.nvda.outputs.replaced }}.exe
           path: ${{ steps.download-nvda.outputs.file-path }}
           if-no-files-found: error
 
