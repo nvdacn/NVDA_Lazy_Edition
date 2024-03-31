@@ -13,6 +13,11 @@
             sha256: 
 插件sha256
 
+# 可通过将下面的命令粘贴到cmd窗口获取文件的 sha256
+certutil -hashfile 
+"文件完整路径"
+ SHA256
+
 # 商店插件（download-addons-from-addonStore:）：
           - addonId: 
 插件ID
