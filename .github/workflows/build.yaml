@@ -15,31 +15,31 @@ jobs:
   download-NVDA:
     runs-on: ubuntu-latest
     env:
-      NVDA: nvda_2024.1rc1.exe
-      NVDA_VERSION: 2024.1rc1
       NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases/
-      NVDA_SHAh256: 47380091cab8e817cfa37aadbbd077d15a38c4713ca888cf6f674783a3210987
     outputs:
-      NVDA: ${{ env.NVDA }}
+      NVDA: nvda_${{ steps.nvda.outputs.release }}.exe
     steps:
-      - name: Cache ${{ env.NVDA }}
+      - id: nvda
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: nvaccess/nvda
+      - name: Cache nvda_${{ steps.nvda.outputs.release }}.exe
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}/${{ env.NVDA }}
-          key: nvda_${{ env.NVDA_VERSION }}_${{ env.NVDA_SHAh256 }}
+          path: ${{ github.workspace }}/nvda_${{ steps.nvda.outputs.release }}.exe
+          key: nvda_${{ steps.nvda.outputs.release }}_${{ hashFiles('**/nvda_*..exe') }}
           restore-keys: |
-            ${{ env.NVDA }}
+            nvda_${{ steps.nvda.outputs.release }}.exe
           enableCrossOsArchive: true
-      - name: Download ${{ env.NVDA }}
+      - name: Download nvda_${{ steps.nvda.outputs.release }}.exe
         id: download-nvda
         uses: carlosperate/download-file-action@v2
         with:
-          file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ env.NVDA_VERSION }}/${{ env.NVDA }}
-          sha256: ${{ env.NVDA_SHAh256 }}
-      - name: Upload ${{ env.NVDA }}
+          file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.release }}/nvda_${{ steps.nvda.outputs.release }}.exe
+      - name: Upload nvda_${{ steps.nvda.outputs.release }}.exe
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.NVDA }}
+          name: nvda_${{ steps.nvda.outputs.release }}.exe
           path: ${{ steps.download-nvda.outputs.file-path }}
           if-no-files-found: error
 
