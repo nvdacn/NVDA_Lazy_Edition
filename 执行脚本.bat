@@ -7,7 +7,7 @@ IF EXIST "%~dp0Temp" (rd /s /q "%~dp0Temp")
 
 Rem 创建便携版 NVDA
 for /r "%~dp0Resource" %%i in (nvda_20*.exe) do (
-  %%i --create-portable-silent --portable-path="%~dp0Temp\NVDA"
+  "%%i" --create-portable-silent --portable-path="%~dp0Temp\NVDA"
 )
 
 Rem 生成文档的 txt 版本
