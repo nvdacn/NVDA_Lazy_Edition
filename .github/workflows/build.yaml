@@ -1,4 +1,4 @@
-name: build
+name: Build NVDA Lazy Edition
 
 on:
   push:
@@ -12,85 +12,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  download-NVDA:
-    runs-on: ubuntu-latest
-    env:
-      NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases
-    outputs:
-      NVDA: nvda_${{ steps.nvda.outputs.replaced }}.exe
-    steps:
-      - id: nvda-tag
-        uses: pozetroninc/github-action-get-latest-release@master
-        with:
-          repository: nvaccess/nvda
-          excludes: ${{  !contains('2024.1rc1', 'rc') && 'prerelease, draft' || '' }}
-      - id: nvda
-        uses: frabert/replace-string-action@v2
-        with:
-          pattern: 'release-(.*)'
-          string: ${{ steps.nvda-tag.outputs.release }}
-          replace-with: '$1'
-      - name: Cache nvda_${{ steps.nvda.outputs.replaced }}.exe
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
-          key: nvda_${{ steps.nvda.outputs.replaced }}_${{ hashFiles('**/nvda_*..exe') }}
-          restore-keys: |
-            nvda_${{ steps.nvda.outputs.replaced }}.exe
-          enableCrossOsArchive: true
-      - name: Download nvda_${{ steps.nvda.outputs.replaced }}.exe
-        id: download-nvda
-        uses: carlosperate/download-file-action@v2
-        with:
-          file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.replaced }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
-      - name: Upload nvda_${{ steps.nvda.outputs.replaced }}.exe
-        uses: actions/upload-artifact@v4
-        with:
-          name: nvda_${{ steps.nvda.outputs.replaced }}.exe
-          path: ${{ steps.download-nvda.outputs.file-path }}
-          if-no-files-found: error
-
-  download-resource:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        resource:
-          - file: vcredist_x86.exe
-            URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
-            sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
-          - file: speech-aisound.zip
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/aisound.zip
-            sha256: B4FE1BED8F699179C8FF00F7B6F85AF4FF190ADCE1CCDB6C08132F93B7341EB2
-          - file: speech-VE.zip
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/VE.zip
-            sha256: 35ACAC34551ED8288DC6185A33127F5109AD6CB8901B329667C095DC0085EDD3
-          - file: speech-voice.zip
-            URL: https://dl.nvdacn.com/Share/voice.zip
-            sha256: AB2D6AFD7C5E12901DD3DA3CDC29325AA11A9DAB2EAC608D7B731993B2066450
-          - file: speech-IBM_ViaVoice_TTS_Runtime-V6.405.exe
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/IBM_ViaVoice_TTS_Runtime-V6.405.exe
-            sha256: A0FB592EFBC838921931C5BB4B32C176FC618052B4DDBFD6B08D3FBC66DEE12A
-    steps:
-      - name: Cache ${{ matrix.resource.file }}
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/*
-          key: ${{ matrix.resource.file }}-${{ matrix.resource.sha256 }}
-          restore-keys: |
-            ${{ matrix.resource.file }}
-          enableCrossOsArchive: true
-      - name: Download ${{ matrix.resource.file }}
-        id: download-Resource
-        uses: carlosperate/download-file-action@v2
-        with:
-          file-url: ${{ matrix.resource.URL }}
-          sha256: ${{ matrix.resource.sha256 }}
-      - name: Upload ${{ matrix.resource.file }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.resource.file }}
-          path: ${{ steps.download-Resource.outputs.file-path }}
-          if-no-files-found: error
 
   download-addons:
     runs-on: ubuntu-latest
@@ -191,6 +112,85 @@ jobs:
           path: ${{ steps.download-addon.outputs.file-path }}
           if-no-files-found: error
 
+  download-resource:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        resource:
+          - file: vcredist_x86.exe
+            URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
+            sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
+          - file: speech-aisound.zip
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/aisound.zip
+            sha256: B4FE1BED8F699179C8FF00F7B6F85AF4FF190ADCE1CCDB6C08132F93B7341EB2
+          - file: speech-VE.zip
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/VE.zip
+            sha256: 35ACAC34551ED8288DC6185A33127F5109AD6CB8901B329667C095DC0085EDD3
+          - file: speech-voice.zip
+            URL: https://dl.nvdacn.com/Share/voice.zip
+            sha256: AB2D6AFD7C5E12901DD3DA3CDC29325AA11A9DAB2EAC608D7B731993B2066450
+          - file: speech-IBM_ViaVoice_TTS_Runtime-V6.405.exe
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/IBM_ViaVoice_TTS_Runtime-V6.405.exe
+            sha256: A0FB592EFBC838921931C5BB4B32C176FC618052B4DDBFD6B08D3FBC66DEE12A
+    steps:
+      - name: Cache ${{ matrix.resource.file }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/*
+          key: ${{ matrix.resource.file }}-${{ matrix.resource.sha256 }}
+          restore-keys: |
+            ${{ matrix.resource.file }}
+          enableCrossOsArchive: true
+      - name: Download ${{ matrix.resource.file }}
+        id: download-Resource
+        uses: carlosperate/download-file-action@v2
+        with:
+          file-url: ${{ matrix.resource.URL }}
+          sha256: ${{ matrix.resource.sha256 }}
+      - name: Upload ${{ matrix.resource.file }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.resource.file }}
+          path: ${{ steps.download-Resource.outputs.file-path }}
+          if-no-files-found: error
+
+  download-NVDA:
+    runs-on: ubuntu-latest
+    env:
+      NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases
+    outputs:
+      NVDA: nvda_${{ steps.nvda.outputs.replaced }}.exe
+    steps:
+      - id: nvda-tag
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: nvaccess/nvda
+          excludes: ${{  !contains(github.ref, 'rc') && 'prerelease, draft' || '' }}
+      - id: nvda
+        uses: frabert/replace-string-action@v2
+        with:
+          pattern: 'release-(.*)'
+          string: ${{ steps.nvda-tag.outputs.release }}
+          replace-with: '$1'
+      - name: Cache nvda_${{ steps.nvda.outputs.replaced }}.exe
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
+          key: nvda_${{ steps.nvda.outputs.replaced }}_${{ hashFiles('**/nvda_*..exe') }}
+          restore-keys: |
+            nvda_${{ steps.nvda.outputs.replaced }}.exe
+          enableCrossOsArchive: true
+      - name: Download nvda_${{ steps.nvda.outputs.replaced }}.exe
+        id: download-nvda
+        uses: carlosperate/download-file-action@v2
+        with:
+          file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.replaced }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
+      - name: Upload nvda_${{ steps.nvda.outputs.replaced }}.exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: nvda_${{ steps.nvda.outputs.replaced }}.exe
+          path: ${{ steps.download-nvda.outputs.file-path }}
+          if-no-files-found: error
 
   build:
     runs-on: windows-latest
