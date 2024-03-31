@@ -15,7 +15,7 @@ jobs:
   download-NVDA:
     runs-on: ubuntu-latest
     env:
-      NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases/
+      NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases
     outputs:
       NVDA: nvda_${{ steps.nvda.outputs.replaced }}.exe
     steps:
