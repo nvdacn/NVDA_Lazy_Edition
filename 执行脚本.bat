@@ -24,6 +24,11 @@ if "%1" == "GITHUB_ACTIONS" (
 
 Rem GitHub Actions 构建流程
 :GitHub
+Rem 删除aisound.dll
+for /r "%~dp0Resource\Addons" %%i in (AISound*.nvda-addon) do (
+  "%~dp0Tools\7Zip\7z.exe" d -sccUTF-8 -y "%%i" "synthDrivers\aisound.dll"
+)
+
 Rem 开始生成
 set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0便携版安装脚本.iss"
