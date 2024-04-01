@@ -185,7 +185,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
-          key: nvda_${{ steps.nvda.outputs.replaced }}_${{ hashFiles('**/nvda_*..exe') }}
+          key: nvda_${{ steps.nvda.outputs.replaced }}
           restore-keys: |
             nvda_${{ steps.nvda.outputs.replaced }}.exe
           enableCrossOsArchive: true
