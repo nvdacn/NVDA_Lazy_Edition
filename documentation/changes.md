@@ -4,7 +4,7 @@
 
 - #### 全局
 
-  - 自本版起，本程序的源代码将托管至[GitHub](https://github.com/nvdacn/NVDA_Lazy_Edition)，并由 GitHub Actions 自动更新来自插件商店的插件、生成构建、发布新版本；
+  - 自本版起，本程序的源代码将托管至[GitHub](https://github.com/nvdacn/NVDA_Lazy_Edition)，并由 GitHub Actions 自动更新 NVDA、更新来自插件商店的插件、生成构建、发布新版本；
   - 调整：支持的操作系统现为 Windows 8.1及以上；
   - 改进：优化源代码文件夹结构；
   - 改进：将程序版本更改为本程序的生成日期；
