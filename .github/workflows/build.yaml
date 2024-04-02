@@ -18,9 +18,6 @@ jobs:
     strategy:
       matrix:
         addon:
-          - Name: AiSound5-23.04
-            URL: https://dl.nvdacn.com/NVDA-Addons/New/AISound5.nvda-addon
-            sha256: B67640578F524471B38098B45E8F7BA1C9E80EA407D5D6147E3B511AD9614AFA
           - Name: DragAndDrop-2.2dev
             URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2dev/DragAndDrop-2.2dev.nvda-addon
             sha256: F7056F62968C1F432D99641E030AD58A8BF49EDF3A7975205F65015D5A334679
@@ -72,6 +69,7 @@ jobs:
           - addonId: addonsHelp
           - addonId: addonsTools
           - addonId: addonUpdater
+          - addonId: AiSound5
           - addonId: audioManager
           - addonId: baiduTranslation
           - addonId: clipboardEnhancement
