@@ -54,24 +54,24 @@ Name: "Voices\AiSound5"; Types: Full custom; Description: "AiSound5 语音引擎
 Name: "Voices\WorldVoice"; Types: Full default custom; Description: "WorldVoice （Vocalizer Expressive 语音）"
 Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "可选插件"
 ;Name: "Addons\Access8Math"; Types: Full custom; Flags: disablenouninstallwarning; Description: "Access8Math"
-Name: "Addons\Access8Math"; Flags: disablenouninstallwarning; Description: "Access8Math"
+Name: "Addons\Access8Math"; Flags: dontinheritcheck disablenouninstallwarning; Description: "Access8Math"
 Name: "Addons\addonsHelp"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件文档"
 Name: "Addons\addonsTools"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件管理工具箱"
 Name: "Addons\addonUpdater"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件更新器"
 ;Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
-Name: "Addons\audioManager"; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
+Name: "Addons\audioManager"; Flags: dontinheritcheck disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
 ;Name: "Addons\baiduTranslation"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "百度翻译"
-Name: "Addons\baiduTranslation"; Flags: disablenouninstallwarning; Description: "百度翻译"
+Name: "Addons\baiduTranslation"; Flags: dontinheritcheck disablenouninstallwarning; Description: "百度翻译"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
 ;Name: "Addons\DragAndDrop"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
-Name: "Addons\DragAndDrop"; Flags: disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
+Name: "Addons\DragAndDrop"; Flags: dontinheritcheck disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
 Name: "Addons\enhancedTouchGestures"; Types: Full custom; Flags: disablenouninstallwarning; Description: "触摸手势增强"
 Name: "Addons\goldenCursor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "金色光标"
 Name: "Addons\imeExpressive"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "中文输入法支持"
 Name: "Addons\inputLock"; Types: Full custom; Flags: disablenouninstallwarning; Description: "输入锁"
 Name: "Addons\MSEdgeDiscardAnnouncements"; Types: Full custom; Flags: disablenouninstallwarning; Description: "禁止 Microsoft Edge UIA 通知"
 ;Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "数字处理"
-Name: "Addons\NumberProcessing"; Flags: disablenouninstallwarning; Description: "数字处理"
+Name: "Addons\NumberProcessing"; Flags: dontinheritcheck disablenouninstallwarning; Description: "数字处理"
 Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA 中文社区更新镜像源"
 Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQ增强"
 Name: "Addons\remote"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "远程支持"
@@ -81,7 +81,7 @@ Name: "Addons\WakeSpeaker"; Types: Full custom; Flags: disablenouninstallwarning
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
 Name: "Addons\wintenApps"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Windows 应用增强"; MinVersion: 10.0
 ;Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
-Name: "Addons\xyOCR"; Flags: disablenouninstallwarning; Description: "新翼OCR"
+Name: "Addons\xyOCR"; Flags: dontinheritcheck disablenouninstallwarning; Description: "新翼OCR"
 
 [Tasks]
 Name: "StartOnLogon"; Description: "在欢迎界面启用 NVDA"
