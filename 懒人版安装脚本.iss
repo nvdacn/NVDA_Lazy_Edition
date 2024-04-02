@@ -59,8 +59,7 @@ Name: "Addons\addonsHelp"; Types: Full default custom; Flags: disablenouninstall
 Name: "Addons\addonsTools"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件管理工具箱"
 Name: "Addons\addonUpdater"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件更新器"
 Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
-;Name: "Addons\baiduTranslation"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "百度翻译"
-Name: "Addons\baiduTranslation"; Flags: dontinheritcheck disablenouninstallwarning; Description: "百度翻译"
+Name: "Addons\baiduTranslation"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "百度翻译"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
 ;Name: "Addons\DragAndDrop"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
 Name: "Addons\DragAndDrop"; Flags: dontinheritcheck disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
@@ -79,8 +78,7 @@ Name: "Addons\unmute"; Types: Full default custom; Flags: disablenouninstallwarn
 Name: "Addons\WakeSpeaker"; Types: Full custom; Flags: disablenouninstallwarning; Description: "唤醒扬声器"
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
 Name: "Addons\wintenApps"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Windows 应用增强"; MinVersion: 10.0
-;Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
-Name: "Addons\xyOCR"; Flags: dontinheritcheck disablenouninstallwarning; Description: "新翼OCR"
+Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
 
 [Tasks]
 Name: "StartOnLogon"; Description: "在欢迎界面启用 NVDA"
