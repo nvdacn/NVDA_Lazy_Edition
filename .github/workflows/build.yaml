@@ -107,12 +107,12 @@ jobs:
           repository: nvaccess/addon-datastore.git
           ref: views
           sparse-checkout: |
-            views/zh_CN/2023.3/${{ matrix.addon.addonId }}
+            views/zh_CN/2023.3.0/${{ matrix.addon.addonId }}
           path: ${{ github.workspace }}/addon-datastore
       - name: get ${{ matrix.addon.addonId }} addon data
         uses: antifree/json-to-variables@v1.1.2
         with:
-          filename: ${{ github.workspace}}/addon-datastore/views/zh_CN/2023.3/${{ matrix.addon.addonId }}/stable.json
+          filename: ${{ github.workspace}}/addon-datastore/views/zh_CN/2023.3.0/${{ matrix.addon.addonId }}/stable.json
       - name: Cache ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon
         uses: actions/cache@v4
         with:
@@ -181,6 +181,7 @@ jobs:
       NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases
     outputs:
       NVDA: nvda_2023.3.exe
+    steps:
       - name: Cache nvda_2023.3.exe
         uses: actions/cache@v4
         with:
