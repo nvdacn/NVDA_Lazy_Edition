@@ -250,3 +250,4 @@
 
   - 增加了NVDA+'模拟application；
   - 更新插件。
+
