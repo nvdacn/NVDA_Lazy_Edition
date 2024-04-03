@@ -253,6 +253,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
+          body: 详细更新日志请[点此查看](documentation/changes.md)。
           files: NVDA_Lazy_Edition/*
           fail_on_unmatched_files: true
           prerelease: ${{ contains(github.ref, 'rc') }}
