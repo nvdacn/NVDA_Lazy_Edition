@@ -6,9 +6,11 @@ on:
       - "*"
     branches:
       - master
+      - Win7Maintenance
   pull_request:
     branches:
       - master
+      - Win7Maintenance
   workflow_dispatch:
 
 jobs:
@@ -93,12 +95,12 @@ jobs:
           repository: nvaccess/addon-datastore.git
           ref: views
           sparse-checkout: |
-            views/zh_CN/latest/${{ matrix.addon.addonId }}
+            views/zh_CN/2023.3/${{ matrix.addon.addonId }}
           path: ${{ github.workspace }}/addon-datastore
       - name: get ${{ matrix.addon.addonId }} addon data
         uses: antifree/json-to-variables@v1.1.2
         with:
-          filename: ${{ github.workspace}}/addon-datastore/views/zh_CN/latest/${{ matrix.addon.addonId }}/stable.json
+          filename: ${{ github.workspace}}/addon-datastore/views/zh_CN/2023.3/${{ matrix.addon.addonId }}/stable.json
       - name: Cache ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon
         uses: actions/cache@v4
         with:
@@ -166,36 +168,24 @@ jobs:
     env:
       NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases
     outputs:
-      NVDA: nvda_${{ steps.nvda.outputs.replaced }}.exe
-    steps:
-      - id: nvda-tag
-        uses: pozetroninc/github-action-get-latest-release@master
-        with:
-          repository: nvaccess/nvda
-          excludes: ${{  !contains(github.ref, 'rc') && 'prerelease, draft' || '' }}
-      - id: nvda
-        uses: frabert/replace-string-action@v2
-        with:
-          pattern: 'release-(.*)'
-          string: ${{ steps.nvda-tag.outputs.release }}
-          replace-with: '$1'
-      - name: Cache nvda_${{ steps.nvda.outputs.replaced }}.exe
+      NVDA: nvda_2023.3.exe
+      - name: Cache nvda_2023.3.exe
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
-          key: nvda_${{ steps.nvda.outputs.replaced }}
+          path: ${{ github.workspace }}/nvda_2023.3.exe
+          key: nvda_2023.3
           restore-keys: |
-            nvda_${{ steps.nvda.outputs.replaced }}.exe
+            nvda_2023.3.exe
           enableCrossOsArchive: true
-      - name: Download nvda_${{ steps.nvda.outputs.replaced }}.exe
+      - name: Download nvda_2023.3.exe
         id: download-nvda
         uses: carlosperate/download-file-action@v2
         with:
-          file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.replaced }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
-      - name: Upload nvda_${{ steps.nvda.outputs.replaced }}.exe
+          file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/2023.3/nvda_2023.3.exe
+      - name: Upload nvda_2023.3.exe
         uses: actions/upload-artifact@v4
         with:
-          name: nvda_${{ steps.nvda.outputs.replaced }}.exe
+          name: nvda_2023.3.exe
           path: ${{ steps.download-nvda.outputs.file-path }}
           if-no-files-found: error
 
