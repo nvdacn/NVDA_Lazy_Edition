@@ -21,7 +21,6 @@ Uninstallable=No
 LicenseFile=Temp\NVDA\documentation\copying.txt
 SetupIconFile=Temp\NVDA\images\nvda.ico
 InfoBeforeFile=Output\说明.txt
-MinVersion=6.03
 ArchitecturesInstallIn64BitMode=x64 ia64 arm64
 AllowCancelDuringInstall=No
 AlwaysShowComponentsList=No

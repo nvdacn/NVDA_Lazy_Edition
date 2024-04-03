@@ -14,7 +14,6 @@ OutputDir=Temp
 OutputBaseFilename=Application
 Compression=lzma
 SolidCompression=yes
-MinVersion=6.03
 DisableDirPage=Yes
 DisableProgramGroupPage=yes
 DisableFinishedPage=Yes
