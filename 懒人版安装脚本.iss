@@ -68,6 +68,7 @@ Name: "Addons\imeExpressive"; Types: Full default custom; Flags: disablenouninst
 Name: "Addons\inputLock"; Types: Full custom; Flags: disablenouninstallwarning; Description: "输入锁"
 Name: "Addons\MSEdgeDiscardAnnouncements"; Types: Full custom; Flags: disablenouninstallwarning; Description: "禁止 Microsoft Edge UIA 通知"
 Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "数字处理"
+Name: "Addons\NVBox"; Types: Full custom; Flags: disablenouninstallwarning; Description: "NV宝盒"
 Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA 中文社区更新镜像源"
 Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQ增强"
 Name: "Addons\QuickAdjustment"; Types: Full custom; Flags: disablenouninstallwarning; Description: "快速调节"
@@ -89,6 +90,7 @@ Name: "Voices\AiSound5"; Description: "切换语音合成器到 AiSound5"; Compo
 Name: "Voices\IBMTTS"; Description: "切换语音合成器到 IBMTTS"; Components: Voices\VVTTS\IBMTTS; Flags: exclusive Unchecked
 Name: "Voices\sapi4"; Description: "切换语音合成器到 Microsoft Speech API version 4 已使用 VVTTS 引擎"; Components: Voices\VVTTS; Flags: exclusive Unchecked
 Name: "Voices\sapi5"; Description: "切换语音合成器到 Microsoft Speech API version 5"; OnlyBelowVersion: 10.0; Components: Settings; Flags: exclusive
+Name: "Voices\nvbox"; Description: "切换语音合成器到 NV 宝盒语音合成器"; Components: Addons\NVBox; Flags: exclusive Unchecked
 Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
 Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Flags: Unchecked; Check: FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
 Name: "DragAndDropGestures"; Description: "修改 DragAndDrop 插件的台式机快捷键与笔记本键盘方案相同"; Components: "Addons\DragAndDrop"
@@ -193,6 +195,7 @@ FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " aisound
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi4"; Tasks: "Voices\sapi4"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi5"; Tasks: "Voices\sapi5"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " WorldVoice"; Tasks: "Voices\WorldVoice"
+FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " nvbox"; Tasks: "Voices\nvbox"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " ibmeci"; Tasks: "Voices\IBMTTS"
 
 [InstallDelete]
@@ -223,6 +226,7 @@ Type: filesandordirs; Name: "{app}\Addons\ime_expressive"; Tasks: "not DeletePro
 Type: filesandordirs; Name: "{app}\Addons\inputLock"; Tasks: "not DeleteProfile"; Components: "Addons\inputLock"
 Type: filesandordirs; Name: "{app}\Addons\MSEdgeDiscardAnnouncements"; Tasks: "not DeleteProfile"; Components: "Addons\MSEdgeDiscardAnnouncements"
 Type: filesandordirs; Name: "{app}\Addons\numberProcessing"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
+Type: filesandordirs; Name: "{app}\Addons\NVBox"; Tasks: "not DeleteProfile"; Components: "Addons\NVBox"
 Type: filesandordirs; Name: "{app}\Addons\QQEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
 Type: filesandordirs; Name: "{app}\Addons\QuickAdjustment"; Tasks: "not DeleteProfile"; Components: "Addons\QuickAdjustment"
 Type: filesandordirs; Name: "{app}\Addons\remote"; Tasks: "not DeleteProfile"; Components: "Addons\remote"
@@ -254,6 +258,7 @@ Type: files; Name: "{app}\Addons\ime_expressive.json"; Tasks: "not DeleteProfile
 Type: files; Name: "{app}\Addons\inputLock.json"; Tasks: "not DeleteProfile"; Components: "Addons\inputLock"
 Type: files; Name: "{app}\Addons\MSEdgeDiscardAnnouncements.json"; Tasks: "not DeleteProfile"; Components: "Addons\MSEdgeDiscardAnnouncements"
 Type: files; Name: "{app}\Addons\numberProcessing.json"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
+Type: files; Name: "{app}\Addons\NVBox.json"; Tasks: "not DeleteProfile"; Components: "Addons\NVBox"
 Type: files; Name: "{app}\Addons\QQEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
 Type: files; Name: "{app}\Addons\QuickAdjustment.json"; Tasks: "not DeleteProfile"; Components: "Addons\QuickAdjustment"
 Type: files; Name: "{app}\Addons\remote.json"; Tasks: "not DeleteProfile"; Components: "Addons\remote"
@@ -295,6 +300,7 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\ime_expressive*"" -aoa -o""{app}\A
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\inputLock*"" -aoa -o""{app}\Addons\inputLock"""; Components: "Addons\inputLock"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\MSEdgeDiscardAnnouncements*"" -aoa -o""{app}\Addons\MSEdgeDiscardAnnouncements"""; Components: "Addons\MSEdgeDiscardAnnouncements"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\numberProcessing*"" -aoa -o""{app}\Addons\numberProcessing"""; Components: "Addons\numberProcessing"
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\NVBox*"" -aoa -o""{app}\Addons\NVBox"""; Components: "Addons\NVBox"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\QQEnhancement*"" -aoa -o""{app}\Addons\QQEnhancement"""; Components: "Addons\QQEnhancement"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\QuickAdjustment*"" -aoa -o""{app}\Addons\QuickAdjustment"""; Components: "Addons\QuickAdjustment"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\remote*"" -aoa -o""{app}\Addons\remote"""; Components: "Addons\remote"
@@ -337,6 +343,7 @@ Source: "Resource\Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: delet
 Source: "Resource\Addons\inputLock*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\inputLock"
 Source: "Resource\Addons\MSEdgeDiscardAnnouncements*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\MSEdgeDiscardAnnouncements"
 Source: "Resource\Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
+Source: "Resource\Addons\NVBox*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVBox"
 Source: "Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
 Source: "Resource\Addons\QuickAdjustment*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QuickAdjustment"
 Source: "Resource\Addons\remote*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\remote"
