@@ -61,8 +61,7 @@ Name: "Addons\addonUpdater"; Types: Full default custom; Flags: disablenouninsta
 Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
 Name: "Addons\baiduTranslation"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "百度翻译"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
-;Name: "Addons\DragAndDrop"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
-Name: "Addons\DragAndDrop"; Flags: dontinheritcheck disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
+Name: "Addons\DragAndDrop"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
 Name: "Addons\enhancedTouchGestures"; Types: Full custom; Flags: disablenouninstallwarning; Description: "触摸手势增强"
 Name: "Addons\goldenCursor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "金色光标"
 Name: "Addons\imeExpressive"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "中文输入法支持"

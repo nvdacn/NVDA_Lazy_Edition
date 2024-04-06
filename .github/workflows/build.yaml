@@ -18,9 +18,9 @@ jobs:
     strategy:
       matrix:
         addon:
-          - Name: DragAndDrop-2.2dev
-            URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2dev/DragAndDrop-2.2dev.nvda-addon
-            sha256: F7056F62968C1F432D99641E030AD58A8BF49EDF3A7975205F65015D5A334679
+          - Name: DragAndDrop-2.2.1dev
+            URL: https://dl.nvdacn.com/NVDA-Addons/New/DragAndDrop-2.2.1dev.nvda-addon
+            sha256: 47588d9504e526f23ae5ef963731d8f5d2fa62e93b8455caaeb73a7807201659
           - Name: IBMTTS-23.12.1
             URL: https://dl.nvdacn.com/NVDA-Addons/New/IBMTTS-23.12.1.nvda-addon
             sha256: F96353B0329FB66319FC98B5748AB9D03C2A236762CF29F3B99EBACD04635451
