@@ -59,17 +59,16 @@ Name: "Addons\addonsHelp"; Types: Full default custom; Flags: disablenouninstall
 Name: "Addons\addonsTools"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件管理工具箱"
 Name: "Addons\addonUpdater"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件更新器"
 Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
-Name: "Addons\baiduTranslation"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "百度翻译"
+Name: "Addons\baiduTranslation"; Types: Full custom; Flags: disablenouninstallwarning; Description: "百度翻译"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
-;Name: "Addons\DragAndDrop"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
-Name: "Addons\DragAndDrop"; Flags: dontinheritcheck disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
+Name: "Addons\DragAndDrop"; Types: Full custom; Flags: disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
 Name: "Addons\enhancedTouchGestures"; Types: Full custom; Flags: disablenouninstallwarning; Description: "触摸手势增强"
 Name: "Addons\goldenCursor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "金色光标"
 Name: "Addons\imeExpressive"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "中文输入法支持"
 Name: "Addons\inputLock"; Types: Full custom; Flags: disablenouninstallwarning; Description: "输入锁"
+Name: "Addons\instantTranslate"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "及时翻译"
 Name: "Addons\MSEdgeDiscardAnnouncements"; Types: Full custom; Flags: disablenouninstallwarning; Description: "禁止 Microsoft Edge UIA 通知"
-;Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "数字处理"
-Name: "Addons\NumberProcessing"; Flags: dontinheritcheck disablenouninstallwarning; Description: "数字处理"
+Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "数字处理"
 Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA 中文社区更新镜像源"
 Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQ增强"
 Name: "Addons\remote"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "远程支持"
@@ -82,6 +81,7 @@ Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarni
 
 [Tasks]
 Name: "StartOnLogon"; Description: "在欢迎界面启用 NVDA"
+Name: "FixAudioDucking"; Description: "修复音频闪避等功能无法使用"; Flags: Unchecked
 Name: "Voices"; Description: "语音合成器设置"; Components: Settings; OnlyBelowVersion: 10.0
 Name: "Voices"; Description: "语音合成器设置"; Components: Settings and Voices; Flags: Unchecked; MinVersion: 10.0
 Name: "Voices\WorldVoice"; Description: "切换语音合成器到 WorldVoice"; Components: Voices\WorldVoice; Flags: exclusive Unchecked
@@ -221,6 +221,7 @@ Type: files; Name: "{app}\Addons\goldenCursor\installTasks.py"; Tasks: "not Dele
 Type: files; Name: "{app}\Addons\goldenCursor\manifest.ini"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
 Type: filesandordirs; Name: "{app}\Addons\ime_expressive"; Tasks: "not DeleteProfile"; Components: "Addons\imeExpressive"
 Type: filesandordirs; Name: "{app}\Addons\inputLock"; Tasks: "not DeleteProfile"; Components: "Addons\inputLock"
+Type: filesandordirs; Name: "{app}\Addons\instantTranslate"; Tasks: "not DeleteProfile"; Components: "Addons\instantTranslate"
 Type: filesandordirs; Name: "{app}\Addons\MSEdgeDiscardAnnouncements"; Tasks: "not DeleteProfile"; Components: "Addons\MSEdgeDiscardAnnouncements"
 Type: filesandordirs; Name: "{app}\Addons\numberProcessing"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
 Type: filesandordirs; Name: "{app}\Addons\QQEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
@@ -249,6 +250,7 @@ Type: files; Name: "{app}\Addons\enhancedTouchGestures.json"; Tasks: "not Delete
 Type: files; Name: "{app}\Addons\goldenCursor.json"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
 Type: files; Name: "{app}\Addons\ime_expressive.json"; Tasks: "not DeleteProfile"; Components: "Addons\imeExpressive"
 Type: files; Name: "{app}\Addons\inputLock.json"; Tasks: "not DeleteProfile"; Components: "Addons\inputLock"
+Type: files; Name: "{app}\Addons\instantTranslate.json"; Tasks: "not DeleteProfile"; Components: "Addons\instantTranslate"
 Type: files; Name: "{app}\Addons\MSEdgeDiscardAnnouncements.json"; Tasks: "not DeleteProfile"; Components: "Addons\MSEdgeDiscardAnnouncements"
 Type: files; Name: "{app}\Addons\numberProcessing.json"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
 Type: files; Name: "{app}\Addons\QQEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
@@ -287,6 +289,7 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\enhancedTouchGestures*"" -aoa -o""
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\goldenCursor*"" -aoa -o""{app}\Addons\goldenCursor"""; Components: "Addons\goldenCursor"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\ime_expressive*"" -aoa -o""{app}\Addons\ime_expressive"""; Components: "Addons\imeExpressive"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\inputLock*"" -aoa -o""{app}\Addons\inputLock"""; Components: "Addons\inputLock"
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\instantTranslate*"" -aoa -o""{app}\Addons\instantTranslate"""; Components: "Addons\instantTranslate"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\MSEdgeDiscardAnnouncements*"" -aoa -o""{app}\Addons\MSEdgeDiscardAnnouncements"""; Components: "Addons\MSEdgeDiscardAnnouncements"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\numberProcessing*"" -aoa -o""{app}\Addons\numberProcessing"""; Components: "Addons\numberProcessing"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\QQEnhancement*"" -aoa -o""{app}\Addons\QQEnhancement"""; Components: "Addons\QQEnhancement"
@@ -326,6 +329,7 @@ Source: "Resource\Addons\enhancedTouchGestures*"; DestDir: "{tmp}\Addons"; Flags
 Source: "Resource\Addons\goldenCursor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\goldenCursor"
 Source: "Resource\Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\imeExpressive"
 Source: "Resource\Addons\inputLock*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\inputLock"
+Source: "Resource\Addons\instantTranslate*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\instantTranslate"
 Source: "Resource\Addons\MSEdgeDiscardAnnouncements*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\MSEdgeDiscardAnnouncements"
 Source: "Resource\Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
 Source: "Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
@@ -336,3 +340,7 @@ Source: "Resource\Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deletea
 Source: "Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
 Source: "Resource\Addons\wintenApps*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\wintenApps"
 Source: "Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
+
+[Registry]
+Root: HKLM; SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System; ValueType: dword; ValueName: EnableLUA; ValueData: $00000001; Flags: uninsdeletevalue uninsdeletekeyifempty; Tasks: "FixAudioDucking"
+

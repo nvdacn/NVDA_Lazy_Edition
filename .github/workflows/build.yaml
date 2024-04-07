@@ -18,18 +18,18 @@ jobs:
     strategy:
       matrix:
         addon:
-          - Name: DragAndDrop-2.2dev
-            URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2dev/DragAndDrop-2.2dev.nvda-addon
-            sha256: F7056F62968C1F432D99641E030AD58A8BF49EDF3A7975205F65015D5A334679
+          - Name: DragAndDrop-2.2.1dev
+            URL: https://dl.nvdacn.com/NVDA-Addons/New/DragAndDrop-2.2.1dev.nvda-addon
+            sha256: 47588d9504e526f23ae5ef963731d8f5d2fa62e93b8455caaeb73a7807201659
           - Name: IBMTTS-23.12.1
             URL: https://dl.nvdacn.com/NVDA-Addons/New/IBMTTS-23.12.1.nvda-addon
             sha256: F96353B0329FB66319FC98B5748AB9D03C2A236762CF29F3B99EBACD04635451
           - Name: MSEdgeDiscardAnnouncements-0.10
             URL: https://dl.nvdacn.com/NVDA-Addons/New/MSEdgeDiscardAnnouncements-0.10.nvda-addon
             sha256: 993eb9ba9849c3b6c7284fd6aaf84ad4a7b3a2707fbff54c5af4dd48a54124ca
-          - Name: numberProcessing-20230310-dev
-            URL: https://github.com/ABuffEr/numberProcessing/releases/download/20230310-dev/numberProcessing-20230310-dev.nvda-addon
-            sha256: E57468DD9A995E087EB1F9A7A140C6303EC518292DE9D2185316FDC3CAD6FA8B
+          - Name: numberProcessing-1.0-20240406-dev
+            URL: https://dl.nvdacn.com/NVDA-Addons/New/numberProcessing-1.0-20240406-dev.nvda-addon
+            sha256: 3b7803a7b6ac2b3e62ca55f2e3b4de03fc32f4468b34ce97bacf34c14e6997b3
           - Name: unmute-1.5.8
             URL: https://github.com/grisov/Unmute/releases/download/v1.5.8/unmute-1.5.8.nvda-addon
             sha256: b55759cc9ebf5581832adfa6a976d32874ae08a0968e8d60e78f5abbced87175
@@ -77,6 +77,7 @@ jobs:
           - addonId: goldenCursor
           - addonId: ime_expressive
           - addonId: inputLock
+          - addonId: instantTranslate
 #          - addonId: MSEdgeDiscardAnnouncements
           - addonId: NVDACNMirror
           - addonId: QQEnhancement
