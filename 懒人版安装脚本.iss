@@ -57,7 +57,7 @@ Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; De
 Name: "Addons\Access8Math"; Flags: dontinheritcheck disablenouninstallwarning; Description: "Access8Math"
 Name: "Addons\addonsHelp"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件文档"
 Name: "Addons\addonsTools"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件管理工具箱"
-Name: "Addons\addonUpdater"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件更新器"
+Name: "Addons\addonUpdater"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件更新器"
 Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
 Name: "Addons\baiduTranslation"; Types: Full custom; Flags: disablenouninstallwarning; Description: "百度翻译"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
