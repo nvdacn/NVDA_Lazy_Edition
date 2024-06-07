@@ -69,7 +69,7 @@ Name: "Addons\inputLock"; Types: Full custom; Flags: disablenouninstallwarning; 
 Name: "Addons\instantTranslate"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "及时翻译"
 Name: "Addons\MSEdgeDiscardAnnouncements"; Types: Full custom; Flags: disablenouninstallwarning; Description: "禁止 Microsoft Edge UIA 通知"
 Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "数字处理"
-Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA 中文社区更新镜像源"
+Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA 中文社区镜像源"
 Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQ增强"
 Name: "Addons\remote"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "远程支持"
 Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "资源监控器"
