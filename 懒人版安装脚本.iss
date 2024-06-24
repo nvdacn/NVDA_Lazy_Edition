@@ -12,7 +12,7 @@ DefaultDirName={userappdata}\NVDA
 AllowNoIcons=yes
 OutputDir=Output
 OutputBaseFilename=NVDA 懒人版
-Compression=lzma
+Compression=none
 DisableDirPage=Yes
 DisableProgramGroupPage=yes
 AppendDefaultDirName=No
@@ -53,11 +53,10 @@ Name: "Voices\VVTTS\IBMTTS"; Types: Full default custom; Description: "IBMTTS �
 Name: "Voices\AiSound5"; Types: Full custom; Description: "AiSound5 语音引擎"
 Name: "Voices\WorldVoice"; Types: Full default custom; Description: "WorldVoice （Vocalizer Expressive 语音）"
 Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "可选插件"
-;Name: "Addons\Access8Math"; Types: Full custom; Flags: disablenouninstallwarning; Description: "Access8Math"
-Name: "Addons\Access8Math"; Flags: dontinheritcheck disablenouninstallwarning; Description: "Access8Math"
+Name: "Addons\Access8Math"; Types: Full custom; Flags: disablenouninstallwarning; Description: "Access8Math"
 Name: "Addons\addonsHelp"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件文档"
 Name: "Addons\addonsTools"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件管理工具箱"
-Name: "Addons\addonUpdater"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件更新器"
+Name: "Addons\addonUpdater"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件更新器"
 Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
 Name: "Addons\baiduTranslation"; Types: Full custom; Flags: disablenouninstallwarning; Description: "百度翻译"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
@@ -69,12 +68,11 @@ Name: "Addons\inputLock"; Types: Full custom; Flags: disablenouninstallwarning; 
 Name: "Addons\instantTranslate"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "及时翻译"
 Name: "Addons\MSEdgeDiscardAnnouncements"; Types: Full custom; Flags: disablenouninstallwarning; Description: "禁止 Microsoft Edge UIA 通知"
 Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "数字处理"
-Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA 中文社区更新镜像源"
+Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA 中文社区镜像源"
 Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQ增强"
 Name: "Addons\remote"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "远程支持"
 Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "资源监控器"
 Name: "Addons\unmute"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "取消系统静音"
-Name: "Addons\WakeSpeaker"; Types: Full custom; Flags: disablenouninstallwarning; Description: "唤醒扬声器"
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
 Name: "Addons\wintenApps"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Windows 应用增强"; MinVersion: 10.0
 Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
@@ -208,8 +206,6 @@ Type: filesandordirs; Name: "{app}\Addons\addonUpdater"; Tasks: "not DeleteProfi
 Type: filesandordirs; Name: "{app}\Addons\audioManager"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: filesandordirs; Name: "{app}\Addons\AudioControl"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: filesandordirs; Name: "{app}\Addons\baiduTranslation"; Tasks: "not DeleteProfile"; Components: "Addons\baiduTranslation"
-Type: filesandordirs; Name: "{app}\Addons\bluetoothaudio"; Tasks: "not DeleteProfile"; Components: "Addons\WakeSpeaker"
-Type: filesandordirs; Name: "{app}\Addons\WakeSpeaker"; Tasks: "not DeleteProfile"; Components: "Addons\WakeSpeaker"
 Type: filesandordirs; Name: "{app}\Addons\clipboardEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\clipboardEnhancement"
 Type: filesandordirs; Name: "{app}\Addons\DragAndDrop"; Tasks: "not DeleteProfile"; Components: "Addons\DragAndDrop"
 Type: filesandordirs; Name: "{app}\Addons\enhancedTouchGestures"; Tasks: "not DeleteProfile"; Components: "Addons\enhancedTouchGestures"
@@ -242,8 +238,6 @@ Type: files; Name: "{app}\Addons\addonsTools.json"; Tasks: "not DeleteProfile"; 
 Type: files; Name: "{app}\Addons\addonUpdater.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonUpdater"
 Type: files; Name: "{app}\Addons\audioManager.json"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: files; Name: "{app}\Addons\baiduTranslation.json"; Tasks: "not DeleteProfile"; Components: "Addons\baiduTranslation"
-Type: files; Name: "{app}\Addons\bluetoothaudio.json"; Tasks: "not DeleteProfile"; Components: "Addons\WakeSpeaker"
-Type: files; Name: "{app}\Addons\WakeSpeaker.json"; Tasks: "not DeleteProfile"; Components: "Addons\WakeSpeaker"
 Type: files; Name: "{app}\Addons\clipboardEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\clipboardEnhancement"
 Type: files; Name: "{app}\Addons\DragAndDrop.json"; Tasks: "not DeleteProfile"; Components: "Addons\DragAndDrop"
 Type: files; Name: "{app}\Addons\enhancedTouchGestures.json"; Tasks: "not DeleteProfile"; Components: "Addons\enhancedTouchGestures"
@@ -282,7 +276,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsTools*"" -aoa -o""{app}\Addo
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonUpdater*"" -aoa -o""{app}\Addons\addonUpdater"""; Components: "Addons\addonUpdater"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\audioManager*"" -aoa -o""{app}\Addons\audioManager"""; Components: "Addons\audioManager"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\baiduTranslation*"" -aoa -o""{app}\Addons\baiduTranslation"""; Components: "Addons\baiduTranslation"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\WakeSpeaker*"" -aoa -o""{app}\Addons\WakeSpeaker"""; Components: "Addons\WakeSpeaker"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\clipboardEnhancement*"" -aoa -o""{app}\Addons\clipboardEnhancement"""; Components: "Addons\clipboardEnhancement"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\DragAndDrop*"" -aoa -o""{app}\Addons\DragAndDrop"""; Components: "Addons\DragAndDrop"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\enhancedTouchGestures*"" -aoa -o""{app}\Addons\enhancedTouchGestures"""; Components: "Addons\enhancedTouchGestures"
@@ -322,7 +315,6 @@ Source: "userConfig\nvda3208.pickle"; DestDir: "{app}"; Components: "Settings an
 Source: "Resource\Addons\addonUpdater*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonUpdater"
 Source: "Resource\Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
 Source: "Resource\Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
-Source: "Resource\Addons\WakeSpeaker*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WakeSpeaker"
 Source: "Resource\Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
 Source: "Resource\Addons\DragAndDrop*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\DragAndDrop"
 Source: "Resource\Addons\enhancedTouchGestures*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\enhancedTouchGestures"

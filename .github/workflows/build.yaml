@@ -19,8 +19,8 @@ jobs:
       matrix:
         addon:
           - Name: DragAndDrop-2.2.1dev
-            URL: https://dl.nvdacn.com/NVDA-Addons/New/DragAndDrop-2.2.1dev.nvda-addon
-            sha256: 47588d9504e526f23ae5ef963731d8f5d2fa62e93b8455caaeb73a7807201659
+            URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2.1dev/DragAndDrop-2.2.1dev.nvda-addon
+            sha256: cf8af2b3190326218e827b502a1da544578b334824cb5b7e3027ebcfeb642efe
           - Name: IBMTTS-23.12.1
             URL: https://dl.nvdacn.com/NVDA-Addons/New/IBMTTS-23.12.1.nvda-addon
             sha256: F96353B0329FB66319FC98B5748AB9D03C2A236762CF29F3B99EBACD04635451
@@ -33,9 +33,6 @@ jobs:
           - Name: unmute-1.5.8
             URL: https://github.com/grisov/Unmute/releases/download/v1.5.8/unmute-1.5.8.nvda-addon
             sha256: b55759cc9ebf5581832adfa6a976d32874ae08a0968e8d60e78f5abbced87175
-          - Name: WakeSpeaker-24.1.1
-            URL: https://github.com/davidacm/WakeSpeaker/releases/download/24.1.1/WakeSpeaker-24.1.1.nvda-addon
-            sha256: 0c125caeb2bdf4fdac5bbb87d022738fbed4f81f4edcbe63e82ed6c990d500ce
           - Name: WorldVoice-3.7
             URL: https://github.com/tsengwoody/WorldVoice/releases/download/v3.7/WorldVoice-3.7.nvda-addon
             sha256: 8E25B0741769E6C84B2964D9701E0BE174605C795C3515524A6036C570AE35A9
@@ -84,7 +81,6 @@ jobs:
           - addonId: remote
           - addonId: resourceMonitor
 #          - addonId: unmute
-#          - addonId: WakeSpeaker
           - addonId: WeChatEnhancement
           - addonId: wintenApps
           - addonId: xyOCR
