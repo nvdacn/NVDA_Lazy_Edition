@@ -44,6 +44,9 @@ jobs:
           - Name: unmute-1.5.8
             URL: https://github.com/grisov/Unmute/releases/download/v1.5.8/unmute-1.5.8.nvda-addon
             sha256: b55759cc9ebf5581832adfa6a976d32874ae08a0968e8d60e78f5abbced87175
+          - Name: WakeSpeaker-24.1.1
+            URL: https://github.com/davidacm/WakeSpeaker/releases/download/24.1.1/WakeSpeaker-24.1.1.nvda-addon
+            sha256: 0c125caeb2bdf4fdac5bbb87d022738fbed4f81f4edcbe63e82ed6c990d500ce
           - Name: WorldVoice-3.7
             URL: https://github.com/tsengwoody/WorldVoice/releases/download/v3.7/WorldVoice-3.7.nvda-addon
             sha256: 8E25B0741769E6C84B2964D9701E0BE174605C795C3515524A6036C570AE35A9
@@ -95,6 +98,7 @@ jobs:
           - addonId: remote
           - addonId: resourceMonitor
 #          - addonId: unmute
+#          - addonId: WakeSpeaker
           - addonId: WeChatEnhancement
           - addonId: wintenApps
           - addonId: xyOCR
