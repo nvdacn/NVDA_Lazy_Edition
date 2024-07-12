@@ -182,6 +182,16 @@ begin
     SetIniString('ibmeci', '	TTSPath ', ExpandConstant('{pf}\ViaVoiceTTS'), ExpandConstant('{userappdata}\NVDA\nvda.ini'));
   end;
 end;
+procedure JSONFile(JSONName: String);
+var
+  FileName: String;
+begin
+  FileName := ExpandConstant('{tmp}\Addons\'+ JSONName +'.json');
+  If FileExists(FileName) Then
+  begin
+    FileCopy(FileName, ExpandConstant('{app}\Addons\'+ JSONName +'.json'), False);
+  end;
+end;
 
 [ini]
 FileName: "{tmp}\Application\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "None"; String: "kb(desktop):numpad9+nvda, kb(desktop):.+nvda"; Tasks: DragAndDropGestures
@@ -262,37 +272,37 @@ Filename: "{tmp}\Application\nvda"; Parameters: "-m --install-silent --enable-st
 Filename: "{tmp}\Application\nvda"; Parameters: "-m -s"; Flags: nowait
 Filename: "{tmp}\VVTTS"; Parameters: "/S"; Components: "Voices\VVTTS and Settings"; AfterInstall: VVTTSINI();
 Filename: "{tmp}\VVTTS"; Parameters: "/S"; Components: "Voices\VVTTS and not Settings"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\AiSound5*"" -aoa -o""{app}\Addons\AiSound5"""; Components: "Voices\AiSound5"
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\AiSound5*.nvda-addon"" -aoa -o""{app}\Addons\AiSound5"""; Components: "Voices\AiSound5"; AfterInstall: JSONFile('AiSound5')
 Filename: "{tmp}\7z"; Parameters: "x ""aisound.zip"" -aoa -o""{app}\Addons\AiSound5\synthDrivers"""; Components: "Voices\AiSound5"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\IBMTTS*"" -aoa -o""{app}\Addons\IBMTTS"""; Components: "Voices\VVTTS\IBMTTS"
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\IBMTTS*.nvda-addon"" -aoa -o""{app}\Addons\IBMTTS"""; Components: "Voices\VVTTS\IBMTTS"; AfterInstall: JSONFile('IBMTTS')
 Filename: "{tmp}\vcredist_x86"; Parameters: "/install /quiet /norestart"; Components: "Voices\WorldVoice"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\WorldVoice*"" -aoa -o""{app}\Addons\WorldVoice"""; Components: "Voices\WorldVoice"
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\WorldVoice*.nvda-addon"" -aoa -o""{app}\Addons\WorldVoice"""; Components: "Voices\WorldVoice"; AfterInstall: JSONFile('WorldVoice')
 Filename: "{tmp}\7z"; Parameters: "x ""aisound.zip"" -aoa -o""{app}\WorldVoice-workspace\aisound"""; Components: "Voices\WorldVoice"
 Filename: "{tmp}\7z"; Parameters: "x ""VE.zip"" -aoa -o""{app}\WorldVoice-workspace\VE"""; Components: "Voices\WorldVoice"
 Filename: "{tmp}\7z"; Parameters: "x ""voice.zip"" -aoa -o""{app}\WorldVoice-workspace"""; Components: "Voices\WorldVoice"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\Access8Math*"" -aoa -o""{app}\Addons\Access8Math"""; Components: "Addons\Access8Math"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsHelp*"" -aoa -o""{app}\Addons\addonsHelp"""; Components: "Addons\addonsHelp"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsTools*"" -aoa -o""{app}\Addons\addonsTools"""; Components: "Addons\addonsTools"
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\Access8Math*.nvda-addon"" -aoa -o""{app}\Addons\Access8Math"""; Components: "Addons\Access8Math"; AfterInstall: JSONFile('Access8Math')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsHelp*.nvda-addon"" -aoa -o""{app}\Addons\addonsHelp"""; Components: "Addons\addonsHelp"; AfterInstall: JSONFile('addonsHelp')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsTools*.nvda-addon"" -aoa -o""{app}\Addons\addonsTools"""; Components: "Addons\addonsTools"; AfterInstall: JSONFile('addonsTools')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonUpdater*"" -aoa -o""{app}\Addons\addonUpdater"""; Components: "Addons\addonUpdater"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\audioManager*"" -aoa -o""{app}\Addons\audioManager"""; Components: "Addons\audioManager"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\baiduTranslation*"" -aoa -o""{app}\Addons\baiduTranslation"""; Components: "Addons\baiduTranslation"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\clipboardEnhancement*"" -aoa -o""{app}\Addons\clipboardEnhancement"""; Components: "Addons\clipboardEnhancement"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\DragAndDrop*"" -aoa -o""{app}\Addons\DragAndDrop"""; Components: "Addons\DragAndDrop"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\enhancedTouchGestures*"" -aoa -o""{app}\Addons\enhancedTouchGestures"""; Components: "Addons\enhancedTouchGestures"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\goldenCursor*"" -aoa -o""{app}\Addons\goldenCursor"""; Components: "Addons\goldenCursor"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\ime_expressive*"" -aoa -o""{app}\Addons\ime_expressive"""; Components: "Addons\imeExpressive"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\inputLock*"" -aoa -o""{app}\Addons\inputLock"""; Components: "Addons\inputLock"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\instantTranslate*"" -aoa -o""{app}\Addons\instantTranslate"""; Components: "Addons\instantTranslate"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\MSEdgeDiscardAnnouncements*"" -aoa -o""{app}\Addons\MSEdgeDiscardAnnouncements"""; Components: "Addons\MSEdgeDiscardAnnouncements"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\numberProcessing*"" -aoa -o""{app}\Addons\numberProcessing"""; Components: "Addons\numberProcessing"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\QQEnhancement*"" -aoa -o""{app}\Addons\QQEnhancement"""; Components: "Addons\QQEnhancement"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\remote*"" -aoa -o""{app}\Addons\remote"""; Components: "Addons\remote"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\resourceMonitor*"" -aoa -o""{app}\Addons\resourceMonitor"""; Components: "Addons\resourceMonitor"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\unmute*"" -aoa -o""{app}\Addons\unmute"""; Components: "Addons\unmute"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\NVDACNMirror*"" -aoa -o""{app}\Addons\NVDACNMirror"""; Components: "Addons\NVDACNMirror"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\WeChatEnhancement*"" -aoa -o""{app}\Addons\WeChatEnhancement"""; Components: "Addons\WeChatEnhancement"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\wintenApps*"" -aoa -o""{app}\Addons\wintenApps"""; Components: "Addons\wintenApps"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*"" -aoa -o""{app}\Addons\xyOCR"""; Components: "Addons\xyOCR"
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\audioManager*.nvda-addon"" -aoa -o""{app}\Addons\audioManager"""; Components: "Addons\audioManager"; AfterInstall: JSONFile('audioManager')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\baiduTranslation*.nvda-addon"" -aoa -o""{app}\Addons\baiduTranslation"""; Components: "Addons\baiduTranslation"; AfterInstall: JSONFile('baiduTranslation')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\clipboardEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\clipboardEnhancement"""; Components: "Addons\clipboardEnhancement"; AfterInstall: JSONFile('clipboardEnhancement')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\DragAndDrop*.nvda-addon"" -aoa -o""{app}\Addons\DragAndDrop"""; Components: "Addons\DragAndDrop"; AfterInstall: JSONFile('DragAndDrop')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\enhancedTouchGestures*.nvda-addon"" -aoa -o""{app}\Addons\enhancedTouchGestures"""; Components: "Addons\enhancedTouchGestures"; AfterInstall: JSONFile('enhancedTouchGestures')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\goldenCursor*.nvda-addon"" -aoa -o""{app}\Addons\goldenCursor"""; Components: "Addons\goldenCursor"; AfterInstall: JSONFile('goldenCursor')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\ime_expressive*.nvda-addon"" -aoa -o""{app}\Addons\ime_expressive"""; Components: "Addons\imeExpressive"; AfterInstall: JSONFile('ime_expressive')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\inputLock*.nvda-addon"" -aoa -o""{app}\Addons\inputLock"""; Components: "Addons\inputLock"; AfterInstall: JSONFile('inputLock')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\instantTranslate*.nvda-addon"" -aoa -o""{app}\Addons\instantTranslate"""; Components: "Addons\instantTranslate"; AfterInstall: JSONFile('instantTranslate')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\MSEdgeDiscardAnnouncements*.nvda-addon"" -aoa -o""{app}\Addons\MSEdgeDiscardAnnouncements"""; Components: "Addons\MSEdgeDiscardAnnouncements"; AfterInstall: JSONFile('MSEdgeDiscardAnnouncements')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\numberProcessing*.nvda-addon"" -aoa -o""{app}\Addons\numberProcessing"""; Components: "Addons\numberProcessing"; AfterInstall: JSONFile('numberProcessing')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\QQEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\QQEnhancement"""; Components: "Addons\QQEnhancement"; AfterInstall: JSONFile('QQEnhancement')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\remote*.nvda-addon"" -aoa -o""{app}\Addons\remote"""; Components: "Addons\remote"; AfterInstall: JSONFile('remote')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\resourceMonitor*.nvda-addon"" -aoa -o""{app}\Addons\resourceMonitor"""; Components: "Addons\resourceMonitor"; AfterInstall: JSONFile('resourceMonitor')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\unmute*.nvda-addon"" -aoa -o""{app}\Addons\unmute"""; Components: "Addons\unmute"; AfterInstall: JSONFile('unmute')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\NVDACNMirror*.nvda-addon"" -aoa -o""{app}\Addons\NVDACNMirror"""; Components: "Addons\NVDACNMirror"; AfterInstall: JSONFile('NVDACNMirror')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\WeChatEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\WeChatEnhancement"""; Components: "Addons\WeChatEnhancement"; AfterInstall: JSONFile('WeChatEnhancement')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\wintenApps*.nvda-addon"" -aoa -o""{app}\Addons\wintenApps"""; Components: "Addons\wintenApps"; AfterInstall: JSONFile('wintenApps')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*.nvda-addon"" -aoa -o""{app}\Addons\xyOCR"""; Components: "Addons\xyOCR"; AfterInstall: JSONFile('xyOCR')
 
 [Files]
 Source: "Temp\Application.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
