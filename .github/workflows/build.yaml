@@ -65,6 +65,7 @@ jobs:
           - addonId: Access8Math
           - addonId: addonsHelp
           - addonId: addonsTools
+          - addonId: addonUpdater
           - addonId: AiSound5
           - addonId: audioManager
           - addonId: baiduTranslation
