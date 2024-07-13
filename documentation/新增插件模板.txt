@@ -47,11 +47,13 @@ Type: files; Name: "{app}\Addons\
 # [Run] 段
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\
 插件ID
-*"" -aoa -o""{app}\Addons\
+*.nvda-addon"" -aoa -o""{app}\Addons\
 插件ID
 """; Components: "Addons\
 插件ID
-"
+"; AfterInstall: JSONFile('
+插件ID
+')
 
 # [Files] 段
 Source: "Resource\Addons\
