@@ -56,7 +56,6 @@ Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; De
 Name: "Addons\Access8Math"; Types: Full custom; Flags: disablenouninstallwarning; Description: "Access8Math"
 Name: "Addons\addonsHelp"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件文档"
 Name: "Addons\addonsTools"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件管理工具箱"
-Name: "Addons\addonUpdater"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件更新器"
 Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
 Name: "Addons\baiduTranslation"; Types: Full custom; Flags: disablenouninstallwarning; Description: "百度翻译"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
@@ -212,7 +211,6 @@ Type: filesandordirs; Name: "{app}\Addons\WorldVoice"; Tasks: "not DeleteProfile
 Type: filesandordirs; Name: "{app}\Addons\Access8Math"; Tasks: "not DeleteProfile"; Components: "Addons\Access8Math"
 Type: filesandordirs; Name: "{app}\Addons\addonsHelp"; Tasks: "not DeleteProfile"; Components: "Addons\addonsHelp"
 Type: filesandordirs; Name: "{app}\Addons\addonsTools"; Tasks: "not DeleteProfile"; Components: "Addons\addonsTools"
-Type: filesandordirs; Name: "{app}\Addons\addonUpdater"; Tasks: "not DeleteProfile"; Components: "Addons\addonUpdater"
 Type: filesandordirs; Name: "{app}\Addons\audioManager"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: filesandordirs; Name: "{app}\Addons\AudioControl"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: filesandordirs; Name: "{app}\Addons\baiduTranslation"; Tasks: "not DeleteProfile"; Components: "Addons\baiduTranslation"
@@ -245,7 +243,6 @@ Type: files; Name: "{app}\Addons\WorldVoice.json"; Tasks: "not DeleteProfile"; C
 Type: files; Name: "{app}\Addons\Access8Math.json"; Tasks: "not DeleteProfile"; Components: "Addons\Access8Math"
 Type: files; Name: "{app}\Addons\addonsHelp.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonsHelp"
 Type: files; Name: "{app}\Addons\addonsTools.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonsTools"
-Type: files; Name: "{app}\Addons\addonUpdater.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonUpdater"
 Type: files; Name: "{app}\Addons\audioManager.json"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: files; Name: "{app}\Addons\baiduTranslation.json"; Tasks: "not DeleteProfile"; Components: "Addons\baiduTranslation"
 Type: files; Name: "{app}\Addons\clipboardEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\clipboardEnhancement"
@@ -283,7 +280,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""voice.zip"" -aoa -o""{app}\WorldVoice-wor
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\Access8Math*.nvda-addon"" -aoa -o""{app}\Addons\Access8Math"""; Components: "Addons\Access8Math"; AfterInstall: JSONFile('Access8Math')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsHelp*.nvda-addon"" -aoa -o""{app}\Addons\addonsHelp"""; Components: "Addons\addonsHelp"; AfterInstall: JSONFile('addonsHelp')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsTools*.nvda-addon"" -aoa -o""{app}\Addons\addonsTools"""; Components: "Addons\addonsTools"; AfterInstall: JSONFile('addonsTools')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonUpdater*"" -aoa -o""{app}\Addons\addonUpdater"""; Components: "Addons\addonUpdater"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\audioManager*.nvda-addon"" -aoa -o""{app}\Addons\audioManager"""; Components: "Addons\audioManager"; AfterInstall: JSONFile('audioManager')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\baiduTranslation*.nvda-addon"" -aoa -o""{app}\Addons\baiduTranslation"""; Components: "Addons\baiduTranslation"; AfterInstall: JSONFile('baiduTranslation')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\clipboardEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\clipboardEnhancement"""; Components: "Addons\clipboardEnhancement"; AfterInstall: JSONFile('clipboardEnhancement')
@@ -321,8 +317,6 @@ Source: "Resource\Addons\WorldVoice*"; DestDir: "{tmp}\Addons"; Flags: deleteaft
 Source: "Resource\Addons\Access8Math*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\Access8Math"
 Source: "Resource\Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
 Source: "Resource\Addons\addonsTools*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsTools"
-Source: "userConfig\nvda3208.pickle"; DestDir: "{app}"; Components: "Settings and Addons\addonUpdater"; Flags: ignoreversion
-Source: "Resource\Addons\addonUpdater*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonUpdater"
 Source: "Resource\Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
 Source: "Resource\Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
 Source: "Resource\Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
