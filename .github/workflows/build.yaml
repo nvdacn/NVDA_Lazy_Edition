@@ -81,7 +81,6 @@ jobs:
           - addonId: resourceMonitor
 #          - addonId: unmute
           - addonId: WeChatEnhancement
-          - addonId: wintenApps
           - addonId: xyOCR
     steps:
       - uses: actions/checkout@v4

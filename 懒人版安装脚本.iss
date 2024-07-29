@@ -73,7 +73,6 @@ Name: "Addons\remote"; Types: Full default custom; Flags: disablenouninstallwarn
 Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "资源监控器"
 Name: "Addons\unmute"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "取消系统静音"
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
-Name: "Addons\wintenApps"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Windows 应用增强"; MinVersion: 10.0
 Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
 
 [Tasks]
@@ -235,7 +234,6 @@ Type: filesandordirs; Name: "{app}\Addons\unmute"; Tasks: "not DeleteProfile"; C
 Type: filesandordirs; Name: "{app}\Addons\NVDACNMirror"; Tasks: "not DeleteProfile"; Components: "Addons\NVDACNMirror"
 Type: filesandordirs; Name: "{app}\Addons\viyfMirror"; Tasks: "not DeleteProfile"; Components: "Addons\NVDACNMirror"
 Type: filesandordirs; Name: "{app}\Addons\WeChatEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
-Type: filesandordirs; Name: "{app}\Addons\wintenApps"; Tasks: "not DeleteProfile"; Components: "Addons\wintenApps"
 Type: filesandordirs; Name: "{app}\Addons\xyOCR"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
 Type: files; Name: "{app}\Addons\AiSound5.json"; Tasks: "not DeleteProfile"; Components: "Voices\AiSound5"
 Type: files; Name: "{app}\Addons\IBMTTS.json"; Tasks: "not DeleteProfile"; Components: "Voices\VVTTS\IBMTTS"
@@ -260,7 +258,6 @@ Type: files; Name: "{app}\Addons\resourceMonitor.json"; Tasks: "not DeleteProfil
 Type: files; Name: "{app}\Addons\unmute.json"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
 Type: files; Name: "{app}\Addons\NVDACNMirror.json"; Tasks: "not DeleteProfile"; Components: "Addons\NVDACNMirror"
 Type: files; Name: "{app}\Addons\WeChatEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
-Type: files; Name: "{app}\Addons\wintenApps.json"; Tasks: "not DeleteProfile"; Components: "Addons\wintenApps"
 Type: files; Name: "{app}\Addons\xyOCR.json"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
 
 [Run]
@@ -297,7 +294,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\resourceMonitor*.nvda-addon"" -aoa
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\unmute*.nvda-addon"" -aoa -o""{app}\Addons\unmute"""; Components: "Addons\unmute"; AfterInstall: JSONFile('unmute')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\NVDACNMirror*.nvda-addon"" -aoa -o""{app}\Addons\NVDACNMirror"""; Components: "Addons\NVDACNMirror"; AfterInstall: JSONFile('NVDACNMirror')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\WeChatEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\WeChatEnhancement"""; Components: "Addons\WeChatEnhancement"; AfterInstall: JSONFile('WeChatEnhancement')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\wintenApps*.nvda-addon"" -aoa -o""{app}\Addons\wintenApps"""; Components: "Addons\wintenApps"; AfterInstall: JSONFile('wintenApps')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*.nvda-addon"" -aoa -o""{app}\Addons\xyOCR"""; Components: "Addons\xyOCR"; AfterInstall: JSONFile('xyOCR')
 
 [Files]
@@ -334,7 +330,6 @@ Source: "Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: dele
 Source: "Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
 Source: "Resource\Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVDACNMirror"
 Source: "Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
-Source: "Resource\Addons\wintenApps*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\wintenApps"
 Source: "Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
 
 [Registry]
