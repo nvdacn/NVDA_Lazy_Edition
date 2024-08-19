@@ -27,9 +27,9 @@ jobs:
           - Name: MSEdgeDiscardAnnouncements-0.10
             URL: https://dl.nvdacn.com/NVDA-Addons/New/MSEdgeDiscardAnnouncements-0.10.nvda-addon
             sha256: 993eb9ba9849c3b6c7284fd6aaf84ad4a7b3a2707fbff54c5af4dd48a54124ca
-          - Name: numberProcessing-1.0-20240406-dev
-            URL: https://dl.nvdacn.com/NVDA-Addons/New/numberProcessing-1.0-20240406-dev.nvda-addon
-            sha256: 3b7803a7b6ac2b3e62ca55f2e3b4de03fc32f4468b34ce97bacf34c14e6997b3
+          - Name: numberProcessing-1.0.20240815
+            URL: https://github.com/ABuffEr/numberProcessing/releases/download/v1.0.20240815/numberProcessing-1.0.20240815.nvda-addon
+            sha256: 75cf08935b04a3c80335f1ed4dbda972e492178ff00abaeb0d197e4fb81eeb92
           - Name: unmute-1.5.8
             URL: https://github.com/grisov/Unmute/releases/download/v1.5.8/unmute-1.5.8.nvda-addon
             sha256: b55759cc9ebf5581832adfa6a976d32874ae08a0968e8d60e78f5abbced87175
@@ -65,7 +65,6 @@ jobs:
           - addonId: Access8Math
           - addonId: addonsHelp
           - addonId: addonsTools
-          - addonId: addonUpdater
           - addonId: AiSound5
           - addonId: audioManager
           - addonId: baiduTranslation
@@ -82,7 +81,6 @@ jobs:
           - addonId: resourceMonitor
 #          - addonId: unmute
           - addonId: WeChatEnhancement
-          - addonId: wintenApps
           - addonId: xyOCR
     steps:
       - uses: actions/checkout@v4

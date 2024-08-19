@@ -56,7 +56,6 @@ Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; De
 Name: "Addons\Access8Math"; Types: Full custom; Flags: disablenouninstallwarning; Description: "Access8Math"
 Name: "Addons\addonsHelp"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "插件文档"
 Name: "Addons\addonsTools"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件管理工具箱"
-Name: "Addons\addonUpdater"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件更新器"
 Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
 Name: "Addons\baiduTranslation"; Types: Full custom; Flags: disablenouninstallwarning; Description: "百度翻译"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
@@ -74,7 +73,6 @@ Name: "Addons\remote"; Types: Full default custom; Flags: disablenouninstallwarn
 Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "资源监控器"
 Name: "Addons\unmute"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "取消系统静音"
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
-Name: "Addons\wintenApps"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Windows 应用增强"; MinVersion: 10.0
 Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
 
 [Tasks]
@@ -212,7 +210,6 @@ Type: filesandordirs; Name: "{app}\Addons\WorldVoice"; Tasks: "not DeleteProfile
 Type: filesandordirs; Name: "{app}\Addons\Access8Math"; Tasks: "not DeleteProfile"; Components: "Addons\Access8Math"
 Type: filesandordirs; Name: "{app}\Addons\addonsHelp"; Tasks: "not DeleteProfile"; Components: "Addons\addonsHelp"
 Type: filesandordirs; Name: "{app}\Addons\addonsTools"; Tasks: "not DeleteProfile"; Components: "Addons\addonsTools"
-Type: filesandordirs; Name: "{app}\Addons\addonUpdater"; Tasks: "not DeleteProfile"; Components: "Addons\addonUpdater"
 Type: filesandordirs; Name: "{app}\Addons\audioManager"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: filesandordirs; Name: "{app}\Addons\AudioControl"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: filesandordirs; Name: "{app}\Addons\baiduTranslation"; Tasks: "not DeleteProfile"; Components: "Addons\baiduTranslation"
@@ -237,7 +234,6 @@ Type: filesandordirs; Name: "{app}\Addons\unmute"; Tasks: "not DeleteProfile"; C
 Type: filesandordirs; Name: "{app}\Addons\NVDACNMirror"; Tasks: "not DeleteProfile"; Components: "Addons\NVDACNMirror"
 Type: filesandordirs; Name: "{app}\Addons\viyfMirror"; Tasks: "not DeleteProfile"; Components: "Addons\NVDACNMirror"
 Type: filesandordirs; Name: "{app}\Addons\WeChatEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
-Type: filesandordirs; Name: "{app}\Addons\wintenApps"; Tasks: "not DeleteProfile"; Components: "Addons\wintenApps"
 Type: filesandordirs; Name: "{app}\Addons\xyOCR"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
 Type: files; Name: "{app}\Addons\AiSound5.json"; Tasks: "not DeleteProfile"; Components: "Voices\AiSound5"
 Type: files; Name: "{app}\Addons\IBMTTS.json"; Tasks: "not DeleteProfile"; Components: "Voices\VVTTS\IBMTTS"
@@ -245,7 +241,6 @@ Type: files; Name: "{app}\Addons\WorldVoice.json"; Tasks: "not DeleteProfile"; C
 Type: files; Name: "{app}\Addons\Access8Math.json"; Tasks: "not DeleteProfile"; Components: "Addons\Access8Math"
 Type: files; Name: "{app}\Addons\addonsHelp.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonsHelp"
 Type: files; Name: "{app}\Addons\addonsTools.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonsTools"
-Type: files; Name: "{app}\Addons\addonUpdater.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonUpdater"
 Type: files; Name: "{app}\Addons\audioManager.json"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: files; Name: "{app}\Addons\baiduTranslation.json"; Tasks: "not DeleteProfile"; Components: "Addons\baiduTranslation"
 Type: files; Name: "{app}\Addons\clipboardEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\clipboardEnhancement"
@@ -263,7 +258,6 @@ Type: files; Name: "{app}\Addons\resourceMonitor.json"; Tasks: "not DeleteProfil
 Type: files; Name: "{app}\Addons\unmute.json"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
 Type: files; Name: "{app}\Addons\NVDACNMirror.json"; Tasks: "not DeleteProfile"; Components: "Addons\NVDACNMirror"
 Type: files; Name: "{app}\Addons\WeChatEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
-Type: files; Name: "{app}\Addons\wintenApps.json"; Tasks: "not DeleteProfile"; Components: "Addons\wintenApps"
 Type: files; Name: "{app}\Addons\xyOCR.json"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
 
 [Run]
@@ -283,7 +277,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""voice.zip"" -aoa -o""{app}\WorldVoice-wor
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\Access8Math*.nvda-addon"" -aoa -o""{app}\Addons\Access8Math"""; Components: "Addons\Access8Math"; AfterInstall: JSONFile('Access8Math')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsHelp*.nvda-addon"" -aoa -o""{app}\Addons\addonsHelp"""; Components: "Addons\addonsHelp"; AfterInstall: JSONFile('addonsHelp')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsTools*.nvda-addon"" -aoa -o""{app}\Addons\addonsTools"""; Components: "Addons\addonsTools"; AfterInstall: JSONFile('addonsTools')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonUpdater*"" -aoa -o""{app}\Addons\addonUpdater"""; Components: "Addons\addonUpdater"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\audioManager*.nvda-addon"" -aoa -o""{app}\Addons\audioManager"""; Components: "Addons\audioManager"; AfterInstall: JSONFile('audioManager')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\baiduTranslation*.nvda-addon"" -aoa -o""{app}\Addons\baiduTranslation"""; Components: "Addons\baiduTranslation"; AfterInstall: JSONFile('baiduTranslation')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\clipboardEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\clipboardEnhancement"""; Components: "Addons\clipboardEnhancement"; AfterInstall: JSONFile('clipboardEnhancement')
@@ -301,7 +294,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\resourceMonitor*.nvda-addon"" -aoa
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\unmute*.nvda-addon"" -aoa -o""{app}\Addons\unmute"""; Components: "Addons\unmute"; AfterInstall: JSONFile('unmute')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\NVDACNMirror*.nvda-addon"" -aoa -o""{app}\Addons\NVDACNMirror"""; Components: "Addons\NVDACNMirror"; AfterInstall: JSONFile('NVDACNMirror')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\WeChatEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\WeChatEnhancement"""; Components: "Addons\WeChatEnhancement"; AfterInstall: JSONFile('WeChatEnhancement')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\wintenApps*.nvda-addon"" -aoa -o""{app}\Addons\wintenApps"""; Components: "Addons\wintenApps"; AfterInstall: JSONFile('wintenApps')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*.nvda-addon"" -aoa -o""{app}\Addons\xyOCR"""; Components: "Addons\xyOCR"; AfterInstall: JSONFile('xyOCR')
 
 [Files]
@@ -321,8 +313,6 @@ Source: "Resource\Addons\WorldVoice*"; DestDir: "{tmp}\Addons"; Flags: deleteaft
 Source: "Resource\Addons\Access8Math*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\Access8Math"
 Source: "Resource\Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
 Source: "Resource\Addons\addonsTools*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsTools"
-Source: "userConfig\nvda3208.pickle"; DestDir: "{app}"; Components: "Settings and Addons\addonUpdater"; Flags: ignoreversion
-Source: "Resource\Addons\addonUpdater*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonUpdater"
 Source: "Resource\Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
 Source: "Resource\Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
 Source: "Resource\Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
@@ -340,7 +330,6 @@ Source: "Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: dele
 Source: "Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
 Source: "Resource\Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVDACNMirror"
 Source: "Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
-Source: "Resource\Addons\wintenApps*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\wintenApps"
 Source: "Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
 
 [Registry]
