@@ -12,8 +12,8 @@ for /r "%~dp0Resource" %%i in (nvda_20*.exe) do (
 
 Rem 生成文档的 txt 版本
 MKDir "%~dp0Output"
-COPY /B /V  /Y "%~dp0documentation\changes.md" "%~dp0Output\更新日志.txt"
-COPY /B /V  /Y "%~dp0documentation\ReadMe.md" "%~dp0Output\说明.txt"
+COPY /B /V /Y "%~dp0documentation\changes.md" "%~dp0Output\更新日志.txt"
+COPY /B /V /Y "%~dp0documentation\ReadMe.md" "%~dp0Output\说明.txt"
 
 if "%1" == "GITHUB_ACTIONS" (
   @echo on
