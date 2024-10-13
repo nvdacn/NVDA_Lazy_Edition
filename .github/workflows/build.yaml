@@ -33,9 +33,6 @@ jobs:
           - Name: unmute-1.5.8
             URL: https://github.com/grisov/Unmute/releases/download/v1.5.8/unmute-1.5.8.nvda-addon
             sha256: b55759cc9ebf5581832adfa6a976d32874ae08a0968e8d60e78f5abbced87175
-          - Name: WorldVoice-3.7
-            URL: https://github.com/tsengwoody/WorldVoice/releases/download/v3.7/WorldVoice-3.7.nvda-addon
-            sha256: 8E25B0741769E6C84B2964D9701E0BE174605C795C3515524A6036C570AE35A9
     steps:
       - name: Cache ${{ matrix.addon.Name }} Addon
         uses: actions/cache@v4
@@ -81,6 +78,7 @@ jobs:
           - addonId: resourceMonitor
 #          - addonId: unmute
           - addonId: WeChatEnhancement
+          - addonId: WorldVoice
           - addonId: xyOCR
     steps:
       - uses: actions/checkout@v4
