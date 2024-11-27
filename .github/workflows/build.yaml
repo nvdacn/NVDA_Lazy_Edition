@@ -73,6 +73,7 @@ jobs:
           - addonId: instantTranslate
 #          - addonId: MSEdgeDiscardAnnouncements
           - addonId: NVDACNMirror
+          - addonId: objWatcher
           - addonId: QQEnhancement
           - addonId: remote
           - addonId: resourceMonitor
