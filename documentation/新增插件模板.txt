@@ -30,6 +30,7 @@ Name: "Addons\
 "; Types: Full default custom; Flags: disablenouninstallwarning; Description: "
 插件中文名称
 "
+# 如非默认安装插件，请删除“default”一词
 
 # [InstallDelete]段
 Type: filesandordirs; Name: "{app}\Addons\
@@ -61,3 +62,19 @@ Source: "Resource\Addons\
 *"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\
 插件ID
 "
+
+
+# changes.md
+  - 新增插件：
+插件中文名称
+；
+# 如新增多个插件，第二个及后续插件应使用下面的内容，并追加到新增插件行日志的“；”符号之前
+、
+插件中文名称
+
+
+# ReadMe.md
+- 
+插件中文名称
+（默认安装）
+# 如非默认安装插件，请删除“（默认安装）”字样
