@@ -68,6 +68,7 @@ Name: "Addons\instantTranslate"; Types: Full default custom; Flags: disablenouni
 Name: "Addons\MSEdgeDiscardAnnouncements"; Types: Full custom; Flags: disablenouninstallwarning; Description: "禁止 Microsoft Edge UIA 通知"
 Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "数字处理"
 Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA 中文社区镜像源"
+Name: "Addons\objWatcher"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "对象监视器"
 Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQ增强"
 Name: "Addons\remote"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "远程支持"
 Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "资源监控器"
@@ -227,6 +228,7 @@ Type: filesandordirs; Name: "{app}\Addons\inputLock"; Tasks: "not DeleteProfile"
 Type: filesandordirs; Name: "{app}\Addons\instantTranslate"; Tasks: "not DeleteProfile"; Components: "Addons\instantTranslate"
 Type: filesandordirs; Name: "{app}\Addons\MSEdgeDiscardAnnouncements"; Tasks: "not DeleteProfile"; Components: "Addons\MSEdgeDiscardAnnouncements"
 Type: filesandordirs; Name: "{app}\Addons\numberProcessing"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
+Type: filesandordirs; Name: "{app}\Addons\objWatcher"; Tasks: "not DeleteProfile"; Components: "Addons\objWatcher"
 Type: filesandordirs; Name: "{app}\Addons\QQEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
 Type: filesandordirs; Name: "{app}\Addons\remote"; Tasks: "not DeleteProfile"; Components: "Addons\remote"
 Type: filesandordirs; Name: "{app}\Addons\resourceMonitor"; Tasks: "not DeleteProfile"; Components: "Addons\resourceMonitor"
@@ -252,6 +254,7 @@ Type: files; Name: "{app}\Addons\inputLock.json"; Tasks: "not DeleteProfile"; Co
 Type: files; Name: "{app}\Addons\instantTranslate.json"; Tasks: "not DeleteProfile"; Components: "Addons\instantTranslate"
 Type: files; Name: "{app}\Addons\MSEdgeDiscardAnnouncements.json"; Tasks: "not DeleteProfile"; Components: "Addons\MSEdgeDiscardAnnouncements"
 Type: files; Name: "{app}\Addons\numberProcessing.json"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
+Type: files; Name: "{app}\Addons\objWatcher.json"; Tasks: "not DeleteProfile"; Components: "Addons\objWatcher"
 Type: files; Name: "{app}\Addons\QQEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
 Type: files; Name: "{app}\Addons\remote.json"; Tasks: "not DeleteProfile"; Components: "Addons\remote"
 Type: files; Name: "{app}\Addons\resourceMonitor.json"; Tasks: "not DeleteProfile"; Components: "Addons\resourceMonitor"
@@ -288,6 +291,7 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\inputLock*.nvda-addon"" -aoa -o""{
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\instantTranslate*.nvda-addon"" -aoa -o""{app}\Addons\instantTranslate"""; Components: "Addons\instantTranslate"; AfterInstall: JSONFile('instantTranslate')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\MSEdgeDiscardAnnouncements*.nvda-addon"" -aoa -o""{app}\Addons\MSEdgeDiscardAnnouncements"""; Components: "Addons\MSEdgeDiscardAnnouncements"; AfterInstall: JSONFile('MSEdgeDiscardAnnouncements')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\numberProcessing*.nvda-addon"" -aoa -o""{app}\Addons\numberProcessing"""; Components: "Addons\numberProcessing"; AfterInstall: JSONFile('numberProcessing')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\objWatcher*.nvda-addon"" -aoa -o""{app}\Addons\objWatcher"""; Components: "Addons\objWatcher"; AfterInstall: JSONFile('objWatcher')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\QQEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\QQEnhancement"""; Components: "Addons\QQEnhancement"; AfterInstall: JSONFile('QQEnhancement')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\remote*.nvda-addon"" -aoa -o""{app}\Addons\remote"""; Components: "Addons\remote"; AfterInstall: JSONFile('remote')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\resourceMonitor*.nvda-addon"" -aoa -o""{app}\Addons\resourceMonitor"""; Components: "Addons\resourceMonitor"; AfterInstall: JSONFile('resourceMonitor')
@@ -324,6 +328,7 @@ Source: "Resource\Addons\inputLock*"; DestDir: "{tmp}\Addons"; Flags: deleteafte
 Source: "Resource\Addons\instantTranslate*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\instantTranslate"
 Source: "Resource\Addons\MSEdgeDiscardAnnouncements*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\MSEdgeDiscardAnnouncements"
 Source: "Resource\Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
+Source: "Resource\Addons\objWatcher*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\objWatcher"
 Source: "Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
 Source: "Resource\Addons\remote*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\remote"
 Source: "Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
