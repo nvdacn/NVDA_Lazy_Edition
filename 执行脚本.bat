@@ -32,7 +32,7 @@ for /r "%~dp0Resource\Addons" %%i in (AISound*.nvda-addon) do (
 Rem 开始生成
 set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0Scripts\Portable.iss"
-"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0懒人版安装脚本.iss"
+"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0Scripts\NVDALazyEdition.iss"
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0Scripts\RestoreNVDAConfiguration.iss"
 GOTO Archive
 
@@ -48,7 +48,7 @@ if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
 Rem 开始生成
 set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0Scripts\Portable.iss"
-"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0懒人版安装脚本.iss"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0Scripts\NVDALazyEdition.iss"
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0Scripts\RestoreNVDAConfiguration.iss"
 
 :Archive

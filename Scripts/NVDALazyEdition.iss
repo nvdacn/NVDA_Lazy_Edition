@@ -10,7 +10,7 @@ AppSupportURL=https://github.com/nvdacn/NVDA_Lazy_Edition
 AppUpdatesURL=https://github.com/nvdacn/NVDA_Lazy_Edition/releases
 DefaultDirName={userappdata}\NVDA
 AllowNoIcons=yes
-OutputDir=Output
+OutputDir=..\Output
 OutputBaseFilename=NVDA 懒人版
 Compression=none
 DisableDirPage=Yes
@@ -18,9 +18,8 @@ DisableProgramGroupPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
-LicenseFile=Temp\NVDA\documentation\copying.txt
-SetupIconFile=Temp\NVDA\images\nvda.ico
-InfoBeforeFile=Output\说明.txt
+LicenseFile=..\Temp\NVDA\documentation\copying.txt
+InfoBeforeFile=..\Output\说明.txt
 MinVersion=6.03
 ArchitecturesInstallIn64BitMode=x64 ia64 arm64
 AllowCancelDuringInstall=No
@@ -106,7 +105,7 @@ function ENUI: Boolean;
 begin
   if MsgBox('Welcome to NVDA Lazy Edition.' #13#13 'The program has detected that the current system''s display language is not Simplified Chinese.' #13#13 'This program will not install personalized features such as settings and add-ons customized for Simplified Chinese users.' #13#13 'Click "OK" to start the NVDA original installer, or click "Cancel" to exit this program.', mbError, MB_OKCANCEL)= IDOK then
   begin
-    Exec(ExpandConstant('{tmp}\Application\NVDA.exe'), '--launcher', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
+    Exec(ExpandConstant('{tmp}\NVDAPortable\NVDA.exe'), '--launcher', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
   end;
   Result := False;
 end;
@@ -142,8 +141,8 @@ BackupNVDAProfile();
 end;
 function InitializeSetup: Boolean;
 begin
-  ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\Application.exe')));
-  if Exec(ExpandConstant('{tmp}\Application.exe'), '/VERYSILENT /NORESTART', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode) then
+  ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\NVDAPortable.exe')));
+  if Exec(ExpandConstant('{tmp}\NVDAPortable.exe'), '/VERYSILENT /NORESTART', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode) then
   begin
   if GetUILanguage = 2052 then
   begin
@@ -171,7 +170,7 @@ WizardForm.LICENSEACCEPTEDRADIO.Checked := true;
 end;
 procedure DeinitializeSetup();
 begin
-  if Exec(ExpandConstant('{tmp}\Application\NVDA.exe'), '-q', '', SW_SHOWNORMAL, ewNoWait, ResultCode) then
+  if Exec(ExpandConstant('{tmp}\NVDAPortable\NVDA.exe'), '-q', '', SW_SHOWNORMAL, ewNoWait, ResultCode) then
 end;
 procedure VVTTSINI();
 begin
@@ -193,9 +192,9 @@ begin
 end;
 
 [ini]
-FileName: "{tmp}\Application\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "None"; String: "kb(desktop):numpad9+nvda, kb(desktop):.+nvda"; Tasks: DragAndDropGestures
-FileName: "{tmp}\Application\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "mouseCursorInfo"; String: """kb:,+control+nvda"""; Tasks: DragAndDropGestures
-FileName: "{tmp}\Application\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "dragAndDrop"; String: """kb:,+nvda+shift"""; Tasks: DragAndDropGestures
+FileName: "{tmp}\NVDAPortable\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "None"; String: "kb(desktop):numpad9+nvda, kb(desktop):.+nvda"; Tasks: DragAndDropGestures
+FileName: "{tmp}\NVDAPortable\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "mouseCursorInfo"; String: """kb:,+control+nvda"""; Tasks: DragAndDropGestures
+FileName: "{tmp}\NVDAPortable\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "dragAndDrop"; String: """kb:,+nvda+shift"""; Tasks: DragAndDropGestures
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " aisound"; Tasks: "Voices\AiSound5"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi4"; Tasks: "Voices\sapi4"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi5"; Tasks: "Voices\sapi5"
@@ -264,9 +263,9 @@ Type: files; Name: "{app}\Addons\WeChatEnhancement.json"; Tasks: "not DeleteProf
 Type: files; Name: "{app}\Addons\xyOCR.json"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
 
 [Run]
-Filename: "{tmp}\Application\nvda"; Parameters: "-m --install-silent --enable-start-on-logon=True"; Tasks: "StartOnLogon"
-Filename: "{tmp}\Application\nvda"; Parameters: "-m --install-silent --enable-start-on-logon=False"; Tasks: "not StartOnLogon"
-Filename: "{tmp}\Application\nvda"; Parameters: "-m -s"; Flags: nowait
+Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms --install-silent --enable-start-on-logon=True"; Tasks: "StartOnLogon"
+Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms --install-silent --enable-start-on-logon=False"; Tasks: "not StartOnLogon"
+Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms"; Flags: nowait
 Filename: "{tmp}\VVTTS"; Parameters: "/S"; Components: "Voices\VVTTS and Settings"; AfterInstall: VVTTSINI();
 Filename: "{tmp}\VVTTS"; Parameters: "/S"; Components: "Voices\VVTTS and not Settings"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\AiSound5*.nvda-addon"" -aoa -o""{app}\Addons\AiSound5"""; Components: "Voices\AiSound5"; AfterInstall: JSONFile('AiSound5')
@@ -301,41 +300,40 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\WeChatEnhancement*.nvda-addon"" -a
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*.nvda-addon"" -aoa -o""{app}\Addons\xyOCR"""; Components: "Addons\xyOCR"; AfterInstall: JSONFile('xyOCR')
 
 [Files]
-Source: "Temp\Application.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
-Source: "Tools\7Zip\7z.dll"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
-Source: "Tools\7Zip\7z.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
-Source: "userConfig\nvda.ini"; DestDir: "{app}"; Components: "Settings"; Flags: ignoreversion
-Source: "userConfig\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4"; Tasks: "VVTTSDicts"; Flags: ignoreversion
-Source: "Resource\speech\IBM_ViaVoice_TTS_Runtime-V6.405.exe"; DestDir: "{tmp}"; DestName: "VVTTS.exe"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
-Source: "Resource\speech\aisound.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5 or Voices\WorldVoice"
-Source: "Resource\vcredist_x86.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Resource\speech\VE.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Resource\speech\voice.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Resource\Addons\AiSound5*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5"
-Source: "Resource\Addons\IBMTTS*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS\IBMTTS"
-Source: "Resource\Addons\WorldVoice*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
-Source: "Resource\Addons\Access8Math*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\Access8Math"
-Source: "Resource\Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
-Source: "Resource\Addons\addonsTools*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsTools"
-Source: "Resource\Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
-Source: "Resource\Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
-Source: "Resource\Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
-Source: "Resource\Addons\DragAndDrop*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\DragAndDrop"
-Source: "Resource\Addons\enhancedTouchGestures*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\enhancedTouchGestures"
-Source: "Resource\Addons\goldenCursor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\goldenCursor"
-Source: "Resource\Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\imeExpressive"
-Source: "Resource\Addons\inputLock*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\inputLock"
-Source: "Resource\Addons\instantTranslate*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\instantTranslate"
-Source: "Resource\Addons\MSEdgeDiscardAnnouncements*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\MSEdgeDiscardAnnouncements"
-Source: "Resource\Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
-Source: "Resource\Addons\objWatcher*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\objWatcher"
-Source: "Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
-Source: "Resource\Addons\remote*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\remote"
-Source: "Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
-Source: "Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
-Source: "Resource\Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVDACNMirror"
-Source: "Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
-Source: "Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
+Source: "..\Temp\NVDAPortable.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
+Source: "..\Tools\7Zip\*"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion recursesubdirs createallsubdirs
+Source: "..\userConfig\nvda.ini"; DestDir: "{app}"; Components: "Settings"; Flags: ignoreversion
+Source: "..\userConfig\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4"; Tasks: "VVTTSDicts"; Flags: ignoreversion
+Source: "..\Resource\speech\IBM_ViaVoice_TTS_Runtime-V6.405.exe"; DestDir: "{tmp}"; DestName: "VVTTS.exe"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
+Source: "..\Resource\speech\aisound.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5 or Voices\WorldVoice"
+Source: "..\Resource\vcredist_x86.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "..\Resource\speech\VE.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "..\Resource\speech\voice.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "..\Resource\Addons\AiSound5*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5"
+Source: "..\Resource\Addons\IBMTTS*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS\IBMTTS"
+Source: "..\Resource\Addons\WorldVoice*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
+Source: "..\Resource\Addons\Access8Math*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\Access8Math"
+Source: "..\Resource\Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
+Source: "..\Resource\Addons\addonsTools*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsTools"
+Source: "..\Resource\Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
+Source: "..\Resource\Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
+Source: "..\Resource\Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
+Source: "..\Resource\Addons\DragAndDrop*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\DragAndDrop"
+Source: "..\Resource\Addons\enhancedTouchGestures*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\enhancedTouchGestures"
+Source: "..\Resource\Addons\goldenCursor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\goldenCursor"
+Source: "..\Resource\Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\imeExpressive"
+Source: "..\Resource\Addons\inputLock*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\inputLock"
+Source: "..\Resource\Addons\instantTranslate*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\instantTranslate"
+Source: "..\Resource\Addons\MSEdgeDiscardAnnouncements*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\MSEdgeDiscardAnnouncements"
+Source: "..\Resource\Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
+Source: "..\Resource\Addons\objWatcher*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\objWatcher"
+Source: "..\Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
+Source: "..\Resource\Addons\remote*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\remote"
+Source: "..\Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
+Source: "..\Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
+Source: "..\Resource\Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVDACNMirror"
+Source: "..\Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
+Source: "..\Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
 
 [Registry]
 Root: HKLM; SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System; ValueType: dword; ValueName: EnableLUA; ValueData: $00000001; Flags: uninsdeletevalue uninsdeletekeyifempty; Tasks: "FixAudioDucking"
