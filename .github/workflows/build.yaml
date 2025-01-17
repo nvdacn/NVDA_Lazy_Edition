@@ -234,7 +234,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: NVDA_Lazy_Edition
-          path: ${{ github.workspace }}/Output/Archive/*
+          path: ${{ github.workspace }}/Build/Archive/*
 
   upload_release:
     runs-on: ubuntu-latest

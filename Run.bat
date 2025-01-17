@@ -2,18 +2,18 @@
 chcp 65001
 
 Rem 删除已经存在的懒人版相关文件
-IF EXIST "%~dp0Output" (rd /s /q "%~dp0Output")
-IF EXIST "%~dp0Temp" (rd /s /q "%~dp0Temp")
+IF EXIST "%~dp0Build" (rd /s /q "%~dp0Build")
+IF EXIST "%~dp0Build\Temp" (rd /s /q "%~dp0Build\Temp")
 
 Rem 创建便携版 NVDA
 for /r "%~dp0Resource" %%i in (nvda_20*.exe) do (
-  "%%i" --create-portable-silent --portable-path="%~dp0Temp\NVDA"
+  "%%i" --create-portable-silent --portable-path="%~dp0Build\Temp\NVDA"
 )
 
 Rem 生成文档的 txt 版本
-MKDir "%~dp0Output"
-COPY /B /V /Y "%~dp0documentation\changes.md" "%~dp0Output\更新日志.txt"
-COPY /B /V /Y "%~dp0documentation\ReadMe.md" "%~dp0Output\说明.txt"
+MKDir "%~dp0Build"
+COPY /B /V /Y "%~dp0documentation\changes.md" "%~dp0Build\更新日志.txt"
+COPY /B /V /Y "%~dp0documentation\ReadMe.md" "%~dp0Build\说明.txt"
 
 if "%1" == "GITHUB_ACTIONS" (
   @echo on
@@ -53,7 +53,7 @@ set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
 
 :Archive
 Rem 生成程序压缩文件
-"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Output\Archive\NVDA_Lazy_Edition_%VersionDate%.zip" "%~dp0Output\NVDA 懒人版.exe" "%~dp0Output\更新日志.txt" "%~dp0Output\说明.txt" "%~dp0Output\NVDA 配置恢复工具.exe"
-"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Output\Archive\Source_Code_And_Dependency_Files_%VersionDate%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0ReadMe.md" "%~dp0执行脚本.bat"
+"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%VersionDate%.zip" "%~dp0Build\NVDA 懒人版.exe" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
+"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\Source_Code_And_Dependency_Files_%VersionDate%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0ReadMe.md" "%~dp0执行脚本.bat"
 
 Exit

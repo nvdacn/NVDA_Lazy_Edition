@@ -10,7 +10,7 @@ AppSupportURL=https://github.com/nvdacn/NVDA_Lazy_Edition
 AppUpdatesURL=https://github.com/nvdacn/NVDA_Lazy_Edition/releases
 DefaultDirName={userappdata}\NVDA
 AllowNoIcons=yes
-OutputDir=..\Output
+OutputDir=..\Build
 OutputBaseFilename=NVDA 懒人版
 Compression=none
 DisableDirPage=Yes
@@ -18,8 +18,8 @@ DisableProgramGroupPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
-LicenseFile=..\Temp\NVDA\documentation\copying.txt
-InfoBeforeFile=..\Output\说明.txt
+LicenseFile=..\Build\Temp\NVDA\documentation\copying.txt
+InfoBeforeFile=..\Build\说明.txt
 MinVersion=6.03
 ArchitecturesInstallIn64BitMode=x64 ia64 arm64
 AllowCancelDuringInstall=No
@@ -300,7 +300,7 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\WeChatEnhancement*.nvda-addon"" -a
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*.nvda-addon"" -aoa -o""{app}\Addons\xyOCR"""; Components: "Addons\xyOCR"; AfterInstall: JSONFile('xyOCR')
 
 [Files]
-Source: "..\Temp\NVDAPortable.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
+Source: "..\Build\Temp\NVDAPortable.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
 Source: "..\Tools\7Zip\*"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion recursesubdirs createallsubdirs
 Source: "..\userConfig\nvda.ini"; DestDir: "{app}"; Components: "Settings"; Flags: ignoreversion
 Source: "..\userConfig\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4"; Tasks: "VVTTSDicts"; Flags: ignoreversion

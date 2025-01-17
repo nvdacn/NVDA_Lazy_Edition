@@ -10,7 +10,7 @@ AppSupportURL=https://github.com/nvdacn/NVDA_Lazy_Edition
 AppUpdatesURL=https://github.com/nvdacn/NVDA_Lazy_Edition/releases
 DefaultDirName={src}\NVDAPortable
 AllowNoIcons=yes
-OutputDir=..\Temp
+OutputDir=..\Build\Temp
 OutputBaseFilename=NVDAPortable
 Compression=lzma2/max
 SolidCompression=yes
@@ -22,7 +22,7 @@ DisableReadyPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
-LicenseFile=..\Temp\NVDA\documentation\copying.txt
+LicenseFile=..\Build\Temp\NVDA\documentation\copying.txt
 AllowCancelDuringInstall=No
 ShowLanguageDialog=No
 
@@ -58,5 +58,5 @@ FileName: "{app}\userConfig\NVDA.ini"; Section: "speech"; Key: "	synth "; String
 FileName: "{app}\userConfig\NVDA.ini"; Section: "keyboard"; Key: "	NVDAModifierKeys "; String: " 7"; Check: UILanguage
 
 [Files]
-Source: "..\Temp\NVDA\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\Build\Temp\NVDA\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\userConfig\nvda.ini"; DestDir: "{app}\userConfig"; Flags: ignoreversion; Check: UILanguage
