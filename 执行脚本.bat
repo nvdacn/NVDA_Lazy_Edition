@@ -33,7 +33,7 @@ Rem 开始生成
 set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0Scripts\Portable.iss"
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0懒人版安装脚本.iss"
-"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0恢复备份的 NVDA 配置.iss"
+"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0Scripts\RestoreNVDAConfiguration.iss"
 GOTO Archive
 
 Rem 本地构建流程
@@ -49,7 +49,7 @@ Rem 开始生成
 set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0Scripts\Portable.iss"
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0懒人版安装脚本.iss"
-"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0恢复备份的 NVDA 配置.iss"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0Scripts\RestoreNVDAConfiguration.iss"
 
 :Archive
 Rem 生成程序压缩文件
