@@ -8,10 +8,10 @@ AppPublisher=NVDACN
 AppPublisherURL=https://www.nvdacn.com/
 AppSupportURL=https://github.com/nvdacn/NVDA_Lazy_Edition
 AppUpdatesURL=https://github.com/nvdacn/NVDA_Lazy_Edition/releases
-DefaultDirName={src}\Application
+DefaultDirName={src}\NVDAPortable
 AllowNoIcons=yes
-OutputDir=Temp
-OutputBaseFilename=Application
+OutputDir=..\Temp
+OutputBaseFilename=NVDAPortable
 Compression=lzma2/max
 SolidCompression=yes
 MinVersion=6.03
@@ -22,8 +22,7 @@ DisableReadyPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
-LicenseFile=Temp\NVDA\documentation\copying.txt
-SetupIconFile=Temp\NVDA\images\nvda.ico
+LicenseFile=..\Temp\NVDA\documentation\copying.txt
 AllowCancelDuringInstall=No
 ShowLanguageDialog=No
 
@@ -51,13 +50,13 @@ Name: "english"; MessagesFile: "compiler:Languages\English.isl"
 Name: "chinesesimp"; MessagesFile: "compiler:Default.isl"
 
 [Run]
-Filename: "{app}\nvda"; Parameters: "-m -s"; Flags: nowait
+Filename: "{app}\nvda"; Parameters: "-ms"; Flags: nowait
 
 [ini]
 FileName: "{app}\userConfig\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi5"; MinVersion: 6.01; OnlyBelowVersion: 6.04; Check: UILanguage
 FileName: "{app}\userConfig\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " oneCore"; MinVersion: 6.04; Check: UILanguage
-FileName: "{app}\userConfig\NVDA.ini"; Section: "keyboard"; Key: "	useCapsLockAsNVDAModifierKey "; String: " True"; Check: UILanguage
+FileName: "{app}\userConfig\NVDA.ini"; Section: "keyboard"; Key: "	NVDAModifierKeys "; String: " 7"; Check: UILanguage
 
 [Files]
-Source: "Temp\NVDA\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "userConfig\nvda.ini"; DestDir: "{app}\userConfig"; Flags: ignoreversion; Check: UILanguage
+Source: "..\Temp\NVDA\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\userConfig\nvda.ini"; DestDir: "{app}\userConfig"; Flags: ignoreversion; Check: UILanguage

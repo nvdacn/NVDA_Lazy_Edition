@@ -31,7 +31,7 @@ for /r "%~dp0Resource\Addons" %%i in (AISound*.nvda-addon) do (
 
 Rem 开始生成
 set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
-"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0便携版安装脚本.iss"
+"%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0Scripts\Portable.iss"
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0懒人版安装脚本.iss"
 "%~dp0Tools\InnoSetup\ISCC" /Q "%~dp0恢复备份的 NVDA 配置.iss"
 GOTO Archive
@@ -47,13 +47,13 @@ if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
 
 Rem 开始生成
 set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
-"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0便携版安装脚本.iss"
+"%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0Scripts\Portable.iss"
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0懒人版安装脚本.iss"
 "%~dp0Tools\InnoSetup\Compil32" /cc "%~dp0恢复备份的 NVDA 配置.iss"
 
 :Archive
 Rem 生成程序压缩文件
 "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Output\Archive\NVDA_Lazy_Edition_%VersionDate%.zip" "%~dp0Output\NVDA 懒人版.exe" "%~dp0Output\更新日志.txt" "%~dp0Output\说明.txt" "%~dp0Output\NVDA 配置恢复工具.exe"
-"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Output\Archive\Source_Code_And_Dependency_Files_%VersionDate%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Tools" "%~dp0userConfig" "%~dp0ReadMe.md" "%~dp0便携版安装脚本.iss" "%~dp0恢复备份的 NVDA 配置.iss" "%~dp0懒人版安装脚本.iss" "%~dp0执行脚本.bat"
+"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Output\Archive\Source_Code_And_Dependency_Files_%VersionDate%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0ReadMe.md" "%~dp0执行脚本.bat"
 
 Exit
