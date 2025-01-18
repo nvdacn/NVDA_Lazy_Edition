@@ -92,15 +92,20 @@ Name: "DeleteProfile"; Description: "清空用户配置文件夹"; Check: FileEx
 Name: "DeleteProfile\Backup"; Description: "备份现有 NVDA 配置"; Flags: exclusive
 Name: "DeleteProfile\NoBackup"; Description: "不备份现有 NVDA 配置"; Flags: exclusive Unchecked
 
+
 [code]
 var
 ResultCode: Integer;
+
+// 备份 NVDA 配置
 procedure BackupNVDAProfile();
 begin
 ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.dll')));
 ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.exe')));
 Exec(ExpandConstant('{tmp}\7z.exe'), ' a -y -tzip "'+ ExpandConstant('{userdocs}')+ '\NVDABackup\NVDABackup.zip" "'+ ExpandConstant('{userappdata}\NVDA')+'\*"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
 end;
+
+// 非简体中文操作系统时的错误对话框
 function ENUI: Boolean;
 begin
   if MsgBox('Welcome to NVDA Lazy Edition.' #13#13 'The program has detected that the current system''s display language is not Simplified Chinese.' #13#13 'This program will not install personalized features such as settings and add-ons customized for Simplified Chinese users.' #13#13 'Click "OK" to start the NVDA original installer, or click "Cancel" to exit this program.', mbError, MB_OKCANCEL)= IDOK then
@@ -109,6 +114,8 @@ begin
   end;
   Result := False;
 end;
+
+// 简体中文操作系统是否执行默认安装流程的询问对话框
 function CHSUI: Boolean;
 begin
   If not FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini')) Then
@@ -139,6 +146,8 @@ BackupNVDAProfile();
     Result := True;
   end;
 end;
+
+// 初始化安装程序
 function InitializeSetup: Boolean;
 begin
   ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\NVDAPortable.exe')));
@@ -152,26 +161,52 @@ begin
   end;
   end;
 end;
-function ShouldSkipPage(PageID: Integer): Boolean;
-begin
-  If ResultCode=IDYES Then
-  begin
-    if PageID = wpFinished then
-    begin
-      result := False;
-    end else begin
-      result := true;
-    end;
-  end;
-end;
+
+// 许可协议页面默认选中接受按钮，执行快速安装流程时跳过向导页面
+const
+  WM_LBUTTONDOWN = 513;
+  WM_LBUTTONUP = 514;
 procedure InitializeWizard();
 begin
-WizardForm.LICENSEACCEPTEDRADIO.Checked := true;
+  WizardForm.LICENSEACCEPTEDRADIO.Checked := true;
+  if ResultCode = IDYES then
+  begin
+    PostMessage(WizardForm.NextButton.Handle,WM_LBUTTONDOWN,0,0);
+    PostMessage(WizardForm.NextButton.Handle,WM_LBUTTONUP,0,0);
+  end;
 end;
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  if ResultCode = IDYES then
+begin
+    if CurPageID = wpSelectProgramGroup then
+      WizardForm.NextButton.Caption := SetupMessage(msgButtonInstall);
+    if CurPageID = wpFinished then
+      WizardForm.NextButton.Caption := SetupMessage(msgButtonFinish)
+    else
+      WizardForm.NextButton.Caption := SetupMessage(msgButtonNext);
+end;
+end;
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+  if ResultCode = IDYES then
+  begin
+    if PageID = wpFinished then
+      result := False
+    else
+      result := true;
+  end else begin
+    Result := False
+  end;
+end;
+
+// 程序退出前终止 NVDA
 procedure DeinitializeSetup();
 begin
   if Exec(ExpandConstant('{tmp}\NVDAPortable\NVDA.exe'), '-q', '', SW_SHOWNORMAL, ewNoWait, ResultCode) then
 end;
+
+// 尝试将 IBMTTS 库设置为安装版 VVTTS 的相应动态链接库
 procedure VVTTSINI();
 begin
   If FileExists(ExpandConstant('{pf}\ViaVoiceTTS\ibmeci.dll')) Then
@@ -180,6 +215,8 @@ begin
     SetIniString('ibmeci', '	TTSPath ', ExpandConstant('{pf}\ViaVoiceTTS'), ExpandConstant('{userappdata}\NVDA\nvda.ini'));
   end;
 end;
+
+// 导入来自插件商店的插件的JSON文件
 procedure JSONFile(JSONName: String);
 var
   FileName: String;
@@ -190,6 +227,7 @@ begin
     FileCopy(FileName, ExpandConstant('{app}\Addons\'+ JSONName +'.json'), False);
   end;
 end;
+
 
 [ini]
 FileName: "{tmp}\NVDAPortable\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "None"; String: "kb(desktop):numpad9+nvda, kb(desktop):.+nvda"; Tasks: DragAndDropGestures
