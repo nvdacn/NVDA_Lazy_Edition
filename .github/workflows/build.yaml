@@ -229,12 +229,12 @@ jobs:
           path: ${{ github.workspace }}/Resource/Addons/
           pattern: "*.nvda-addon"
           merge-multiple: true
-      - run: ${{ github.workspace }}/执行脚本.bat GITHUB_ACTIONS
+      - run: ${{ github.workspace }}/Run.bat GITHUB_ACTIONS
       - name: Upload Output
         uses: actions/upload-artifact@v4
         with:
           name: NVDA_Lazy_Edition
-          path: ${{ github.workspace }}/Output/Archive/*
+          path: ${{ github.workspace }}/Build/Archive/*
 
   upload_release:
     runs-on: ubuntu-latest
