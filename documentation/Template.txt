@@ -23,7 +23,7 @@ certutil -hashfile
 插件ID
 
 
-# 懒人版安装脚本.iss
+# NVDALazyEdition.iss
 # [Components]段
 Name: "Addons\
 插件ID
@@ -57,7 +57,7 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\
 ')
 
 # [Files] 段
-Source: "Resource\Addons\
+Source: "..\Resource\Addons\
 插件ID
 *"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\
 插件ID
