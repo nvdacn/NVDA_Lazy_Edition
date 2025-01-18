@@ -70,15 +70,9 @@ Rem 构建 NVDA 便携版和配置恢复工具
 if /I %CLI% == BR (Exit)
 
 :BL
-IF NOT EXIST "%~dp0Build\Temp\NVDAPortable.exe" (
-goto Error
-)
-IF NOT EXIST "%~dp0Build\Temp\NVDA\documentation\copying.txt" (
-goto Error
-)
-IF NOT EXIST "%~dp0Build\说明.txt" (
-goto Error
-)
+IF NOT EXIST "%~dp0Build\Temp\NVDAPortable.exe" (goto Error)
+IF NOT EXIST "%~dp0Build\Temp\NVDA\documentation\copying.txt" (goto Error)
+IF NOT EXIST "%~dp0Build\说明.txt" (goto Error)
 %InnoSetup% "%~dp0Scripts\NVDALazyEdition.iss"
 if /I %CLI% == BL (Exit)
 
