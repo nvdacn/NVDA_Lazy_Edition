@@ -15,6 +15,7 @@ OutputBaseFilename=NVDA 懒人版
 Compression=none
 DisableDirPage=Yes
 DisableProgramGroupPage=yes
+DisableReadyPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
