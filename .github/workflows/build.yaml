@@ -101,42 +101,32 @@ jobs:
           addon-ID: ${{ matrix.addon.addonId }}
 
   download-NVDA:
+    name: Download NVDA
     runs-on: ubuntu-latest
     env:
-      NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases
+      NVDA_RELEASES_BASE_URL: https://download.nvaccess.org/releases/
     outputs:
       NVDA: nvda_${{ steps.nvda.outputs.replaced }}.exe
     steps:
-      - id: nvda-tag
+      - uses: actions/checkout@v4
+      - name: Get tag
+        id: nvda-tag
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: nvaccess/nvda
           excludes: ${{  !contains(github.ref, 'rc') && 'prerelease, draft' || '' }}
-      - id: nvda
+      - name: Processing tag
+        id: nvda
         uses: frabert/replace-string-action@v2
         with:
           pattern: 'release-(.*)'
           string: ${{ steps.nvda-tag.outputs.release }}
           replace-with: '$1'
-      - name: Cache nvda_${{ steps.nvda.outputs.replaced }}.exe
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
-          key: nvda_${{ steps.nvda.outputs.replaced }}
-          restore-keys: |
-            nvda_${{ steps.nvda.outputs.replaced }}.exe
-          enableCrossOsArchive: true
       - name: Download nvda_${{ steps.nvda.outputs.replaced }}.exe
-        id: download-nvda
-        uses: carlosperate/download-file-action@v2
+        uses: ./.github/workflows/DownloadResource
         with:
+          file-name: nvda_${{ steps.nvda.outputs.replaced }}.exe
           file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.replaced }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
-      - name: Upload nvda_${{ steps.nvda.outputs.replaced }}.exe
-        uses: actions/upload-artifact@v4
-        with:
-          name: nvda_${{ steps.nvda.outputs.replaced }}.exe
-          path: ${{ steps.download-nvda.outputs.file-path }}
-          if-no-files-found: error
 
   build:
     runs-on: windows-latest
