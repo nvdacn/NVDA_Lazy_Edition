@@ -169,7 +169,14 @@ jobs:
           pattern: "*.nvda-addon"
           merge-multiple: true
       - run: ${{ github.workspace }}/Run.bat GITHUB_ACTIONS
+      - name: Upload NVDA_Lazy_Edition
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: NVDA_Lazy_Edition
+          path: ${{ github.workspace }}/Build/NVDA*.exe
       - name: Upload Resource
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         uses: actions/upload-artifact@v4
         with:
           name: Resource
