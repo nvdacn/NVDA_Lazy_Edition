@@ -88,6 +88,7 @@ jobs:
           - addonId: WorldVoice
           - addonId: xyOCR
     steps:
+      - uses: actions/checkout@v4
       - name: Download ${{ matrix.addon.addonId }}
         uses: ./.github/workflows/DownloadResource
         with:
