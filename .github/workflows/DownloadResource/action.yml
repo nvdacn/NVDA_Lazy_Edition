@@ -2,13 +2,23 @@ name: Download Resource
 
 description: 'Download Resource'
 inputs:
+  file-name:
+    description: The name saved after the file is downloaded, an error will be raised if from-addonStore is false and this parameter is empty.
+    required: false
+  file-url:
+    description: To download the URL of the file, an error will be raised if from-addonStore is false and this parameter is empty.
+    required: false
+  file-sha256:
+    description: Sha256 to download the file.
+    required: false
+  prefix:
+    description: The prefix added to the file name when uploading the file.
+    required: false
   addon-ID:
-    description: >
-      Add-on ID, used to get data from Add-on Store.
+    description: Add-on ID, used to get data from Add-on Store.
     required: false
   from-addonStore:
-    description: >
-      Whether to get data from the Add-on Store repository.
+    description: Whether to get data from the Add-on Store repository.
     default: false
 runs:
   using: "composite"
@@ -37,7 +47,9 @@ runs:
           echo "file-url=${{ env.URL }}" >> $GITHUB_OUTPUT
           echo "file-sha256= ${{ env.sha256 }}" >> $GITHUB_OUTPUT
         else
-          echo "file-name=name.add-on" >> $GITHUB_OUTPUT
+          echo "file-name=${{ inputs.file-name }}" >> $GITHUB_OUTPUT
+          echo "file-url=${{ inputs.file-url }}" >> $GITHUB_OUTPUT
+          echo "file-sha256= ${{ inputs.file-sha256 }}" >> $GITHUB_OUTPUT
         fi
     - name: Cache ${{ steps.parameters.outputs.file-name }}
       id: cache-file
@@ -61,6 +73,6 @@ runs:
     - name: Upload ${{ steps.parameters.outputs.file-name }}
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ steps.parameters.outputs.file-name }}
+        name: ${{ inputs.prefix }}${{ steps.parameters.outputs.file-name }}
         path: ${{ github.workspace }}/Resource/*
         if-no-files-found: error
