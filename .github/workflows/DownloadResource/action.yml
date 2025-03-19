@@ -67,7 +67,7 @@ runs:
         sha256: ${{ steps.parameters.outputs.file-sha256 }}
         location: ${{ github.workspace }}/Resource
     - name: Copy ${{ steps.parameters.outputs.file-name }} JSON data
-      if: ${{ inputs.from-addonStore == 'true' && steps.Cache-Addon.outputs.cache-hit != 'true' }}
+      if: ${{ inputs.from-addonStore == 'true' && steps.cache-file.outputs.cache-hit != 'true' }}
       shell: bash
       run: cp ${{ github.workspace }}/addon-datastore/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json ${{ github.workspace }}/Resource/${{ inputs.addon-ID }}.json
     - name: Upload ${{ steps.parameters.outputs.file-name }}
