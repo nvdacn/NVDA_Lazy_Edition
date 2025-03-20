@@ -171,12 +171,14 @@ jobs:
         with:
           name: Resource
           path: ${{ github.workspace }}/Resource
+          compression-level: 0
       - name: Upload Archive
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         uses: actions/upload-artifact@v4
         with:
           name: Archive
           path: ${{ github.workspace }}/Build/Archive/*
+          compression-level: 0
 
   upload_release:
     runs-on: ubuntu-latest

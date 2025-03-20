@@ -76,3 +76,5 @@ runs:
         name: ${{ inputs.prefix }}${{ steps.parameters.outputs.file-name }}
         path: ${{ github.workspace }}/Resource/*
         if-no-files-found: error
+        retention-days: 1
+        compression-level: 0
