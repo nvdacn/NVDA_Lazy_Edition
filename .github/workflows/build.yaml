@@ -114,7 +114,7 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: nvaccess/nvda
-          excludes: ${{  !contains(github.ref, 'rc') && 'prerelease, draft' || '' }}
+          excludes: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'rc') && 'prerelease, draft' || '' }}
       - name: Processing tag
         id: nvda
         uses: frabert/replace-string-action@v2
