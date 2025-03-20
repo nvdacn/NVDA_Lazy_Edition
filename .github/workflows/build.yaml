@@ -55,7 +55,8 @@ jobs:
             sha256: A0FB592EFBC838921931C5BB4B32C176FC618052B4DDBFD6B08D3FBC66DEE12A
             prefix: speech-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Download ${{ matrix.file.Name }}
         uses: ./.github/workflows/DownloadResource
         with:
@@ -93,7 +94,8 @@ jobs:
           - addonId: WorldVoice
           - addonId: xyOCR
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Download ${{ matrix.addon.addonId }}
         uses: ./.github/workflows/DownloadResource
         with:
@@ -108,7 +110,8 @@ jobs:
     outputs:
       NVDA: nvda_${{ steps.nvda.outputs.replaced }}.exe
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Get tag
         id: nvda-tag
         uses: pozetroninc/github-action-get-latest-release@master
@@ -129,13 +132,15 @@ jobs:
           file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.replaced }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
 
   build:
+    name: Build NVDA Lazy Edition
     runs-on: windows-latest
     needs:
       - download-NVDA
       - download-files
       - download-addons-from-addonStore
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Download ${{ needs.download-NVDA.outputs.NVDA }}
         uses: actions/download-artifact@v4
         with:
@@ -152,13 +157,14 @@ jobs:
           path: ${{ github.workspace }}/Resource/speech/
           pattern: speech-*
           merge-multiple: true
-      - name: Download Resource Addons
+      - name: Download Addons
         uses: actions/download-artifact@v4
         with:
           path: ${{ github.workspace }}/Resource/Addons/
           pattern: "*.nvda-addon"
           merge-multiple: true
-      - run: ${{ github.workspace }}/Run.bat GITHUB_ACTIONS
+      - name: Run the build script
+        run: ${{ github.workspace }}/Run.bat GITHUB_ACTIONS
       - name: Upload NVDA_Lazy_Edition
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         uses: actions/upload-artifact@v4
@@ -181,18 +187,18 @@ jobs:
           compression-level: 0
 
   upload_release:
+    name: Release version
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.ref, 'refs/tags/') }}
     needs: build
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Download Archive
+        uses: actions/download-artifact@v4
         with:
           name: Archive
           path: NVDA_Lazy_Edition
-      - name: Display structure of downloaded files
-        run: ls -R
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
