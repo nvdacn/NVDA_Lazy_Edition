@@ -1,5 +1,4 @@
 name: Download Resource
-
 description: 'Download Resource'
 inputs:
   file-name:
