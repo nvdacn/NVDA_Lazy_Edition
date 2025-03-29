@@ -1,6 +1,6 @@
 @echo off
 
-chcp 65001
+chcp 65001>Nul
 
 Rem 为避免出现编码错误，请在行末是中文字符的行尾添加两个空格  
 Rem GitHub Actions 流程  
