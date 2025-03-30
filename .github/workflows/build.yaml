@@ -22,9 +22,6 @@ jobs:
           - Name: DragAndDrop-2.2.1dev.nvda-addon
             URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2.1dev/DragAndDrop-2.2.1dev.nvda-addon
             sha256: cf8af2b3190326218e827b502a1da544578b334824cb5b7e3027ebcfeb642efe
-          - Name: IBMTTS-23.12.1.nvda-addon
-            URL: https://dl.nvdacn.com/NVDA-Addons/New/IBMTTS-23.12.1.nvda-addon
-            sha256: F96353B0329FB66319FC98B5748AB9D03C2A236762CF29F3B99EBACD04635451
           - Name: numberProcessing-1.0.20240820.nvda-addon
             URL: https://github.com/ABuffEr/numberProcessing/releases/download/v1.0.20240820/numberProcessing-1.0.20240820.nvda-addon
             sha256: bcbebe97dd21061571a450db91ee4b55aeb4cab1bea85ca92b31d1ff9c8dd74d
