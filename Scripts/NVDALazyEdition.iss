@@ -71,7 +71,7 @@ Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninsta
 Name: "Addons\objWatcher"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "对象监视器"
 Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQ增强"
 Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "资源监控器"
-Name: "Addons\unmute"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "取消系统静音"
+Name: "Addons\unmute"; Types: Full custom; Flags: disablenouninstallwarning; Description: "取消系统静音"
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
 Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
 
