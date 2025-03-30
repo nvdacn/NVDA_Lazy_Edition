@@ -78,7 +78,6 @@ jobs:
           - addonId: NVDACNMirror
           - addonId: objWatcher
           - addonId: QQEnhancement
-          - addonId: remote
           - addonId: resourceMonitor
 #          - addonId: unmute
           - addonId: WeChatEnhancement
