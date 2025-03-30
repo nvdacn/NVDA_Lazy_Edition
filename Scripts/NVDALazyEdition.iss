@@ -70,7 +70,6 @@ Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwa
 Name: "Addons\NVDACNMirror"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "NVDA 中文社区镜像源"
 Name: "Addons\objWatcher"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "对象监视器"
 Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQ增强"
-Name: "Addons\remote"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "远程支持"
 Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "资源监控器"
 Name: "Addons\unmute"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "取消系统静音"
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
@@ -253,7 +252,6 @@ Type: filesandordirs; Name: "{app}\Addons\instantTranslate"; Tasks: "not DeleteP
 Type: filesandordirs; Name: "{app}\Addons\numberProcessing"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
 Type: filesandordirs; Name: "{app}\Addons\objWatcher"; Tasks: "not DeleteProfile"; Components: "Addons\objWatcher"
 Type: filesandordirs; Name: "{app}\Addons\QQEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
-Type: filesandordirs; Name: "{app}\Addons\remote"; Tasks: "not DeleteProfile"; Components: "Addons\remote"
 Type: filesandordirs; Name: "{app}\Addons\resourceMonitor"; Tasks: "not DeleteProfile"; Components: "Addons\resourceMonitor"
 Type: filesandordirs; Name: "{app}\Addons\unmute"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
 Type: filesandordirs; Name: "{app}\Addons\NVDACNMirror"; Tasks: "not DeleteProfile"; Components: "Addons\NVDACNMirror"
@@ -276,7 +274,6 @@ Type: files; Name: "{app}\Addons\instantTranslate.json"; Tasks: "not DeleteProfi
 Type: files; Name: "{app}\Addons\numberProcessing.json"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
 Type: files; Name: "{app}\Addons\objWatcher.json"; Tasks: "not DeleteProfile"; Components: "Addons\objWatcher"
 Type: files; Name: "{app}\Addons\QQEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
-Type: files; Name: "{app}\Addons\remote.json"; Tasks: "not DeleteProfile"; Components: "Addons\remote"
 Type: files; Name: "{app}\Addons\resourceMonitor.json"; Tasks: "not DeleteProfile"; Components: "Addons\resourceMonitor"
 Type: files; Name: "{app}\Addons\unmute.json"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
 Type: files; Name: "{app}\Addons\NVDACNMirror.json"; Tasks: "not DeleteProfile"; Components: "Addons\NVDACNMirror"
@@ -309,7 +306,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\instantTranslate*.nvda-addon"" -ao
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\numberProcessing*.nvda-addon"" -aoa -o""{app}\Addons\numberProcessing"""; Components: "Addons\numberProcessing"; AfterInstall: JSONFile('numberProcessing')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\objWatcher*.nvda-addon"" -aoa -o""{app}\Addons\objWatcher"""; Components: "Addons\objWatcher"; AfterInstall: JSONFile('objWatcher')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\QQEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\QQEnhancement"""; Components: "Addons\QQEnhancement"; AfterInstall: JSONFile('QQEnhancement')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\remote*.nvda-addon"" -aoa -o""{app}\Addons\remote"""; Components: "Addons\remote"; AfterInstall: JSONFile('remote')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\resourceMonitor*.nvda-addon"" -aoa -o""{app}\Addons\resourceMonitor"""; Components: "Addons\resourceMonitor"; AfterInstall: JSONFile('resourceMonitor')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\unmute*.nvda-addon"" -aoa -o""{app}\Addons\unmute"""; Components: "Addons\unmute"; AfterInstall: JSONFile('unmute')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\NVDACNMirror*.nvda-addon"" -aoa -o""{app}\Addons\NVDACNMirror"""; Components: "Addons\NVDACNMirror"; AfterInstall: JSONFile('NVDACNMirror')
@@ -342,7 +338,6 @@ Source: "..\Resource\Addons\instantTranslate*"; DestDir: "{tmp}\Addons"; Flags: 
 Source: "..\Resource\Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
 Source: "..\Resource\Addons\objWatcher*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\objWatcher"
 Source: "..\Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
-Source: "..\Resource\Addons\remote*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\remote"
 Source: "..\Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
 Source: "..\Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
 Source: "..\Resource\Addons\NVDACNMirror*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\NVDACNMirror"
