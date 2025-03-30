@@ -63,7 +63,6 @@ Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninsta
 Name: "Addons\baiduTranslation"; Types: Full custom; Flags: disablenouninstallwarning; Description: "百度翻译"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
 Name: "Addons\DragAndDrop"; Types: Full custom; Flags: disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
-Name: "Addons\enhancedTouchGestures"; Types: Full custom; Flags: disablenouninstallwarning; Description: "触摸手势增强"
 Name: "Addons\goldenCursor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "金色光标"
 Name: "Addons\imeExpressive"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "中文输入法支持"
 Name: "Addons\inputLock"; Types: Full custom; Flags: disablenouninstallwarning; Description: "输入锁"
@@ -257,7 +256,6 @@ Type: filesandordirs; Name: "{app}\Addons\AudioControl"; Tasks: "not DeleteProfi
 Type: filesandordirs; Name: "{app}\Addons\baiduTranslation"; Tasks: "not DeleteProfile"; Components: "Addons\baiduTranslation"
 Type: filesandordirs; Name: "{app}\Addons\clipboardEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\clipboardEnhancement"
 Type: filesandordirs; Name: "{app}\Addons\DragAndDrop"; Tasks: "not DeleteProfile"; Components: "Addons\DragAndDrop"
-Type: filesandordirs; Name: "{app}\Addons\enhancedTouchGestures"; Tasks: "not DeleteProfile"; Components: "Addons\enhancedTouchGestures"
 Type: filesandordirs; Name: "{app}\Addons\goldenCursor\__pycache__"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
 Type: filesandordirs; Name: "{app}\Addons\goldenCursor\doc"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
 Type: filesandordirs; Name: "{app}\Addons\goldenCursor\globalPlugins"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
@@ -288,7 +286,6 @@ Type: files; Name: "{app}\Addons\audioManager.json"; Tasks: "not DeleteProfile";
 Type: files; Name: "{app}\Addons\baiduTranslation.json"; Tasks: "not DeleteProfile"; Components: "Addons\baiduTranslation"
 Type: files; Name: "{app}\Addons\clipboardEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\clipboardEnhancement"
 Type: files; Name: "{app}\Addons\DragAndDrop.json"; Tasks: "not DeleteProfile"; Components: "Addons\DragAndDrop"
-Type: files; Name: "{app}\Addons\enhancedTouchGestures.json"; Tasks: "not DeleteProfile"; Components: "Addons\enhancedTouchGestures"
 Type: files; Name: "{app}\Addons\goldenCursor.json"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
 Type: files; Name: "{app}\Addons\ime_expressive.json"; Tasks: "not DeleteProfile"; Components: "Addons\imeExpressive"
 Type: files; Name: "{app}\Addons\inputLock.json"; Tasks: "not DeleteProfile"; Components: "Addons\inputLock"
@@ -325,7 +322,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\audioManager*.nvda-addon"" -aoa -o
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\baiduTranslation*.nvda-addon"" -aoa -o""{app}\Addons\baiduTranslation"""; Components: "Addons\baiduTranslation"; AfterInstall: JSONFile('baiduTranslation')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\clipboardEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\clipboardEnhancement"""; Components: "Addons\clipboardEnhancement"; AfterInstall: JSONFile('clipboardEnhancement')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\DragAndDrop*.nvda-addon"" -aoa -o""{app}\Addons\DragAndDrop"""; Components: "Addons\DragAndDrop"; AfterInstall: JSONFile('DragAndDrop')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\enhancedTouchGestures*.nvda-addon"" -aoa -o""{app}\Addons\enhancedTouchGestures"""; Components: "Addons\enhancedTouchGestures"; AfterInstall: JSONFile('enhancedTouchGestures')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\goldenCursor*.nvda-addon"" -aoa -o""{app}\Addons\goldenCursor"""; Components: "Addons\goldenCursor"; AfterInstall: JSONFile('goldenCursor')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\ime_expressive*.nvda-addon"" -aoa -o""{app}\Addons\ime_expressive"""; Components: "Addons\imeExpressive"; AfterInstall: JSONFile('ime_expressive')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\inputLock*.nvda-addon"" -aoa -o""{app}\Addons\inputLock"""; Components: "Addons\inputLock"; AfterInstall: JSONFile('inputLock')
@@ -361,7 +357,6 @@ Source: "..\Resource\Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: dele
 Source: "..\Resource\Addons\baiduTranslation*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\baiduTranslation"
 Source: "..\Resource\Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
 Source: "..\Resource\Addons\DragAndDrop*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\DragAndDrop"
-Source: "..\Resource\Addons\enhancedTouchGestures*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\enhancedTouchGestures"
 Source: "..\Resource\Addons\goldenCursor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\goldenCursor"
 Source: "..\Resource\Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\imeExpressive"
 Source: "..\Resource\Addons\inputLock*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\inputLock"

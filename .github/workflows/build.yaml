@@ -77,7 +77,6 @@ jobs:
           - addonId: audioManager
           - addonId: baiduTranslation
           - addonId: clipboardEnhancement
-          - addonId: enhancedTouchGestures
           - addonId: goldenCursor
           - addonId: ime_expressive
           - addonId: inputLock
