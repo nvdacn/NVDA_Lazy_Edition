@@ -25,9 +25,6 @@ jobs:
           - Name: IBMTTS-23.12.1.nvda-addon
             URL: https://dl.nvdacn.com/NVDA-Addons/New/IBMTTS-23.12.1.nvda-addon
             sha256: F96353B0329FB66319FC98B5748AB9D03C2A236762CF29F3B99EBACD04635451
-          - Name: MSEdgeDiscardAnnouncements-0.10.nvda-addon
-            URL: https://dl.nvdacn.com/NVDA-Addons/New/MSEdgeDiscardAnnouncements-0.10.nvda-addon
-            sha256: 993eb9ba9849c3b6c7284fd6aaf84ad4a7b3a2707fbff54c5af4dd48a54124ca
           - Name: numberProcessing-1.0.20240820.nvda-addon
             URL: https://github.com/ABuffEr/numberProcessing/releases/download/v1.0.20240820/numberProcessing-1.0.20240820.nvda-addon
             sha256: bcbebe97dd21061571a450db91ee4b55aeb4cab1bea85ca92b31d1ff9c8dd74d
@@ -81,7 +78,6 @@ jobs:
           - addonId: ime_expressive
           - addonId: inputLock
           - addonId: instantTranslate
-#          - addonId: MSEdgeDiscardAnnouncements
           - addonId: NVDACNMirror
           - addonId: objWatcher
           - addonId: QQEnhancement
