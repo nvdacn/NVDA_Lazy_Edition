@@ -90,7 +90,7 @@ jobs:
             views/zh_CN/latest/${{ matrix.addon.addonId }}
           path: ${{ github.workspace }}/addon-datastore
       - name: get ${{ matrix.addon.addonId }} addon data
-        uses: antifree/json-to-variables@v1.2.0
+        uses: antifree/json-to-variables@v1.3.0
         with:
           filename: ${{ github.workspace }}/addon-datastore/views/zh_CN/latest/${{ matrix.addon.addonId }}/stable.json
       - name: Cache ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon
