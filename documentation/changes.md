@@ -16,6 +16,12 @@
   - 取消集成的插件：触摸手势增强、禁止 Microsoft Edge UIA 通知、IBMTTS、远程支持；
   - 更新插件。
 
+- #### NVDA设置
+
+  - 将更新镜像的网址设置为[中文社区的镜像地址](https://api.nvaccess.mirror.nvdadr.com/nvdaUpdateCheck)；
+  - 将插件商店镜像服务器的网址设置为[中文社区的插件商店镜像地址](https://addonstore.nvaccess.mirror.nvdadr.com)；
+  - 启用远程访问功能；
+
 ### 2025.2.24
 
 - #### 安装程序
