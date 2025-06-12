@@ -3,9 +3,9 @@
 # 注意：如插件的"installTasks.py"文件中有特殊安装任务，请根据该文件的代码在"懒人版安装脚本.iss"文件中做相应处理。
 
 # build.yaml
-# 非商店插件（download-addons:）：
+# 非商店插件（download-files:）：
           - Name: 
-插件文件名（不含扩展名）
+插件文件名（含扩展名）
 
             URL: 
 插件下载地址
@@ -23,7 +23,7 @@ certutil -hashfile
 插件ID
 
 
-# 懒人版安装脚本.iss
+# NVDALazyEdition.iss
 # [Components]段
 Name: "Addons\
 插件ID
@@ -57,7 +57,7 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\
 ')
 
 # [Files] 段
-Source: "Resource\Addons\
+Source: "..\Resource\Addons\
 插件ID
 *"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\
 插件ID

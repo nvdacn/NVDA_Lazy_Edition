@@ -1,0 +1,79 @@
+name: Download Resource
+description: 'Download Resource'
+inputs:
+  file-name:
+    description: The name saved after the file is downloaded, an error will be raised if from-addonStore is false and this parameter is empty.
+    required: false
+  file-url:
+    description: To download the URL of the file, an error will be raised if from-addonStore is false and this parameter is empty.
+    required: false
+  file-sha256:
+    description: Sha256 to download the file.
+    required: false
+  prefix:
+    description: The prefix added to the file name when uploading the file.
+    required: false
+  addon-ID:
+    description: Add-on ID, used to get data from Add-on Store.
+    required: false
+  from-addonStore:
+    description: Whether to get data from the Add-on Store repository.
+    default: false
+runs:
+  using: "composite"
+
+  steps:
+    - name: Checkout addon-datastore repository
+      if: ${{ inputs.from-addonStore == 'true' }}
+      uses: actions/checkout@v4
+      with:
+        repository: nvaccess/addon-datastore.git
+        ref: views
+        sparse-checkout: |
+          views/zh_CN/latest/${{ inputs.addon-ID }}
+        path: ${{ github.workspace }}/addon-datastore
+    - name: get ${{ inputs.addon-ID }} addon data
+      if: ${{ inputs.from-addonStore == 'true' }}
+      uses: antifree/json-to-variables@v1
+      with:
+        filename: ${{ github.workspace }}/addon-datastore/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json
+    - name: Set parameters
+      id: parameters
+      shell: bash
+      run: |
+        if [ "${{ inputs.from-addonStore }}" = "true" ]; then
+          echo "file-name=${{ inputs.addon-ID }}-${{ env.addonVersionName }}.nvda-addon" >> $GITHUB_OUTPUT
+          echo "file-url=${{ env.URL }}" >> $GITHUB_OUTPUT
+          echo "file-sha256= ${{ env.sha256 }}" >> $GITHUB_OUTPUT
+        else
+          echo "file-name=${{ inputs.file-name }}" >> $GITHUB_OUTPUT
+          echo "file-url=${{ inputs.file-url }}" >> $GITHUB_OUTPUT
+          echo "file-sha256= ${{ inputs.file-sha256 }}" >> $GITHUB_OUTPUT
+        fi
+    - name: Cache ${{ steps.parameters.outputs.file-name }}
+      id: cache-file
+      uses: actions/cache@v4
+      with:
+        path: ${{ github.workspace }}/Resource
+        key: ${{ steps.parameters.outputs.file-name }}-${{ steps.parameters.outputs.file-sha256 }}
+        enableCrossOsArchive: true
+    - name: Download ${{ steps.parameters.outputs.file-name }}
+      if: ${{ steps.cache-file.outputs.cache-hit != 'true' }}
+      uses: carlosperate/download-file-action@v2
+      with:
+        file-name: ${{ steps.parameters.outputs.file-name }}
+        file-url: ${{ steps.parameters.outputs.file-url }}
+        sha256: ${{ steps.parameters.outputs.file-sha256 }}
+        location: ${{ github.workspace }}/Resource
+    - name: Copy ${{ steps.parameters.outputs.file-name }} JSON data
+      if: ${{ inputs.from-addonStore == 'true' && steps.cache-file.outputs.cache-hit != 'true' }}
+      shell: bash
+      run: cp ${{ github.workspace }}/addon-datastore/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json ${{ github.workspace }}/Resource/${{ inputs.addon-ID }}.json
+    - name: Upload ${{ steps.parameters.outputs.file-name }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.prefix }}${{ steps.parameters.outputs.file-name }}
+        path: ${{ github.workspace }}/Resource/*
+        if-no-files-found: error
+        retention-days: 1
+        compression-level: 0

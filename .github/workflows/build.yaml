@@ -8,53 +8,58 @@ on:
       - master
   pull_request:
     branches:
-      - master
+      - "*"
   workflow_dispatch:
 
 jobs:
 
-  download-addons:
+  download-files:
+    name: Download ${{ matrix.file.Name }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        addon:
-          - Name: DragAndDrop-2.2.1dev
+        file:
+          - Name: DragAndDrop-2.2.1dev.nvda-addon
             URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2.1dev/DragAndDrop-2.2.1dev.nvda-addon
             sha256: cf8af2b3190326218e827b502a1da544578b334824cb5b7e3027ebcfeb642efe
-          - Name: IBMTTS-23.12.1
-            URL: https://dl.nvdacn.com/NVDA-Addons/New/IBMTTS-23.12.1.nvda-addon
-            sha256: F96353B0329FB66319FC98B5748AB9D03C2A236762CF29F3B99EBACD04635451
-          - Name: MSEdgeDiscardAnnouncements-0.10
-            URL: https://dl.nvdacn.com/NVDA-Addons/New/MSEdgeDiscardAnnouncements-0.10.nvda-addon
-            sha256: 993eb9ba9849c3b6c7284fd6aaf84ad4a7b3a2707fbff54c5af4dd48a54124ca
-          - Name: numberProcessing-1.0.20240820
+          - Name: numberProcessing-1.0.20240820.nvda-addon
             URL: https://github.com/ABuffEr/numberProcessing/releases/download/v1.0.20240820/numberProcessing-1.0.20240820.nvda-addon
             sha256: bcbebe97dd21061571a450db91ee4b55aeb4cab1bea85ca92b31d1ff9c8dd74d
-          - Name: unmute-1.5.8
+          - Name: unmute-1.5.8.nvda-addon
             URL: https://github.com/grisov/Unmute/releases/download/v1.5.8/unmute-1.5.8.nvda-addon
             sha256: b55759cc9ebf5581832adfa6a976d32874ae08a0968e8d60e78f5abbced87175
+          - Name: vcredist_x86.exe
+            URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
+            sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
+          - Name: aisound.zip
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/aisound.zip
+            sha256: B4FE1BED8F699179C8FF00F7B6F85AF4FF190ADCE1CCDB6C08132F93B7341EB2
+            prefix: speech-
+          - Name: VE.zip
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/VE.zip
+            sha256: 35ACAC34551ED8288DC6185A33127F5109AD6CB8901B329667C095DC0085EDD3
+            prefix: speech-
+          - Name: voice.zip
+            URL: https://dl.nvdacn.com/Share/voice.zip
+            sha256: AB2D6AFD7C5E12901DD3DA3CDC29325AA11A9DAB2EAC608D7B731993B2066450
+            prefix: speech-
+          - Name: IBM_ViaVoice_TTS_Runtime-V6.405.exe
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/IBM_ViaVoice_TTS_Runtime-V6.405.exe
+            sha256: A0FB592EFBC838921931C5BB4B32C176FC618052B4DDBFD6B08D3FBC66DEE12A
+            prefix: speech-
     steps:
-      - name: Cache ${{ matrix.addon.Name }} Addon
-        uses: actions/cache@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Download ${{ matrix.file.Name }}
+        uses: ./.github/workflows/DownloadResource
         with:
-          path: ${{ github.workspace }}/*.nvda-addon
-          key: ${{ matrix.addon.Name }}-${{ matrix.addon.sha256 }}
-          restore-keys: |
-            ${{ matrix.addon.Name }}.nvda-addon
-          enableCrossOsArchive: true
-      - name: Download ${{ matrix.addon.Name }} Addon
-        id: download-addon
-        uses: carlosperate/download-file-action@v2
-        with:
-          file-url: ${{ matrix.addon.URL }}
-          sha256: ${{ matrix.addon.sha256 }}
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.addon.Name }}.nvda-addon
-          path: ${{ steps.download-addon.outputs.file-path }}
-          if-no-files-found: error
+          file-name: ${{ matrix.file.Name }}
+          file-url: ${{ matrix.file.URL }}
+          file-sha256: ${{ matrix.file.sha256 }}
+          prefix: ${{ matrix.file.prefix }}
 
   download-addons-from-addonStore:
+    name: Download ${{ matrix.addon.addonId }} from Addon Store
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -66,147 +71,66 @@ jobs:
           - addonId: audioManager
           - addonId: baiduTranslation
           - addonId: clipboardEnhancement
-          - addonId: enhancedTouchGestures
           - addonId: goldenCursor
           - addonId: ime_expressive
           - addonId: inputLock
           - addonId: instantTranslate
-#          - addonId: MSEdgeDiscardAnnouncements
           - addonId: NVDACNMirror
           - addonId: objWatcher
           - addonId: QQEnhancement
-          - addonId: remote
           - addonId: resourceMonitor
 #          - addonId: unmute
           - addonId: WeChatEnhancement
           - addonId: WorldVoice
           - addonId: xyOCR
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Download ${{ matrix.addon.addonId }}
+        uses: ./.github/workflows/DownloadResource
         with:
-          repository: nvaccess/addon-datastore.git
-          ref: views
-          sparse-checkout: |
-            views/zh_CN/latest/${{ matrix.addon.addonId }}
-          path: ${{ github.workspace }}/addon-datastore
-      - name: get ${{ matrix.addon.addonId }} addon data
-        uses: antifree/json-to-variables@v1.3.0
-        with:
-          filename: ${{ github.workspace }}/addon-datastore/views/zh_CN/latest/${{ matrix.addon.addonId }}/stable.json
-      - name: Cache ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/*.nvda-addon
-          key: ${{ matrix.addon.addonId }}-${{ env.addonVersionName }}-${{ env.sha256 }}
-          restore-keys: |
-            ${{ matrix.addon.addonId }}-${{ env.addonVersionName }}.nvda-addon
-          enableCrossOsArchive: true
-      - name: Download ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon
-        id: download-addon
-        uses: carlosperate/download-file-action@v2
-        with:
-          file-url: ${{ env.URL }}
-          sha256: ${{ env.sha256 }}
-      - name: Copy ${{ matrix.addon.addonId }}-${{ env.addonVersionName }} Addon JSON data
-        run: cp ${{ github.workspace }}/addon-datastore/views/zh_CN/latest/${{ matrix.addon.addonId }}/stable.json ${{ github.workspace }}/${{ matrix.addon.addonId }}.json
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.addon.addonId }}-${{ env.addonVersionName }}.nvda-addon
-          path: |
-            ${{ steps.download-addon.outputs.file-path }}
-            ${{ github.workspace }}/${{ matrix.addon.addonId }}.json
-
-          if-no-files-found: error
-
-  download-resource:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        resource:
-          - file: vcredist_x86.exe
-            URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
-            sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
-          - file: speech-aisound.zip
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/aisound.zip
-            sha256: B4FE1BED8F699179C8FF00F7B6F85AF4FF190ADCE1CCDB6C08132F93B7341EB2
-          - file: speech-VE.zip
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/VE.zip
-            sha256: 35ACAC34551ED8288DC6185A33127F5109AD6CB8901B329667C095DC0085EDD3
-          - file: speech-voice.zip
-            URL: https://dl.nvdacn.com/Share/voice.zip
-            sha256: AB2D6AFD7C5E12901DD3DA3CDC29325AA11A9DAB2EAC608D7B731993B2066450
-          - file: speech-IBM_ViaVoice_TTS_Runtime-V6.405.exe
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/IBM_ViaVoice_TTS_Runtime-V6.405.exe
-            sha256: A0FB592EFBC838921931C5BB4B32C176FC618052B4DDBFD6B08D3FBC66DEE12A
-    steps:
-      - name: Cache ${{ matrix.resource.file }}
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/*
-          key: ${{ matrix.resource.file }}-${{ matrix.resource.sha256 }}
-          restore-keys: |
-            ${{ matrix.resource.file }}
-          enableCrossOsArchive: true
-      - name: Download ${{ matrix.resource.file }}
-        id: download-Resource
-        uses: carlosperate/download-file-action@v2
-        with:
-          file-url: ${{ matrix.resource.URL }}
-          sha256: ${{ matrix.resource.sha256 }}
-      - name: Upload ${{ matrix.resource.file }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.resource.file }}
-          path: ${{ steps.download-Resource.outputs.file-path }}
-          if-no-files-found: error
+          from-addonStore: true
+          addon-ID: ${{ matrix.addon.addonId }}
 
   download-NVDA:
+    name: Download NVDA
     runs-on: ubuntu-latest
     env:
-      NVDA_RELEASES_BASE_URL: https://www.nvaccess.org/files/nvda/releases
+      NVDA_RELEASES_BASE_URL: https://download.nvaccess.org/releases/
     outputs:
       NVDA: nvda_${{ steps.nvda.outputs.replaced }}.exe
     steps:
-      - id: nvda-tag
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Get tag
+        id: nvda-tag
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: nvaccess/nvda
-          excludes: ${{  !contains(github.ref, 'rc') && 'prerelease, draft' || '' }}
-      - id: nvda
+          excludes: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'prerelease, draft' || '' }}
+      - name: Processing tag
+        id: nvda
         uses: frabert/replace-string-action@v2
         with:
           pattern: 'release-(.*)'
           string: ${{ steps.nvda-tag.outputs.release }}
           replace-with: '$1'
-      - name: Cache nvda_${{ steps.nvda.outputs.replaced }}.exe
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
-          key: nvda_${{ steps.nvda.outputs.replaced }}
-          restore-keys: |
-            nvda_${{ steps.nvda.outputs.replaced }}.exe
-          enableCrossOsArchive: true
       - name: Download nvda_${{ steps.nvda.outputs.replaced }}.exe
-        id: download-nvda
-        uses: carlosperate/download-file-action@v2
+        uses: ./.github/workflows/DownloadResource
         with:
+          file-name: nvda_${{ steps.nvda.outputs.replaced }}.exe
           file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.replaced }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
-      - name: Upload nvda_${{ steps.nvda.outputs.replaced }}.exe
-        uses: actions/upload-artifact@v4
-        with:
-          name: nvda_${{ steps.nvda.outputs.replaced }}.exe
-          path: ${{ steps.download-nvda.outputs.file-path }}
-          if-no-files-found: error
 
   build:
+    name: Build NVDA Lazy Edition
     runs-on: windows-latest
     needs:
       - download-NVDA
-      - download-resource
-      - download-addons
+      - download-files
       - download-addons-from-addonStore
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Download ${{ needs.download-NVDA.outputs.NVDA }}
         uses: actions/download-artifact@v4
         with:
@@ -217,42 +141,58 @@ jobs:
         with:
           name: vcredist_x86.exe
           path: ${{ github.workspace }}/Resource/
-      - name: Download Speech Resource
+      - name: Download Speech
         uses: actions/download-artifact@v4
         with:
           path: ${{ github.workspace }}/Resource/speech/
           pattern: speech-*
           merge-multiple: true
-      - name: Download Resource Addons
+      - name: Download Addons
         uses: actions/download-artifact@v4
         with:
           path: ${{ github.workspace }}/Resource/Addons/
           pattern: "*.nvda-addon"
           merge-multiple: true
-      - run: ${{ github.workspace }}/执行脚本.bat GITHUB_ACTIONS
-      - name: Upload Output
+      - name: Run the build script
+        run: ${{ github.workspace }}/Run.bat GITHUB_ACTIONS
+      - name: Upload NVDA_Lazy_Edition
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         uses: actions/upload-artifact@v4
         with:
           name: NVDA_Lazy_Edition
-          path: ${{ github.workspace }}/Output/Archive/*
+          path: ${{ github.workspace }}/Build/NVDA*.exe
+      - name: Upload Resource
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: Resource
+          path: ${{ github.workspace }}/Resource
+          compression-level: 0
+      - name: Upload Archive
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: Archive
+          path: ${{ github.workspace }}/Build/Archive/*
+          compression-level: 0
 
   upload_release:
+    name: Release version
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.ref, 'refs/tags/') }}
     needs: build
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Download Archive
+        uses: actions/download-artifact@v4
         with:
-          name: NVDA_Lazy_Edition
+          name: Archive
           path: NVDA_Lazy_Edition
-      - name: Display structure of downloaded files
-        run: ls -R
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
           body: 详细更新日志请[点此查看](documentation/changes.md)。
           files: NVDA_Lazy_Edition/*
           fail_on_unmatched_files: true
-          prerelease: ${{ contains(github.ref, 'rc') }}
+          prerelease: ${{ contains(github.ref, 'beta') }}

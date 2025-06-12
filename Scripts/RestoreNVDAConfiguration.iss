@@ -9,7 +9,7 @@ AppSupportURL=https://github.com/nvdacn/NVDA_Lazy_Edition
 AppUpdatesURL=https://github.com/nvdacn/NVDA_Lazy_Edition/releases
 DefaultDirName={userappdata}\NVDA
 AllowNoIcons=yes
-OutputDir=Output
+OutputDir=..\Build
 OutputBaseFilename=NVDA 配置恢复工具
 Compression=none
 DisableDirPage=Yes
@@ -17,7 +17,6 @@ DisableProgramGroupPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
-SetupIconFile=Temp\NVDA\images\nvda.ico
 ArchitecturesInstallIn64BitMode=x64 ia64 arm64
 AllowCancelDuringInstall=No
 AlwaysShowComponentsList=No
@@ -30,7 +29,7 @@ ShowLanguageDialog=No
 Name: "chinesesimp"; MessagesFile: "compiler:Default.isl"
 
 [code]
-procedure RestoreNVDAProfile();
+procedure RestoreNVDAConfiguration ();
 var
   ResultCode: Integer;
 begin
@@ -51,7 +50,7 @@ function InitializeSetup: Boolean;
 begin
   if FileExists(ExpandConstant('{userdocs}\NVDABackup\NVDABackup.zip')) = True then
   begin
-    RestoreNVDAProfile();
+    RestoreNVDAConfiguration ();
   end else begin
     MsgBox('未检测到配置备份文件，无法恢复!', mbCriticalError, MB_OK)
   end;
@@ -59,5 +58,4 @@ begin
 end;
 
 [Files]
-Source: "Tools\7Zip\7z.dll"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
-Source: "Tools\7Zip\7z.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
+Source: "..\Tools\7Zip\*"; DestDir: "{app}"; Flags: deleteafterinstall ignoreversion recursesubdirs createallsubdirs
