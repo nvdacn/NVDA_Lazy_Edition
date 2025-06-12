@@ -107,7 +107,7 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: nvaccess/nvda
-          excludes: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'rc') && 'prerelease, draft' || '' }}
+          excludes: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'prerelease, draft' || '' }}
       - name: Processing tag
         id: nvda
         uses: frabert/replace-string-action@v2
@@ -195,4 +195,4 @@ jobs:
           body: 详细更新日志请[点此查看](documentation/changes.md)。
           files: NVDA_Lazy_Edition/*
           fail_on_unmatched_files: true
-          prerelease: ${{ contains(github.ref, 'rc') }}
+          prerelease: ${{ contains(github.ref, 'beta') }}
