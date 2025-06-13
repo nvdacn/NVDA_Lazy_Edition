@@ -34,10 +34,15 @@ echo 上述选项还可通过命令行直接传入。
 Rem 等待用户输入并跳转到用户输入的命令  
 set /p CLI=
 :goto
+cls
 goto %CLI%
+Exit
 
 :Build
 :BR
+Rem 检查必要文件是否存在  
+IF NOT EXIST "%~dp0Resource" (goto BRError)
+
 Rem 删除已经存在的懒人版相关文件  
 IF EXIST "%~dp0Build" (rd /s /q "%~dp0Build")
 
@@ -70,17 +75,24 @@ Rem 构建 NVDA 便携版和配置恢复工具
 if /I %CLI% == BR (Exit)
 
 :BL
-IF NOT EXIST "%~dp0Build\Temp\NVDAPortable.exe" (goto Error)
-IF NOT EXIST "%~dp0Build\Temp\NVDA\documentation\copying.txt" (goto Error)
-IF NOT EXIST "%~dp0Build\说明.txt" (goto Error)
+Rem 检查必要文件是否存在  
+IF NOT EXIST "%~dp0Build\Temp\NVDAPortable.exe" (goto BLError)
+IF NOT EXIST "%~dp0Build\Temp\NVDA\documentation\copying.txt" (goto BLError)
+IF NOT EXIST "%~dp0Build\说明.txt" (goto BLError)
+
+Rem 构建 NVDA 懒人版主程序  
 %InnoSetup% "%~dp0Scripts\NVDALazyEdition.iss"
 if /I %CLI% == BL (Exit)
 
-Rem 生成程序压缩包  
+Rem 生成压缩包  
 "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%VersionDate%.zip" "%~dp0Build\NVDA 懒人版.exe" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
 "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\Source_Code_And_Dependency_Files_%VersionDate%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0Run.bat"
 Exit
 
-:Error
+:BLError
 mshta "javascript:new ActiveXObject('wscript.shell').popup('请使用 BR 命令重新运行该脚本后再使用此命令。',5,'缺失必要文件');window.close();"
+Exit
+
+:BRError
+mshta "javascript:new ActiveXObject('wscript.shell').popup('请获取 必须 Resource 文件后重试。',5,'缺失必要文件');window.close();"
 Exit
