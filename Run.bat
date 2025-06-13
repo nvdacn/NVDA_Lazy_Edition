@@ -35,7 +35,7 @@ Rem 等待用户输入并跳转到用户输入的命令
 set /p CLI=
 :goto
 cls
-goto %CLI%
+goto %CLI% >Nul
 Exit
 
 :Build
@@ -69,9 +69,19 @@ for /r "%~dp0Resource\Addons" %%i in (AISound*.nvda-addon) do (
   "%~dp0Tools\7Zip\7z.exe" d -sccUTF-8 -y "%%i" "synthDrivers\aisound.dll"
 )
 
-Rem 构建 NVDA 便携版和配置恢复工具  
+Rem 构建 NVDA 便携版  
 %InnoSetup% "%~dp0Scripts\Portable.iss"
+IF NOT EXIST "%~dp0Build\Temp\NVDAPortable.exe" (
+  echo Portable.iss build failed.
+  exit /b 1
+)
+
+Rem 构建 NVDA 配置恢复工具  
 %InnoSetup% "%~dp0Scripts\RestoreNVDAConfiguration.iss"
+IF NOT EXIST "%~dp0Build\NVDA 配置恢复工具.exe" (
+  echo RestoreNVDAConfiguration.iss build failed.
+  exit /b 1
+)
 if /I %CLI% == BR (Exit)
 
 :BL
@@ -82,6 +92,10 @@ IF NOT EXIST "%~dp0Build\说明.txt" (goto BLError)
 
 Rem 构建 NVDA 懒人版主程序  
 %InnoSetup% "%~dp0Scripts\NVDALazyEdition.iss"
+IF NOT EXIST "%~dp0Build\NVDA 懒人版.exe" (
+  echo NVDALazyEdition.iss build failed.
+  exit /b 1
+)
 if /I %CLI% == BL (Exit)
 
 Rem 生成压缩包  
