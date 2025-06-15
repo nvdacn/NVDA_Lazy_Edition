@@ -21,6 +21,7 @@
   - 将更新镜像的网址设置为[中文社区的镜像地址](https://api.nvaccess.mirror.nvdadr.com/nvdaUpdateCheck)；
   - 将插件商店镜像服务器的网址设置为[中文社区的插件商店镜像地址](https://addonstore.nvaccess.mirror.nvdadr.com)；
   - 启用远程访问功能；
+  - 更新部分 WorldVoice 插件的设置参数。
 
 ### 2025.2.24
 
