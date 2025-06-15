@@ -158,6 +158,8 @@ jobs:
           merge-multiple: true
       - name: Run the build script
         run: ${{ github.workspace }}/Run.bat GITHUB_ACTIONS
+        env:
+          BetaVersion: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'False' || 'True' }}
       - name: Upload NVDA_Lazy_Edition
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         uses: actions/upload-artifact@v4
