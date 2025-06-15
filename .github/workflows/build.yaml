@@ -28,6 +28,9 @@ jobs:
           - Name: unmute-1.5.8.nvda-addon
             URL: https://github.com/grisov/Unmute/releases/download/v1.5.8/unmute-1.5.8.nvda-addon
             sha256: b55759cc9ebf5581832adfa6a976d32874ae08a0968e8d60e78f5abbced87175
+          - Name: WorldVoice-5.0.nvda-addon
+            URL: https://github.com/tsengwoody/WorldVoice/releases/download/v5.0/WorldVoice-5.0.nvda-addon
+            sha256: 6ecb27ce1e9765a865adf7b314a3808f014993d8f9ab1a623cac5ee32a849c04
           - Name: vcredist_x86.exe
             URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
             sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
@@ -81,7 +84,7 @@ jobs:
           - addonId: resourceMonitor
 #          - addonId: unmute
           - addonId: WeChatEnhancement
-          - addonId: WorldVoice
+#          - addonId: WorldVoice
           - addonId: xyOCR
     steps:
       - name: Checkout repository
