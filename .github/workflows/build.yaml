@@ -78,7 +78,6 @@ jobs:
           - addonId: ime_expressive
           - addonId: inputLock
           - addonId: instantTranslate
-          - addonId: NVDACNMirror
           - addonId: objWatcher
           - addonId: QQEnhancement
           - addonId: resourceMonitor
