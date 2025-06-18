@@ -85,7 +85,6 @@ Name: "Voices\sapi4"; Description: "切换语音合成器到 Microsoft Speech AP
 Name: "Voices\sapi5"; Description: "切换语音合成器到 Microsoft Speech API version 5"; OnlyBelowVersion: 10.0; Components: Settings; Flags: exclusive
 Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
 Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Flags: Unchecked; Check: FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
-Name: "DragAndDropGestures"; Description: "修改 DragAndDrop 插件的台式机快捷键与笔记本键盘方案相同"; Components: "Addons\DragAndDrop"
 Name: "DeleteProfile"; Description: "清空用户配置文件夹"; Check: FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini')); Flags: Unchecked
 Name: "DeleteProfile\Backup"; Description: "备份现有 NVDA 配置"; Flags: exclusive
 Name: "DeleteProfile\NoBackup"; Description: "不备份现有 NVDA 配置"; Flags: exclusive Unchecked
@@ -218,9 +217,6 @@ end;
 
 
 [ini]
-FileName: "{tmp}\NVDAPortable\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "None"; String: "kb(desktop):numpad9+nvda, kb(desktop):.+nvda"; Tasks: DragAndDropGestures
-FileName: "{tmp}\NVDAPortable\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "mouseCursorInfo"; String: """kb:,+control+nvda"""; Tasks: DragAndDropGestures
-FileName: "{tmp}\NVDAPortable\locale\zh_CN\gestures.ini"; Section: "globalPlugins.DragAndDrop.GlobalPlugin"; Key: "dragAndDrop"; String: """kb:,+nvda+shift"""; Tasks: DragAndDropGestures
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " aisound"; Tasks: "Voices\AiSound5"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi4"; Tasks: "Voices\sapi4"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi5"; Tasks: "Voices\sapi5"

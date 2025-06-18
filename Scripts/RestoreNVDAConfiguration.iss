@@ -1,7 +1,7 @@
 ﻿[Setup]
 AppName=NVDA 配置恢复工具
-AppVersion=1.0
-VersionInfoVersion=1.0
+AppVersion=1.1
+VersionInfoVersion=1.1
 AppVerName=NVDA 配置恢复工具
 AppPublisher=NVDACN
 AppPublisherURL=https://www.nvdacn.com/
@@ -33,7 +33,7 @@ procedure RestoreNVDAConfiguration ();
 var
   ResultCode: Integer;
 begin
-  if MsgBox('本程序将恢复您在 NVDA 懒人版安装程序所备份的配置到 NVDA 配置文件夹，并还原对简体中文按键与手势的自定义设置。' #13#13 '备份的配置文件成功恢复后将会被删除。' #13#13 '恢复过程需重启您的 NVDA，您要现在恢复吗？', mbConfirmation, MB_YESNO)= IDYES then
+  if MsgBox('本程序将恢复您在 NVDA 懒人版安装程序所备份的配置到 NVDA 配置文件夹。' #13#13 '备份的配置文件成功恢复后将会被删除。' #13#13 '恢复过程需重启您的 NVDA，您要现在恢复吗？', mbConfirmation, MB_YESNO)= IDYES then
   begin
     ShellExec('', ExpandConstant('{commonpf32}\NVDA\nvda.exe'), '-q', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
     DelTree(ExpandConstant('{userappdata}\NVDA'), True, True, True);
@@ -41,7 +41,6 @@ begin
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.exe')));
     Exec(ExpandConstant('{tmp}\7z.exe'), 'x "'+ ExpandConstant('{userdocs}\NVDABackup\NVDABackup.zip')+'" -aoa -o"'+ ExpandConstant('{userappdata}\NVDA')+'"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
     DelTree(ExpandConstant('{userdocs}\NVDABackup'), True, True, True);
-    DeleteIniSection('globalPlugins.DragAndDrop.GlobalPlugin', ExpandConstant('{commonpf32}\NVDA\locale\zh_CN\gestures.ini'));
     ShellExec('', ExpandConstant('{commonpf32}\NVDA\nvda.exe'), '', '', SW_SHOW, ewNoWait, ResultCode);
     MsgBox('恭喜，操作成功!', mbInformation, MB_OK);
   end;
