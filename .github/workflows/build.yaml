@@ -19,9 +19,9 @@ jobs:
     strategy:
       matrix:
         file:
-          - Name: DragAndDrop-2.2.1dev.nvda-addon
-            URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2.1dev/DragAndDrop-2.2.1dev.nvda-addon
-            sha256: cf8af2b3190326218e827b502a1da544578b334824cb5b7e3027ebcfeb642efe
+          - Name: DragAndDrop-2.2.2dev.nvda-addon
+            URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2.2dev/DragAndDrop-2.2.2dev.nvda-addon
+            sha256: 7dc49d21be2c55ef340f3e67d650d2696df499765179e3f460ffac944632763e
           - Name: unmute-1.5.8.nvda-addon
             URL: https://github.com/grisov/Unmute/releases/download/v1.5.8/unmute-1.5.8.nvda-addon
             sha256: b55759cc9ebf5581832adfa6a976d32874ae08a0968e8d60e78f5abbced87175
