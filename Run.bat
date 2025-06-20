@@ -46,6 +46,13 @@ IF NOT EXIST "%~dp0Resource" (goto BRError)
 Rem 删除已经存在的懒人版相关文件  
 IF EXIST "%~dp0Build" (rd /s /q "%~dp0Build")
 
+Rem 设置文件名  
+if /i "%BetaVersion%" == "True" (
+  set "Version=%VersionDate%(beta)"
+) else (
+  set "Version=%VersionDate%"
+)
+
 Rem 创建便携版 NVDA
 for /r "%~dp0Resource" %%i in (nvda_20*.exe) do (
   "%%i" --create-portable-silent --portable-path="%~dp0Build\Temp\NVDA"
@@ -99,8 +106,8 @@ IF NOT EXIST "%~dp0Build\NVDA 懒人版.exe" (
 if /I %CLI% == BL (Exit)
 
 Rem 生成压缩包  
-"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%VersionDate%.zip" "%~dp0Build\NVDA 懒人版.exe" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
-"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\Source_Code_And_Dependency_Files_%VersionDate%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0Run.bat"
+"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%Version%.zip" "%~dp0Build\NVDA 懒人版.exe" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
+"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\Source_Code_And_Dependency_Files_%Version%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0Run.bat"
 Exit
 
 :BLError
