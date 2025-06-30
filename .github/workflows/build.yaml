@@ -37,9 +37,13 @@ jobs:
             URL: https://dl.nvdacn.com/Share/voice.zip
             sha256: AB2D6AFD7C5E12901DD3DA3CDC29325AA11A9DAB2EAC608D7B731993B2066450
             prefix: speech-
-          - Name: IBM_ViaVoice_TTS_Runtime-V6.405.exe
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/IBM_ViaVoice_TTS_Runtime-V6.405.exe
-            sha256: A0FB592EFBC838921931C5BB4B32C176FC618052B4DDBFD6B08D3FBC66DEE12A
+          - Name: spchapi.exe
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/spchapi.exe
+            sha256: 4fe6f9be7a75d649e2d484069c3626d30345e746e565f0b7b1fcff34ef223a2c
+            prefix: speech-
+          - Name: IBM_ViaVoice_TTS_Runtime.exe
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/IBMViaVoiceTTSRuntime.exe
+            sha256: 0f9e8a998f0bf62513961fe0cb68bc50e06440a6d8e45e8ce6e073e332104255
             prefix: speech-
     steps:
       - name: Checkout repository
