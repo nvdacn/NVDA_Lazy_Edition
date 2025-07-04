@@ -276,7 +276,8 @@ Type: files; Name: "{app}\Addons\xyOCR.json"; Tasks: "not DeleteProfile"; Compon
 Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms --install-silent --enable-start-on-logon=True"; Tasks: "StartOnLogon"
 Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms --install-silent --enable-start-on-logon=False"; Tasks: "not StartOnLogon"
 Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms"; Flags: nowait
-Filename: "{tmp}\VVTTS"; Parameters: "/S"; Components: "Voices\VVTTS"
+Filename: "{tmp}\spchapi"; Parameters: "/Q"; Components: "Voices\VVTTS"
+Filename: "{tmp}\VVTTS"; Parameters: "/verysilent /suppressmsgboxes /nocancel /norestart /nocloseapplications"; Components: "Voices\VVTTS"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\AiSound5*.nvda-addon"" -aoa -o""{app}\Addons\AiSound5"""; Components: "Voices\AiSound5"; AfterInstall: JSONFile('AiSound5')
 Filename: "{tmp}\7z"; Parameters: "x ""aisound.zip"" -aoa -o""{app}\Addons\AiSound5\synthDrivers"""; Components: "Voices\AiSound5"
 Filename: "{tmp}\vcredist_x86"; Parameters: "/install /quiet /norestart"; Components: "Voices\WorldVoice"
@@ -308,7 +309,8 @@ Source: "..\Build\Temp\NVDAPortable.exe"; DestDir: "{tmp}"; Flags: dontcopy dele
 Source: "..\Tools\7Zip\*"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion recursesubdirs createallsubdirs
 Source: "..\userConfig\nvda.ini"; DestDir: "{app}"; Components: "Settings"; Flags: ignoreversion
 Source: "..\userConfig\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4"; Tasks: "VVTTSDicts"; Flags: ignoreversion
-Source: "..\Resource\speech\IBM_ViaVoice_TTS_Runtime-V6.405.exe"; DestDir: "{tmp}"; DestName: "VVTTS.exe"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
+Source: "..\Resource\speech\spchapi.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
+Source: "..\Resource\speech\IBM_ViaVoice_TTS_Runtime.exe"; DestDir: "{tmp}"; DestName: "VVTTS.exe"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
 Source: "..\Resource\speech\aisound.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5 or Voices\WorldVoice"
 Source: "..\Resource\vcredist_x86.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
 Source: "..\Resource\speech\VE.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
