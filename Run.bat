@@ -104,7 +104,9 @@ IF NOT EXIST "%~dp0Build\说明.txt" (goto BLError)
 
 Rem 构建 NVDA 懒人版主程序  
 %InnoSetup% "%~dp0Scripts\NVDALazyEdition.iss"
-Rename "%~dp0Build\NVDA 懒人版.exe" "%LazyEditionFilename%"
+if defined LazyEditionFilename (
+  Rename "%~dp0Build\NVDA 懒人版.exe" "%LazyEditionFilename%"
+)
 IF NOT EXIST "%~dp0Build\%LazyEditionFilename%" (
   echo NVDALazyEdition.iss build failed.
   exit /b 1
