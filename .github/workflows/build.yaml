@@ -78,6 +78,7 @@ jobs:
           - addonId: QQEnhancement
           - addonId: resourceMonitor
           - addonId: unmute
+          - addonId: WeChatEnhancement
           - addonId: withSounds
           - addonId: WorldVoice
           - addonId: xyOCR
