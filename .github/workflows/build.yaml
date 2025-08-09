@@ -67,7 +67,6 @@ jobs:
           - addonId: addonsTools
           - addonId: AiSound5
           - addonId: audioManager
-          - addonId: baiduTranslation
           - addonId: clipboardEnhancement
           - addonId: goldenCursor
           - addonId: ime_expressive
