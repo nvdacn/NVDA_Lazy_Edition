@@ -67,7 +67,6 @@ jobs:
           - addonId: addonsTools
           - addonId: AiSound5
           - addonId: audioManager
-          - addonId: baiduTranslation
           - addonId: clipboardEnhancement
           - addonId: goldenCursor
           - addonId: ime_expressive
@@ -81,7 +80,6 @@ jobs:
           - addonId: WeChatEnhancement
           - addonId: withSounds
           - addonId: WorldVoice
-          - addonId: xyOCR
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
