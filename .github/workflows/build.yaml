@@ -80,7 +80,6 @@ jobs:
           - addonId: WeChatEnhancement
           - addonId: withSounds
           - addonId: WorldVoice
-          - addonId: xyOCR
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

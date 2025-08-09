@@ -72,7 +72,6 @@ Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenounin
 Name: "Addons\unmute"; Types: Full custom; Flags: disablenouninstallwarning; Description: "取消系统静音"
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
 Name: "Addons\withSounds"; Types: Full custom; Flags: disablenouninstallwarning; Description: "withSounds（用音效替换链接角色、删除已访问提示）"
-Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
 
 [Tasks]
 Name: "StartOnLogon"; Description: "在欢迎界面启用 NVDA"
@@ -250,7 +249,6 @@ Type: filesandordirs; Name: "{app}\Addons\resourceMonitor"; Tasks: "not DeletePr
 Type: filesandordirs; Name: "{app}\Addons\unmute"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
 Type: filesandordirs; Name: "{app}\Addons\WeChatEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
 Type: filesandordirs; Name: "{app}\Addons\withSounds"; Tasks: "not DeleteProfile"; Components: "Addons\withSounds"
-Type: filesandordirs; Name: "{app}\Addons\xyOCR"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
 Type: files; Name: "{app}\Addons\AiSound5.json"; Tasks: "not DeleteProfile"; Components: "Voices\AiSound5"
 Type: files; Name: "{app}\Addons\WorldVoice.json"; Tasks: "not DeleteProfile"; Components: "Voices\WorldVoice"
 Type: files; Name: "{app}\Addons\Access8Math.json"; Tasks: "not DeleteProfile"; Components: "Addons\Access8Math"
@@ -270,7 +268,6 @@ Type: files; Name: "{app}\Addons\resourceMonitor.json"; Tasks: "not DeleteProfil
 Type: files; Name: "{app}\Addons\unmute.json"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
 Type: files; Name: "{app}\Addons\WeChatEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
 Type: files; Name: "{app}\Addons\withSounds.json"; Tasks: "not DeleteProfile"; Components: "Addons\withSounds"
-Type: files; Name: "{app}\Addons\xyOCR.json"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
 
 [Run]
 Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms --install-silent --enable-start-on-logon=True"; Tasks: "StartOnLogon"
@@ -302,7 +299,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\resourceMonitor*.nvda-addon"" -aoa
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\unmute*.nvda-addon"" -aoa -o""{app}\Addons\unmute"""; Components: "Addons\unmute"; AfterInstall: JSONFile('unmute')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\WeChatEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\WeChatEnhancement"""; Components: "Addons\WeChatEnhancement"; AfterInstall: JSONFile('WeChatEnhancement')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\withSounds*.nvda-addon"" -aoa -o""{app}\Addons\withSounds"""; Components: "Addons\withSounds"; AfterInstall: JSONFile('withSounds')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*.nvda-addon"" -aoa -o""{app}\Addons\xyOCR"""; Components: "Addons\xyOCR"; AfterInstall: JSONFile('xyOCR')
 
 [Files]
 Source: "..\Build\Temp\NVDAPortable.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
@@ -334,7 +330,6 @@ Source: "..\Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: d
 Source: "..\Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
 Source: "..\Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
 Source: "..\Resource\Addons\withSounds*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\withSounds"
-Source: "..\Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
 
 [Registry]
 Root: HKLM; SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System; ValueType: dword; ValueName: EnableLUA; ValueData: $00000001; Flags: uninsdeletevalue uninsdeletekeyifempty; Tasks: "FixAudioDucking"
