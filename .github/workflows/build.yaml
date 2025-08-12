@@ -47,7 +47,7 @@ jobs:
             prefix: speech-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Download ${{ matrix.file.Name }}
         uses: ./.github/workflows/DownloadResource
         with:
@@ -82,7 +82,7 @@ jobs:
           - addonId: WorldVoice
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Download ${{ matrix.addon.addonId }}
         uses: ./.github/workflows/DownloadResource
         with:
@@ -99,7 +99,7 @@ jobs:
       NVDAVersion: ${{ steps.nvda.outputs.replaced }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Get tag
         id: nvda-tag
         uses: pozetroninc/github-action-get-latest-release@master
@@ -128,25 +128,25 @@ jobs:
       - download-addons-from-addonStore
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Download ${{ needs.download-NVDA.outputs.NVDAFilename }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: ${{ needs.download-NVDA.outputs.NVDAFilename }}
           path: ${{ github.workspace }}/Resource/
       - name: Download vcredist_x86.exe
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: vcredist_x86.exe
           path: ${{ github.workspace }}/Resource/
       - name: Download Speech
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           path: ${{ github.workspace }}/Resource/speech/
           pattern: speech-*
           merge-multiple: true
       - name: Download Addons
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           path: ${{ github.workspace }}/Resource/Addons/
           pattern: "*.nvda-addon"
@@ -186,7 +186,7 @@ jobs:
       contents: write
     steps:
       - name: Download Archive
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: Archive
           path: NVDA_Lazy_Edition
