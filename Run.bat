@@ -53,7 +53,7 @@ if defined NVDAVersion (
   set LazyEditionFilename=NVDA 懒人版.exe
 )
 if /i "%BetaVersion%" == "True" (
-  set "Version=%VersionDate%(beta)"
+  set "Version=%VersionDate%_beta"
 ) else (
   set "Version=%VersionDate%"
 )
