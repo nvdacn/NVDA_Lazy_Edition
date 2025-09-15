@@ -22,6 +22,9 @@ jobs:
           - Name: DragAndDrop-2.2.2dev.nvda-addon
             URL: https://github.com/javidominguez/DragAndDrop/releases/download/2.2.2dev/DragAndDrop-2.2.2dev.nvda-addon
             sha256: 7dc49d21be2c55ef340f3e67d650d2696df499765179e3f460ffac944632763e
+          - Name: xyOCR-3.1.1.nvda-addon
+            URL: https://github.com/nvdacn/xyOCR/releases/download/3.1.1/xyOCR-3.1.1.nvda-addon
+            sha256: 05c48ef64ecf2bce378f8b5323ccd128e0ac5a20364f9d1b54a26cc4a79a2f15
           - Name: vcredist_x86.exe
             URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
             sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
@@ -80,6 +83,7 @@ jobs:
           - addonId: WeChatEnhancement
           - addonId: withSounds
           - addonId: WorldVoice
+          # - addonId: xyOCR
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
