@@ -79,7 +79,7 @@ Name: "StartOnLogon"; Description: "在欢迎界面启用 NVDA"
 Name: "FixAudioDucking"; Description: "修复音频闪避等功能无法使用"; Flags: Unchecked
 Name: "Voices"; Description: "语音合成器设置"; Components: Settings; OnlyBelowVersion: 10.0
 Name: "Voices"; Description: "语音合成器设置"; Components: Settings and Voices; Flags: Unchecked; MinVersion: 10.0
-Name: "Voices\WorldVoice"; Description: "切换语音合成器到 WorldVoice"; Components: Voices\WorldVoice; Flags: exclusive Unchecked
+Name: "Voices\WorldVoice"; Description: "切换语音合成器到 WorldVoice"; Components: Voices\WorldVoice; Flags: exclusive
 Name: "Voices\AiSound5"; Description: "切换语音合成器到 AiSound5"; Components: Voices\AiSound5; Flags: exclusive Unchecked
 Name: "Voices\sapi4"; Description: "切换语音合成器到 Microsoft Speech API version 4 已使用 VVTTS 引擎"; Components: Voices\VVTTS; Flags: exclusive Unchecked
 Name: "Voices\sapi5"; Description: "切换语音合成器到 Microsoft Speech API version 5"; OnlyBelowVersion: 10.0; Components: Settings; Flags: exclusive
