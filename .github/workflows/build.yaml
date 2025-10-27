@@ -159,20 +159,20 @@ jobs:
           BetaVersion: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'False' || 'True' }}
       - name: Upload NVDA_Lazy_Edition
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: NVDA_Lazy_Edition
           path: ${{ github.workspace }}/Build/NVDA*.exe
       - name: Upload Resource
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Resource
           path: ${{ github.workspace }}/Resource
           compression-level: 0
       - name: Upload Archive
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Archive
           path: ${{ github.workspace }}/Build/Archive/*
