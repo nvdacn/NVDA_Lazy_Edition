@@ -226,15 +226,9 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - push_to_gitcode
-      - build
     env:
       TAG_NAME: "2025.10.27"
     steps:
-      - name: Download Archive
-        uses: actions/download-artifact@v6
-        with:
-          name: Archive
-          path: .
       - name: Check if Release exists on GitCode
         id: check_release
         run: |
@@ -295,25 +289,3 @@ jobs:
             cat response.json
             exit 1
           fi
-      - name: Upload Build Artifacts to Release
-        run: |
-          for file in NVDA_Lazy_Edition*.zip; do
-            echo "Uploading $file..."
-            UPLOAD_INFO=$(curl -s \
-              -H "Accept: application/json" \
-              "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/${{ env.TAG_NAME }}/upload_url?access_token=${{ env.GITCODE_TOKEN }}&file_name=$file")
-            UPLOAD_URL=$(echo "$UPLOAD_INFO" | jq -r '.url')
-            CURL_HEADERS=()
-            HEADERS_JSON=$(echo "$UPLOAD_INFO" | jq -r '.headers // empty')
-            if [ -n "$HEADERS_JSON" ] && [ "$HEADERS_JSON" != "null" ]; then
-              while IFS='' read -r line; do
-                if [ -n "$line" ]; then
-                  CURL_HEADERS+=("-H" "$line")
-                fi
-              done < <(echo "$HEADERS_JSON" | jq -r 'to_entries[] | "\(.key): \(.value)"')
-            fi
-              curl -X PUT \
-              -T "$file" \
-              "${CURL_HEADERS[@]}" \
-              "$UPLOAD_URL"
-          done
