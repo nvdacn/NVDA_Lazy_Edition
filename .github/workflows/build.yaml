@@ -295,33 +295,19 @@ jobs:
             cat response.json
             exit 1
           fi
-      - name: Get upload URL
-        id: get_upload_url
-        run: |
-          UPLOAD_INFO=$(curl -s \
-            -H "Accept: application/json" \
-            "https://gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/${{ env.TAG_NAME }}/upload_url?access_token=${{ env.GITCODE_TOKEN }}")
-          UPLOAD_URL=$(echo $UPLOAD_INFO | jq -r '.upload_url' | sed 's/{?name,label}//')
-          if [ "$UPLOAD_URL" != "null" ] && [ -n "$UPLOAD_URL" ]; then
-            echo "upload_url=$UPLOAD_URL" >> $GITHUB_OUTPUT
-            echo "✅ Upload URL obtained: $UPLOAD_URL"
-          else
-            echo "❌ Could not get upload URL"
-            echo $UPLOAD_INFO
-            exit 1
-          fi
       - name: Upload Build Artifacts to Release
         run: |
-          UPLOAD_URL="${{ steps.get_upload_url.outputs.upload_url }}"
           echo "Uploading build artifacts to GitCode Release..."
           for file in *.zip; do
-            FILENAME=$(basename "$file")
-            echo "Uploading $FILENAME..."
-            curl -X POST \
-              -H "Content-Type: multipart/form-data" \
-              -F "name=$FILENAME" \
-              -F "label=$FILENAME - NVDA Lazy Edition" \
-              -F "file=@$file" \
-              "$UPLOAD_URL"
-            echo "✅ $FILENAME uploaded"
+            echo "Uploading $file..."
+            RESPONSE=$(curl -s -w "%{http_code}" -o response.json \
+              -H "Accept: application/json" \
+              "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/${{ env.TAG_NAME }}/upload_url?access_token=${{ env.GITCODE_TOKEN }}&file_name=$file")
+            if [ "$RESPONSE" = "200" ]; then
+              echo "✅ $file uploaded"
+            else
+              echo "❌ Failed, Response code: $RESPONSE"
+              cat response.json
+              exit 1
+            fi
           done
