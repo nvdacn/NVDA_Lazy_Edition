@@ -299,26 +299,15 @@ jobs:
         run: |
           echo "Uploading build artifacts to GitCode Release..."
           for file in *.zip; do
-            FILENAME=$(basename "$file")
-            echo "Uploading $FILENAME..."
-            UPLOAD_INFO=$(curl -s \
+            echo "Uploading $file..."
+            RESPONSE=$(curl -s -w "%{http_code}" -o response.json \
               -H "Accept: application/json" \
               "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/${{ env.TAG_NAME }}/upload_url?access_token=${{ env.GITCODE_TOKEN }}&file_name=$file")
-            UPLOAD_URL=$(echo $UPLOAD_INFO | jq -r '.upload_url' | sed 's/{?name,label}//')
-            echo $UPLOAD_INFO
-            if [ "$UPLOAD_URL" != "null" ] && [ -n "$UPLOAD_URL" ]; then
-              echo "upload_url=$UPLOAD_URL" >> $GITHUB_OUTPUT
-              echo "✅ Upload URL obtained: $UPLOAD_URL"
+            if [ "$RESPONSE" = "200" ]; then
+              echo "✅ $file uploaded"
             else
-              echo "❌ Could not get upload URL"
-              echo $UPLOAD_INFO
+              echo "❌ Failed, Response code: $RESPONSE"
+              cat response.json
               exit 1
             fi
-            curl -X POST \
-              -H "Content-Type: multipart/form-data" \
-              -F "name=$FILENAME" \
-              -F "label=$FILENAME - NVDA Lazy Edition" \
-              -F "file=@$file" \
-              "$UPLOAD_URL"
-            echo "✅ $FILENAME uploaded"
           done
