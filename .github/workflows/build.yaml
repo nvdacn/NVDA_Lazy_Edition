@@ -226,16 +226,15 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - push_to_gitcode
-      # - build
+      - build
     env:
       TAG_NAME: "2025.10.27"
     steps:
       - name: Download Archive
-        # uses: actions/download-artifact@v6
-        uses: actions/checkout@v6
-        # with:
-          # name: Archive
-          # path: .
+        uses: actions/download-artifact@v6
+        with:
+          name: Archive
+          path: .
       - name: Check if Release exists on GitCode
         id: check_release
         run: |
@@ -298,7 +297,7 @@ jobs:
           fi
       - name: Upload Build Artifacts to Release
         run: |
-          for file in *.bat; do
+          for file in NVDA_Lazy_Edition*.zip; do
             echo "Uploading $file..."
             UPLOAD_INFO=$(curl -s \
               -H "Accept: application/json" \
