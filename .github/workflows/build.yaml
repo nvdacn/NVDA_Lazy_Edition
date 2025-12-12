@@ -305,7 +305,6 @@ jobs:
           for file in NVDA_Lazy_Edition/*; do
             echo "Uploading $file..."
             RESPONSE=$(curl -s -w "%{http_code}" -o response.json \
-              -X POST \
               -H "Accept: application/json" \
               "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/1234/upload_url?access_token=${{ env.GITCODE_TOKEN }}&file_name=$file")
             if [ "$RESPONSE" = "200" ]; then
