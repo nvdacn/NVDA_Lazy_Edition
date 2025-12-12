@@ -226,15 +226,16 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - push_to_gitcode
-      - build
+      # - build
     env:
       TAG_NAME: "2025.10.27"
     steps:
       - name: Download Archive
-        uses: actions/download-artifact@v6
-        with:
-          name: Archive
-          path: .
+        # uses: actions/download-artifact@v6
+        uses: actions/checkout@v6
+        # with:
+          # name: Archive
+          # path: .
       - name: Check if Release exists on GitCode
         id: check_release
         run: |
@@ -297,17 +298,12 @@ jobs:
           fi
       - name: Upload Build Artifacts to Release
         run: |
-          for file in *.zip; do
+          for file in *.bat; do
             echo "Uploading $file..."
-            
             UPLOAD_INFO=$(curl -s \
               -H "Accept: application/json" \
               "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/${{ env.TAG_NAME }}/upload_url?access_token=${{ env.GITCODE_TOKEN }}&file_name=$file")
             UPLOAD_URL=$(echo "$UPLOAD_INFO" | jq -r '.url')
-            if [ -z "$UPLOAD_URL" ] || [ "$UPLOAD_URL" = "null" ]; then
-              echo "❌ Failed to get upload URL"
-              exit 1
-            fi
             CURL_HEADERS=()
             HEADERS_JSON=$(echo "$UPLOAD_INFO" | jq -r '.headers // empty')
             if [ -n "$HEADERS_JSON" ] && [ "$HEADERS_JSON" != "null" ]; then
@@ -317,16 +313,8 @@ jobs:
                 fi
               done < <(echo "$HEADERS_JSON" | jq -r 'to_entries[] | "\(.key): \(.value)"')
             fi
-            HTTP_CODE=$(curl -s -w "%{http_code}" -o response.json \
-              -X PUT \
+              curl -X PUT \
               -T "$file" \
               "${CURL_HEADERS[@]}" \
-              "$UPLOAD_URL")
-            if [[ "$HTTP_CODE" =~ ^2[0-9]{2}$ ]]; then
-              echo "✅ $file uploaded successfully"
-            else
-              echo "❌ Failed to upload $file (HTTP $HTTP_CODE)"
-              cat response.json
-              exit 1
-            fi
+              "$UPLOAD_URL"
           done
