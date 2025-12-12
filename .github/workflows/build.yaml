@@ -307,7 +307,7 @@ jobs:
             echo "Uploading $file..."
             RESPONSE=$(curl -s -w "%{http_code}" -o response.json \
               -H "Accept: application/json" \
-              "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/1234/upload_url?access_token=${{ env.GITCODE_TOKEN }}&file_name=$file")
+              "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/${{ env.TAG_NAME }}/upload_url?access_token=${{ env.GITCODE_TOKEN }}&file_name=$file")
             if [ "$RESPONSE" = "200" ]; then
               echo "✅ $file uploaded"
             else
