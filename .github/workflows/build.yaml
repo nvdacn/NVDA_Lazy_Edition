@@ -303,7 +303,7 @@ jobs:
       - name: Upload Build Artifacts to Release
         run: |
           echo "Uploading build artifacts to GitCode Release..."
-          for file in ./*.zip; do
+          for file in *.zip; do
             echo "Uploading $file..."
             RESPONSE=$(curl -s -w "%{http_code}" -o response.json \
               -H "Accept: application/json" \
