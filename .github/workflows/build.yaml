@@ -6,6 +6,7 @@ on:
       - "*"
     branches:
       - master
+      - gitcode
   pull_request:
     branches:
       - "*"
