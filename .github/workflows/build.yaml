@@ -12,8 +12,12 @@ on:
       - "*"
   workflow_dispatch:
 
-jobs:
+env:
+  GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
+  GITCODE_OWNER: ${{ vars.GITCODE_OWNER }}
+  GITCODE_REPO: ${{ vars.GITCODE_REPO || github.event.repository.name }}
 
+jobs:
   download-files:
     name: Download ${{ matrix.file.Name }}
     runs-on: ubuntu-latest
@@ -204,10 +208,6 @@ jobs:
     name: Push to GitCode
     runs-on: ubuntu-latest
     # if: ${{ startsWith(github.ref, 'refs/tags/') }}
-    env:
-      GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
-      GITCODE_OWNER: ${{ vars.GITCODE_OWNER || github.repository_owner }}
-      GITCODE_REPO: ${{ vars.GITCODE_REPO || github.event.repository.name }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -221,7 +221,6 @@ jobs:
           git remote add gitcode https://${{ env.GITCODE_OWNER }}:${{ env.GITCODE_TOKEN }}@gitcode.com/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}.git
           git push gitcode --tags --force master:master
 
-
   gitcode_release:
     name: Create Release on GitCode
     runs-on: ubuntu-latest
@@ -229,9 +228,6 @@ jobs:
       - push_to_gitcode
       - build
     env:
-      GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
-      GITCODE_OWNER: ${{ vars.GITCODE_OWNER || github.repository_owner }}
-      GITCODE_REPO: ${{ vars.GITCODE_REPO || github.event.repository.name }}
       TAG_NAME: "2025.10.27"
     steps:
       - name: Download Archive
@@ -265,8 +261,7 @@ jobs:
               "tag_name": "'"${{ env.TAG_NAME }}"'",
               "target_commitish": "master",
               "name": "${{ env.TAG_NAME }}",
-              "body": "详细更新日志请[点此查看](documentation/changes.md)。",
-              "draft": false,
+              "body": "详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/blob/${{ env.TAG_NAME }}/documentation/changes.md)。",
               "prerelease": '${{ contains(github.ref, 'beta') }}'
             }' \
             "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases?access_token=${{ env.GITCODE_TOKEN }}")
@@ -289,7 +284,7 @@ jobs:
             -d '{
               "tag_name": "'"${{ env.TAG_NAME }}"'",
               "name": "${{ env.TAG_NAME }}",
-              "body": "详细更新日志请[点此查看](documentation/changes.md)。",
+              "body": "详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/blob/${{ env.TAG_NAME }}/documentation/changes.md)。",
               "prerelease": '${{ contains(github.ref, 'beta') }}'
             }' \
             "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/${{ env.TAG_NAME }}?access_token=${{ env.GITCODE_TOKEN }}")
