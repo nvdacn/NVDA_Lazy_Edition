@@ -269,7 +269,7 @@ jobs:
               "prerelease": '${{ contains(github.ref, 'beta') }}'
             }' \
             "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases?access_token=${{ env.GITCODE_TOKEN }}")
-          if [ "$RESPONSE" = "201" ]; then
+          if [ "$RESPONSE" = "200" ]; then
             echo "✅ Release created successfully on GitCode"
             RELEASE_ID=$(cat response.json | jq -r '.id')
             echo "release_id=$RELEASE_ID" >> $GITHUB_OUTPUT
