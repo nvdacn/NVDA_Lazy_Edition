@@ -212,13 +212,14 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - name: Setup Git remote for GitCode
+          ref: master
+      - name: Push to GitCode
         run: |
           git config user.name "GitHub Actions"
           git config user.email "github-actions@github.com"
           git remote add gitcode https://${{ env.GITCODE_OWNER }}:${{ env.GITCODE_TOKEN }}@gitcode.com/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}.git
-          git push gitcode --all --force
-          git push gitcode --tags --force
+          git push gitcode --tags --force master: master
+
 
   gitcode_release:
     name: Create Release on GitCode
@@ -241,9 +242,8 @@ jobs:
         id: check_release
         run: |
           RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
-            -H "Authorization: token ${{ env.GITCODE_TOKEN }}" \
             -H "Accept: application/json" \
-            "https://gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/tags/${{ env.TAG_NAME }}")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/tags/${{ env.TAG_NAME }}?access_token=${{ env.GITCODE_TOKEN }}")
           if [ "$RESPONSE" = "200" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
             echo "Release already exists on GitCode"
@@ -258,7 +258,6 @@ jobs:
           echo "Creating new release on GitCode..."
           RESPONSE=$(curl -s -w "%{http_code}" -o response.json \
             -X POST \
-            -H "Authorization: token ${{ env.GITCODE_TOKEN }}" \
             -H "Content-Type: application/json" \
             -H "Accept: application/json" \
             -d '{
@@ -269,7 +268,7 @@ jobs:
               "draft": false,
               "prerelease": '${{ contains(github.ref, 'beta') }}'
             }' \
-            "https://gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases?access_token=${{ env.GITCODE_TOKEN }}")
           if [ "$RESPONSE" = "201" ]; then
             echo "✅ Release created successfully on GitCode"
             RELEASE_ID=$(cat response.json | jq -r '.id')
@@ -285,13 +284,11 @@ jobs:
         run: |
           echo "Updating existing release on GitCode..."
           RELEASE_INFO=$(curl -s \
-            -H "Authorization: token ${{ env.GITCODE_TOKEN }}" \
             -H "Accept: application/json" \
-            "https://gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/tags/${{ env.TAG_NAME }}")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/tags/${{ env.TAG_NAME }}?access_token=${{ env.GITCODE_TOKEN }}")
           RELEASE_ID=$(echo $RELEASE_INFO | jq -r '.id')
           RESPONSE=$(curl -s -w "%{http_code}" -o response.json \
             -X PATCH \
-            -H "Authorization: token ${{ env.GITCODE_TOKEN }}" \
             -H "Content-Type: application/json" \
             -H "Accept: application/json" \
             -d '{
@@ -300,7 +297,7 @@ jobs:
               "body": "详细更新日志请[点此查看](documentation/changes.md)。",
               "prerelease": '${{ contains(github.ref, 'beta') }}'
             }' \
-            "https://gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/$RELEASE_ID")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/$RELEASE_ID?access_token=${{ env.GITCODE_TOKEN }}")
           
           if [ "$RESPONSE" = "200" ]; then
             echo "✅ Release updated successfully on GitCode"
@@ -315,9 +312,8 @@ jobs:
         run: |
           RELEASE_ID=${{ fromJSON(steps.create_release.outputs.release_id || steps.update_release.outputs.release_id) }}
           UPLOAD_INFO=$(curl -s \
-            -H "Authorization: token ${{ env.GITCODE_TOKEN }}" \
             -H "Accept: application/json" \
-            "https://gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/$RELEASE_ID/upload_url")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/$RELEASE_ID/upload_url?access_token=${{ env.GITCODE_TOKEN }}")
           UPLOAD_URL=$(echo $UPLOAD_INFO | jq -r '.upload_url' | sed 's/{?name,label}//')
           if [ "$UPLOAD_URL" != "null" ] && [ -n "$UPLOAD_URL" ]; then
             echo "upload_url=$UPLOAD_URL" >> $GITHUB_OUTPUT
@@ -336,7 +332,6 @@ jobs:
               FILENAME=$(basename "$file")
               echo "Uploading $FILENAME..."
               curl -X POST \
-                -H "Authorization: token ${{ env.GITCODE_TOKEN }}" \
                 -H "Content-Type: multipart/form-data" \
                 -F "name=$FILENAME" \
                 -F "label=$FILENAME - NVDA Lazy Edition 构建文件" \
