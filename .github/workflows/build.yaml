@@ -216,7 +216,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "github-actions@github.com"
-          git remote add gitcode https://${{ env.GITCODE_TOKEN }}@gitcode.com/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}.git
+          git remote add gitcode https://${{ env.GITCODE_OWNER }}:${{ env.GITCODE_TOKEN }}@gitcode.com/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}.git
           git push gitcode --all --force
           git push gitcode --tags --force
 
