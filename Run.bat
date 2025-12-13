@@ -28,6 +28,7 @@ echo 欢迎使用NVDA 懒人版构建脚本，请输入要运行的命令，按�
 echo BR：运行懒人版程序依赖文件构建流程；  
 echo BL：运行懒人版程序构建流程；  
 echo Build：运行完整构建流程；  
+echo UPL：上传发布版本到 GitCode；  
 echo 其他命令：退出此脚本。  
 echo 上述选项还可通过命令行直接传入。  
 
@@ -116,6 +117,15 @@ if /I %CLI% == BL (Exit)
 Rem 生成压缩包  
 "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%Version%.zip" "%~dp0Build\%LazyEditionFilename%" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
 "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\Source_Code_And_Dependency_Files_%Version%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0Run.bat"
+Exit
+
+:UPL
+powershell -ExecutionPolicy Bypass -NoProfile -File "%~dp0Scripts\UploadToGitCode.ps1"
+if %errorlevel% neq 0 (
+  mshta "javascript:new ActiveXObject('wscript.shell').popup('执行失败，有关详细信息，请查看命令窗口。',5,'错误');window.close();"
+  echo 请按任意键退出...
+  Pause>Nul
+)
 Exit
 
 :BLError
