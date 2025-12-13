@@ -99,11 +99,11 @@ try {
     if ([string]::IsNullOrWhiteSpace($token)) {
         Write-Host "Please enter your GitCode Token:"
         
-        # Read token
-        $token = Read-Host -Prompt "GitCode Token"
-        
+        # Read token securely
+        $secureToken = Read-Host -Prompt "GitCode Token" -AsSecureString
+
         # Ensure token is not empty
-        if ([string]::IsNullOrWhiteSpace($token)) {
+        if ($secureToken.Length -eq 0) {
             throw "Token cannot be empty"
         }
         
