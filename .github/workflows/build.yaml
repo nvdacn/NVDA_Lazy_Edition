@@ -6,16 +6,13 @@ on:
       - "*"
     branches:
       - master
-      - gitcode
   pull_request:
     branches:
       - "*"
   workflow_dispatch:
 
 env:
-  GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
-  GITCODE_OWNER: ${{ vars.GITCODE_OWNER }}
-  GITCODE_REPO: ${{ vars.GITCODE_REPO || github.event.repository.name }}
+  GITCODE_REPOSITORY: ${{ vars.GITCODE_REPOSITORY || github.repository }}
 
 jobs:
   download-files:
@@ -176,7 +173,7 @@ jobs:
           path: ${{ github.workspace }}/Resource
           compression-level: 0
       - name: Upload Archive
-        # if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
         uses: actions/upload-artifact@v5
         with:
           name: Archive
@@ -207,7 +204,7 @@ jobs:
   push_to_gitcode:
     name: Push to GitCode
     runs-on: ubuntu-latest
-    # if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    if: ${{ startsWith(github.ref, 'refs/tags/') && vars.GITCODE_USERNAME }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -218,7 +215,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "github-actions@github.com"
-          git remote add gitcode https://${{ env.GITCODE_OWNER }}:${{ env.GITCODE_TOKEN }}@gitcode.com/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}.git
+          git remote add gitcode https://${{ vars.GITCODE_USERNAME }}:${{ secrets.GITCODE_TOKEN }}@gitcode.com/${{ env.GITCODE_REPOSITORY }}.git
           git push gitcode --tags --force master:master
 
   gitcode_release:
@@ -227,14 +224,14 @@ jobs:
     needs:
       - push_to_gitcode
     env:
-      TAG_NAME: "2025.10.27"
+      TAG_NAME: ${{ github.ref_name }}
     steps:
       - name: Check if Release exists on GitCode
         id: check_release
         run: |
           RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
             -H "Accept: application/json" \
-            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/tags/${{ env.TAG_NAME }}?access_token=${{ env.GITCODE_TOKEN }}")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases/tags/${{ env.TAG_NAME }}?access_token=${{ secrets.GITCODE_TOKEN }}")
           if [ "$RESPONSE" = "200" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
             echo "Release already exists on GitCode"
@@ -255,10 +252,10 @@ jobs:
               "tag_name": "'"${{ env.TAG_NAME }}"'",
               "target_commitish": "master",
               "name": "${{ env.TAG_NAME }}",
-              "body": "详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/blob/${{ env.TAG_NAME }}/documentation/changes.md)。",
+              "body": "详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_REPOSITORY }}/blob/${{ env.TAG_NAME }}/documentation/changes.md)。",
               "prerelease": '${{ contains(github.ref, 'beta') }}'
             }' \
-            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases?access_token=${{ env.GITCODE_TOKEN }}")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases?access_token=${{ secrets.GITCODE_TOKEN }}")
           if [ "$RESPONSE" = "200" ]; then
             echo "✅ Release created successfully on GitCode"
           else
@@ -278,10 +275,10 @@ jobs:
             -d '{
               "tag_name": "'"${{ env.TAG_NAME }}"'",
               "name": "${{ env.TAG_NAME }}",
-              "body": "详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/blob/${{ env.TAG_NAME }}/documentation/changes.md)。",
+              "body": "详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_REPOSITORY }}/blob/${{ env.TAG_NAME }}/documentation/changes.md)。",
               "prerelease": '${{ contains(github.ref, 'beta') }}'
             }' \
-            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_OWNER }}/${{ env.GITCODE_REPO }}/releases/${{ env.TAG_NAME }}?access_token=${{ env.GITCODE_TOKEN }}")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases/${{ env.TAG_NAME }}?access_token=${{ secrets.GITCODE_TOKEN }}")
           if [ "$RESPONSE" = "200" ]; then
             echo "✅ Release updated successfully on GitCode"
           else
