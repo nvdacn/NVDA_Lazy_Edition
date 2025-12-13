@@ -66,7 +66,7 @@ try {
     
     # Try to read from environment variable first
     Write-Host "Reading token from environment variable..."
-    $token = [Environment]::GetEnvironmentVariable("GITCODE_TOKEN")
+    $token = $env:GITCODE_TOKEN
 
     if (-not [string]::IsNullOrWhiteSpace($token)) {
         Write-Host "Token loaded from environment variable."
