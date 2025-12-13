@@ -16,19 +16,12 @@ try {
 
     # Construct file name
     $baseName = "NVDA_Lazy_Edition"
-    $fileName = ""
-    
-    if ($tagName -match "^\d{4}\.\d{2}\.\d{2}$") {
-        $fileName = "${baseName}_${tagName}.zip"
+    $safeTag = switch -Regex ($tagName) {
+        "^\d{4}\.\d{2}\.\d{2}$" { $tagName }
+        "^\d{4}\.\d{2}\.\d{2}\(beta\)$" { $tagName -replace '\(beta\)', '_beta' }
+        default { $tagName -replace '[^\w\.-]', '_' }
     }
-    elseif ($tagName -match "^\d{4}\.\d{2}\.\d{2}\(beta\)$") {
-        $cleanTag = $tagName -replace '\(beta\)', '_beta'
-        $fileName = "${baseName}_${cleanTag}.zip"
-    }
-    else {
-        $safeTag = $tagName -replace '[^\w\.-]', '_'
-        $fileName = "${baseName}_${safeTag}.zip"
-    }
+    $fileName = "${baseName}_${safeTag}.zip"
     
     Write-Host "File name: $fileName"
 
