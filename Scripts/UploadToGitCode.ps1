@@ -102,7 +102,6 @@ try {
         
         # Save to file
         Write-Host "Saving token to file..."
-        $tokenDir = Split-Path -Parent $tokenFile
         $token | Out-File $tokenFile -Encoding UTF8 -NoNewline
         Write-Host "Token saved to: $tokenFile"
     }
