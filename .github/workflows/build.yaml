@@ -27,26 +27,6 @@ jobs:
           - Name: vcredist_x86.exe
             URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
             sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
-          - Name: config.json
-            URL: https://huggingface.co/Xenova/vit-gpt2-image-captioning/resolve/main/config.json
-            sha256: f65c81039a672962d686f71ee0242f0c89dc020a0e3f193a989a696bf3f9515e
-            prefix: ModelJSON-
-          - Name: preprocessor_config.json
-            URL: https://huggingface.co/Xenova/vit-gpt2-image-captioning/resolve/main/preprocessor_config.json
-            sha256: 76304e9a1deb0d5f78349a57ad9d8057f36476c29bd292e907e2e8c451c93e9d
-            prefix: ModelJSON-
-          - Name: vocab.json
-            URL: https://huggingface.co/Xenova/vit-gpt2-image-captioning/resolve/main/vocab.json
-            sha256: 3ba3c3109ff33976c4bd966589c11ee14fcaa1f4c9e5e154c2ed7f99d80709e7
-            prefix: ModelJSON-
-          - Name: decoder_model_merged_quantized.onnx
-            URL: https://huggingface.co/Xenova/vit-gpt2-image-captioning/resolve/main/onnx/decoder_model_merged_quantized.onnx
-            sha256: 1f3ec53b5fc3614c0b54ee786755a7ec3007841f57543f8e241499edfadfa98f
-            prefix: ModelONNX-
-          - Name: encoder_model_quantized.onnx
-            URL: https://huggingface.co/Xenova/vit-gpt2-image-captioning/resolve/main/onnx/encoder_model_quantized.onnx
-            sha256: 6f6e2e27c11303cf533682184543333e7ecb930a734197a0272a1e408aba2766
-            prefix: ModelONNX-
           - Name: aisound.zip
             URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/aisound.zip
             sha256: B4FE1BED8F699179C8FF00F7B6F85AF4FF190ADCE1CCDB6C08132F93B7341EB2
@@ -173,18 +153,6 @@ jobs:
         with:
           path: ${{ github.workspace }}/Resource/Addons/
           pattern: "*.nvda-addon"
-          merge-multiple: true
-      - name: Download ModelJSON
-        uses: actions/download-artifact@v5
-        with:
-          path: ${{ github.workspace }}/Resource/vit-gpt2-image-captioning/
-          pattern: ModelJSON-*
-          merge-multiple: true
-      - name: Download ModelONNX
-        uses: actions/download-artifact@v5
-        with:
-          path: ${{ github.workspace }}/Resource/vit-gpt2-image-captioning/onnx/
-          pattern: ModelONNX-*
           merge-multiple: true
       - name: Run the build script
         run: ${{ github.workspace }}/Run.bat GITHUB_ACTIONS
