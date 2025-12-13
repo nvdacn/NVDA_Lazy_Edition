@@ -1,10 +1,6 @@
 # Set error handling
 $ErrorActionPreference = "Stop"
 
-# Switch to parent directory of script location
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-Set-Location $scriptDir
-
 try {
     # Get latest tag name
     Write-Host "Getting latest tag name..."
@@ -26,7 +22,7 @@ try {
     Write-Host "File name: $fileName"
 
     # Create target directory if it doesn't exist
-    $archiveDir = "../Build/Archive"
+    $archiveDir = Join-Path $PSScriptRoot "../Build/Archive"
     if (-not (Test-Path $archiveDir)) {
         New-Item -ItemType Directory -Path $archiveDir -Force | Out-Null
         Write-Host "Created directory: $archiveDir"
@@ -66,7 +62,7 @@ try {
     }
 
     # Get GitCode Token
-    $tokenFile = "../.GitCodeToken"
+    $tokenFile = Join-Path $PSScriptRoot "../.GitCodeToken"
     
     # Try to read from environment variable first
     Write-Host "Reading token from environment variable..."
