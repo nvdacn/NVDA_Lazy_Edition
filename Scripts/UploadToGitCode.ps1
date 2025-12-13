@@ -75,23 +75,23 @@ try {
     # Get GitCode Token
     $tokenFile = "../.GitCodeToken"
     
-    # Try to read from file
-    if (Test-Path $tokenFile) {
-        Write-Host "Reading token from file..."
-        $token = Get-Content $tokenFile -Raw -Encoding UTF8 | ForEach-Object { $_.Trim() }
-        
-        if (-not [string]::IsNullOrWhiteSpace($token)) {
-            Write-Host "Token loaded from file."
-        }
+    # Try to read from environment variable first
+    Write-Host "Reading token from environment variable..."
+    $token = [Environment]::GetEnvironmentVariable("GITCODE_TOKEN")
+
+    if (-not [string]::IsNullOrWhiteSpace($token)) {
+        Write-Host "Token loaded from environment variable."
     }
-    
-    # If file doesn't exist or is empty, try environment variable
+
+    # If environment variable is empty, try to read from file
     if ([string]::IsNullOrWhiteSpace($token)) {
-        Write-Host "Reading token from environment variable..."
-        $token = [Environment]::GetEnvironmentVariable("GITCODE_TOKEN")
-        
-        if (-not [string]::IsNullOrWhiteSpace($token)) {
-            Write-Host "Token loaded from environment variable."
+        if (Test-Path $tokenFile) {
+            Write-Host "Reading token from file..."
+            $token = Get-Content $tokenFile -Raw -Encoding UTF8 | ForEach-Object { $_.Trim() }
+            
+            if (-not [string]::IsNullOrWhiteSpace($token)) {
+                Write-Host "Token loaded from file."
+            }
         }
     }
     
