@@ -119,8 +119,7 @@ try {
     
     # URL encode file name using Uri.EscapeDataString
     $encodedFileName = [Uri]::EscapeDataString($fileName)
-    # $apiUrl = "https://api.gitcode.com/api/v5/repos/WMHN/NVDA_Lazy_Edition/releases/$tagName/upload_url?access_token=$token&file_name=$encodedFileName"
-    $apiUrl = "https://api.gitcode.com/api/v5/repos/WMHN/NVDA_Lazy_Edition/releases/2025.10.27/upload_url?access_token=$token&file_name=$encodedFileName"
+    $apiUrl = "https://api.gitcode.com/api/v5/repos/WMHN/NVDA_Lazy_Edition/releases/$tagName/upload_url?access_token=$token&file_name=$encodedFileName"
     $headers = @{
         "Accept" = "application/json"
     }
