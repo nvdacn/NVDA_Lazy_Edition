@@ -133,23 +133,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Download ${{ needs.download-NVDA.outputs.NVDAFilename }}
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: ${{ needs.download-NVDA.outputs.NVDAFilename }}
           path: ${{ github.workspace }}/Resource/
       - name: Download vcredist_x86.exe
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: vcredist_x86.exe
           path: ${{ github.workspace }}/Resource/
       - name: Download Speech
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           path: ${{ github.workspace }}/Resource/speech/
           pattern: speech-*
           merge-multiple: true
       - name: Download Addons
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           path: ${{ github.workspace }}/Resource/Addons/
           pattern: "*.nvda-addon"
@@ -189,7 +189,7 @@ jobs:
       contents: write
     steps:
       - name: Download Archive
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: Archive
           path: NVDA_Lazy_Edition
