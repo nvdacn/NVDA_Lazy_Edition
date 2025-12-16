@@ -52,7 +52,7 @@ runs:
         fi
     - name: Cache ${{ steps.parameters.outputs.file-name }}
       id: cache-file
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ${{ github.workspace }}/Resource
         key: ${{ steps.parameters.outputs.file-name }}-${{ steps.parameters.outputs.file-sha256 }}
@@ -70,7 +70,7 @@ runs:
       shell: bash
       run: cp ${{ github.workspace }}/addon-datastore/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json ${{ github.workspace }}/Resource/${{ inputs.addon-ID }}.json
     - name: Upload ${{ steps.parameters.outputs.file-name }}
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: ${{ inputs.prefix }}${{ steps.parameters.outputs.file-name }}
         path: ${{ github.workspace }}/Resource/*
