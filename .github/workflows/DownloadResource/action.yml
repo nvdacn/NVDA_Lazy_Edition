@@ -70,7 +70,7 @@ runs:
       shell: bash
       run: cp ${{ github.workspace }}/addon-datastore/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json ${{ github.workspace }}/Resource/${{ inputs.addon-ID }}.json
     - name: Upload ${{ steps.parameters.outputs.file-name }}
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: ${{ inputs.prefix }}${{ steps.parameters.outputs.file-name }}
         path: ${{ github.workspace }}/Resource/*
