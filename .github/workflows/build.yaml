@@ -229,9 +229,10 @@ jobs:
       - name: Check if Release exists on GitCode
         id: check_release
         run: |
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
+          RESPONSE=$(curl -L -sS -o /dev/null -w "%{http_code}" \
+            -H 'PRIVATE-TOKEN: ${{ secrets.GITCODE_TOKEN }}' \
             -H "Accept: application/json" \
-            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases/tags/${{ env.TAG_NAME }}?access_token=${{ secrets.GITCODE_TOKEN }}")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases/tags/${{ env.TAG_NAME }}")
           if [ "$RESPONSE" = "200" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
             echo "Release already exists on GitCode"
@@ -244,8 +245,9 @@ jobs:
         id: create_release
         run: |
           echo "Creating new release on GitCode..."
-          RESPONSE=$(curl -s -w "%{http_code}" -o response.json \
+          RESPONSE=$(curl -L -o response.json -sS -w "%{http_code}" \
             -X POST \
+            -H 'PRIVATE-TOKEN: ${{ secrets.GITCODE_TOKEN }}' \
             -H "Content-Type: application/json" \
             -H "Accept: application/json" \
             -d '{
@@ -255,7 +257,7 @@ jobs:
               "body": "详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_REPOSITORY }}/blob/${{ env.TAG_NAME }}/documentation/changes.md)。",
               "prerelease": '${{ contains(github.ref, 'beta') }}'
             }' \
-            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases?access_token=${{ secrets.GITCODE_TOKEN }}")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases")
           if [ "$RESPONSE" = "200" ]; then
             echo "✅ Release created successfully on GitCode"
           else
@@ -268,8 +270,9 @@ jobs:
         id: update_release
         run: |
           echo "Updating existing release on GitCode..."
-          RESPONSE=$(curl -s -w "%{http_code}" -o response.json \
+          RESPONSE=$(curl -L -o response.json -sS -w "%{http_code}" \
             -X PATCH \
+            -H 'PRIVATE-TOKEN: ${{ secrets.GITCODE_TOKEN }}' \
             -H "Content-Type: application/json" \
             -H "Accept: application/json" \
             -d '{
@@ -278,7 +281,7 @@ jobs:
               "body": "详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_REPOSITORY }}/blob/${{ env.TAG_NAME }}/documentation/changes.md)。",
               "prerelease": '${{ contains(github.ref, 'beta') }}'
             }' \
-            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases/${{ env.TAG_NAME }}?access_token=${{ secrets.GITCODE_TOKEN }}")
+            "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases/${{ env.TAG_NAME }}")
           if [ "$RESPONSE" = "200" ]; then
             echo "✅ Release updated successfully on GitCode"
           else
@@ -290,9 +293,10 @@ jobs:
         run: |
           for file in NVDA_Lazy_Edition*.zip; do
             echo "Uploading $file..."
-            UPLOAD_INFO=$(curl -s \
+            UPLOAD_INFO=$(curl -sS \
+              -H 'PRIVATE-TOKEN: ${{ secrets.GITCODE_TOKEN }}' \
               -H "Accept: application/json" \
-              "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases/${{ env.TAG_NAME }}/upload_url?access_token=${{ secrets.GITCODE_TOKEN }}&file_name=$file")
+              "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases/${{ env.TAG_NAME }}/upload_url?file_name=$file")
             UPLOAD_URL=$(echo "$UPLOAD_INFO" | jq -r '.url')
             CURL_HEADERS=()
             HEADERS_JSON=$(echo "$UPLOAD_INFO" | jq -r '.headers // empty')
@@ -303,7 +307,7 @@ jobs:
                 fi
               done < <(echo "$HEADERS_JSON" | jq -r 'to_entries[] | "\(.key): \(.value)"')
             fi
-            RESPONSE=$(curl -X PUT -w "%{http_code}" -o "$file.response.json" \
+            RESPONSE=$(curl -X PUT -w "%{http_code}" -o "$file.response.json" --retry 3 \
               -T "$file" \
               "${CURL_HEADERS[@]}" \
               "$UPLOAD_URL")
