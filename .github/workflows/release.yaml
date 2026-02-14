@@ -1,0 +1,21 @@
+name: Release new version
+
+on:
+  workflow_dispatch:
+    inputs:
+      beta_Version:
+        description: 'beta version'
+        type: boolean
+        required: true
+
+jobs:
+  Create-Tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: master
+          ssh-key: ${{ secrets.PUSH_SSH_PRIVATE_KEY }}
+          fetch-tags: true
