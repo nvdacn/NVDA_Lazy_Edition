@@ -19,3 +19,14 @@ jobs:
           ref: master
           ssh-key: ${{ secrets.PUSH_SSH_PRIVATE_KEY }}
           fetch-tags: true
+      - name: Create tag
+        run: |
+          export TZ='Asia/Shanghai'
+          echo "Current time: $(date)"
+          DATE=$(date +'%Y.%m.%d')
+          TAG="$DATE"
+          if [[ "${{ github.event.inputs.beta_Version }}" == "true" ]]; then
+            TAG="${DATE}(beta)"
+          fi
+          git tag $TAG
+          git push origin $TAG
