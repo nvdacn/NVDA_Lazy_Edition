@@ -10,6 +10,7 @@ on:
 
 jobs:
   Create-Tag:
+    name: Create tag
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,7 +23,6 @@ jobs:
       - name: Create tag
         run: |
           export TZ='Asia/Shanghai'
-          echo "Current time: $(date)"
           DATE=$(date +'%Y.%m.%d')
           TAG="$DATE"
           if [[ "${{ github.event.inputs.beta_Version }}" == "true" ]]; then
