@@ -149,7 +149,9 @@ jobs:
           pattern: "*.nvda-addon"
           merge-multiple: true
       - name: Run the build script
-        run: ${{ github.workspace }}/Run.bat GITHUB_ACTIONS
+        run: |
+          tzutil /s "China Standard Time"
+          ${{ github.workspace }}/Run.bat GITHUB_ACTIONS
         env:
           NVDAVersion: ${{ needs.download-NVDA.outputs.NVDAVersion }}
           BetaVersion: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'False' || 'True' }}
