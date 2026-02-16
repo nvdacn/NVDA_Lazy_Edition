@@ -224,7 +224,7 @@ jobs:
       TAG_NAME: ${{ github.ref_name }}
     steps:
       - name: Download Archive
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: Archive
           path: .
