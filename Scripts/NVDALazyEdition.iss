@@ -26,8 +26,9 @@ WizardImageFile=..\userConfig\Image.bmp
 WizardSmallImageFile=..\userConfig\Image.bmp
 LicenseFile=..\Build\Temp\NVDA\documentation\copying.txt
 InfoBeforeFile=..\Build\说明.txt
-MinVersion=6.03
-ArchitecturesInstallIn64BitMode=x64 ia64 arm64
+MinVersion=10.0
+ArchitecturesAllowed=x64 arm64
+ArchitecturesInstallIn64BitMode=x64 arm64
 AllowCancelDuringInstall=No
 AlwaysShowComponentsList=No
 ShowComponentSizes=No
@@ -60,7 +61,7 @@ Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; De
 Name: "Addons\Access8Math"; Types: Full custom; Flags: disablenouninstallwarning; Description: "Access8Math"
 Name: "Addons\addonsHelp"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件文档"
 Name: "Addons\addonsTools"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件管理工具箱"
-Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"; MinVersion: 10.0
+Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"
 Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
 Name: "Addons\DragAndDrop"; Types: Full custom; Flags: disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
 Name: "Addons\goldenCursor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "金色光标"
@@ -79,12 +80,10 @@ Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarni
 [Tasks]
 Name: "StartOnLogon"; Description: "在欢迎界面启用 NVDA"
 Name: "FixAudioDucking"; Description: "修复音频闪避等功能无法使用"; Flags: Unchecked
-Name: "Voices"; Description: "语音合成器设置"; Components: Settings; OnlyBelowVersion: 10.0
-Name: "Voices"; Description: "语音合成器设置"; Components: Settings and Voices; Flags: Unchecked; MinVersion: 10.0
+Name: "Voices"; Description: "语音合成器设置"; Components: Settings and Voices; Flags: Unchecked
 Name: "Voices\WorldVoice"; Description: "切换语音合成器到 WorldVoice"; Components: Voices\WorldVoice; Flags: exclusive
 Name: "Voices\AiSound5"; Description: "切换语音合成器到 AiSound5"; Components: Voices\AiSound5; Flags: exclusive Unchecked
 Name: "Voices\sapi4"; Description: "切换语音合成器到 Microsoft Speech API version 4 已使用 VVTTS 引擎"; Components: Voices\VVTTS; Flags: exclusive Unchecked
-Name: "Voices\sapi5"; Description: "切换语音合成器到 Microsoft Speech API version 5"; OnlyBelowVersion: 10.0; Components: Settings; Flags: exclusive
 Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
 Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Flags: Unchecked; Check: FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
 Name: "DeleteProfile"; Description: "清空用户配置文件夹"; Check: FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini')); Flags: Unchecked
@@ -221,7 +220,6 @@ end;
 [ini]
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " aisound"; Tasks: "Voices\AiSound5"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi4"; Tasks: "Voices\sapi4"
-FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi5"; Tasks: "Voices\sapi5"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " WorldVoice"; Tasks: "Voices\WorldVoice"
 
 [InstallDelete]

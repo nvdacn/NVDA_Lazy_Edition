@@ -16,7 +16,8 @@ OutputDir=..\Build\Temp
 OutputBaseFilename=NVDAPortable
 Compression=lzma2/max
 SolidCompression=yes
-MinVersion=6.03
+MinVersion=10.0
+ArchitecturesAllowed=x64 arm64
 DisableDirPage=Yes
 DisableProgramGroupPage=yes
 DisableFinishedPage=Yes
@@ -58,8 +59,6 @@ Name: "chinesesimp"; MessagesFile: "compiler:Default.isl"
 Filename: "{app}\nvda"; Parameters: "-ms"; Flags: nowait
 
 [ini]
-FileName: "{app}\userConfig\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi5"; MinVersion: 6.01; OnlyBelowVersion: 6.04; Check: UILanguage
-FileName: "{app}\userConfig\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " oneCore"; MinVersion: 6.04; Check: UILanguage
 FileName: "{app}\userConfig\NVDA.ini"; Section: "keyboard"; Key: "	NVDAModifierKeys "; String: " 7"; Check: UILanguage
 
 [Files]
