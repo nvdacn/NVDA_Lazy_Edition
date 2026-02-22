@@ -1,7 +1,9 @@
-﻿#define Version GetDateTimeString('yyyy.mm.dd', '.', '')
+﻿#define BaseVersion GetDateTimeString('yyyy.mm.dd', '.', '')
+#define BuildNumber GetEnv("GITHUB_RUN_NUMBER")
+#define FinalVersion BaseVersion + '.' + BuildNumber
 
 [Setup]
-VersionInfoVersion={#Version}
+VersionInfoVersion={#FinalVersion}
 AppName=NVDA
 AppVerName=NVDA
 AppPublisher=NVDACN
