@@ -148,6 +148,11 @@ jobs:
           path: ${{ github.workspace }}/Resource/Addons/
           pattern: "*.nvda-addon"
           merge-multiple: true
+      - name: Download ChineseSimplified.isl
+        uses: carlosperate/download-file-action@v2
+        with:
+          file-url: 'https://raw.githubusercontent.com/kira-96/Inno-Setup-Chinese-Simplified-Translation/main/ChineseSimplified.isl'
+          location: '${{ github.workspace }}/Tools/InnoSetup/Languages'
       - name: Run the build script
         run: |
           tzutil /s "China Standard Time"
