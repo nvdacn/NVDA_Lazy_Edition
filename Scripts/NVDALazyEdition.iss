@@ -2,11 +2,7 @@
 #define BuildNumber GetEnv("GITHUB_RUN_NUMBER")
 #define FinalVersion BaseVersion + (BuildNumber != "" ? "." + BuildNumber : "")
 #define LazyEditionEnv GetEnv("LazyEditionFilename")
-#if LazyEditionEnv != ""
-  #define LazyEditionOutputName LazyEditionEnv
-#else
-  #define LazyEditionOutputName "NVDA 懒人版"
-#endif
+#define LazyEditionOutputName (LazyEditionEnv != "" ? LazyEditionEnv : "NVDA 懒人版")
 
 [Setup]
 VersionInfoVersion={#FinalVersion}
