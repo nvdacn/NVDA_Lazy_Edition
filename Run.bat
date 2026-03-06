@@ -3,15 +3,28 @@
 chcp 65001>Nul
 
 Rem 为避免出现编码错误，请在行末是中文字符的行尾添加两个空格  
-Rem GitHub Actions 流程  
+Rem 设置变量  
+Rem 确定运行环境  
 if /I "%GITHUB_ACTIONS%" == "true" (
   set InnoSetup="%~dp0Tools\InnoSetup\ISCC" /Q
-  set NVDA=Off
+  set StartNVDA=Off
   set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
 ) else (
   set InnoSetup="%~dp0Tools\InnoSetup\Compil32" /cc
-  set NVDA=On
+  set StartNVDA=On
   set VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%
+)
+Rem 设置懒人版主程序文件名  
+if defined NVDAVersion (
+  set LazyEditionFilename=NVDA_%NVDAVersion% 懒人版
+) else (
+  set LazyEditionFilename=NVDA 懒人版
+)
+Rem 设置懒人版压缩包版本号  
+if /i "%BetaVersion%" == "True" (
+  set "Version=%VersionDate%_beta"
+) else (
+  set "Version=%VersionDate%"
 )
 
 Rem 判断是否从命令行传入参数  
@@ -45,25 +58,13 @@ IF NOT EXIST "%~dp0Resource" (goto BRError)
 Rem 删除已经存在的懒人版相关文件  
 IF EXIST "%~dp0Build" (rd /s /q "%~dp0Build")
 
-Rem 设置文件名  
-if defined NVDAVersion (
-  set LazyEditionFilename=NVDA_%NVDAVersion% 懒人版.exe
-) else (
-  set LazyEditionFilename=NVDA 懒人版.exe
-)
-if /i "%BetaVersion%" == "True" (
-  set "Version=%VersionDate%_beta"
-) else (
-  set "Version=%VersionDate%"
-)
-
 Rem 创建便携版 NVDA
 for /r "%~dp0Resource" %%i in (nvda_20*.exe) do (
   "%%i" --create-portable-silent --portable-path="%~dp0Build\Temp\NVDA"
 )
 
 Rem 运行 NVDA
-if /i %NVDA% == On (
+if /i "%StartNVDA%" == "On" (
   if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
     Start /D  "%ProgramFiles%\NVDA" NVDA
   ) else (
@@ -103,14 +104,14 @@ IF NOT EXIST "%~dp0Build\说明.txt" (goto BLError)
 
 Rem 构建 NVDA 懒人版主程序  
 %InnoSetup% "%~dp0Scripts\NVDALazyEdition.iss"
-IF NOT EXIST "%~dp0Build\%LazyEditionFilename%" (
+IF NOT EXIST "%~dp0Build\%LazyEditionFilename%.exe" (
   echo NVDALazyEdition.iss build failed.
   exit /b 1
 )
 if /I %CLI% == BL (Exit)
 
 Rem 生成压缩包  
-"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%Version%.zip" "%~dp0Build\%LazyEditionFilename%" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
+"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%Version%.zip" "%~dp0Build\%LazyEditionFilename%.exe" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
 "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\Source_Code_And_Dependency_Files_%Version%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0Run.bat"
 Exit
 
