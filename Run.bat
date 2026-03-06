@@ -111,7 +111,7 @@ IF NOT EXIST "%~dp0Build\%LazyEditionFilename%.exe" (
 if /I %CLI% == BL (Exit)
 
 Rem 生成压缩包  
-if /i "%CreateArchive%" == "True" (
+if not "%CreateArchive%" == "False" (
   "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%Version%.zip" "%~dp0Build\%LazyEditionFilename%.exe" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
   "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\Source_Code_And_Dependency_Files_%Version%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0Run.bat"
 ) else (
