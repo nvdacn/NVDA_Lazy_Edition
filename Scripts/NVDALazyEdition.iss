@@ -1,6 +1,12 @@
 ﻿#define BaseVersion GetDateTimeString('yyyy.mm.dd', '.', '')
 #define BuildNumber GetEnv("GITHUB_RUN_NUMBER")
 #define FinalVersion BaseVersion + '.' + BuildNumber
+#define LazyEditionEnv GetEnv("LazyEditionFilename")
+#if LazyEditionEnv != ""
+  #define LazyEditionOutputName LazyEditionEnv
+#else
+  #define LazyEditionOutputName "NVDA 懒人版"
+#endif
 
 [Setup]
 VersionInfoVersion={#FinalVersion}
@@ -13,7 +19,7 @@ AppUpdatesURL=https://github.com/nvdacn/NVDA_Lazy_Edition/releases
 DefaultDirName={userappdata}\NVDA
 AllowNoIcons=yes
 OutputDir=..\Build
-OutputBaseFilename=NVDA 懒人版
+OutputBaseFilename={#LazyEditionOutputName}
 Compression=none
 DisableDirPage=Yes
 DisableProgramGroupPage=yes
