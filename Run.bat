@@ -4,12 +4,10 @@ chcp 65001>Nul
 
 Rem 为避免出现编码错误，请在行末是中文字符的行尾添加两个空格  
 Rem GitHub Actions 流程  
-if "%1" == "GITHUB_ACTIONS" (
-  set CLI=Build
+if /I "%GITHUB_ACTIONS%" == "true" (
   set InnoSetup="%~dp0Tools\InnoSetup\ISCC" /Q
   set NVDA=Off
   set VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%
-  goto Build
 ) else (
   set InnoSetup="%~dp0Tools\InnoSetup\Compil32" /cc
   set NVDA=On
