@@ -7,12 +7,15 @@ Rem 设置变量
 Rem 确定运行环境  
 if /I "%GITHUB_ACTIONS%" == "true" (
   set "Tool-7Zip="7z.exe""
-  set "InnoSetup="%~dp0Tools\InnoSetup\ISCC" /Q"
+  set "InnoSetup="ISCC.exe" /Q"
   set "StartNVDA=Off"
 ) else (
   set "Tool-7Zip="%~dp0Tools\7Zip\7z.exe""
   set "InnoSetup="%~dp0Tools\InnoSetup\Compil32" /cc"
   set "StartNVDA=On"
+  IF NOT EXIST "%~dp0Tools\InnoSetup\Default.isl" (
+    MKLINK /H "%~dp0Tools\InnoSetup\Default.isl" "%~dp0Tools\InnoSetup\Languages\ZH-CN.isl"
+  )
 )
 Rem 设置懒人版主程序文件名  
 if defined NVDAVersion (

@@ -3,6 +3,8 @@
 #define FinalVersion BaseVersion + (BuildNumber != "" ? "." + BuildNumber : "")
 #define LazyEditionEnv GetEnv("LazyEditionFilename")
 #define LazyEditionOutputName (LazyEditionEnv != "" ? LazyEditionEnv : "NVDA 懒人版")
+#define EnglishMessages (GetEnv("GITHUB_ACTIONS") == "true" ? "compiler:Default.isl" : "..\Tools\InnoSetup\Languages\English.isl")
+#define ChineseSimplifiedMessages (GetEnv("GITHUB_ACTIONS") == "true" ? "..\Tools\InnoSetup\Languages\ChineseSimplified.isl" : "compiler:Default.isl")
 
 [Setup]
 VersionInfoVersion={#FinalVersion}
@@ -29,7 +31,7 @@ WizardSmallImageFile=..\userConfig\Image.bmp
 LicenseFile=..\Build\Temp\NVDA\documentation\copying.txt
 InfoBeforeFile=..\Build\说明.txt
 MinVersion=6.03
-ArchitecturesInstallIn64BitMode=x64 ia64 arm64
+ArchitecturesInstallIn64BitMode=x64 arm64
 AllowCancelDuringInstall=No
 AlwaysShowComponentsList=No
 ShowComponentSizes=No
@@ -38,8 +40,8 @@ RestartIfNeededByRun=no
 ShowLanguageDialog=No
 
 [Languages]
-Name: "english"; MessagesFile: "compiler:Languages\English.isl"
-Name: "chinesesimp"; MessagesFile: "compiler:Default.isl"
+Name: "english"; MessagesFile: {#EnglishMessages}
+Name: "chinesesimp"; MessagesFile: {#ChineseSimplifiedMessages}
 
 [Messages]
 ReadyLabel2a=单击“安装”以开始安装进程。

@@ -2,6 +2,7 @@
 #define BuildNumber GetEnv("GITHUB_RUN_NUMBER")
 #define DotCount Len(BaseVersion) - Len(StringChange(BaseVersion, ".", ""))
 #define FinalVersion BaseVersion + (DotCount == 1 ? ".0" : "") + (BuildNumber != "" ? "." + BuildNumber : "")
+#define ChineseSimplifiedMessages (GetEnv("GITHUB_ACTIONS") == "true" ? "..\Tools\InnoSetup\Languages\ChineseSimplified.isl" : "compiler:Default.isl")
 
 [Setup]
 AppName=NVDA 配置恢复工具
@@ -22,7 +23,7 @@ DisableProgramGroupPage=yes
 AppendDefaultDirName=No
 DirExistsWarning=No
 Uninstallable=No
-ArchitecturesInstallIn64BitMode=x64 ia64 arm64
+ArchitecturesInstallIn64BitMode=x64 arm64
 AllowCancelDuringInstall=No
 AlwaysShowComponentsList=No
 ShowComponentSizes=No
@@ -31,7 +32,7 @@ RestartIfNeededByRun=no
 ShowLanguageDialog=No
 
 [Languages]
-Name: "chinesesimp"; MessagesFile: "compiler:Default.isl"
+Name: "chinesesimp"; MessagesFile: {#ChineseSimplifiedMessages}
 
 [code]
 procedure RestoreNVDAConfiguration ();

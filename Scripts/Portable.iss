@@ -1,6 +1,8 @@
 ﻿#define BaseVersion GetDateTimeString('yyyy.mm.dd', '.', '')
 #define BuildNumber GetEnv("GITHUB_RUN_NUMBER")
 #define FinalVersion BaseVersion + (BuildNumber != "" ? "." + BuildNumber : "")
+#define EnglishMessages (GetEnv("GITHUB_ACTIONS") == "true" ? "compiler:Default.isl" : "..\Tools\InnoSetup\Languages\English.isl")
+#define ChineseSimplifiedMessages (GetEnv("GITHUB_ACTIONS") == "true" ? "..\Tools\InnoSetup\Languages\ChineseSimplified.isl" : "compiler:Default.isl")
 
 [Setup]
 VersionInfoVersion={#FinalVersion}
@@ -51,8 +53,8 @@ begin
 end;
 
 [Languages]
-Name: "english"; MessagesFile: "compiler:Languages\English.isl"
-Name: "chinesesimp"; MessagesFile: "compiler:Default.isl"
+Name: "english"; MessagesFile: {#EnglishMessages}
+Name: "chinesesimp"; MessagesFile: {#ChineseSimplifiedMessages}
 
 [Run]
 Filename: "{app}\nvda"; Parameters: "-ms"; Flags: nowait
