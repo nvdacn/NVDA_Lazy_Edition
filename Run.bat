@@ -8,11 +8,9 @@ Rem 确定运行环境
 if /I "%GITHUB_ACTIONS%" == "true" (
   set "InnoSetup="%~dp0Tools\InnoSetup\ISCC" /Q"
   set "StartNVDA=Off"
-  set "VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%"
 ) else (
   set "InnoSetup="%~dp0Tools\InnoSetup\Compil32" /cc"
   set "StartNVDA=On"
-  set "VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%"
 )
 Rem 设置懒人版主程序文件名  
 if defined NVDAVersion (
@@ -21,6 +19,11 @@ if defined NVDAVersion (
   set "LazyEditionFilename=NVDA 懒人版"
 )
 Rem 设置懒人版压缩包版本号  
+for /f "usebackq" %%i in (
+  `powershell.exe -Command "Get-Date -Format 'yyyy.MM.dd'"`
+) do (
+  set "VersionDate=%%i"
+)
 if /i "%BetaVersion%" == "True" (
   set "Version=%VersionDate%_beta"
 ) else (
