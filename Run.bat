@@ -22,9 +22,9 @@ if defined NVDAVersion (
 )
 Rem 设置懒人版压缩包版本号  
 if /i "%BetaVersion%" == "True" (
-  set "Version=%VersionDate%_beta"
+  set Version=%VersionDate%_beta
 ) else (
-  set "Version=%VersionDate%"
+  set Version=%VersionDate%
 )
 
 Rem 判断是否从命令行传入参数  
@@ -111,8 +111,12 @@ IF NOT EXIST "%~dp0Build\%LazyEditionFilename%.exe" (
 if /I %CLI% == BL (Exit)
 
 Rem 生成压缩包  
-"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%Version%.zip" "%~dp0Build\%LazyEditionFilename%.exe" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
-"%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\Source_Code_And_Dependency_Files_%Version%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0Run.bat"
+if /i "%CreateArchive%" == "True" (
+  "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%Version%.zip" "%~dp0Build\%LazyEditionFilename%.exe" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
+  "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\Source_Code_And_Dependency_Files_%Version%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0Run.bat"
+) else (
+  echo Non-release version, skip creating NVDA_Lazy_Edition_%Version%.zip, Source_Code_And_Dependency_Files_%Version%.zip
+)
 Exit
 
 :UPL
