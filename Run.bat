@@ -94,9 +94,13 @@ if /I %CLI% == BR (Exit)
 
 :BL
 Rem 检查必要文件是否存在  
-IF NOT EXIST "%~dp0Build\Temp\NVDAPortable.exe" (goto BLError)
-IF NOT EXIST "%~dp0Build\Temp\NVDA\documentation\copying.txt" (goto BLError)
-IF NOT EXIST "%~dp0Build\说明.txt" (goto BLError)
+for %%f in (
+  "%~dp0Build\Temp\NVDAPortable.exe"
+  "%~dp0Build\Temp\NVDA\documentation\copying.txt"
+  "%~dp0Build\说明.txt"
+) do (
+  if not exist %%f (goto BLError)
+)
 
 Rem 构建 NVDA 懒人版主程序  
 %InnoSetup% "%~dp0Scripts\NVDALazyEdition.iss"
