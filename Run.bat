@@ -65,11 +65,7 @@ for /r "%~dp0Resource" %%i in (nvda_20*.exe) do (
 
 Rem 运行 NVDA
 if /i "%StartNVDA%" == "On" (
-  if /i %PROCESSOR_IDENTIFIER:~0,3%==x86 (
-    Start /D  "%ProgramFiles%\NVDA" NVDA
-  ) else (
-    Start /D  "%ProgramFiles(x86)%\NVDA" NVDA
-  )
+  Start /D  "%ProgramData%\Microsoft\Windows\Start Menu\Programs\NVDA" NVDA
 )
 
 Rem 生成文档的 txt 版本  
