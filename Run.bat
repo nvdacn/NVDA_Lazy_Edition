@@ -11,7 +11,7 @@ if /I "%GITHUB_ACTIONS%" == "true" (
   set "VersionDate=%date:~-4%.%date:~-10,2%.%date:~-7,2%"
 ) else (
   set "InnoSetup="%~dp0Tools\InnoSetup\Compil32" /cc"
-set "StartNVDA=On"
+  set "StartNVDA=On"
   set "VersionDate=%date:~3,4%.%date:~8,2%.%date:~11,2%"
 )
 Rem 设置懒人版主程序文件名  
@@ -90,7 +90,7 @@ IF NOT EXIST "%~dp0Build\NVDA 配置恢复工具.exe" (
   echo RestoreNVDAConfiguration.iss build failed.
   exit /b 1
 )
-if /I %CLI% == BR (Exit)
+if /I "%CLI%" == "BR" (Exit)
 
 :BL
 Rem 检查必要文件是否存在  
@@ -108,10 +108,10 @@ IF NOT EXIST "%~dp0Build\%LazyEditionFilename%.exe" (
   echo NVDALazyEdition.iss build failed.
   exit /b 1
 )
-if /I %CLI% == BL (Exit)
+if /I "%CLI%" == "BL" (Exit)
 
 Rem 生成压缩包  
-if not "%CreateArchive%" == "False" (
+if /I not "%CreateArchive%" == "False" (
   "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\NVDA_Lazy_Edition_%Version%.zip" "%~dp0Build\%LazyEditionFilename%.exe" "%~dp0Build\更新日志.txt" "%~dp0Build\说明.txt" "%~dp0Build\NVDA 配置恢复工具.exe"
   "%~dp0Tools\7Zip\7z.exe" a -sccUTF-8 -y -tzip "%~dp0Build\Archive\Source_Code_And_Dependency_Files_%Version%.zip" "%~dp0documentation" "%~dp0Resource" "%~dp0Scripts" "%~dp0Tools" "%~dp0userConfig" "%~dp0Run.bat"
 ) else (

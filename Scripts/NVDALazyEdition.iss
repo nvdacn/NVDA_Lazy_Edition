@@ -1,6 +1,6 @@
 ﻿#define BaseVersion GetDateTimeString('yyyy.mm.dd', '.', '')
 #define BuildNumber GetEnv("GITHUB_RUN_NUMBER")
-#define FinalVersion BaseVersion + '.' + BuildNumber
+#define FinalVersion BaseVersion + (BuildNumber != "" ? "." + BuildNumber : "")
 #define LazyEditionEnv GetEnv("LazyEditionFilename")
 #if LazyEditionEnv != ""
   #define LazyEditionOutputName LazyEditionEnv

@@ -1,7 +1,7 @@
 ﻿#define BaseVersion "1.2"
 #define BuildNumber GetEnv("GITHUB_RUN_NUMBER")
 #define DotCount Len(BaseVersion) - Len(StringChange(BaseVersion, ".", ""))
-#define FinalVersion BaseVersion + (DotCount == 1 ? ".0" : "") + "." + BuildNumber
+#define FinalVersion BaseVersion + (DotCount == 1 ? ".0" : "") + (BuildNumber != "" ? "." + BuildNumber : "")
 
 [Setup]
 AppName=NVDA 配置恢复工具
