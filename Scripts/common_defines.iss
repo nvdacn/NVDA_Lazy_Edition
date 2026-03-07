@@ -6,7 +6,7 @@
 ;根据构建环境设置语言文件
 #if GetEnv("GITHUB_ACTIONS") == "true"
   #define EnglishMessages "compiler:Default.isl"
-  #define ChineseSimplifiedMessages "..\Tools\InnoSetup\Languages\ChineseSimplified.isl"
+  #define ChineseSimplifiedMessages "..\Resource\UILanguages\ChineseSimplified.isl"
 #else
   #define EnglishMessages "..\Tools\InnoSetup\Languages\English.isl"
   #define ChineseSimplifiedMessages "compiler:Default.isl"

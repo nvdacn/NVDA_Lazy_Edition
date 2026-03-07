@@ -152,7 +152,7 @@ jobs:
         uses: carlosperate/download-file-action@v2
         with:
           file-url: 'https://raw.githubusercontent.com/kira-96/Inno-Setup-Chinese-Simplified-Translation/main/ChineseSimplified.isl'
-          location: '${{ github.workspace }}/Tools/InnoSetup/Languages'
+          location: '${{ github.workspace }}/Resource/UILanguages'
       - name: Run the build script
         run: |
           tzutil /s "China Standard Time"
