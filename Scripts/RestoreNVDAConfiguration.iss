@@ -62,4 +62,5 @@ begin
 end;
 
 [Files]
-Source: "..\Tools\7Zip\*"; DestDir: "{app}"; Flags: deleteafterinstall ignoreversion recursesubdirs createallsubdirs
+Source: {#SevenZipDll}; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
+Source: {#SevenZipExe}; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
