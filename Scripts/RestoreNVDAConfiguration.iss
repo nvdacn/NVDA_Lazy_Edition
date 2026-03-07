@@ -1,8 +1,7 @@
-﻿#define BaseVersion "1.2"
-#define BuildNumber GetEnv("GITHUB_RUN_NUMBER")
+﻿#include "common_defines.iss"
+#define BaseVersion "1.2"
 #define DotCount Len(BaseVersion) - Len(StringChange(BaseVersion, ".", ""))
 #define FinalVersion BaseVersion + (DotCount == 1 ? ".0" : "") + (BuildNumber != "" ? "." + BuildNumber : "")
-#define ChineseSimplifiedMessages (GetEnv("GITHUB_ACTIONS") == "true" ? "..\Tools\InnoSetup\Languages\ChineseSimplified.isl" : "compiler:Default.isl")
 
 [Setup]
 AppName=NVDA 配置恢复工具

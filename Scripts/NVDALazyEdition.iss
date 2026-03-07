@@ -1,10 +1,6 @@
-﻿#define BaseVersion GetDateTimeString('yyyy.mm.dd', '.', '')
-#define BuildNumber GetEnv("GITHUB_RUN_NUMBER")
-#define FinalVersion BaseVersion + (BuildNumber != "" ? "." + BuildNumber : "")
+﻿#include "common_defines.iss"
 #define LazyEditionEnv GetEnv("LazyEditionFilename")
 #define LazyEditionOutputName (LazyEditionEnv != "" ? LazyEditionEnv : "NVDA 懒人版")
-#define EnglishMessages (GetEnv("GITHUB_ACTIONS") == "true" ? "compiler:Default.isl" : "..\Tools\InnoSetup\Languages\English.isl")
-#define ChineseSimplifiedMessages (GetEnv("GITHUB_ACTIONS") == "true" ? "..\Tools\InnoSetup\Languages\ChineseSimplified.isl" : "compiler:Default.isl")
 
 [Setup]
 VersionInfoVersion={#FinalVersion}
