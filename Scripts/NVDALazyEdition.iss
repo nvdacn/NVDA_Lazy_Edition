@@ -44,7 +44,7 @@ Name: "english"; MessagesFile: {#EnglishMessages}
 Name: "chinesesimp"; MessagesFile: {#ChineseSimplifiedMessages}
 
 [Messages]
-ReadyLabel2a=单击“安装”以开始安装进程。
+ReadyLabel2a=点击“安装”以开始安装进程。
 FinishedHeadingLabel=[name] 安装向导完成，请手动启动 NVDA 已开始使用
 
 [Types]
@@ -123,12 +123,12 @@ function CHSUI: Boolean;
 begin
   If not FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini')) Then
   begin
-    ResultCode := SuppressibleMsgBox('欢迎使用 NVDA 懒人版。' #13#13 '本程序可自动为您安装 NVDA 主程序及部分常用插件。' #13#13 '程序检测到您未安装 NVDA 或尚未对其进行配置，您可选择快速安装模式以自动安装和配置 NVDA。' #13#13 '您要执行快速安装吗？' #13#13 '单击“是”执行快速安装，单击“否”执行高级安装，单击“取消”退出本程序。', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
+    ResultCode := SuppressibleMsgBox('欢迎使用 NVDA 懒人版。' #13#13 '本程序可自动为您安装 NVDA 主程序及部分常用插件。' #13#13 '程序检测到您未安装 NVDA 或尚未对其进行配置，您可选择快速安装模式以自动安装和配置 NVDA。' #13#13 '您要执行快速安装吗？' #13#13 '点击“是”执行快速安装，点击“否”执行高级安装，点击“取消”退出本程序。', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
   end else begin
-    ResultCode := SuppressibleMsgBox('欢迎使用 NVDA 懒人版。' #13#13 '本程序可自动为您安装 NVDA 主程序及部分常用插件。' #13#13 '程序检测到您的 NVDA 配置文件夹中存在 NVDA配置文件，保留该配置继续安装，某些文件可能不会被替换。' #13#13 '您要清除该配置吗？' #13#13 '单击“是”清空 NVDA 配置文件夹，单击“否”保留配置并执行高级安装，单击“取消”退出本程序。', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
+    ResultCode := SuppressibleMsgBox('欢迎使用 NVDA 懒人版。' #13#13 '本程序可自动为您安装 NVDA 主程序及部分常用插件。' #13#13 '程序检测到您的 NVDA 配置文件夹中存在 NVDA配置文件，保留该配置继续安装，某些文件可能不会被替换。' #13#13 '您要清除该配置吗？' #13#13 '点击“是”清空 NVDA 配置文件夹，点击“否”保留配置并执行高级安装，点击“取消”退出本程序。', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
     If ResultCode=IDYES Then
     begin
-      ResultCode := SuppressibleMsgBox('您要备份现有的 NVDA 配置吗？' #13#13 '备份的文件将被存储在 '+ ExpandConstant('{userdocs}\NVDABackup')+ ' 文件夹中。' #13#13 '单击“是”备份并清空现有配置文件夹，单击“否”直接清空现有配置文件夹，单击“取消”保留配置并执行高级安装。', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDYES)
+      ResultCode := SuppressibleMsgBox('您要备份现有的 NVDA 配置吗？' #13#13 '备份的文件将被存储在 '+ ExpandConstant('{userdocs}\NVDABackup')+ ' 文件夹中。' #13#13 '点击“是”备份并清空现有配置文件夹，点击“否”直接清空现有配置文件夹，点击“取消”保留配置并执行高级安装。', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDYES)
       If ResultCode=IDCANCEL Then
       begin
         ResultCode := IDNO;
@@ -138,7 +138,7 @@ begin
 BackupNVDAProfile();
         end;
         DelTree(ExpandConstant('{userappdata}\NVDA'), True, True, True);
-        ResultCode := SuppressibleMsgBox('程序已清空您现有的 NVDA 配置文件夹，现在您可选择快速安装模式以自动安装和配置 NVDA。' #13#13 '您要执行快速安装吗？' #13#13 '单击“是”执行快速安装，单击“否”执行高级安装，单击“取消”退出本程序。', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
+        ResultCode := SuppressibleMsgBox('程序已清空您现有的 NVDA 配置文件夹，现在您可选择快速安装模式以自动安装和配置 NVDA。' #13#13 '您要执行快速安装吗？' #13#13 '点击“是”执行快速安装，点击“否”执行高级安装，点击“取消”退出本程序。', mbConfirmation, MB_YESNOCANCEL or MB_DEFBUTTON1, IDNO)
       end;
     end;
   end;
