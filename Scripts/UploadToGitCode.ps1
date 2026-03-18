@@ -79,7 +79,6 @@ try {
 
     # Get upload URL
     Write-Host "Getting GitCode upload URL..."
-    
     # URL encode file name using Uri.EscapeDataString
     $encodedFileName = [Uri]::EscapeDataString($fileName)
     $apiUrl = "https://api.gitcode.com/api/v5/repos/wmhn/NVDA_Lazy_Edition/releases/$tagName/upload_url?file_name=$encodedFileName"
@@ -90,12 +89,10 @@ try {
     
     try {
         $uploadInfo = Invoke-RestMethod -Uri $apiUrl -Method Get -Headers $headers
-        
         # Upload file
         if ($uploadInfo -and $uploadInfo.url) {
             Write-Host "Uploading file: $fileName..."
             Write-Host "Upload URL: $($uploadInfo.url)"
-            
             # Prepare upload request headers
             $uploadHeaders = @{}
             if ($uploadInfo.headers) {
@@ -108,8 +105,7 @@ try {
             
             # Execute PUT request to upload file
             $response = Invoke-WebRequest -Uri $uploadInfo.url -Method Put -InFile $outputPath -Headers $uploadHeaders -UseBasicParsing
-            
-            if ($response.StatusCode -in 200..299) {
+            if ($response.StatusCode -eq 200) {
                 Write-Host "Upload successful!"
                 Write-Host "Response: $($response.Content)"
             }
@@ -138,13 +134,6 @@ try {
 catch {
     Write-Host "Error occurred: $_"
     Write-Host "Error details: $($_.Exception.Message)"
-    
-    if ($_.Exception -match "404") {
-        Write-Host "The file might not exist on GitHub, or the tag is incorrect."
-    }
-    elseif ($_.Exception -match "401" -or $_.Exception -match "403") {
-        Write-Host "Authentication error. Please check your GitCode token."
-    }
     
     Write-Host "Script execution failed."
     exit 1
