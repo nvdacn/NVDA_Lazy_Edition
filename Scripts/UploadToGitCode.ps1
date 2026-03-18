@@ -52,28 +52,28 @@ try {
 
     # Get GitCode Token
     $tokenFile = Join-Path $PSScriptRoot "../.GitCodeToken"
-    $token = $env:GITCODE_TOKEN
-    if ($token) {
-    Write-Host "Token loaded from environment variable..."
-    } else {
+    # While loop to ensure token is obtained
+    while (-not $token) {
+        $token = $env:GITCODE_TOKEN
+        $tokenSource = "environment variable"
+        continue
+        # 尝试从文件读取
         if (Test-Path $tokenFile) {
             $token = Get-Content $tokenFile -Raw -Encoding UTF8 | ForEach-Object { $_.Trim() }
-            if ($token) {
-                Write-Host "Token loaded from file."
-            }
+            $tokenSource = "file"
+            continue
         }
-    }
-    
-    if (-not $token) {
         Write-Host "Please enter your GitCode Token:"
         $token = Read-Host -Prompt "GitCode Token"
-        if (-not $token) {
-            throw "Token cannot be empty"
-        }
+        $tokenSource = "user input"
         Write-Host "Saving token to file..."
         $token | Out-File $tokenFile -Encoding UTF8 -NoNewline
         Write-Host "Token saved to: $tokenFile"
+        continue
     }
+    
+    # 输出token来源
+    Write-Host "Token loaded from $tokenSource."
 
     # Get upload URL
     Write-Host "Getting GitCode upload URL..."
