@@ -18,7 +18,6 @@ try {
         default { $tagName -replace '[^\w\.-]', '_' }
     }
     $fileName = "${baseName}_${safeTag}.zip"
-    
     Write-Host "File name: $fileName"
 
     # Create target directory if it doesn't exist
@@ -30,73 +29,47 @@ try {
 
     # Download file if it doesn't exist
     $outputPath = Join-Path $archiveDir $fileName
-    
     if (Test-Path $outputPath) {
         $fileSize = (Get-Item $outputPath).Length / 1MB
-        $message = "File already exists, skipping download.`nFile location: $outputPath (Size: {0:N2} MB)" -f $fileSize
-        Write-Host $message
-    }
-    else {
+        Write-Host ("File already exists, skipping download.`nFile location: $outputPath (Size: {0:N2} MB)" -f $fileSize)
+    } else {
         $downloadUrl = "https://github.com/nvdacn/NVDA_Lazy_Edition/releases/download/$tagName/$fileName"
-        
         Write-Host "Downloading file from GitHub..."
         Write-Host "Download URL: $downloadUrl"
         
-        # Use Invoke-WebRequest to download file
         try {
             Invoke-WebRequest -Uri $downloadUrl -OutFile $outputPath -UseBasicParsing
-            
             if (Test-Path $outputPath) {
                 $fileSize = (Get-Item $outputPath).Length / 1MB
-                $message = "Download completed: $outputPath (Size: {0:N2} MB)" -f $fileSize
-                Write-Host $message
-            }
-            else {
+                Write-Host ("Download completed: $outputPath (Size: {0:N2} MB)" -f $fileSize)
+            } else {
                 throw "File download failed"
             }
-        }
-        catch {
-            Write-Host "Download failed: $_"
-            throw "Failed to download file from GitHub. Please check the tag name and file availability."
+        } catch {
+            throw "Download failed: $_"
         }
     }
 
     # Get GitCode Token
     $tokenFile = Join-Path $PSScriptRoot "../.GitCodeToken"
-    
-    # Try to read from environment variable first
-    Write-Host "Reading token from environment variable..."
     $token = $env:GITCODE_TOKEN
-
-    if (-not [string]::IsNullOrWhiteSpace($token)) {
-        Write-Host "Token loaded from environment variable."
-    }
-
-    # If environment variable is empty, try to read from file
-    if ([string]::IsNullOrWhiteSpace($token)) {
+    if ($token) {
+    Write-Host "Token loaded from environment variable..."
+    } else {
         if (Test-Path $tokenFile) {
-            Write-Host "Reading token from file..."
             $token = Get-Content $tokenFile -Raw -Encoding UTF8 | ForEach-Object { $_.Trim() }
-            
-            if (-not [string]::IsNullOrWhiteSpace($token)) {
+            if ($token) {
                 Write-Host "Token loaded from file."
             }
         }
     }
     
-    # If environment variable is empty, prompt user for input
-    if ([string]::IsNullOrWhiteSpace($token)) {
+    if (-not $token) {
         Write-Host "Please enter your GitCode Token:"
-        
-        # Read token
         $token = Read-Host -Prompt "GitCode Token"
-        
-        # Ensure token is not empty
-        if ([string]::IsNullOrWhiteSpace($token)) {
+        if (-not $token) {
             throw "Token cannot be empty"
         }
-        
-        # Save to file
         Write-Host "Saving token to file..."
         $token | Out-File $tokenFile -Encoding UTF8 -NoNewline
         Write-Host "Token saved to: $tokenFile"
