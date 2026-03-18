@@ -56,24 +56,26 @@ try {
     while (-not $token) {
         $token = $env:GITCODE_TOKEN
         $tokenSource = "environment variable"
-        continue
-        # 尝试从文件读取
+        if ($token) {continue}
+        # Try to read from file
         if (Test-Path $tokenFile) {
             $token = Get-Content $tokenFile -Raw -Encoding UTF8 | ForEach-Object { $_.Trim() }
             $tokenSource = "file"
-            continue
+            if ($token) {continue}
         }
         Write-Host "Please enter your GitCode Token:"
         $token = Read-Host -Prompt "GitCode Token"
         $tokenSource = "user input"
+    }
+    
+    # Output token source
+    Write-Host "Token loaded from $tokenSource."
+    # Save token to file only when it comes from user input
+    if ($tokenSource -eq "user input") {
         Write-Host "Saving token to file..."
         $token | Out-File $tokenFile -Encoding UTF8 -NoNewline
         Write-Host "Token saved to: $tokenFile"
-        continue
     }
-    
-    # 输出token来源
-    Write-Host "Token loaded from $tokenSource."
 
     # Get upload URL
     Write-Host "Getting GitCode upload URL..."
