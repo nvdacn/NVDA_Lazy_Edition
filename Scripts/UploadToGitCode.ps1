@@ -86,24 +86,18 @@ try {
         "PRIVATE-TOKEN" = $token
         "Accept" = "application/json"
     }
-    
+
     try {
         $uploadInfo = Invoke-RestMethod -Uri $apiUrl -Method Get -Headers $headers
-        # Upload file
         if ($uploadInfo -and $uploadInfo.url) {
-            Write-Host "Uploading file: $fileName..."
             Write-Host "Upload URL: $($uploadInfo.url)"
             # Prepare upload request headers
-            $uploadHeaders = @{}
-            if ($uploadInfo.headers) {
-                # Add returned headers to request
-                $uploadInfo.headers.PSObject.Properties | ForEach-Object {
-                    $uploadHeaders[$_.Name] = $_.Value
-                }
-                Write-Host "Using custom headers for upload."
+            $uploadInfo.headers.PSObject.Properties | ForEach-Object {
+                $uploadHeaders[$_.Name] = $_.Value
             }
-            
+
             # Execute PUT request to upload file
+            Write-Host "Uploading file: $fileName..."
             $response = Invoke-WebRequest -Uri $uploadInfo.url -Method Put -InFile $outputPath -Headers $uploadHeaders -UseBasicParsing
             if ($response.StatusCode -eq 200) {
                 Write-Host "Upload successful!"
@@ -134,7 +128,6 @@ try {
 catch {
     Write-Host "Error occurred: $_"
     Write-Host "Error details: $($_.Exception.Message)"
-    
     Write-Host "Script execution failed."
     exit 1
 }
