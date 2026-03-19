@@ -6,6 +6,7 @@ on:
       - "*"
     branches:
       - master
+      - JSON
   pull_request:
     branches:
       - "*"
@@ -83,7 +84,7 @@ jobs:
           - addonId: xyOCR
     steps:
       - name: Download ${{ matrix.addon.addonId }}
-        uses: nvdacn/NVDA_Lazy_Edition/.github/actions/DownloadResource@master
+        uses: wmhn1872265132/NVDA_Lazy_Edition-Test/.github/actions/DownloadResource@de7978dc96470ad0cad3319e56376cd947bdfff7
         with:
           from-addonStore: true
           addon-ID: ${{ matrix.addon.addonId }}
