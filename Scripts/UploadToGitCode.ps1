@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 
 # Get latest tag name
 Write-Host "Getting latest tag name..."
-git pull --tag
+git fetch --quiet --tags --prune-tags
 $tagName = git describe --tags --abbrev=0
 if (-not $tagName) {
     Write-Host "No tags found, please ensure tags are created"
