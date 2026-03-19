@@ -3,6 +3,7 @@ $ErrorActionPreference = "Stop"
 
 # Get latest tag name
 Write-Host "Getting latest tag name..."
+git pull --tag
 $tagName = git describe --tags --abbrev=0
 if (-not $tagName) {
     Write-Host "No tags found, please ensure tags are created"
@@ -36,7 +37,6 @@ if (Test-Path $outputPath) {
     $downloadUrl = "https://github.com/nvdacn/NVDA_Lazy_Edition/releases/download/$tagName/$fileName"
     Write-Host "Downloading file from GitHub..."
     Write-Host "Download URL: $downloadUrl"
-    
     Invoke-WebRequest -Uri $downloadUrl -OutFile $outputPath -UseBasicParsing
     if (-not (Test-Path $outputPath)) {
         Write-Host "File download failed"
@@ -55,7 +55,6 @@ if ($env:GITCODE_TOKEN) {
     $token = Get-Content $tokenFile -Raw -Encoding UTF8 | ForEach-Object { $_.Trim() }
     $tokenSource = "file"
 }
-
 while (-not $token) {
     Write-Host "Please enter your GitCode Token:"
     $token = Read-Host -Prompt "GitCode Token"
@@ -64,13 +63,6 @@ while (-not $token) {
 
 # Output token source
 Write-Host "Token loaded from $tokenSource."
-
-# Save token to file only when it comes from user input
-if ($tokenSource -eq "user input") {
-    Write-Host "Saving token to file..."
-    $token | Out-File $tokenFile -Encoding UTF8 -NoNewline
-    Write-Host "Token saved to: $tokenFile"
-}
 
 # Get upload URL
 Write-Host "Getting GitCode upload URL..."
@@ -81,14 +73,20 @@ $headers = @{
     "PRIVATE-TOKEN" = $token
     "Accept" = "application/json"
 }
-
 $uploadInfo = Invoke-RestMethod -Uri $apiUrl -Method Get -Headers $headers
 if (-not ($uploadInfo -and $uploadInfo.url)) {
     Write-Host "Failed to get upload URL from API response"
     exit 1
 }
-
 Write-Host "Upload URL: $($uploadInfo.url)"
+
+# Save token to file only when it comes from user input
+if ($tokenSource -eq "user input") {
+    Write-Host "Saving token to file..."
+    $token | Out-File $tokenFile -Encoding UTF8 -NoNewline
+    Write-Host "Token saved to: $tokenFile"
+}
+
 # Prepare upload request headers
 $uploadHeaders = @{}
 $uploadInfo.headers.PSObject.Properties | ForEach-Object {
