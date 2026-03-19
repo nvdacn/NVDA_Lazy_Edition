@@ -48,18 +48,15 @@ if (Test-Path $outputPath) {
 
 # Get GitCode Token
 $tokenFile = Join-Path $PSScriptRoot "../.GitCodeToken"
-$token = $null
-# While loop to ensure token is obtained
-while (-not $token) {
+if ($env:GITCODE_TOKEN) {
     $token = $env:GITCODE_TOKEN
     $tokenSource = "environment variable"
-    if ($token) {continue}
-    # Try to read from file
-    if (Test-Path $tokenFile) {
-        $token = Get-Content $tokenFile -Raw -Encoding UTF8 | ForEach-Object { $_.Trim() }
-        $tokenSource = "file"
-        if ($token) {continue}
-    }
+} elseif (Test-Path $tokenFile) {
+    $token = Get-Content $tokenFile -Raw -Encoding UTF8 | ForEach-Object { $_.Trim() }
+    $tokenSource = "file"
+}
+
+while (-not $token) {
     Write-Host "Please enter your GitCode Token:"
     $token = Read-Host -Prompt "GitCode Token"
     $tokenSource = "user input"
@@ -67,6 +64,7 @@ while (-not $token) {
 
 # Output token source
 Write-Host "Token loaded from $tokenSource."
+
 # Save token to file only when it comes from user input
 if ($tokenSource -eq "user input") {
     Write-Host "Saving token to file..."
