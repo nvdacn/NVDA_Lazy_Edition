@@ -79,7 +79,7 @@ COPY /B /V /Y "%~dp0documentation\ReadMe.md" "%~dp0Build\说明.txt"
 
 Rem 删除aisound.dll
 for /r "%~dp0Resource\Addons" %%i in (AISound*.nvda-addon) do (
-  %Tool-7Zip% d -sccUTF-8 -y "%%i" "synthDrivers\aisound.dll"
+  %Tool-7Zip% d -sccUTF-8 -y "%%i" "synthDrivers\aisound.dll" -bsp0 -bso0
 )
 
 Rem 构建 NVDA 便携版  
