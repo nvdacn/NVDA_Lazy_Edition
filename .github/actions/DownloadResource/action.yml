@@ -23,21 +23,22 @@ runs:
   using: "composite"
 
   steps:
-    - name: Checkout addon-datastore repository
+    - name: Checkout addonstore-views repository
       if: ${{ inputs.from-addonStore == 'true' }}
       uses: actions/checkout@v6
       with:
-        repository: nvaccess/addon-datastore.git
-        ref: views
+        repository: nvaccess/addonstore-views
+        ref: main
         sparse-checkout: |
+          addons/${{ inputs.addon-ID }}
           views/zh_CN/latest/${{ inputs.addon-ID }}
-        path: ${{ github.workspace }}/addon-datastore
+        path: ${{ github.workspace }}/addonstore-views
     - name: Set parameters
       id: parameters
       shell: bash
       run: |
         if [ "${{ inputs.from-addonStore }}" = "true" ]; then
-          mapfile -t values < <(jq -r '.addonVersionName, .URL, .sha256' "${{ github.workspace }}/addon-datastore/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json")
+          mapfile -t values < <(jq -r '.addonVersionName, .URL, .sha256' "${{ github.workspace }}/addonstore-views/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json")
           echo "file-name=${{ inputs.addon-ID }}-${values[0]}.nvda-addon" >> $GITHUB_OUTPUT
           echo "file-url=${values[1]}" >> $GITHUB_OUTPUT
           echo "file-sha256=${values[2]}" >> $GITHUB_OUTPUT
@@ -64,7 +65,7 @@ runs:
     - name: Copy ${{ steps.parameters.outputs.file-name }} JSON data
       if: ${{ inputs.from-addonStore == 'true' && steps.cache-file.outputs.cache-hit != 'true' }}
       shell: bash
-      run: cp ${{ github.workspace }}/addon-datastore/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json ${{ github.workspace }}/Resource/${{ inputs.addon-ID }}.json
+      run: cp --dereference ${{ github.workspace }}/addonstore-views/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json ${{ github.workspace }}/Resource/${{ inputs.addon-ID }}.json
     - name: Upload ${{ steps.parameters.outputs.file-name }}
       uses: actions/upload-artifact@v7
       with:
