@@ -74,6 +74,7 @@ Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninst
 Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "资源监控器"
 Name: "Addons\unmute"; Types: Full custom; Flags: disablenouninstallwarning; Description: "取消系统静音"
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
+Name: "Addons\winFormsNet48Fixes"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "WinForms .NET 4.8 修复"
 Name: "Addons\withSounds"; Types: Full custom; Flags: disablenouninstallwarning; Description: "withSounds（用音效替换链接角色、删除已访问提示）"
 Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
 
@@ -249,6 +250,7 @@ Type: filesandordirs; Name: "{app}\Addons\QQEnhancement"; Tasks: "not DeleteProf
 Type: filesandordirs; Name: "{app}\Addons\resourceMonitor"; Tasks: "not DeleteProfile"; Components: "Addons\resourceMonitor"
 Type: filesandordirs; Name: "{app}\Addons\unmute"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
 Type: filesandordirs; Name: "{app}\Addons\WeChatEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
+Type: filesandordirs; Name: "{app}\Addons\winFormsNet48Fixes"; Tasks: "not DeleteProfile"; Components: "Addons\winFormsNet48Fixes"
 Type: filesandordirs; Name: "{app}\Addons\withSounds"; Tasks: "not DeleteProfile"; Components: "Addons\withSounds"
 Type: filesandordirs; Name: "{app}\Addons\xyOCR"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
 Type: files; Name: "{app}\Addons\AiSound5.json"; Tasks: "not DeleteProfile"; Components: "Voices\AiSound5"
@@ -269,6 +271,7 @@ Type: files; Name: "{app}\Addons\QQEnhancement.json"; Tasks: "not DeleteProfile"
 Type: files; Name: "{app}\Addons\resourceMonitor.json"; Tasks: "not DeleteProfile"; Components: "Addons\resourceMonitor"
 Type: files; Name: "{app}\Addons\unmute.json"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
 Type: files; Name: "{app}\Addons\WeChatEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
+Type: files; Name: "{app}\Addons\winFormsNet48Fixes.json"; Tasks: "not DeleteProfile"; Components: "Addons\winFormsNet48Fixes"
 Type: files; Name: "{app}\Addons\withSounds.json"; Tasks: "not DeleteProfile"; Components: "Addons\withSounds"
 Type: files; Name: "{app}\Addons\xyOCR.json"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
 
@@ -301,6 +304,7 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\QQEnhancement*.nvda-addon"" -aoa -
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\resourceMonitor*.nvda-addon"" -aoa -o""{app}\Addons\resourceMonitor"""; Components: "Addons\resourceMonitor"; AfterInstall: JSONFile('resourceMonitor')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\unmute*.nvda-addon"" -aoa -o""{app}\Addons\unmute"""; Components: "Addons\unmute"; AfterInstall: JSONFile('unmute')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\WeChatEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\WeChatEnhancement"""; Components: "Addons\WeChatEnhancement"; AfterInstall: JSONFile('WeChatEnhancement')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\winFormsNet48Fixes*.nvda-addon"" -aoa -o""{app}\Addons\winFormsNet48Fixes"""; Components: "Addons\winFormsNet48Fixes"; AfterInstall: JSONFile('winFormsNet48Fixes')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\withSounds*.nvda-addon"" -aoa -o""{app}\Addons\withSounds"""; Components: "Addons\withSounds"; AfterInstall: JSONFile('withSounds')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*.nvda-addon"" -aoa -o""{app}\Addons\xyOCR"""; Components: "Addons\xyOCR"; AfterInstall: JSONFile('xyOCR')
 
@@ -334,6 +338,7 @@ Source: "..\Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: del
 Source: "..\Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
 Source: "..\Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
 Source: "..\Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
+Source: "..\Resource\Addons\winFormsNet48Fixes*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\winFormsNet48Fixes"
 Source: "..\Resource\Addons\withSounds*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\withSounds"
 Source: "..\Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
 

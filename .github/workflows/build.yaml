@@ -78,6 +78,7 @@ jobs:
           - addonId: resourceMonitor
           - addonId: unmute
           - addonId: WeChatEnhancement
+          - addonId: winFormsNet48Fixes
           - addonId: withSounds
           - addonId: WorldVoice
           - addonId: xyOCR
@@ -165,8 +166,14 @@ jobs:
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         uses: actions/upload-artifact@v7
         with:
-          name: NVDA_Lazy_Edition
-          path: ${{ github.workspace }}/Build/NVDA*.exe
+          path: ${{ github.workspace }}/Build/NVDA_${{ env.NVDAVersion }}*.exe
+          archive: false
+      - name: Upload RestoreNVDAConfigurationTool
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/upload-artifact@v7
+        with:
+          path: '${{ github.workspace }}/Build/NVDA 配置恢复工具.exe'
+          archive: false
       - name: Upload Resource
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         uses: actions/upload-artifact@v7
@@ -196,7 +203,7 @@ jobs:
           name: Archive
           path: NVDA_Lazy_Edition
       - name: Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           body: 详细更新日志请[点此查看](documentation/changes.md)。
           files: NVDA_Lazy_Edition/*
