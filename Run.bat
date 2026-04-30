@@ -127,16 +127,16 @@ Exit
 :UPL
 powershell -ExecutionPolicy Bypass -NoProfile -File "%~dp0Scripts\UploadToGitCode.ps1"
 if %errorlevel% neq 0 (
-  powershell -command "(New-Object -ComObject wscript.shell).Popup('执行失败，有关详细信息，请查看命令窗口。',5,'错误')"
+  powershell -command "(New-Object -ComObject wscript.shell).Popup('执行失败，有关详细信息，请查看命令窗口。',5,'错误',16)" >nul
   echo 请按任意键退出...
   Pause>Nul
 )
 Exit
 
 :BLError
-powershell -command "(New-Object -ComObject wscript.shell).Popup('请使用 BR 命令重新运行该脚本后再使用此命令。',5,'缺失必要文件')"
+powershell -command "(New-Object -ComObject wscript.shell).Popup('请使用 BR 命令重新运行该脚本后再使用此命令。',5,'缺失必要文件',16)" >nul
 Exit
 
 :BRError
-powershell -command "(New-Object -ComObject wscript.shell).Popup('请获取 必须 Resource 文件后重试。',5,'缺失必要文件')"
+powershell -command "(New-Object -ComObject wscript.shell).Popup('请获取 必须 Resource 文件后重试。',5,'缺失必要文件',16)" >nul
 Exit
