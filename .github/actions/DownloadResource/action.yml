@@ -19,7 +19,6 @@ inputs:
   addon-channel:
     description: Add-on channel, used to get data from Add-on Store.
     required: false
-    default: 'stable'
   from-addonStore:
     description: Whether to get data from the Add-on Store repository.
     default: false
