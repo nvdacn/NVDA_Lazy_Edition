@@ -21,6 +21,11 @@ certutil -hashfile
 # 商店插件（download-addons-from-addonStore:）：
           - addonId: 
 插件ID
+            channel: 
+stable
+beta
+dev
+# 可根据插件的实际情况在上面的值中选择其一，或不填写此参数使用默认值 stable
 
 
 # NVDALazyEdition.iss
