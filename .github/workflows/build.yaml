@@ -77,7 +77,6 @@ jobs:
           - addonId: QQEnhancement
           - addonId: resourceMonitor
           - addonId: unmute
-            channel: beta
           - addonId: WeChatEnhancement
           - addonId: winFormsNet48Fixes
           - addonId: withSounds
