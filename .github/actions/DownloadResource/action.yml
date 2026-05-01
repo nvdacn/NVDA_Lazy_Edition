@@ -16,6 +16,9 @@ inputs:
   addon-ID:
     description: Add-on ID, used to get data from Add-on Store.
     required: false
+  addon-channel:
+    description: Add-on channel, used to get data from Add-on Store.
+    required: false
   from-addonStore:
     description: Whether to get data from the Add-on Store repository.
     default: false
@@ -38,7 +41,7 @@ runs:
       shell: bash
       run: |
         if [ "${{ inputs.from-addonStore }}" = "true" ]; then
-          mapfile -t values < <(jq -r '.addonVersionName, .URL, .sha256' "${{ github.workspace }}/addonstore-views/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json")
+          mapfile -t values < <(jq -r '.addonVersionName, .URL, .sha256' "${{ github.workspace }}/addonstore-views/views/zh_CN/latest/${{ inputs.addon-ID }}/${{ inputs.addon-channel }}.json")
           echo "file-name=${{ inputs.addon-ID }}-${values[0]}.nvda-addon" >> $GITHUB_OUTPUT
           echo "file-url=${values[1]}" >> $GITHUB_OUTPUT
           echo "file-sha256=${values[2]}" >> $GITHUB_OUTPUT
@@ -65,7 +68,7 @@ runs:
     - name: Copy ${{ steps.parameters.outputs.file-name }} JSON data
       if: ${{ inputs.from-addonStore == 'true' && steps.cache-file.outputs.cache-hit != 'true' }}
       shell: bash
-      run: cp --dereference ${{ github.workspace }}/addonstore-views/views/zh_CN/latest/${{ inputs.addon-ID }}/stable.json ${{ github.workspace }}/Resource/${{ inputs.addon-ID }}.json
+      run: cp --dereference ${{ github.workspace }}/addonstore-views/views/zh_CN/latest/${{ inputs.addon-ID }}/${{ inputs.addon-channel }}.json ${{ github.workspace }}/Resource/${{ inputs.addon-ID }}.json
     - name: Upload ${{ steps.parameters.outputs.file-name }}
       uses: actions/upload-artifact@v7
       with:
