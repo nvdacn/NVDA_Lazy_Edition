@@ -48,8 +48,10 @@ jobs:
             sha256: 0f9e8a998f0bf62513961fe0cb68bc50e06440a6d8e45e8ce6e073e332104255
             prefix: speech-
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
       - name: Download ${{ matrix.file.Name }}
-        uses: nvdacn/NVDA_Lazy_Edition/.github/actions/DownloadResource@master
+        uses: ./.github/actions/DownloadResource
         with:
           file-name: ${{ matrix.file.Name }}
           file-url: ${{ matrix.file.URL }}
@@ -83,8 +85,10 @@ jobs:
           - addonId: WorldVoice
           - addonId: xyOCR
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
       - name: Download ${{ matrix.addon.addonId }}
-        uses: nvdacn/NVDA_Lazy_Edition/.github/actions/DownloadResource@master
+        uses: ./.github/actions/DownloadResource
         with:
           from-addonStore: true
           addon-ID: ${{ matrix.addon.addonId }}
@@ -99,6 +103,8 @@ jobs:
       NVDAFilename: nvda_${{ steps.nvda.outputs.replaced }}.exe
       NVDAVersion: ${{ steps.nvda.outputs.replaced }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
       - name: Get tag
         id: nvda-tag
         uses: pozetroninc/github-action-get-latest-release@master
@@ -113,7 +119,7 @@ jobs:
           string: ${{ steps.nvda-tag.outputs.release }}
           replace-with: '$1'
       - name: Download nvda_${{ steps.nvda.outputs.replaced }}.exe
-        uses: nvdacn/NVDA_Lazy_Edition/.github/actions/DownloadResource@master
+        uses: ./.github/actions/DownloadResource
         with:
           file-name: nvda_${{ steps.nvda.outputs.replaced }}.exe
           file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.replaced }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
