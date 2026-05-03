@@ -74,6 +74,7 @@ jobs:
           - addonId: ime_expressive
           - addonId: inputLock
           - addonId: instantTranslate
+          - addonId: leanCalendar
           - addonId: numberProcessing
           - addonId: objWatcher
           - addonId: QQEnhancement
