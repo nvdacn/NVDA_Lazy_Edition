@@ -6,6 +6,7 @@ on:
       - "*"
     branches:
       - master
+      - "try-**"
   pull_request:
     branches:
       - "*"
