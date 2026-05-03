@@ -25,6 +25,12 @@ jobs:
           - Name: DragAndDrop-2026.1.0.nvda-addon
             URL: https://github.com/javidominguez/DragAndDrop/releases/download/2026.1.0/DragAndDrop-2026.1.0.nvda-addon
             sha256: a5e0a8b217c1ed55090ec823ce6448879e5cdfa2f6345f317196a7ee5e0aed37
+          - Name: vocalizer_expressive2_driver-2026.5.2.nvda-addon
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/
+
+          - Name: vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
+
           - Name: vcredist_x86.exe
             URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
             sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
