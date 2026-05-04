@@ -1,5 +1,18 @@
 ﻿# NVDA 懒人版更新日志
 
+### 2026.5.6
+
+- #### 全局
+
+  - 从本版起，本程序依赖的 7Zip、Inno Setup 等组建将使用 GitHub Actions 提供的版本。
+
+- #### 安装程序
+
+  - 更新 NVDA；
+  - 新增插件：WinForms .NET 4.8 修复、简易万年历；
+  - WorldVoice 插件被 Vocalizer Expressive 2.2 插件替换；
+  - 更新插件。
+
 ### 2026.2.16
 
 - #### 安装程序
