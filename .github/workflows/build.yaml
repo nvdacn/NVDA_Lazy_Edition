@@ -25,21 +25,12 @@ jobs:
           - Name: DragAndDrop-2026.1.0.nvda-addon
             URL: https://github.com/javidominguez/DragAndDrop/releases/download/2026.1.0/DragAndDrop-2026.1.0.nvda-addon
             sha256: a5e0a8b217c1ed55090ec823ce6448879e5cdfa2f6345f317196a7ee5e0aed37
-          - Name: vcredist_x86.exe
-            URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
-            sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
-          - Name: aisound.zip
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/aisound.zip
-            sha256: B4FE1BED8F699179C8FF00F7B6F85AF4FF190ADCE1CCDB6C08132F93B7341EB2
-            prefix: speech-
-          - Name: VE.zip
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/VE.zip
-            sha256: 35ACAC34551ED8288DC6185A33127F5109AD6CB8901B329667C095DC0085EDD3
-            prefix: speech-
-          - Name: voice.zip
-            URL: https://dl.nvdacn.com/Share/voice.zip
-            sha256: AB2D6AFD7C5E12901DD3DA3CDC29325AA11A9DAB2EAC608D7B731993B2066450
-            prefix: speech-
+          - Name: vocalizer_expressive2_driver-2026.5.2.nvda-addon
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer_expressive2_driver-2026.5.2.nvda-addon
+            sha256: 7f935a6a30b3db9e7da2f2bce94c588a43693e9ae34cdbe2482046153ead0ebd
+          - Name: vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
+            sha256: 0068fe40392dbe9339c84536dffd54641ff54ab37af7044d64d4653ff0335073
           - Name: spchapi.exe
             URL: https://dl.nvdacn.com/NVDA-Addons/TTS/spchapi.exe
             sha256: 4fe6f9be7a75d649e2d484069c3626d30345e746e565f0b7b1fcff34ef223a2c
@@ -84,7 +75,6 @@ jobs:
           - addonId: WeChatEnhancement
           - addonId: winFormsNet48Fixes
           - addonId: withSounds
-          - addonId: WorldVoice
           - addonId: xyOCR
     steps:
       - name: Checkout repository
@@ -140,11 +130,6 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: ${{ needs.download-NVDA.outputs.NVDAFilename }}
-          path: ${{ github.workspace }}/Resource/
-      - name: Download vcredist_x86.exe
-        uses: actions/download-artifact@v8
-        with:
-          name: vcredist_x86.exe
           path: ${{ github.workspace }}/Resource/
       - name: Download Speech
         uses: actions/download-artifact@v8

@@ -77,11 +77,6 @@ Rem 生成文档的 txt 版本
 COPY /B /V /Y "%~dp0documentation\changes.md" "%~dp0Build\更新日志.txt"
 COPY /B /V /Y "%~dp0documentation\ReadMe.md" "%~dp0Build\说明.txt"
 
-Rem 删除aisound.dll
-for /r "%~dp0Resource\Addons" %%i in (AISound*.nvda-addon) do (
-  %Tool-7Zip% d -sccUTF-8 -y "%%i" "synthDrivers\aisound.dll" -bsp0 -bso0
-)
-
 Rem 构建 NVDA 便携版  
 %InnoSetup% "%~dp0Scripts\Portable.iss"
 IF NOT EXIST "%~dp0Build\Temp\NVDAPortable.exe" (
