@@ -54,7 +54,7 @@ Name: "custom"; Description: "自定义安装"; Flags: iscustom
 Name: "Settings"; Types: Full default compact custom; Description: "修改部分 NVDA 设置"; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini'))
 Name: "Settings"; Description: "修改部分 NVDA 设置"; Check: FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini'))
 Name: "Voices"; Types: Full default custom; Description: "语音引擎";
-Name: "Voices\VocalizerExpressive2"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Nuance Vocalizer expressive 2.2"
+Name: "Voices\VocalizerExpressive2"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Nuance Vocalizer expressive 2.2 语音引擎"
 Name: "Voices\VVTTS"; Types: Full custom; Description: "VVTTS 语音引擎"
 Name: "Voices\AiSound5"; Types: Full custom; Description: "AiSound5 语音引擎"
 Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "可选插件"

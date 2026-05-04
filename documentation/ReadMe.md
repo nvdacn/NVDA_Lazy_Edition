@@ -24,7 +24,7 @@
 
 本程序增加了一些语音引擎共安装和使用，具体如下：
 
-- Nuance Vocalizer expressive 2.2 语音（默认安装）
+- Nuance Vocalizer expressive 2.2 语音引擎（默认安装）
 - VVTTS 语音引擎
 - AiSound5 语音引擎
 
