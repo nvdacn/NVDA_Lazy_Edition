@@ -286,7 +286,6 @@ Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms"; Flags: nowait
 Filename: "{tmp}\spchapi"; Parameters: "/Q"; Components: "Voices\VVTTS"
 Filename: "{tmp}\VVTTS"; Parameters: "/verysilent /suppressmsgboxes /nocancel /norestart /nocloseapplications"; Components: "Voices\VVTTS"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\AiSound5*.nvda-addon"" -aoa -o""{app}\Addons\AiSound5"""; Components: "Voices\AiSound5"; AfterInstall: JSONFile('AiSound5')
-Filename: "{tmp}\vcredist_x86"; Parameters: "/install /quiet /norestart"; Components: "Voices\VocalizerExpressive2"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\vocalizer_expressive2_driver*.nvda-addon"" -aoa -o""{app}\Addons\vocalizer_expressive2_driver"""; Components: "Voices\VocalizerExpressive2"; AfterInstall: JSONFile('vocalizer_expressive2_driver')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\vocalizer-expressive2-voice-zh-en-Compact*.nvda-addon"" -aoa -o""{app}\Addons\vocalizer-expressive2-voice-zh-en-Compact"""; Components: "Voices\VocalizerExpressive2"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\Access8Math*.nvda-addon"" -aoa -o""{app}\Addons\Access8Math"""; Components: "Addons\Access8Math"; AfterInstall: JSONFile('Access8Math')
@@ -318,7 +317,6 @@ Source: "..\userConfig\nvda.ini"; DestDir: "{app}"; Components: "Settings"; Flag
 Source: "..\userConfig\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4"; Tasks: "VVTTSDicts"; Flags: ignoreversion
 Source: "..\Resource\speech\spchapi.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
 Source: "..\Resource\speech\IBM_ViaVoice_TTS_Runtime.exe"; DestDir: "{tmp}"; DestName: "VVTTS.exe"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
-Source: "..\Resource\vcredist_x86.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VocalizerExpressive2"
 Source: "..\Resource\Addons\AiSound5*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5"
 Source: "..\Resource\Addons\vocalizer_expressive2_driver*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VocalizerExpressive2"
 Source: "..\Resource\Addons\vocalizer-expressive2-voice-zh-en-Compact*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VocalizerExpressive2"

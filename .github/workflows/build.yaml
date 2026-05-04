@@ -31,9 +31,6 @@ jobs:
           - Name: vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
             URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
             sha256: 0068fe40392dbe9339c84536dffd54641ff54ab37af7044d64d4653ff0335073
-          - Name: vcredist_x86.exe
-            URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
-            sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
           - Name: spchapi.exe
             URL: https://dl.nvdacn.com/NVDA-Addons/TTS/spchapi.exe
             sha256: 4fe6f9be7a75d649e2d484069c3626d30345e746e565f0b7b1fcff34ef223a2c
@@ -133,11 +130,6 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: ${{ needs.download-NVDA.outputs.NVDAFilename }}
-          path: ${{ github.workspace }}/Resource/
-      - name: Download vcredist_x86.exe
-        uses: actions/download-artifact@v8
-        with:
-          name: vcredist_x86.exe
           path: ${{ github.workspace }}/Resource/
       - name: Download Speech
         uses: actions/download-artifact@v8
