@@ -34,18 +34,6 @@ jobs:
           - Name: vcredist_x86.exe
             URL: https://dl.nvdacn.com/Share/vcredist_x86.exe
             sha256: B924AD8062EAF4E70437C8BE50FA612162795FF0839479546CE907FFA8D6E386
-          - Name: aisound.zip
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/aisound.zip
-            sha256: B4FE1BED8F699179C8FF00F7B6F85AF4FF190ADCE1CCDB6C08132F93B7341EB2
-            prefix: speech-
-          - Name: VE.zip
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/VocalizerVoice/VE.zip
-            sha256: 35ACAC34551ED8288DC6185A33127F5109AD6CB8901B329667C095DC0085EDD3
-            prefix: speech-
-          - Name: voice.zip
-            URL: https://dl.nvdacn.com/Share/voice.zip
-            sha256: AB2D6AFD7C5E12901DD3DA3CDC29325AA11A9DAB2EAC608D7B731993B2066450
-            prefix: speech-
           - Name: spchapi.exe
             URL: https://dl.nvdacn.com/NVDA-Addons/TTS/spchapi.exe
             sha256: 4fe6f9be7a75d649e2d484069c3626d30345e746e565f0b7b1fcff34ef223a2c
@@ -90,7 +78,6 @@ jobs:
           - addonId: WeChatEnhancement
           - addonId: winFormsNet48Fixes
           - addonId: withSounds
-          - addonId: WorldVoice
           - addonId: xyOCR
     steps:
       - name: Checkout repository
