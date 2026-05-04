@@ -229,6 +229,7 @@ FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " WorldVo
 Type: filesandordirs; Name: "{userappdata}\NVDA\*"; Tasks: DeleteProfile\Backup; BeforeInstall: BackupNVDAProfile();
 Type: filesandordirs; Name: "{userappdata}\NVDA\*"; Tasks: DeleteProfile\NoBackup
 Type: filesandordirs; Name: "{app}\Addons\vocalizer_expressive2_driver"; Tasks: "not DeleteProfile"; Components: "Voices\VocalizerExpressive2"
+Type: filesandordirs; Name: "{app}\Addons\vocalizer-expressive2-voice-zh-en-Compact"; Tasks: "not DeleteProfile"; Components: "Voices\VocalizerExpressive2"
 Type: filesandordirs; Name: "{app}\Addons\AiSound5"; Tasks: "not DeleteProfile"; Components: "Voices\AiSound5"
 Type: filesandordirs; Name: "{app}\Addons\WorldVoice"; Tasks: "not DeleteProfile"; Components: "Voices\WorldVoice"
 Type: filesandordirs; Name: "{app}\Addons\Access8Math"; Tasks: "not DeleteProfile"; Components: "Addons\Access8Math"
@@ -291,6 +292,7 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\AiSound5*.nvda-addon"" -aoa -o""{a
 Filename: "{tmp}\7z"; Parameters: "x ""aisound.zip"" -aoa -o""{app}\Addons\AiSound5\synthDrivers"""; Components: "Voices\AiSound5"
 Filename: "{tmp}\vcredist_x86"; Parameters: "/install /quiet /norestart"; Components: "Voices\WorldVoice"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\vocalizer_expressive2_driver*.nvda-addon"" -aoa -o""{app}\Addons\vocalizer_expressive2_driver"""; Components: "Voices\VocalizerExpressive2"; AfterInstall: JSONFile('vocalizer_expressive2_driver')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\vocalizer-expressive2-voice-zh-en-Compact*.nvda-addon"" -aoa -o""{app}\Addons\vocalizer-expressive2-voice-zh-en-Compact"""; Components: "Voices\VocalizerExpressive2"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\WorldVoice*.nvda-addon"" -aoa -o""{app}\Addons\WorldVoice"""; Components: "Voices\WorldVoice"; AfterInstall: JSONFile('WorldVoice')
 Filename: "{tmp}\7z"; Parameters: "x ""aisound.zip"" -aoa -o""{app}\WorldVoice-workspace\aisound"""; Components: "Voices\WorldVoice"
 Filename: "{tmp}\7z"; Parameters: "x ""VE.zip"" -aoa -o""{app}\WorldVoice-workspace\VE"""; Components: "Voices\WorldVoice"
@@ -330,6 +332,7 @@ Source: "..\Resource\speech\VE.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall
 Source: "..\Resource\speech\voice.zip"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
 Source: "..\Resource\Addons\AiSound5*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5"
 Source: "..\Resource\Addons\vocalizer_expressive2_driver*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VocalizerExpressive2"
+Source: "..\Resource\Addons\vocalizer-expressive2-voice-zh-en-Compact*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VocalizerExpressive2"
 Source: "..\Resource\Addons\WorldVoice*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\WorldVoice"
 Source: "..\Resource\Addons\Access8Math*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\Access8Math"
 Source: "..\Resource\Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
