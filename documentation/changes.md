@@ -4,7 +4,7 @@
 
 - #### 全局
 
-  - 从本版起，本程序依赖的 7Zip、Inno Setup 等组建将使用 GitHub Actions 提供的版本。
+  - 从本版起，本程序依赖的 7Zip、Inno Setup 等组件将使用 GitHub Actions 提供的版本。
 
 - #### 安装程序
 
