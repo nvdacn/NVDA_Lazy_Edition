@@ -22,9 +22,6 @@ jobs:
     strategy:
       matrix:
         file:
-          - Name: DragAndDrop-2026.1.0.nvda-addon
-            URL: https://github.com/javidominguez/DragAndDrop/releases/download/2026.1.0/DragAndDrop-2026.1.0.nvda-addon
-            sha256: a5e0a8b217c1ed55090ec823ce6448879e5cdfa2f6345f317196a7ee5e0aed37
           - Name: vocalizer_expressive2_driver-2026.5.2.nvda-addon
             URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer_expressive2_driver-2026.5.2.nvda-addon
             sha256: 7f935a6a30b3db9e7da2f2bce94c588a43693e9ae34cdbe2482046153ead0ebd
@@ -62,6 +59,8 @@ jobs:
           - addonId: AiSound5
           - addonId: audioManager
           - addonId: clipboardEnhancement
+          - addonId: DragAndDrop
+            channel: dev
           - addonId: goldenCursor
           - addonId: ime_expressive
           - addonId: inputLock
@@ -72,6 +71,7 @@ jobs:
           - addonId: QQEnhancement
           - addonId: resourceMonitor
           - addonId: unmute
+            channel: beta
           - addonId: WeChatEnhancement
           - addonId: winFormsNet48Fixes
           - addonId: withSounds
