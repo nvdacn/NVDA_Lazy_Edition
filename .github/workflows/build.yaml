@@ -264,7 +264,7 @@ jobs:
               "target_commitish": "master",
               "name": "${{ env.TAG_NAME }}",
               "body": "详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_REPOSITORY }}/blob/${{ env.TAG_NAME }}/documentation/changes.md)。",
-              "prerelease": '${{ contains(github.ref, 'beta') }}'
+              "release_status": ${{ contains(github.ref, 'beta') && 'pre' || 'latest' }}
             }' \
             "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases")
           if [ "$RESPONSE" = "200" ]; then
@@ -288,7 +288,7 @@ jobs:
               "tag_name": "'"${{ env.TAG_NAME }}"'",
               "name": "${{ env.TAG_NAME }}",
               "body": "详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_REPOSITORY }}/blob/${{ env.TAG_NAME }}/documentation/changes.md)。",
-              "prerelease": '${{ contains(github.ref, 'beta') }}'
+              "release_status": ${{ contains(github.ref, 'beta') && 'pre' || 'latest' }}
             }' \
             "https://api.gitcode.com/api/v5/repos/${{ env.GITCODE_REPOSITORY }}/releases/${{ env.TAG_NAME }}")
           if [ "$RESPONSE" = "200" ]; then
