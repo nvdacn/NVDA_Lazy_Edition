@@ -207,7 +207,7 @@ jobs:
     uses: nvdacn/sync_to_gitcode/.github/workflows/PushToGitCode.yaml@master
     with:
       gitcode_username: ${{ vars.GITCODE_USERNAME }}
-      gitcode_repository: WMHN/NVDA_Lazy_Edition
+      gitcode_repository: ${{ vars.GITCODE_REPOSITORY }}
     secrets:
       GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
 
@@ -219,11 +219,11 @@ jobs:
     uses: nvdacn/sync_to_gitcode/.github/workflows/CreateReleaseOnGitCode.yaml@master
     with:
       artifact_name: Archive
-      gitcode_repository: WMHN/NVDA_Lazy_Edition
+      gitcode_repository: ${{ vars.GITCODE_REPOSITORY }}
       tag_name: ${{ github.ref_name }}
       prerelease: ${{ contains(github.ref, 'beta') }}
       body: |
-        详细更新日志请[点此查看](https://gitcode.com/${{ env.GITCODE_REPOSITORY }}/blob/${{ github.ref_name }}/documentation/changes.md)。
+        详细更新日志请[点此查看](https://gitcode.com/${{ vars.GITCODE_REPOSITORY }}/blob/${{ github.ref_name }}/documentation/changes.md)。
       file_name: NVDA_Lazy_Edition*.zip
     secrets:
       GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
