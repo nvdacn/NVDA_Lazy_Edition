@@ -27,7 +27,7 @@ jobs:
           DATE=$(date +'%Y.%m.%d')
           TAG="$DATE"
           if [[ "${{ github.event.inputs.beta_Version }}" == "true" ]]; then
-            TAG="${DATE}(beta)"
+            TAG="${DATE}_beta"
           fi
           git tag $TAG
           git push origin $TAG
