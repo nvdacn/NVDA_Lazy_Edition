@@ -19,9 +19,9 @@ jobs:
     strategy:
       matrix:
         file:
-          - Name: vocalizer_expressive2_driver-2026.5.2.nvda-addon
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer_expressive2_driver-2026.5.2.nvda-addon
-            sha256: 7f935a6a30b3db9e7da2f2bce94c588a43693e9ae34cdbe2482046153ead0ebd
+          - Name: vocalizer_expressive2_driver.nvda-addon
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer_expressive2_driver-2026.5.15.nvda-addon
+            sha256: 55a922fbd37e6ce671f40514bf499c00be5357fd25f4d70c786a0fb938d48194
           - Name: vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
             URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
             sha256: 0068fe40392dbe9339c84536dffd54641ff54ab37af7044d64d4653ff0335073
