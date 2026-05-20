@@ -40,7 +40,7 @@ function NVDA: string;
 begin
   if FileExists(ExpandConstant('{commonpf32}\NVDA\nvda.exe')) then
   begin
-    Result := ExpandConstant('{commonpf32}\NVDA\nvda.exe')    NVDAExePath := ExpandConstant('{commonpf32}\NVDA\nvda.exe');
+    Result := ExpandConstant('{commonpf32}\NVDA\nvda.exe');
   end else begin
     Result := ExpandConstant('{commonpf}\NVDA\nvda.exe');
   end;
