@@ -1,5 +1,5 @@
 ﻿#include "common_defines.iss"
-#define BaseVersion "1.2"
+#define BaseVersion "2.0"
 #define DotCount Len(BaseVersion) - Len(StringChange(BaseVersion, ".", ""))
 #define FinalVersion BaseVersion + (DotCount == 1 ? ".0" : "") + (BuildNumber != "" ? "." + BuildNumber : "")
 
@@ -36,20 +36,30 @@ ShowLanguageDialog=No
 Name: "chinesesimp"; MessagesFile: {#ChineseSimplifiedMessages}
 
 [code]
+function NVDA: string;
+begin
+  Result := ExpandConstant('{commonpf32}\NVDA\nvda.exe');
+  if not FileExists(Result) then
+  begin
+    Result := ExpandConstant('{commonpf}\NVDA\nvda.exe');
+  end;
+end;
 procedure RestoreNVDAConfiguration ();
 var
   ResultCode: Integer;
 begin
-  if MsgBox('本程序将恢复您在 NVDA 懒人版安装程序所备份的配置到 NVDA 配置文件夹。' #13#13 '备份的配置文件成功恢复后将会被删除。' #13#13 '恢复过程需重启您的 NVDA，您要现在恢复吗？', mbConfirmation, MB_YESNO)= IDYES then
+  if MsgBox('本程序将恢复您在 NVDA 懒人版安装程序所备份的配置到 NVDA 配置文件夹。' #13#13 '恢复过程需重启您的 NVDA。' #13#13 '您要现在恢复吗？', mbConfirmation, MB_YESNO)= IDYES then
   begin
-    ShellExec('', ExpandConstant('{commonprograms}\NVDA\NVDA'), '-q', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
+    ShellExec('', NVDA, '--quit', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
     DelTree(ExpandConstant('{userappdata}\NVDA'), True, True, True);
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.dll')));
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.exe')));
     Exec(ExpandConstant('{tmp}\7z.exe'), 'x "'+ ExpandConstant('{userdocs}\NVDABackup\NVDABackup.zip')+'" -aoa -o"'+ ExpandConstant('{userappdata}\NVDA')+'"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
-    DelTree(ExpandConstant('{userdocs}\NVDABackup'), True, True, True);
-    ShellExec('', ExpandConstant('{commonprograms}\NVDA\NVDA'), '', '', SW_SHOW, ewNoWait, ResultCode);
-    MsgBox('恭喜，操作成功!', mbInformation, MB_OK);
+    ShellExec('', NVDA, '', '', SW_SHOW, ewNoWait, ResultCode);
+    if MsgBox('此前备份的配置已成功恢复。是否删除备份文件夹？', mbConfirmation, MB_YESNO or MB_DEFBUTTON2)= IDYES then
+  begin
+      DelTree(ExpandConstant('{userdocs}\NVDABackup'), True, True, True);
+    end;
   end;
 end;
 function InitializeSetup: Boolean;
