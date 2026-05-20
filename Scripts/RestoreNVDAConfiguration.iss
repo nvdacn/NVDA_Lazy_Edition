@@ -60,9 +60,11 @@ begin
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.dll')));
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.exe')));
     Exec(ExpandConstant('{tmp}\7z.exe'), 'x "'+ ExpandConstant('{userdocs}\NVDABackup\NVDABackup.zip')+'" -aoa -o"'+ ExpandConstant('{userappdata}\NVDA')+'"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
-    DelTree(ExpandConstant('{userdocs}\NVDABackup'), True, True, True);
     RunNVDA('');
-    MsgBox('恭喜，操作成功!', mbInformation, MB_OK);
+    if MsgBox('是否删除？', mbConfirmation, MB_YESNO or MB_DEFBUTTON2)= IDYES then
+  begin
+      DelTree(ExpandConstant('{userdocs}\NVDABackup'), True, True, True);
+    end;
   end;
 end;
 function InitializeSetup: Boolean;
