@@ -36,18 +36,14 @@ ShowLanguageDialog=No
 Name: "chinesesimp"; MessagesFile: {#ChineseSimplifiedMessages}
 
 [code]
-procedure RunNVDA(Params: String);
-var
-  ResultCode: Integer;
-  NVDAExePath: String;
+function NVDA: string;
 begin
   if FileExists(ExpandConstant('{commonpf32}\NVDA\nvda.exe')) then
   begin
-    NVDAExePath := ExpandConstant('{commonpf32}\NVDA\nvda.exe');
+    Result := ExpandConstant('{commonpf32}\NVDA\nvda.exe')    NVDAExePath := ExpandConstant('{commonpf32}\NVDA\nvda.exe');
   end else begin
-    NVDAExePath := ExpandConstant('{commonpf}\NVDA\nvda.exe');
+    Result := ExpandConstant('{commonpf}\NVDA\nvda.exe');
   end;
-  ShellExec('', NVDAExePath, Params, '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
 end;
 procedure RestoreNVDAConfiguration ();
 var
@@ -55,12 +51,12 @@ var
 begin
   if MsgBox('本程序将恢复您在 NVDA 懒人版安装程序所备份的配置到 NVDA 配置文件夹。' #13#13 '备份的配置文件成功恢复后将会被删除。' #13#13 '恢复过程需重启您的 NVDA，您要现在恢复吗？', mbConfirmation, MB_YESNO)= IDYES then
   begin
-    RunNVDA('-q');
+    ShellExec('', NVDA, '--quit', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
     DelTree(ExpandConstant('{userappdata}\NVDA'), True, True, True);
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.dll')));
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.exe')));
     Exec(ExpandConstant('{tmp}\7z.exe'), 'x "'+ ExpandConstant('{userdocs}\NVDABackup\NVDABackup.zip')+'" -aoa -o"'+ ExpandConstant('{userappdata}\NVDA')+'"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
-    RunNVDA('');
+    ShellExec('', NVDA, '', '', SW_SHOW, ewNoWait, ResultCode);
     if MsgBox('是否删除？', mbConfirmation, MB_YESNO or MB_DEFBUTTON2)= IDYES then
   begin
       DelTree(ExpandConstant('{userdocs}\NVDABackup'), True, True, True);
