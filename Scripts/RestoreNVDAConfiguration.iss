@@ -38,10 +38,9 @@ Name: "chinesesimp"; MessagesFile: {#ChineseSimplifiedMessages}
 [code]
 function NVDA: string;
 begin
-  if FileExists(ExpandConstant('{commonpf32}\NVDA\nvda.exe')) then
+  Result := ExpandConstant('{commonpf32}\NVDA\nvda.exe');
+  if not FileExists(Result) then
   begin
-    Result := ExpandConstant('{commonpf32}\NVDA\nvda.exe');
-  end else begin
     Result := ExpandConstant('{commonpf}\NVDA\nvda.exe');
   end;
 end;
