@@ -1,5 +1,5 @@
 ﻿#include "common_defines.iss"
-#define BaseVersion "1.2"
+#define BaseVersion "2.0"
 #define DotCount Len(BaseVersion) - Len(StringChange(BaseVersion, ".", ""))
 #define FinalVersion BaseVersion + (DotCount == 1 ? ".0" : "") + (BuildNumber != "" ? "." + BuildNumber : "")
 
