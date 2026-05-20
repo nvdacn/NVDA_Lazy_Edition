@@ -48,7 +48,7 @@ procedure RestoreNVDAConfiguration ();
 var
   ResultCode: Integer;
 begin
-  if MsgBox('本程序将恢复您在 NVDA 懒人版安装程序所备份的配置到 NVDA 配置文件夹。' #13#13 '恢复过程需重启您的 NVDA，您要现在恢复吗？', mbConfirmation, MB_YESNO)= IDYES then
+  if MsgBox('本程序将恢复您在 NVDA 懒人版安装程序所备份的配置到 NVDA 配置文件夹。' #13#13 '恢复过程需重启您的 NVDA。' #13#13 '您要现在恢复吗？', mbConfirmation, MB_YESNO)= IDYES then
   begin
     ShellExec('', NVDA, '--quit', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
     DelTree(ExpandConstant('{userappdata}\NVDA'), True, True, True);
