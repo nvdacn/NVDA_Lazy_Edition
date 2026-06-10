@@ -70,6 +70,7 @@ Name: "Addons\inputLock"; Types: Full custom; Flags: disablenouninstallwarning; 
 Name: "Addons\leanCalendar"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "简易万年历"
 Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "数字处理"
 Name: "Addons\objWatcher"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "对象监视器"
+Name: "Addons\polyglot"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Polyglot"
 Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC QQ增强"
 Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "资源监控器"
 Name: "Addons\unmute"; Types: Full custom; Flags: disablenouninstallwarning; Description: "取消系统静音"
@@ -247,6 +248,7 @@ Type: filesandordirs; Name: "{app}\Addons\inputLock"; Tasks: "not DeleteProfile"
 Type: filesandordirs; Name: "{app}\Addons\leanCalendar"; Tasks: "not DeleteProfile"; Components: "Addons\leanCalendar"
 Type: filesandordirs; Name: "{app}\Addons\numberProcessing"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
 Type: filesandordirs; Name: "{app}\Addons\objWatcher"; Tasks: "not DeleteProfile"; Components: "Addons\objWatcher"
+Type: filesandordirs; Name: "{app}\Addons\polyglot"; Tasks: "not DeleteProfile"; Components: "Addons\polyglot"
 Type: filesandordirs; Name: "{app}\Addons\QQEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
 Type: filesandordirs; Name: "{app}\Addons\resourceMonitor"; Tasks: "not DeleteProfile"; Components: "Addons\resourceMonitor"
 Type: filesandordirs; Name: "{app}\Addons\unmute"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
@@ -268,6 +270,7 @@ Type: files; Name: "{app}\Addons\inputLock.json"; Tasks: "not DeleteProfile"; Co
 Type: files; Name: "{app}\Addons\leanCalendar.json"; Tasks: "not DeleteProfile"; Components: "Addons\leanCalendar"
 Type: files; Name: "{app}\Addons\numberProcessing.json"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
 Type: files; Name: "{app}\Addons\objWatcher.json"; Tasks: "not DeleteProfile"; Components: "Addons\objWatcher"
+Type: files; Name: "{app}\Addons\polyglot.json"; Tasks: "not DeleteProfile"; Components: "Addons\polyglot"
 Type: files; Name: "{app}\Addons\QQEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\QQEnhancement"
 Type: files; Name: "{app}\Addons\resourceMonitor.json"; Tasks: "not DeleteProfile"; Components: "Addons\resourceMonitor"
 Type: files; Name: "{app}\Addons\unmute.json"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
@@ -297,6 +300,7 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\inputLock*.nvda-addon"" -aoa -o""{
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\leanCalendar*.nvda-addon"" -aoa -o""{app}\Addons\leanCalendar"""; Components: "Addons\leanCalendar"; AfterInstall: JSONFile('leanCalendar')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\numberProcessing*.nvda-addon"" -aoa -o""{app}\Addons\numberProcessing"""; Components: "Addons\numberProcessing"; AfterInstall: JSONFile('numberProcessing')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\objWatcher*.nvda-addon"" -aoa -o""{app}\Addons\objWatcher"""; Components: "Addons\objWatcher"; AfterInstall: JSONFile('objWatcher')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\polyglot*.nvda-addon"" -aoa -o""{app}\Addons\polyglot"""; Components: "Addons\polyglot"; AfterInstall: JSONFile('polyglot')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\QQEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\QQEnhancement"""; Components: "Addons\QQEnhancement"; AfterInstall: JSONFile('QQEnhancement')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\resourceMonitor*.nvda-addon"" -aoa -o""{app}\Addons\resourceMonitor"""; Components: "Addons\resourceMonitor"; AfterInstall: JSONFile('resourceMonitor')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\unmute*.nvda-addon"" -aoa -o""{app}\Addons\unmute"""; Components: "Addons\unmute"; AfterInstall: JSONFile('unmute')
@@ -328,6 +332,7 @@ Source: "..\Resource\Addons\inputLock*"; DestDir: "{tmp}\Addons"; Flags: deletea
 Source: "..\Resource\Addons\leanCalendar*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\leanCalendar"
 Source: "..\Resource\Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
 Source: "..\Resource\Addons\objWatcher*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\objWatcher"
+Source: "..\Resource\Addons\polyglot*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\polyglot"
 Source: "..\Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\QQEnhancement"
 Source: "..\Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
 Source: "..\Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
