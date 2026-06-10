@@ -67,7 +67,6 @@ Name: "Addons\DragAndDrop"; Types: Full custom; Flags: disablenouninstallwarning
 Name: "Addons\goldenCursor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "金色光标"
 Name: "Addons\imeExpressive"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "中文输入法支持"
 Name: "Addons\inputLock"; Types: Full custom; Flags: disablenouninstallwarning; Description: "输入锁"
-Name: "Addons\instantTranslate"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "及时翻译"
 Name: "Addons\leanCalendar"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "简易万年历"
 Name: "Addons\NumberProcessing"; Types: Full custom; Flags: disablenouninstallwarning; Description: "数字处理"
 Name: "Addons\objWatcher"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "对象监视器"
@@ -245,7 +244,6 @@ Type: files; Name: "{app}\Addons\goldenCursor\installTasks.py"; Tasks: "not Dele
 Type: files; Name: "{app}\Addons\goldenCursor\manifest.ini"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
 Type: filesandordirs; Name: "{app}\Addons\ime_expressive"; Tasks: "not DeleteProfile"; Components: "Addons\imeExpressive"
 Type: filesandordirs; Name: "{app}\Addons\inputLock"; Tasks: "not DeleteProfile"; Components: "Addons\inputLock"
-Type: filesandordirs; Name: "{app}\Addons\instantTranslate"; Tasks: "not DeleteProfile"; Components: "Addons\instantTranslate"
 Type: filesandordirs; Name: "{app}\Addons\leanCalendar"; Tasks: "not DeleteProfile"; Components: "Addons\leanCalendar"
 Type: filesandordirs; Name: "{app}\Addons\numberProcessing"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
 Type: filesandordirs; Name: "{app}\Addons\objWatcher"; Tasks: "not DeleteProfile"; Components: "Addons\objWatcher"
@@ -267,7 +265,6 @@ Type: files; Name: "{app}\Addons\DragAndDrop.json"; Tasks: "not DeleteProfile"; 
 Type: files; Name: "{app}\Addons\goldenCursor.json"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
 Type: files; Name: "{app}\Addons\ime_expressive.json"; Tasks: "not DeleteProfile"; Components: "Addons\imeExpressive"
 Type: files; Name: "{app}\Addons\inputLock.json"; Tasks: "not DeleteProfile"; Components: "Addons\inputLock"
-Type: files; Name: "{app}\Addons\instantTranslate.json"; Tasks: "not DeleteProfile"; Components: "Addons\instantTranslate"
 Type: files; Name: "{app}\Addons\leanCalendar.json"; Tasks: "not DeleteProfile"; Components: "Addons\leanCalendar"
 Type: files; Name: "{app}\Addons\numberProcessing.json"; Tasks: "not DeleteProfile"; Components: "Addons\numberProcessing"
 Type: files; Name: "{app}\Addons\objWatcher.json"; Tasks: "not DeleteProfile"; Components: "Addons\objWatcher"
@@ -297,7 +294,6 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\DragAndDrop*.nvda-addon"" -aoa -o"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\goldenCursor*.nvda-addon"" -aoa -o""{app}\Addons\goldenCursor"""; Components: "Addons\goldenCursor"; AfterInstall: JSONFile('goldenCursor')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\ime_expressive*.nvda-addon"" -aoa -o""{app}\Addons\ime_expressive"""; Components: "Addons\imeExpressive"; AfterInstall: JSONFile('ime_expressive')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\inputLock*.nvda-addon"" -aoa -o""{app}\Addons\inputLock"""; Components: "Addons\inputLock"; AfterInstall: JSONFile('inputLock')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\instantTranslate*.nvda-addon"" -aoa -o""{app}\Addons\instantTranslate"""; Components: "Addons\instantTranslate"; AfterInstall: JSONFile('instantTranslate')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\leanCalendar*.nvda-addon"" -aoa -o""{app}\Addons\leanCalendar"""; Components: "Addons\leanCalendar"; AfterInstall: JSONFile('leanCalendar')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\numberProcessing*.nvda-addon"" -aoa -o""{app}\Addons\numberProcessing"""; Components: "Addons\numberProcessing"; AfterInstall: JSONFile('numberProcessing')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\objWatcher*.nvda-addon"" -aoa -o""{app}\Addons\objWatcher"""; Components: "Addons\objWatcher"; AfterInstall: JSONFile('objWatcher')
@@ -329,7 +325,6 @@ Source: "..\Resource\Addons\DragAndDrop*"; DestDir: "{tmp}\Addons"; Flags: delet
 Source: "..\Resource\Addons\goldenCursor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\goldenCursor"
 Source: "..\Resource\Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\imeExpressive"
 Source: "..\Resource\Addons\inputLock*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\inputLock"
-Source: "..\Resource\Addons\instantTranslate*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\instantTranslate"
 Source: "..\Resource\Addons\leanCalendar*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\leanCalendar"
 Source: "..\Resource\Addons\numberProcessing*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\numberProcessing"
 Source: "..\Resource\Addons\objWatcher*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\objWatcher"
