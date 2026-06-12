@@ -117,7 +117,7 @@ jobs:
     runs-on: windows-latest
     needs:
       - download-NVDA
-      # - download-files
+      - download-files
       - download-addons-from-addonStore
     steps:
       - name: Checkout repository
