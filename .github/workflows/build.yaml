@@ -106,15 +106,25 @@ jobs:
           
           echo "Found tag: $TAG_NAME"
           
-          RELEASE_JSON=$(gh release view "$TAG_NAME" --repo nvaccess/nvda --json name,assets)
+          NVDA_VERSION=$(echo "$TAG_NAME" | sed 's/^release-//')
           
-          NVDA_VERSION=$(echo "$RELEASE_JSON" | jq -r '.name' | sed 's/^release-//')
-          DOWNLOAD_URL=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name | test("\\.exe$") and ( .name | test("nvda_") ) ) | .url')
-          SHA256=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name | test("\\.exe$") and ( .name | test("nvda_") ) ) | .sha256')
+          ASSETS_JSON=$(gh release view "$TAG_NAME" --repo nvaccess/nvda --json assets --jq '.assets[] | select(.name | test("\\.exe$") and test("nvda_"))')
+          
+          DOWNLOAD_URL=$(echo "$ASSETS_JSON" | jq -r '.url' | head -n 1)
+          SHA256=$(echo "$ASSETS_JSON" | jq -r '.sha256' | head -n 1)
+          
+          if [ -z "$DOWNLOAD_URL" ]; then
+            echo "Error: Could not find NVDA installer download URL"
+            exit 1
+          fi
           
           echo "nvda-version=$NVDA_VERSION" >> $GITHUB_OUTPUT
           echo "download-url=$DOWNLOAD_URL" >> $GITHUB_OUTPUT
           echo "sha256=$SHA256" >> $GITHUB_OUTPUT
+          
+          echo "NVDA Version: $NVDA_VERSION"
+          echo "Download URL: $DOWNLOAD_URL"
+          echo "SHA256: $SHA256
 
         env:
           GH_TOKEN: ${{ github.token }}
