@@ -94,46 +94,23 @@ jobs:
         uses: actions/checkout@v6
       - name: Get NVDA release info
         id: get-release
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           TAG_NAME=$(gh release list --repo nvaccess/nvda --limit 1 \
             --json tagName,isPrerelease \
             --jq ".[] | select(.isPrerelease == ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'false' || 'true' }}) | .tagName")
           
-          if [ -z "$TAG_NAME" ]; then
-            echo "Error: No release found"
-            exit 1
-          fi
-          
-          echo "Found tag: $TAG_NAME"
-          
           NVDA_VERSION=$(echo "$TAG_NAME" | sed 's/^release-//')
-          
-          ASSETS_JSON=$(gh release view "$TAG_NAME" --repo nvaccess/nvda --json assets --jq '.assets[] | select(.name | test("\\.exe$") and test("nvda_"))')
-          
-          DOWNLOAD_URL=$(echo "$ASSETS_JSON" | jq -r '.url')
-          SHA256=$(echo "$ASSETS_JSON" | jq -r '.sha256')
-          
-          if [ -z "$DOWNLOAD_URL" ]; then
-            echo "Error: Could not find NVDA installer download URL"
-            exit 1
-          fi
+          DOWNLOAD_URL=$(gh release view "$TAG_NAME" --repo nvaccess/nvda --json assets --jq '.assets[] | select(.name | test("\\.exe$") and test("nvda_")) | .url')
           
           echo "nvda-version=$NVDA_VERSION" >> $GITHUB_OUTPUT
           echo "download-url=$DOWNLOAD_URL" >> $GITHUB_OUTPUT
-          echo "sha256=$SHA256" >> $GITHUB_OUTPUT
-          
-          echo "NVDA Version: $NVDA_VERSION"
-          echo "Download URL: $DOWNLOAD_URL"
-          echo "SHA256: $SHA256"
-
-        env:
-          GH_TOKEN: ${{ github.token }}
       - name: Download NVDA installer
         uses: ./.github/actions/DownloadResource
         with:
           file-name: nvda_${{ steps.get-release.outputs.nvda-version }}.exe
           file-url: ${{ steps.get-release.outputs.download-url }}
-          file-sha256: ${{ steps.get-release.outputs.sha256 }}
 
   build:
     name: Build NVDA Lazy Edition
