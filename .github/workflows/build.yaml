@@ -108,13 +108,18 @@ jobs:
           
           NVDA_VERSION=$(echo "$TAG_NAME" | sed 's/^release-//')
           
-          ASSETS_JSON=$(gh release view "$TAG_NAME" --repo nvaccess/nvda --json assets --jq '.assets[] | select(.name | test("\\.exe$") and test("nvda_"))')
+          ASSET_INFO=$(gh api "repos/nvaccess/nvda/releases/tags/$TAG_NAME" --jq '.assets[] | select(.name | test("\\.exe$") and test("nvda_"))')
           
-          DOWNLOAD_URL=$(echo "$ASSETS_JSON" | jq -r '.url')
-          SHA256=$(echo "$ASSETS_JSON" | jq -r '.sha256')
+          DOWNLOAD_URL=$(echo "$ASSET_INFO" | jq -r '.browser_download_url')
+          SHA256=$(echo "$ASSET_INFO" | jq -r '.sha256')
           
           if [ -z "$DOWNLOAD_URL" ]; then
             echo "Error: Could not find NVDA installer download URL"
+            exit 1
+          fi
+          
+          if [ -z "$SHA256" ] || [ "$SHA256" = "null" ]; then
+            echo "Error: SHA256 not found in release assets"
             exit 1
           fi
           
