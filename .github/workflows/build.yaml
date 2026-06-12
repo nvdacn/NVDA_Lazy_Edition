@@ -95,16 +95,27 @@ jobs:
       - name: Get NVDA release info
         id: get-release
         run: |
-          TAG_NAME=$(gh release list --repo nvaccess/nvda --limit 1 \
+          TAG_NAME=$(gh release list --repo nvaccess/nvda --limit 10 \
             --json tagName,isPrerelease \
-            --jq ".[] | select(.isPrerelease == ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'false' || 'true' }}) | .tagName")
+            --jq ".[] | select(.isPrerelease == ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'false' || 'true' }}) | .tagName" | head -n 1)
+          
+          if [ -z "$TAG_NAME" ]; then
+            echo "Error: No release found"
+            exit 1
+          fi
+          
+          echo "Found tag: $TAG_NAME"
+          
           RELEASE_JSON=$(gh release view "$TAG_NAME" --repo nvaccess/nvda --json name,assets)
+          
           NVDA_VERSION=$(echo "$RELEASE_JSON" | jq -r '.name' | sed 's/^release-//')
           DOWNLOAD_URL=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name | test("\\.exe$") and ( .name | test("nvda_") ) ) | .url')
           SHA256=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name | test("\\.exe$") and ( .name | test("nvda_") ) ) | .sha256')
+          
           echo "nvda-version=$NVDA_VERSION" >> $GITHUB_OUTPUT
           echo "download-url=$DOWNLOAD_URL" >> $GITHUB_OUTPUT
           echo "sha256=$SHA256" >> $GITHUB_OUTPUT
+
         env:
           GH_TOKEN: ${{ github.token }}
       - name: Download NVDA installer
