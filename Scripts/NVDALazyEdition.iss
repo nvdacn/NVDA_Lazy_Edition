@@ -102,10 +102,7 @@ procedure BackupNVDAProfile();
 begin
 ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.dll')));
 ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.exe')));
-if FileExists(ExpandConstant('{userdocs}\NVDA_Lazy_Edition_Backup\NVDA_Lazy_Edition_Backup.zip')) = True then
-begin
-  DelTree(ExpandConstant('{userdocs}\NVDA_Lazy_Edition_Backup'), True, True, True);
-end;
+DelTree(ExpandConstant('{userdocs}\NVDA_Lazy_Edition_Backup'), True, True, True);
 Exec(ExpandConstant('{tmp}\7z.exe'), ' a -y -tzip "'+ ExpandConstant('{userdocs}')+ '\NVDA_Lazy_Edition_Backup\NVDA_Lazy_Edition_Backup.zip" "'+ ExpandConstant('{userappdata}\NVDA')+'\*"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
 end;
 
