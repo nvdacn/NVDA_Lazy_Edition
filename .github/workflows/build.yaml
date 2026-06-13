@@ -20,17 +20,17 @@ jobs:
       matrix:
         file:
           - Name: vocalizer_expressive2_driver.nvda-addon
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer_expressive2_driver-2026.5.15.nvda-addon
-            sha256: 55a922fbd37e6ce671f40514bf499c00be5357fd25f4d70c786a0fb938d48194
+            URL: https://gitcode.com/nvdacn/NVDA_resource_files/releases/download/vocalizer_expressive2_driver-2026.6.6-2606131647/vocalizer_expressive2_driver-2026.6.6.nvda-addon
+            sha256: E52E0A6CFA1714E217E988F27007EF2E1757706C872877117076233D52D6E98B
           - Name: vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
+            URL: https://gitcode.com/nvdacn/NVDA_resource_files/releases/download/vocalizer-expressive2-voice-zh-en-Compact-2.2-2606131654/vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
             sha256: 0068fe40392dbe9339c84536dffd54641ff54ab37af7044d64d4653ff0335073
           - Name: spchapi.exe
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/spchapi.exe
+            URL: https://gitcode.com/nvdacn/NVDA_resource_files/releases/download/spchapi-2606131658/spchapi.exe
             sha256: 4fe6f9be7a75d649e2d484069c3626d30345e746e565f0b7b1fcff34ef223a2c
             prefix: speech-
           - Name: IBM_ViaVoice_TTS_Runtime.exe
-            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/IBMViaVoiceTTSRuntime.exe
+            URL: https://gitcode.com/nvdacn/NVDA_resource_files/releases/download/IBM_ViaVoice_TTS_Runtime-2606131657/IBM_ViaVoice_TTS_Runtime.exe
             sha256: 0f9e8a998f0bf62513961fe0cb68bc50e06440a6d8e45e8ce6e073e332104255
             prefix: speech-
     steps:
@@ -86,32 +86,32 @@ jobs:
   download-NVDA:
     name: Download NVDA
     runs-on: ubuntu-latest
-    env:
-      NVDA_RELEASES_BASE_URL: https://download.nvaccess.org/releases/
     outputs:
-      NVDAFilename: nvda_${{ steps.nvda.outputs.replaced }}.exe
-      NVDAVersion: ${{ steps.nvda.outputs.replaced }}
+      NVDAFilename: nvda_${{ steps.get-release.outputs.nvda-version }}.exe
+      NVDAVersion: ${{ steps.get-release.outputs.nvda-version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-      - name: Get tag
-        id: nvda-tag
-        uses: pozetroninc/github-action-get-latest-release@master
-        with:
-          repository: nvaccess/nvda
-          excludes: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'prerelease, draft' || '' }}
-      - name: Processing tag
-        id: nvda
-        uses: frabert/replace-string-action@v2
-        with:
-          pattern: 'release-(.*)'
-          string: ${{ steps.nvda-tag.outputs.release }}
-          replace-with: '$1'
-      - name: Download nvda_${{ steps.nvda.outputs.replaced }}.exe
+      - name: Get NVDA release info
+        id: get-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG_NAME=$(gh release list --repo nvaccess/nvda --limit 1 \
+            --json tagName,isPrerelease \
+            --jq ".[] | select(.isPrerelease == ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'false' || 'true' }}) | .tagName")
+          NVDA_VERSION=$(echo "$TAG_NAME" | sed 's/^release-//')
+          DOWNLOAD_URL=$(gh release view "$TAG_NAME" \
+            --repo nvaccess/nvda \
+            --json assets \
+            --jq '.assets[] | select(.name | test("\\.exe$") and test("nvda_")) | .url')
+          echo "nvda-version=$NVDA_VERSION" >> $GITHUB_OUTPUT
+          echo "download-url=$DOWNLOAD_URL" >> $GITHUB_OUTPUT
+      - name: Download NVDA installer
         uses: ./.github/actions/DownloadResource
         with:
-          file-name: nvda_${{ steps.nvda.outputs.replaced }}.exe
-          file-url: ${{ env.NVDA_RELEASES_BASE_URL }}/${{ steps.nvda.outputs.replaced }}/nvda_${{ steps.nvda.outputs.replaced }}.exe
+          file-name: nvda_${{ steps.get-release.outputs.nvda-version }}.exe
+          file-url: ${{ steps.get-release.outputs.download-url }}
 
   build:
     name: Build NVDA Lazy Edition
