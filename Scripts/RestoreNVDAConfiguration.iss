@@ -54,17 +54,17 @@ begin
     DelTree(ExpandConstant('{userappdata}\NVDA'), True, True, True);
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.dll')));
     ExtractTemporaryFile(ExtractFileName(ExpandConstant('{tmp}\7z.exe')));
-    Exec(ExpandConstant('{tmp}\7z.exe'), 'x "'+ ExpandConstant('{userdocs}\NVDABackup\NVDABackup.zip')+'" -aoa -o"'+ ExpandConstant('{userappdata}\NVDA')+'"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
+    Exec(ExpandConstant('{tmp}\7z.exe'), 'x "'+ ExpandConstant('{userdocs}\NVDA_Lazy_Edition_Backup\NVDA_Lazy_Edition_Backup.zip')+'" -aoa -o"'+ ExpandConstant('{userappdata}\NVDA')+'"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
     ShellExec('', NVDA, '', '', SW_SHOW, ewNoWait, ResultCode);
     if MsgBox('此前备份的配置已成功恢复。是否删除备份文件夹？', mbConfirmation, MB_YESNO or MB_DEFBUTTON2)= IDYES then
   begin
-      DelTree(ExpandConstant('{userdocs}\NVDABackup'), True, True, True);
+      DelTree(ExpandConstant('{userdocs}\NVDA_Lazy_Edition_Backup'), True, True, True);
     end;
   end;
 end;
 function InitializeSetup: Boolean;
 begin
-  if FileExists(ExpandConstant('{userdocs}\NVDABackup\NVDABackup.zip')) = True then
+  if FileExists(ExpandConstant('{userdocs}\NVDA_Lazy_Edition_Backup\NVDA_Lazy_Edition_Backup.zip')) = True then
   begin
     RestoreNVDAConfiguration ();
   end else begin
