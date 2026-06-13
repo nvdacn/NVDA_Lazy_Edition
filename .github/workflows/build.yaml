@@ -61,10 +61,10 @@ jobs:
           - addonId: goldenCursor
           - addonId: ime_expressive
           - addonId: inputLock
-          - addonId: instantTranslate
           - addonId: leanCalendar
           - addonId: numberProcessing
           - addonId: objWatcher
+          - addonId: polyglot
           - addonId: QQEnhancement
           - addonId: resourceMonitor
           - addonId: unmute
