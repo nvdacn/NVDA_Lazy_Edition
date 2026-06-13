@@ -97,10 +97,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG_NAME=$(gh release list --repo nvaccess/nvda --limit 1 \
+          TAG_NAME=$(gh release list --repo nvaccess/nvda \
             --json tagName \
             --jq '.[0].tagName' \
-            ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && '--exclude-drafts --exclude-pre-releases' || '' }}
+            ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && '--limit 1 --exclude-drafts --exclude-pre-releases' || '--limit 1' }}
           NVDA_VERSION=$(echo "$TAG_NAME" | sed 's/^release-//')
           DOWNLOAD_URL=$(gh release view "$TAG_NAME" \
             --repo nvaccess/nvda \
