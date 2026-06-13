@@ -11,6 +11,8 @@ on:
     branches:
       - "*"
   workflow_dispatch:
+env:
+  BetaVersion: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'False' || 'True' }}
 
 jobs:
   download-files:
@@ -97,8 +99,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG_NAME=$(gh release list --repo nvaccess/nvda \
-            ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && '--limit 1 --exclude-drafts --exclude-pre-releases' || '--limit 1' }} \
+          if [[ "$BetaVersion" == "True" ]]; then
+            exclude="--exclude-drafts"
+          else
+            exclude="--exclude-drafts --exclude-pre-releases"
+          fi
+          TAG_NAME=$(gh release list --repo nvaccess/nvda --limit 1 \
+            $exclude \
             --json tagName \
             --jq '.[0].tagName' \
           NVDA_VERSION=$(echo "$TAG_NAME" | sed 's/^release-//')
@@ -152,7 +159,6 @@ jobs:
           ${{ github.workspace }}/Run.bat Build
         env:
           NVDAVersion: ${{ needs.download-NVDA.outputs.NVDAVersion }}
-          BetaVersion: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && !contains(github.ref, 'beta') && 'False' || 'True' }}
           CreateArchive: ${{ startsWith(github.ref, 'refs/tags/') && 'True' || 'False' }}
       - name: Upload NVDA_Lazy_Edition
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
