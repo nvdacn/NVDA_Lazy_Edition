@@ -102,11 +102,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           if ($env:BetaVersion -eq "True") {
-              $exclude = "--exclude-drafts"
+              $excludeFlags = @("--exclude-drafts")
           } else {
-              $exclude = "--exclude-drafts --exclude-pre-releases"
+              $excludeFlags = @("--exclude-drafts", "--exclude-pre-releases")
           }
-          $tagName = (gh release list --repo nvaccess/nvda --limit 1 $exclude --json tagName --jq '.[0].tagName').Trim()
+          $tagName = (gh release list --repo nvaccess/nvda --limit 1 $excludeFlags --json tagName --jq '.[0].tagName').Trim()
           $nvdaVersion = $tagName -replace '^release-', ''
           $downloadUrl = gh release view $tagName --repo nvaccess/nvda --json assets --jq '.assets[] | select(.name | test("\\.exe$") and test("nvda_")) | .url'
           echo "nvda-version=$nvdaVersion" >> $env:GITHUB_OUTPUT
