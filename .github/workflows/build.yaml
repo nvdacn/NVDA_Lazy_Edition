@@ -106,14 +106,14 @@ jobs:
           fi
           tagName=$(gh release list --repo nvaccess/nvda --limit 1 "${exclude_flags[@]}" --json tagName --jq '.[0].tagName')
           nvdaVersion="${tagName#release-}"
-          nvdaFilename="nvda_${nvdaVersion}.exe"
+          nvdaFilename="nvda_$nvdaVersion.exe"
           echo "nvda-filename=$nvdaFilename" >> $GITHUB_OUTPUT
           echo "nvda-version=$nvdaVersion" >> $GITHUB_OUTPUT
-          echo "download-url=https://download.nvaccess.org/releases/nvdaVersion/nvdaFilename" >> $GITHUB_OUTPUT
+          echo "download-url=https://download.nvaccess.org/releases/$nvdaVersion/$nvdaFilename" >> $GITHUB_OUTPUT
       - name: Download NVDA installer
         uses: ./.github/actions/DownloadResource
         with:
-          file-name: ${{ steps.get-release.outputs.nvda-filename }}.exe
+          file-name: ${{ steps.get-release.outputs.nvda-filename }}
           file-url: ${{ steps.get-release.outputs.download-url }}
 
   build:
