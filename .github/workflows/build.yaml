@@ -90,7 +90,7 @@ jobs:
     name: Download NVDA
     runs-on: ubuntu-latest
     outputs:
-      NVDAFilename: ${{ steps.get-release.outputs.nvda-filename }}.exe
+      NVDAFilename: ${{ steps.get-release.outputs.nvda-filename }}
       NVDAVersion: ${{ steps.get-release.outputs.nvda-version }}
     steps:
       - name: Checkout repository
