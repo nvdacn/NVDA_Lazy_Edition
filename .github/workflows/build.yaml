@@ -90,31 +90,30 @@ jobs:
     name: Download NVDA
     runs-on: ubuntu-latest
     outputs:
-      NVDAFilename: nvda_${{ steps.get-release.outputs.nvda-version }}.exe
+      NVDAFilename: ${{ steps.get-release.outputs.nvda-filename }}.exe
       NVDAVersion: ${{ steps.get-release.outputs.nvda-version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Get NVDA release info
         id: get-release
-        shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ($env:BetaVersion -eq "True") {
-              $excludeFlags = @("--exclude-drafts")
-          } else {
-              $excludeFlags = @("--exclude-drafts", "--exclude-pre-releases")
-          }
-          $tagName = (gh release list --repo nvaccess/nvda --limit 1 $excludeFlags --json tagName --jq '.[0].tagName').Trim()
-          $nvdaVersion = $tagName -replace '^release-', ''
-          $downloadUrl = gh release view $tagName --repo nvaccess/nvda --json assets --jq '.assets[] | select(.name | test("\\.exe$") and test("nvda_")) | .url'
-          echo "nvda-version=$nvdaVersion" >> $env:GITHUB_OUTPUT
-          echo "download-url=$downloadUrl" >> $env:GITHUB_OUTPUT
+          exclude_flags=(--exclude-drafts)
+          if [ "$BetaVersion" != "True" ]; then
+            exclude_flags+=(--exclude-pre-releases)
+          fi
+          tagName=$(gh release list --repo nvaccess/nvda --limit 1 "${exclude_flags[@]}" --json tagName --jq '.[0].tagName')
+          nvdaVersion="${tagName#release-}"
+          nvdaFilename="nvda_${nvdaVersion}.exe"
+          echo "nvda-filename=$nvdaFilename" >> $GITHUB_OUTPUT
+          echo "nvda-version=$nvdaVersion" >> $GITHUB_OUTPUT
+          echo "download-url=https://download.nvaccess.org/releases/nvdaVersion/nvdaFilename" >> $GITHUB_OUTPUT
       - name: Download NVDA installer
         uses: ./.github/actions/DownloadResource
         with:
-          file-name: nvda_${{ steps.get-release.outputs.nvda-version }}.exe
+          file-name: ${{ steps.get-release.outputs.nvda-filename }}.exe
           file-url: ${{ steps.get-release.outputs.download-url }}
 
   build:
