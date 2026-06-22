@@ -38,7 +38,7 @@ jobs:
             prefix: speech-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Download ${{ matrix.file.Name }}
         uses: ./.github/actions/DownloadResource
         with:
@@ -78,7 +78,7 @@ jobs:
           - addonId: xyOCR
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Download ${{ matrix.addon.addonId }}
         uses: ./.github/actions/DownloadResource
         with:
@@ -94,7 +94,7 @@ jobs:
       NVDAVersion: ${{ steps.get-release.outputs.nvda-version }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Get NVDA release info
         id: get-release
         env:
@@ -125,7 +125,7 @@ jobs:
       - download-addons-from-addonStore
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Download ${{ needs.download-NVDA.outputs.NVDAFilename }}
         uses: actions/download-artifact@v8
         with:
