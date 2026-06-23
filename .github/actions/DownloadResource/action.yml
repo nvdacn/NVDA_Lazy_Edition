@@ -28,7 +28,7 @@ runs:
   steps:
     - name: Checkout addonstore-views repository
       if: ${{ inputs.from-addonStore == 'true' }}
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         repository: nvaccess/addonstore-views
         ref: main
