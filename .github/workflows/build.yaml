@@ -76,7 +76,7 @@ jobs:
       addon-ID: ${{ matrix.addon.addonId }}
       addon-channel: ${{ matrix.addon.channel || 'stable' }}
 
-  get-NVDA-release:
+  get-NVDA-info:
     name: Get NVDA release info
     runs-on: ubuntu-latest
     outputs:
@@ -102,27 +102,27 @@ jobs:
 
   download-NVDA:
     name: Download NVDA
-    needs: get-NVDA-release
+    needs: get-NVDA-info
     uses: ./.github/workflows/DownloadResource.yaml
     with:
-      file-name: ${{ needs.get-NVDA-release.outputs.NVDAFilename }}
-      file-url: ${{ needs.get-NVDA-release.outputs.download-url }}
+      file-name: ${{ needs.get-NVDA-info.outputs.NVDAFilename }}
+      file-url: ${{ needs.get-NVDA-info.outputs.download-url }}
 
   build:
     name: Build NVDA Lazy Edition
     runs-on: windows-latest
     needs:
+      - get-NVDA-info
+      - download-NVDA
       - download-files
       - download-addons-from-addonStore
-      - get-NVDA-release
-      - download-NVDA
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
-      - name: Download NVDA installer
+      - name: Download ${{ needs.get-NVDA-info.outputs.NVDAFilename }}
         uses: actions/download-artifact@v8
         with:
-          name: ${{ needs.get-NVDA-release.outputs.NVDAFilename }}
+          name: ${{ needs.get-NVDA-info.outputs.NVDAFilename }}
           path: ${{ github.workspace }}/Resource/
       - name: Download Speech
         uses: actions/download-artifact@v8
@@ -146,7 +146,7 @@ jobs:
           tzutil /s "China Standard Time"
           ${{ github.workspace }}/Run.bat Build
         env:
-          NVDAVersion: ${{ needs.get-NVDA-release.outputs.NVDAVersion }}
+          NVDAVersion: ${{ needs.get-NVDA-info.outputs.NVDAVersion }}
           CreateArchive: ${{ startsWith(github.ref, 'refs/tags/') && 'True' || 'False' }}
       - name: Upload NVDA_Lazy_Edition
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
