@@ -18,7 +18,6 @@ env:
 jobs:
   download-files:
     name: Download ${{ matrix.file.Name }}
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         file:
@@ -36,20 +35,15 @@ jobs:
             URL: https://gitcode.com/nvdacn/NVDA_resource_files/releases/download/IBM_ViaVoice_TTS_Runtime-2606131657/IBM_ViaVoice_TTS_Runtime.exe
             sha256: 0f9e8a998f0bf62513961fe0cb68bc50e06440a6d8e45e8ce6e073e332104255
             prefix: speech-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-      - name: Download ${{ matrix.file.Name }}
-        uses: ./.github/actions/DownloadResource
-        with:
-          file-name: ${{ matrix.file.Name }}
-          file-url: ${{ matrix.file.URL }}
-          file-sha256: ${{ matrix.file.sha256 }}
-          prefix: ${{ matrix.file.prefix }}
+    uses: ./.github/workflows/download-resource-reusable.yml
+    with:
+      file-name: ${{ matrix.file.Name }}
+      file-url: ${{ matrix.file.URL }}
+      file-sha256: ${{ matrix.file.sha256 }}
+      prefix: ${{ matrix.file.prefix }}
 
   download-addons-from-addonStore:
     name: Download ${{ matrix.addon.addonId }} from Addon Store
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         addon:
@@ -76,25 +70,20 @@ jobs:
           - addonId: winFormsNet48Fixes
           - addonId: withSounds
           - addonId: xyOCR
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-      - name: Download ${{ matrix.addon.addonId }}
-        uses: ./.github/actions/DownloadResource
-        with:
-          from-addonStore: true
-          addon-ID: ${{ matrix.addon.addonId }}
-          addon-channel: ${{ matrix.addon.channel && matrix.addon.channel || 'stable' }}
+    uses: ./.github/workflows/download-resource-reusable.yml
+    with:
+      from-addonStore: true
+      addon-ID: ${{ matrix.addon.addonId }}
+      addon-channel: ${{ matrix.addon.channel || 'stable' }}
 
-  download-NVDA:
-    name: Download NVDA
+  get-NVDA-release:
+    name: Get NVDA release info
     runs-on: ubuntu-latest
     outputs:
       NVDAFilename: ${{ steps.get-release.outputs.nvda-filename }}
       NVDAVersion: ${{ steps.get-release.outputs.nvda-version }}
+      download-url: ${{ steps.get-release.outputs.download-url }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
       - name: Get NVDA release info
         id: get-release
         env:
@@ -105,31 +94,35 @@ jobs:
             exclude_flags+=(--exclude-pre-releases)
           fi
           tagName=$(gh release list --repo nvaccess/nvda --limit 1 "${exclude_flags[@]}" --json tagName --jq '.[0].tagName')
-          nvdaVersion="${tagName#release-}"
-          nvdaFilename="nvda_$nvdaVersion.exe"
-          echo "nvda-filename=$nvdaFilename" >> $GITHUB_OUTPUT
-          echo "nvda-version=$nvdaVersion" >> $GITHUB_OUTPUT
-          echo "download-url=https://download.nvaccess.org/releases/$nvdaVersion/$nvdaFilename" >> $GITHUB_OUTPUT
-      - name: Download NVDA installer
-        uses: ./.github/actions/DownloadResource
-        with:
-          file-name: ${{ steps.get-release.outputs.nvda-filename }}
-          file-url: ${{ steps.get-release.outputs.download-url }}
+          NVDAVersion="${tagName#release-}"
+          NVDAFilename="nvda_$NVDAVersion.exe"
+          echo "nvda-filename=$NVDAFilename" >> $GITHUB_OUTPUT
+          echo "nvda-version=$NVDAVersion" >> $GITHUB_OUTPUT
+          echo "download-url=https://download.nvaccess.org/releases/$NVDAVersion/$NVDAFilename" >> $GITHUB_OUTPUT
+
+  download-NVDA:
+    name: Download NVDA
+    needs: get-NVDA-release
+    uses: ./.github/workflows/download-resource-reusable.yml
+    with:
+      file-name: ${{ needs.get-NVDA-release.outputs.NVDAFilename }}
+      file-url: ${{ needs.get-NVDA-release.outputs.download-url }}
 
   build:
     name: Build NVDA Lazy Edition
     runs-on: windows-latest
     needs:
-      - download-NVDA
       - download-files
       - download-addons-from-addonStore
+      - get-NVDA-release
+      - download-NVDA
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
-      - name: Download ${{ needs.download-NVDA.outputs.NVDAFilename }}
+      - name: Download NVDA installer
         uses: actions/download-artifact@v8
         with:
-          name: ${{ needs.download-NVDA.outputs.NVDAFilename }}
+          name: ${{ needs.get-NVDA-release.outputs.NVDAFilename }}
           path: ${{ github.workspace }}/Resource/
       - name: Download Speech
         uses: actions/download-artifact@v8
@@ -153,7 +146,7 @@ jobs:
           tzutil /s "China Standard Time"
           ${{ github.workspace }}/Run.bat Build
         env:
-          NVDAVersion: ${{ needs.download-NVDA.outputs.NVDAVersion }}
+          NVDAVersion: ${{ needs.get-NVDA-release.outputs.NVDAVersion }}
           CreateArchive: ${{ startsWith(github.ref, 'refs/tags/') && 'True' || 'False' }}
       - name: Upload NVDA_Lazy_Edition
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
