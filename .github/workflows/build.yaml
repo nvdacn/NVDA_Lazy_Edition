@@ -35,7 +35,7 @@ jobs:
             URL: https://gitcode.com/nvdacn/NVDA_resource_files/releases/download/IBM_ViaVoice_TTS_Runtime-2606131657/IBM_ViaVoice_TTS_Runtime.exe
             sha256: 0f9e8a998f0bf62513961fe0cb68bc50e06440a6d8e45e8ce6e073e332104255
             prefix: speech-
-    uses: ./.github/workflows/download-resource-reusable.yml
+    uses: ./.github/workflows/DownloadResource.yaml
     with:
       file-name: ${{ matrix.file.Name }}
       file-url: ${{ matrix.file.URL }}
@@ -70,7 +70,7 @@ jobs:
           - addonId: winFormsNet48Fixes
           - addonId: withSounds
           - addonId: xyOCR
-    uses: ./.github/workflows/download-resource-reusable.yml
+    uses: ./.github/workflows/DownloadResource.yaml
     with:
       from-addonStore: true
       addon-ID: ${{ matrix.addon.addonId }}
@@ -103,7 +103,7 @@ jobs:
   download-NVDA:
     name: Download NVDA
     needs: get-NVDA-release
-    uses: ./.github/workflows/download-resource-reusable.yml
+    uses: ./.github/workflows/DownloadResource.yaml
     with:
       file-name: ${{ needs.get-NVDA-release.outputs.NVDAFilename }}
       file-url: ${{ needs.get-NVDA-release.outputs.download-url }}
