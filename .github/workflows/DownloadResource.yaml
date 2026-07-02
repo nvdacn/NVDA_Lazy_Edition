@@ -6,25 +6,32 @@ on:
       file-name:
         description: 'The name saved after the file is downloaded, an error will be raised if from-addonStore is false and this parameter is empty.'
         required: false
+        type: string
       file-url:
         description: 'To download the URL of the file, an error will be raised if from-addonStore is false and this parameter is empty.'
         required: false
+        type: string
       file-sha256:
         description: 'Sha256 to download the file.'
         required: false
+        type: string
       prefix:
         description: 'The prefix added to the file name when uploading the file.'
         required: false
+        type: string
       addon-ID:
         description: 'Add-on ID, used to get data from Add-on Store.'
         required: false
+        type: string
       addon-channel:
         description: 'Add-on channel, used to get data from Add-on Store.'
         required: false
+        type: string
         default: 'stable'
       from-addonStore:
         description: 'Whether to get data from the Add-on Store repository.'
         required: false
+        type: boolean
         default: false
 
 jobs:
@@ -32,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout addonstore-views repository
-      if: ${{ inputs.from-addonStore == 'true' }}
+      if: ${{ inputs.from-addonStore == true }}
       uses: actions/checkout@v7
       with:
         repository: nvaccess/addonstore-views
@@ -71,7 +78,7 @@ jobs:
         sha256: ${{ steps.parameters.outputs.file-sha256 }}
         location: ${{ github.workspace }}/Resource
     - name: Copy ${{ steps.parameters.outputs.file-name }} JSON data
-      if: ${{ inputs.from-addonStore == 'true' && steps.cache-file.outputs.cache-hit != 'true' }}
+      if: ${{ inputs.from-addonStore == true && steps.cache-file.outputs.cache-hit != 'true' }}
       shell: bash
       run: cp --dereference ${{ github.workspace }}/addonstore-views/views/zh_CN/latest/${{ inputs.addon-ID }}/${{ inputs.addon-channel }}.json ${{ github.workspace }}/Resource/${{ inputs.addon-ID }}.json
     - name: Upload ${{ steps.parameters.outputs.file-name }}
