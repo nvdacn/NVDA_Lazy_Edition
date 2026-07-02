@@ -6,32 +6,25 @@ on:
       file-name:
         description: 'The name saved after the file is downloaded, an error will be raised if from-addonStore is false and this parameter is empty.'
         required: false
-        type: string
       file-url:
         description: 'To download the URL of the file, an error will be raised if from-addonStore is false and this parameter is empty.'
         required: false
-        type: string
       file-sha256:
         description: 'Sha256 to download the file.'
         required: false
-        type: string
       prefix:
         description: 'The prefix added to the file name when uploading the file.'
         required: false
-        type: string
       addon-ID:
         description: 'Add-on ID, used to get data from Add-on Store.'
         required: false
-        type: string
       addon-channel:
         description: 'Add-on channel, used to get data from Add-on Store.'
         required: false
-        type: string
         default: 'stable'
       from-addonStore:
         description: 'Whether to get data from the Add-on Store repository.'
         required: false
-        type: boolean
         default: false
 
 jobs:
