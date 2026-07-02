@@ -98,7 +98,7 @@ jobs:
           nvdaFilename="nvda_$nvdaVersion.exe"
           echo "nvda-filename=$nvdaFilename" >> $GITHUB_OUTPUT
           echo "nvda-version=$nvdaVersion" >> $GITHUB_OUTPUT
-          echo "download-url=https://download.nvaccess.org/releases/$nvdaVersion/$nvdaFilename" >> 
+          echo "download-url=https://download.nvaccess.org/releases/$nvdaVersion/$nvdaFilename" >> $GITHUB_OUTPUT
 
   download-NVDA:
     name: Download NVDA
