@@ -94,11 +94,11 @@ jobs:
             exclude_flags+=(--exclude-pre-releases)
           fi
           tagName=$(gh release list --repo nvaccess/nvda --limit 1 "${exclude_flags[@]}" --json tagName --jq '.[0].tagName')
-          NVDAVersion="${tagName#release-}"
-          NVDAFilename="nvda_$NVDAVersion.exe"
-          echo "nvda-filename=$NVDAFilename" >> $GITHUB_OUTPUT
-          echo "nvda-version=$NVDAVersion" >> $GITHUB_OUTPUT
-          echo "download-url=https://download.nvaccess.org/releases/$NVDAVersion/$NVDAFilename" >> $GITHUB_OUTPUT
+          nvdaVersion="${tagName#release-}"
+          nvdaFilename="nvda_$nvdaVersion.exe"
+          echo "nvda-filename=$nvdaFilename" >> $GITHUB_OUTPUT
+          echo "nvda-version=$nvdaVersion" >> $GITHUB_OUTPUT
+          echo "download-url=https://download.nvaccess.org/releases/$nvdaVersion/$nvdaFilename" >> 
 
   download-NVDA:
     name: Download NVDA
