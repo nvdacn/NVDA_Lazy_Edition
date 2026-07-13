@@ -117,9 +117,9 @@ jobs:
       - download-files
       - download-addons-from-addonStore
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
       - parallel:
-          - name: Checkout repository
-            uses: actions/checkout@v7
           - name: Download ${{ needs.get-NVDA-info.outputs.NVDAFilename }}
             uses: actions/download-artifact@v8
             with:
