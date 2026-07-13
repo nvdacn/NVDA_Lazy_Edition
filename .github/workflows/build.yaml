@@ -119,28 +119,29 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
-      - name: Download ${{ needs.get-NVDA-info.outputs.NVDAFilename }}
-        uses: actions/download-artifact@v8
-        with:
-          name: ${{ needs.get-NVDA-info.outputs.NVDAFilename }}
-          path: ${{ github.workspace }}/Resource/
-      - name: Download Speech
-        uses: actions/download-artifact@v8
-        with:
-          path: ${{ github.workspace }}/Resource/speech/
-          pattern: speech-*
-          merge-multiple: true
-      - name: Download Addons
-        uses: actions/download-artifact@v8
-        with:
-          path: ${{ github.workspace }}/Resource/Addons/
-          pattern: "*.nvda-addon"
-          merge-multiple: true
-      - name: Download ChineseSimplified.isl
-        uses: carlosperate/download-file-action@v2
-        with:
-          file-url: 'https://raw.githubusercontent.com/kira-96/Inno-Setup-Chinese-Simplified-Translation/main/ChineseSimplified.isl'
-          location: '${{ github.workspace }}/Resource/UILanguages'
+      - parallel:
+          - name: Download ${{ needs.get-NVDA-info.outputs.NVDAFilename }}
+            uses: actions/download-artifact@v8
+            with:
+              name: ${{ needs.get-NVDA-info.outputs.NVDAFilename }}
+              path: ${{ github.workspace }}/Resource/
+          - name: Download Speech
+            uses: actions/download-artifact@v8
+            with:
+              path: ${{ github.workspace }}/Resource/speech/
+              pattern: speech-*
+              merge-multiple: true
+          - name: Download Addons
+            uses: actions/download-artifact@v8
+            with:
+              path: ${{ github.workspace }}/Resource/Addons/
+              pattern: "*.nvda-addon"
+              merge-multiple: true
+          - name: Download ChineseSimplified.isl
+            uses: carlosperate/download-file-action@v2
+            with:
+              file-url: 'https://raw.githubusercontent.com/kira-96/Inno-Setup-Chinese-Simplified-Translation/main/ChineseSimplified.isl'
+              location: '${{ github.workspace }}/Resource/UILanguages'
       - name: Run the build script
         run: |
           tzutil /s "China Standard Time"
@@ -148,32 +149,33 @@ jobs:
         env:
           NVDAVersion: ${{ needs.get-NVDA-info.outputs.NVDAVersion }}
           CreateArchive: ${{ startsWith(github.ref, 'refs/tags/') && 'True' || 'False' }}
-      - name: Upload NVDA_Lazy_Edition
-        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
-        uses: actions/upload-artifact@v7
-        with:
-          path: ${{ github.workspace }}/Build/NVDA_${{ env.NVDAVersion }}*.exe
-          archive: false
-      - name: Upload RestoreNVDAConfigurationTool
-        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
-        uses: actions/upload-artifact@v7
-        with:
-          path: '${{ github.workspace }}/Build/NVDA 配置恢复工具.exe'
-          archive: false
-      - name: Upload Resource
-        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
-        uses: actions/upload-artifact@v7
-        with:
-          name: Resource
-          path: ${{ github.workspace }}/Resource
-          compression-level: 0
-      - name: Upload Archive
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        uses: actions/upload-artifact@v7
-        with:
-          name: Archive
-          path: ${{ github.workspace }}/Build/Archive/*
-          compression-level: 0
+      - parallel:
+          - name: Upload NVDA_Lazy_Edition
+            if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+            uses: actions/upload-artifact@v7
+            with:
+              path: ${{ github.workspace }}/Build/NVDA_${{ env.NVDAVersion }}*.exe
+              archive: false
+          - name: Upload RestoreNVDAConfigurationTool
+            if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+            uses: actions/upload-artifact@v7
+            with:
+              path: '${{ github.workspace }}/Build/NVDA 配置恢复工具.exe'
+              archive: false
+          - name: Upload Resource
+            if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+            uses: actions/upload-artifact@v7
+            with:
+              name: Resource
+              path: ${{ github.workspace }}/Resource
+              compression-level: 0
+          - name: Upload Archive
+            if: ${{ startsWith(github.ref, 'refs/tags/') }}
+            uses: actions/upload-artifact@v7
+            with:
+              name: Archive
+              path: ${{ github.workspace }}/Build/Archive/*
+              compression-level: 0
 
   github_release:
     name: Create Release on GitHUB
