@@ -35,7 +35,7 @@ jobs:
             URL: https://gitcode.com/nvdacn/NVDA_resource_files/releases/download/IBM_ViaVoice_TTS_Runtime-2606131657/IBM_ViaVoice_TTS_Runtime.exe
             sha256: 0f9e8a998f0bf62513961fe0cb68bc50e06440a6d8e45e8ce6e073e332104255
             prefix: speech-
-    uses: ./.github/workflows/DownloadResource.yaml
+    uses: ./.github/workflows/download-resource.yaml
     with:
       file-name: ${{ matrix.file.Name }}
       file-url: ${{ matrix.file.URL }}
@@ -70,7 +70,7 @@ jobs:
           - addonId: WeChatEnhancement
           - addonId: withSounds
           - addonId: visAware
-    uses: ./.github/workflows/DownloadResource.yaml
+    uses: ./.github/workflows/download-resource.yaml
     with:
       from-addonStore: true
       addon-ID: ${{ matrix.addon.addonId }}
@@ -103,7 +103,7 @@ jobs:
   download-NVDA:
     name: Download NVDA
     needs: get-NVDA-info
-    uses: ./.github/workflows/DownloadResource.yaml
+    uses: ./.github/workflows/download-resource.yaml
     with:
       file-name: ${{ needs.get-NVDA-info.outputs.NVDAFilename }}
       file-url: ${{ needs.get-NVDA-info.outputs.download-url }}
@@ -193,7 +193,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v3
         with:
-          body: 详细更新日志请[点此查看](documentation/changes.md)。
+          body: 详细更新日志请[点此查看](documentation/CHANGES.md)。
           files: NVDA_Lazy_Edition/*
           fail_on_unmatched_files: true
           prerelease: ${{ contains(github.ref, 'beta') }}
@@ -220,7 +220,7 @@ jobs:
       tag_name: ${{ github.ref_name }}
       prerelease: ${{ contains(github.ref, 'beta') }}
       body: |
-        详细更新日志请[点此查看](https://gitcode.com/${{ vars.GITCODE_REPOSITORY }}/blob/${{ github.ref_name }}/documentation/changes.md)。
+        详细更新日志请[点此查看](https://gitcode.com/${{ vars.GITCODE_REPOSITORY }}/blob/${{ github.ref_name }}/documentation/CHANGES.md)。
       file_name: NVDA_Lazy_Edition*.zip
     secrets:
       GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}

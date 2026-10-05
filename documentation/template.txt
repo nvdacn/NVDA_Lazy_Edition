@@ -69,7 +69,7 @@ Source: "..\Resource\Addons\
 "
 
 
-# changes.md
+# CHANGES.md
   - 新增插件：
 插件中文名称
 ；
@@ -78,7 +78,7 @@ Source: "..\Resource\Addons\
 插件中文名称
 
 
-# ReadMe.md
+# README.md
 - 
 插件中文名称
 （默认安装）

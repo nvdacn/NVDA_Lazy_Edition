@@ -74,8 +74,8 @@ if /i "%StartNVDA%" == "On" (
 )
 
 Rem 生成文档的 txt 版本  
-COPY /B /V /Y "%~dp0documentation\changes.md" "%~dp0Build\更新日志.txt"
-COPY /B /V /Y "%~dp0documentation\ReadMe.md" "%~dp0Build\说明.txt"
+COPY /B /V /Y "%~dp0documentation\CHANGES.md" "%~dp0Build\更新日志.txt"
+COPY /B /V /Y "%~dp0documentation\README.md" "%~dp0Build\说明.txt"
 
 Rem 构建 NVDA 便携版  
 %InnoSetup% "%~dp0Scripts\Portable.iss"
