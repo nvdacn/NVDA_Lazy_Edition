@@ -52,7 +52,8 @@ jobs:
           - addonId: addonsTools
           - addonId: AiSound5
           - addonId: audioManager
-          - addonId: clipboardEnhancement
+          - addonId: nvdaClipboard
+            channel: beta
           - addonId: DragAndDrop
             channel: dev
           - addonId: goldenCursor
@@ -67,9 +68,8 @@ jobs:
           - addonId: unmute
             channel: beta
           - addonId: WeChatEnhancement
-          - addonId: winFormsNet48Fixes
           - addonId: withSounds
-          - addonId: xyOCR
+          - addonId: visAware
     uses: ./.github/workflows/DownloadResource.yaml
     with:
       from-addonStore: true

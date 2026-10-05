@@ -62,7 +62,7 @@ Name: "Addons\Access8Math"; Types: Full custom; Flags: disablenouninstallwarning
 Name: "Addons\addonsHelp"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件文档"
 Name: "Addons\addonsTools"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件管理工具箱"
 Name: "Addons\audioManager"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "音频管理器"
-Name: "Addons\clipboardEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "剪贴板朗读增强"
+Name: "Addons\nvdaClipboard"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "nvdaClipboard（剪贴板）"
 Name: "Addons\DragAndDrop"; Types: Full custom; Flags: disablenouninstallwarning; Description: "DragAndDrop （对象拖放）"
 Name: "Addons\goldenCursor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "金色光标"
 Name: "Addons\imeExpressive"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "中文输入法支持"
@@ -75,9 +75,8 @@ Name: "Addons\QQEnhancement"; Types: Full default custom; Flags: disablenouninst
 Name: "Addons\resourceMonitor"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "资源监控器"
 Name: "Addons\unmute"; Types: Full custom; Flags: disablenouninstallwarning; Description: "取消系统静音"
 Name: "Addons\WeChatEnhancement"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "PC微信增强"
-Name: "Addons\winFormsNet48Fixes"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "WinForms .NET 4.8 修复"
 Name: "Addons\withSounds"; Types: Full custom; Flags: disablenouninstallwarning; Description: "withSounds（用音效替换链接角色、删除已访问提示）"
-Name: "Addons\xyOCR"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "新翼OCR"
+Name: "Addons\visAware"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Vis Aware"
 
 [Tasks]
 Name: "StartOnLogon"; Description: "在欢迎界面启用 NVDA"
@@ -236,7 +235,7 @@ Type: filesandordirs; Name: "{app}\Addons\addonsHelp"; Tasks: "not DeleteProfile
 Type: filesandordirs; Name: "{app}\Addons\addonsTools"; Tasks: "not DeleteProfile"; Components: "Addons\addonsTools"
 Type: filesandordirs; Name: "{app}\Addons\audioManager"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
 Type: filesandordirs; Name: "{app}\Addons\AudioControl"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
-Type: filesandordirs; Name: "{app}\Addons\clipboardEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\clipboardEnhancement"
+Type: filesandordirs; Name: "{app}\Addons\clipboardEnhancement"; Tasks: "not DeleteProfile"
 Type: filesandordirs; Name: "{app}\Addons\DragAndDrop"; Tasks: "not DeleteProfile"; Components: "Addons\DragAndDrop"
 Type: filesandordirs; Name: "{app}\Addons\goldenCursor\__pycache__"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
 Type: filesandordirs; Name: "{app}\Addons\goldenCursor\doc"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
@@ -254,16 +253,16 @@ Type: filesandordirs; Name: "{app}\Addons\QQEnhancement"; Tasks: "not DeleteProf
 Type: filesandordirs; Name: "{app}\Addons\resourceMonitor"; Tasks: "not DeleteProfile"; Components: "Addons\resourceMonitor"
 Type: filesandordirs; Name: "{app}\Addons\unmute"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
 Type: filesandordirs; Name: "{app}\Addons\WeChatEnhancement"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
-Type: filesandordirs; Name: "{app}\Addons\winFormsNet48Fixes"; Tasks: "not DeleteProfile"; Components: "Addons\winFormsNet48Fixes"
+Type: filesandordirs; Name: "{app}\Addons\winFormsNet48Fixes"; Tasks: "not DeleteProfile"
 Type: filesandordirs; Name: "{app}\Addons\withSounds"; Tasks: "not DeleteProfile"; Components: "Addons\withSounds"
-Type: filesandordirs; Name: "{app}\Addons\xyOCR"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
+Type: filesandordirs; Name: "{app}\Addons\xyOCR"; Tasks: "not DeleteProfile"
 Type: files; Name: "{app}\Addons\vocalizer_expressive2_driver.json"; Tasks: "not DeleteProfile"; Components: "Voices\VocalizerExpressive2"
 Type: files; Name: "{app}\Addons\AiSound5.json"; Tasks: "not DeleteProfile"; Components: "Voices\AiSound5"
 Type: files; Name: "{app}\Addons\Access8Math.json"; Tasks: "not DeleteProfile"; Components: "Addons\Access8Math"
 Type: files; Name: "{app}\Addons\addonsHelp.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonsHelp"
 Type: files; Name: "{app}\Addons\addonsTools.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonsTools"
 Type: files; Name: "{app}\Addons\audioManager.json"; Tasks: "not DeleteProfile"; Components: "Addons\audioManager"
-Type: files; Name: "{app}\Addons\clipboardEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\clipboardEnhancement"
+Type: files; Name: "{app}\Addons\clipboardEnhancement.json"; Tasks: "not DeleteProfile"
 Type: files; Name: "{app}\Addons\DragAndDrop.json"; Tasks: "not DeleteProfile"; Components: "Addons\DragAndDrop"
 Type: files; Name: "{app}\Addons\goldenCursor.json"; Tasks: "not DeleteProfile"; Components: "Addons\goldenCursor"
 Type: files; Name: "{app}\Addons\ime_expressive.json"; Tasks: "not DeleteProfile"; Components: "Addons\imeExpressive"
@@ -276,9 +275,9 @@ Type: files; Name: "{app}\Addons\QQEnhancement.json"; Tasks: "not DeleteProfile"
 Type: files; Name: "{app}\Addons\resourceMonitor.json"; Tasks: "not DeleteProfile"; Components: "Addons\resourceMonitor"
 Type: files; Name: "{app}\Addons\unmute.json"; Tasks: "not DeleteProfile"; Components: "Addons\unmute"
 Type: files; Name: "{app}\Addons\WeChatEnhancement.json"; Tasks: "not DeleteProfile"; Components: "Addons\WeChatEnhancement"
-Type: files; Name: "{app}\Addons\winFormsNet48Fixes.json"; Tasks: "not DeleteProfile"; Components: "Addons\winFormsNet48Fixes"
+Type: files; Name: "{app}\Addons\winFormsNet48Fixes.json"; Tasks: "not DeleteProfile"
 Type: files; Name: "{app}\Addons\withSounds.json"; Tasks: "not DeleteProfile"; Components: "Addons\withSounds"
-Type: files; Name: "{app}\Addons\xyOCR.json"; Tasks: "not DeleteProfile"; Components: "Addons\xyOCR"
+Type: files; Name: "{app}\Addons\xyOCR.json"; Tasks: "not DeleteProfile"
 
 [Run]
 Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms --install-silent --enable-start-on-logon=True"; Tasks: "StartOnLogon"
@@ -293,7 +292,7 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\Access8Math*.nvda-addon"" -aoa -o"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsHelp*.nvda-addon"" -aoa -o""{app}\Addons\addonsHelp"""; Components: "Addons\addonsHelp"; AfterInstall: JSONFile('addonsHelp')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\addonsTools*.nvda-addon"" -aoa -o""{app}\Addons\addonsTools"""; Components: "Addons\addonsTools"; AfterInstall: JSONFile('addonsTools')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\audioManager*.nvda-addon"" -aoa -o""{app}\Addons\audioManager"""; Components: "Addons\audioManager"; AfterInstall: JSONFile('audioManager')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\clipboardEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\clipboardEnhancement"""; Components: "Addons\clipboardEnhancement"; AfterInstall: JSONFile('clipboardEnhancement')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\nvdaClipboard*.nvda-addon"" -aoa -o""{app}\Addons\nvdaClipboard"""; Components: "Addons\nvdaClipboard"; AfterInstall: JSONFile('nvdaClipboard')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\DragAndDrop*.nvda-addon"" -aoa -o""{app}\Addons\DragAndDrop"""; Components: "Addons\DragAndDrop"; AfterInstall: JSONFile('DragAndDrop')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\goldenCursor*.nvda-addon"" -aoa -o""{app}\Addons\goldenCursor"""; Components: "Addons\goldenCursor"; AfterInstall: JSONFile('goldenCursor')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\ime_expressive*.nvda-addon"" -aoa -o""{app}\Addons\ime_expressive"""; Components: "Addons\imeExpressive"; AfterInstall: JSONFile('ime_expressive')
@@ -306,9 +305,8 @@ Filename: "{tmp}\7z"; Parameters: "x ""Addons\QQEnhancement*.nvda-addon"" -aoa -
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\resourceMonitor*.nvda-addon"" -aoa -o""{app}\Addons\resourceMonitor"""; Components: "Addons\resourceMonitor"; AfterInstall: JSONFile('resourceMonitor')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\unmute*.nvda-addon"" -aoa -o""{app}\Addons\unmute"""; Components: "Addons\unmute"; AfterInstall: JSONFile('unmute')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\WeChatEnhancement*.nvda-addon"" -aoa -o""{app}\Addons\WeChatEnhancement"""; Components: "Addons\WeChatEnhancement"; AfterInstall: JSONFile('WeChatEnhancement')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\winFormsNet48Fixes*.nvda-addon"" -aoa -o""{app}\Addons\winFormsNet48Fixes"""; Components: "Addons\winFormsNet48Fixes"; AfterInstall: JSONFile('winFormsNet48Fixes')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\withSounds*.nvda-addon"" -aoa -o""{app}\Addons\withSounds"""; Components: "Addons\withSounds"; AfterInstall: JSONFile('withSounds')
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\xyOCR*.nvda-addon"" -aoa -o""{app}\Addons\xyOCR"""; Components: "Addons\xyOCR"; AfterInstall: JSONFile('xyOCR')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\visAware*.nvda-addon"" -aoa -o""{app}\Addons\visAware"""; Components: "Addons\visAware"; AfterInstall: JSONFile('visAware')
 
 [Files]
 Source: "..\Build\Temp\NVDAPortable.exe"; DestDir: "{tmp}"; Flags: dontcopy deleteafterinstall
@@ -325,7 +323,7 @@ Source: "..\Resource\Addons\Access8Math*"; DestDir: "{tmp}\Addons"; Flags: delet
 Source: "..\Resource\Addons\addonsHelp*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsHelp"
 Source: "..\Resource\Addons\addonsTools*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\addonsTools"
 Source: "..\Resource\Addons\audioManager*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\audioManager"
-Source: "..\Resource\Addons\clipboardEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\clipboardEnhancement"
+Source: "..\Resource\Addons\nvdaClipboard*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\nvdaClipboard"
 Source: "..\Resource\Addons\DragAndDrop*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\DragAndDrop"
 Source: "..\Resource\Addons\goldenCursor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\goldenCursor"
 Source: "..\Resource\Addons\ime_expressive*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\imeExpressive"
@@ -338,9 +336,8 @@ Source: "..\Resource\Addons\QQEnhancement*"; DestDir: "{tmp}\Addons"; Flags: del
 Source: "..\Resource\Addons\resourceMonitor*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\resourceMonitor"
 Source: "..\Resource\Addons\unmute*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\unmute"
 Source: "..\Resource\Addons\WeChatEnhancement*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\WeChatEnhancement"
-Source: "..\Resource\Addons\winFormsNet48Fixes*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\winFormsNet48Fixes"
 Source: "..\Resource\Addons\withSounds*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\withSounds"
-Source: "..\Resource\Addons\xyOCR*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\xyOCR"
+Source: "..\Resource\Addons\visAware*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\visAware"
 
 [Registry]
 Root: HKLM; SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System; ValueType: dword; ValueName: EnableLUA; ValueData: $00000001; Flags: uninsdeletevalue uninsdeletekeyifempty; Tasks: "FixAudioDucking"
