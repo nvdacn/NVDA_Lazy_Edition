@@ -88,6 +88,7 @@ Name: "Voices\SunshineAISound"; Description: "切换语音合成器到 SunshineA
 Name: "Voices\sapi4"; Description: "切换语音合成器到 Microsoft Speech API version 4 已使用 VVTTS 引擎"; Components: Voices\VVTTS; Flags: exclusive Unchecked
 Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
 Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Flags: Unchecked; Check: FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
+Name: "openLinkWithGestures"; Description: "为打开链接插件添加自定义快捷键"; Components: "Settings and Addons\openLinkWith"
 Name: "DeleteProfile"; Description: "清空用户配置文件夹"; Check: FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini')); Flags: Unchecked
 Name: "DeleteProfile\Backup"; Description: "备份现有 NVDA 配置"; Flags: exclusive
 Name: "DeleteProfile\NoBackup"; Description: "不备份现有 NVDA 配置"; Flags: exclusive Unchecked
@@ -224,6 +225,7 @@ end;
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sunshine"; Tasks: "Voices\SunshineAISound"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi4"; Tasks: "Voices\sapi4"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " vocalizer_expressive2"; Tasks: "Voices\VocalizerExpressive2"
+FileName: "{app}\gestures.ini"; Section: "globalPlugins.openLinkWith.GlobalPlugin"; Key: "    displayLinksInContext "; String: " kb:control+numpadenter, kb:alt+enter+nvda"; Tasks: "openLinkWithGestures"
 
 [InstallDelete]
 Type: filesandordirs; Name: "{userappdata}\NVDA\*"; Tasks: DeleteProfile\Backup; BeforeInstall: BackupNVDAProfile();
