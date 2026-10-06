@@ -5,7 +5,7 @@
 ## 对于设置选项的修改
 
 - 常规设置：将“更新镜像”的网址设置为[中文社区的镜像地址](https://mirror.nvdadr.com)，以解决某些网络无法正常下载 NVDA 更新的问题；
-- 语音设置：关闭 eSpeak NG、 Microsoft Speech API version 4、 Microsoft Speech API version 5、 Windows OneCore、AiSound5 等合成器的“激活拼读功能”选项，以避免出现个别字符发音怪异的现象；
+- 语音设置：关闭 eSpeak NG、 Microsoft Speech API version 4、 Microsoft Speech API version 5、 Windows OneCore 等合成器的“激活拼读功能”选项，以避免出现个别字符发音怪异的现象；
 - 输入法设置：关闭“自动读出所有可用的候选”，以避免中文输入过程中对所有候选字的连续朗读，干扰输入；
 - 对象查看设置：启用“读出工具提示”，用以自动读出文件大小等信息；
 - 浏览模式设置：关闭“页面加载完成后朗读所有内容”，避免影响操作；
