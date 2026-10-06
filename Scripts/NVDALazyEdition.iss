@@ -56,7 +56,7 @@ Name: "Settings"; Description: "修改部分 NVDA 设置"; Check: FileExists(Exp
 Name: "Voices"; Types: Full default custom; Description: "语音引擎";
 Name: "Voices\VocalizerExpressive2"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "Nuance Vocalizer expressive 2.2 语音引擎"
 Name: "Voices\VVTTS"; Types: Full custom; Description: "VVTTS 语音引擎"
-Name: "Voices\AiSound5"; Types: Full custom; Description: "AiSound5 语音引擎"
+Name: "Voices\SunshineAISound"; Types: Full custom; Description: "Sunshine AiSound 语音引擎"
 Name: "Addons"; Types: Full default custom; Flags: disablenouninstallwarning; Description: "可选插件"
 Name: "Addons\Access8Math"; Types: Full custom; Flags: disablenouninstallwarning; Description: "Access8Math"
 Name: "Addons\addonsHelp"; Types: Full custom; Flags: disablenouninstallwarning; Description: "插件文档"
@@ -83,7 +83,7 @@ Name: "StartOnLogon"; Description: "在欢迎界面启用 NVDA"
 Name: "FixAudioDucking"; Description: "修复音频闪避等功能无法使用"; Flags: Unchecked
 Name: "Voices"; Description: "语音合成器设置"; Components: Settings and Voices; Flags: Unchecked
 Name: "Voices\VocalizerExpressive2"; Description: "切换语音合成器到 Nuance Vocalizer expressive 2.2"; Components: Voices\VocalizerExpressive2; Flags: exclusive
-Name: "Voices\AiSound5"; Description: "切换语音合成器到 AiSound5"; Components: Voices\AiSound5; Flags: exclusive Unchecked
+Name: "Voices\SunshineAISound"; Description: "切换语音合成器到 SunshineAISound"; Components: Voices\SunshineAISound; Flags: exclusive Unchecked
 Name: "Voices\sapi4"; Description: "切换语音合成器到 Microsoft Speech API version 4 已使用 VVTTS 引擎"; Components: Voices\VVTTS; Flags: exclusive Unchecked
 Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
 Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Flags: Unchecked; Check: FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
@@ -220,7 +220,7 @@ end;
 
 
 [ini]
-FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " aisound"; Tasks: "Voices\AiSound5"
+FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sunshine"; Tasks: "Voices\SunshineAISound"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi4"; Tasks: "Voices\sapi4"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " vocalizer_expressive2"; Tasks: "Voices\VocalizerExpressive2"
 
@@ -229,7 +229,7 @@ Type: filesandordirs; Name: "{userappdata}\NVDA\*"; Tasks: DeleteProfile\Backup;
 Type: filesandordirs; Name: "{userappdata}\NVDA\*"; Tasks: DeleteProfile\NoBackup
 Type: filesandordirs; Name: "{app}\Addons\vocalizer_expressive2_driver"; Tasks: "not DeleteProfile"; Components: "Voices\VocalizerExpressive2"
 Type: filesandordirs; Name: "{app}\Addons\vocalizer-expressive2-voice-zh-en-Compact"; Tasks: "not DeleteProfile"; Components: "Voices\VocalizerExpressive2"
-Type: filesandordirs; Name: "{app}\Addons\AiSound5"; Tasks: "not DeleteProfile"; Components: "Voices\AiSound5"
+Type: filesandordirs; Name: "{app}\Addons\SunshineAISound"; Tasks: "not DeleteProfile"; Components: "Voices\SunshineAISound"
 Type: filesandordirs; Name: "{app}\Addons\Access8Math"; Tasks: "not DeleteProfile"; Components: "Addons\Access8Math"
 Type: filesandordirs; Name: "{app}\Addons\addonsHelp"; Tasks: "not DeleteProfile"; Components: "Addons\addonsHelp"
 Type: filesandordirs; Name: "{app}\Addons\addonsTools"; Tasks: "not DeleteProfile"; Components: "Addons\addonsTools"
@@ -257,7 +257,7 @@ Type: filesandordirs; Name: "{app}\Addons\winFormsNet48Fixes"; Tasks: "not Delet
 Type: filesandordirs; Name: "{app}\Addons\withSounds"; Tasks: "not DeleteProfile"; Components: "Addons\withSounds"
 Type: filesandordirs; Name: "{app}\Addons\xyOCR"; Tasks: "not DeleteProfile"
 Type: files; Name: "{app}\Addons\vocalizer_expressive2_driver.json"; Tasks: "not DeleteProfile"; Components: "Voices\VocalizerExpressive2"
-Type: files; Name: "{app}\Addons\AiSound5.json"; Tasks: "not DeleteProfile"; Components: "Voices\AiSound5"
+Type: files; Name: "{app}\Addons\SunshineAISound.json"; Tasks: "not DeleteProfile"; Components: "Voices\SunshineAISound"
 Type: files; Name: "{app}\Addons\Access8Math.json"; Tasks: "not DeleteProfile"; Components: "Addons\Access8Math"
 Type: files; Name: "{app}\Addons\addonsHelp.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonsHelp"
 Type: files; Name: "{app}\Addons\addonsTools.json"; Tasks: "not DeleteProfile"; Components: "Addons\addonsTools"
@@ -285,7 +285,7 @@ Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms --install-silent --enable-
 Filename: "{tmp}\NVDAPortable\nvda"; Parameters: "-ms"; Flags: nowait
 Filename: "{tmp}\spchapi"; Parameters: "/Q"; Components: "Voices\VVTTS"
 Filename: "{tmp}\VVTTS"; Parameters: "/verysilent /suppressmsgboxes /nocancel /norestart /nocloseapplications"; Components: "Voices\VVTTS"
-Filename: "{tmp}\7z"; Parameters: "x ""Addons\AiSound5*.nvda-addon"" -aoa -o""{app}\Addons\AiSound5"""; Components: "Voices\AiSound5"; AfterInstall: JSONFile('AiSound5')
+Filename: "{tmp}\7z"; Parameters: "x ""Addons\SunshineAISound*.nvda-addon"" -aoa -o""{app}\Addons\SunshineAISound"""; Components: "Voices\SunshineAISound"; AfterInstall: JSONFile('SunshineAISound')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\vocalizer_expressive2_driver*.nvda-addon"" -aoa -o""{app}\Addons\vocalizer_expressive2_driver"""; Components: "Voices\VocalizerExpressive2"; AfterInstall: JSONFile('vocalizer_expressive2_driver')
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\vocalizer-expressive2-voice-zh-en-Compact*.nvda-addon"" -aoa -o""{app}\Addons\vocalizer-expressive2-voice-zh-en-Compact"""; Components: "Voices\VocalizerExpressive2"
 Filename: "{tmp}\7z"; Parameters: "x ""Addons\Access8Math*.nvda-addon"" -aoa -o""{app}\Addons\Access8Math"""; Components: "Addons\Access8Math"; AfterInstall: JSONFile('Access8Math')
@@ -316,7 +316,7 @@ Source: "..\userConfig\nvda.ini"; DestDir: "{app}"; Components: "Settings"; Flag
 Source: "..\userConfig\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4"; Tasks: "VVTTSDicts"; Flags: ignoreversion
 Source: "..\Resource\speech\spchapi.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
 Source: "..\Resource\speech\IBM_ViaVoice_TTS_Runtime.exe"; DestDir: "{tmp}"; DestName: "VVTTS.exe"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
-Source: "..\Resource\Addons\AiSound5*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\AiSound5"
+Source: "..\Resource\Addons\SunshineAISound*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\SunshineAISound"
 Source: "..\Resource\Addons\vocalizer_expressive2_driver*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VocalizerExpressive2"
 Source: "..\Resource\Addons\vocalizer-expressive2-voice-zh-en-Compact*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VocalizerExpressive2"
 Source: "..\Resource\Addons\Access8Math*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Addons\Access8Math"

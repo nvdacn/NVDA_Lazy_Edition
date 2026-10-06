@@ -21,6 +21,9 @@ jobs:
     strategy:
       matrix:
         file:
+          - Name: SunshineAISound-0.1.1.nvda-addon
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/SunshineAISound-0.1.1.nvda-addon
+            sha256: 59c5cbaed26b9491ff379b6abdafb6499a91d78f066ff9c950c04ba42fb0f179
           - Name: vocalizer_expressive2_driver.nvda-addon
             URL: https://gitcode.com/nvdacn/NVDA_resource_files/releases/download/vocalizer_expressive2_driver-2026.6.6-2606131647/vocalizer_expressive2_driver-2026.6.6.nvda-addon
             sha256: E52E0A6CFA1714E217E988F27007EF2E1757706C872877117076233D52D6E98B
@@ -50,7 +53,6 @@ jobs:
           - addonId: Access8Math
           - addonId: addonsHelp
           - addonId: addonsTools
-          - addonId: AiSound5
           - addonId: audioManager
           - addonId: nvdaClipboard
             channel: beta
