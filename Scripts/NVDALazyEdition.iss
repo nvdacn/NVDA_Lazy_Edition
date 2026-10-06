@@ -225,7 +225,7 @@ end;
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sunshine"; Tasks: "Voices\SunshineAISound"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " sapi4"; Tasks: "Voices\sapi4"
 FileName: "{app}\NVDA.ini"; Section: "speech"; Key: "	synth "; String: " vocalizer_expressive2"; Tasks: "Voices\VocalizerExpressive2"
-FileName: "{app}\gestures.ini"; Section: "globalPlugins.openLinkWith.GlobalPlugin"; Key: "    displayLinksInContext "; String: " kb:control+numpadenter, kb:alt+enter+nvda"; Tasks: "openLinkWithGestures"
+FileName: "{app}\gestures.ini"; Section: "globalPlugins.openLinkWith.GlobalPlugin"; Key: "displayLinksInContext "; String: "kb(laptop):alt+enter+nvda, kb:control+numpadenter"; Tasks: "openLinkWithGestures"
 
 [InstallDelete]
 Type: filesandordirs; Name: "{userappdata}\NVDA\*"; Tasks: DeleteProfile\Backup; BeforeInstall: BackupNVDAProfile();
