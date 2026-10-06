@@ -64,6 +64,7 @@ jobs:
           - addonId: leanCalendar
           - addonId: numberProcessing
           - addonId: objWatcher
+          - addonId: openLinkWith
           - addonId: polyglot
           - addonId: QQEnhancement
           - addonId: resourceMonitor
