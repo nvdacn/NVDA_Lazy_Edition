@@ -86,8 +86,8 @@ Name: "Voices"; Description: "语音合成器设置"; Components: Settings and V
 Name: "Voices\VocalizerExpressive2"; Description: "切换语音合成器到 Nuance Vocalizer expressive 2.2"; Components: Voices\VocalizerExpressive2; Flags: exclusive
 Name: "Voices\SunshineAISound"; Description: "切换语音合成器到 SunshineAISound"; Components: Voices\SunshineAISound; Flags: exclusive Unchecked
 Name: "Voices\sapi4"; Description: "切换语音合成器到 Microsoft Speech API version 4 已使用 VVTTS 引擎"; Components: Voices\VVTTS; Flags: exclusive Unchecked
-Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
-Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Flags: Unchecked; Check: FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
+Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Check: not FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4_32\sapi4_32-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
+Name: "VVTTSDicts"; Description: "导入 VVTTS 语音字典（仅用于 SAPI4）"; Components: Settings and Voices\VVTTS; Flags: Unchecked; Check: FileExists(ExpandConstant('{userappdata}\NVDA\speechDicts\voiceDicts.v1\sapi4_32\sapi4_32-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic'))
 Name: "openLinkWithGestures"; Description: "为打开链接插件添加自定义快捷键"; Components: "Settings and Addons\openLinkWith"
 Name: "DeleteProfile"; Description: "清空用户配置文件夹"; Check: FileExists(ExpandConstant('{userappdata}\NVDA\nvda.ini')); Flags: Unchecked
 Name: "DeleteProfile\Backup"; Description: "备份现有 NVDA 配置"; Flags: exclusive
@@ -319,7 +319,7 @@ Source: "..\Build\Temp\NVDAPortable.exe"; DestDir: "{tmp}"; Flags: dontcopy dele
 Source: {#SevenZipDll}; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
 Source: {#SevenZipExe}; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion
 Source: "..\userConfig\nvda.ini"; DestDir: "{app}"; Components: "Settings"; Flags: ignoreversion
-Source: "..\userConfig\sapi4-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4"; Tasks: "VVTTSDicts"; Flags: ignoreversion
+Source: "..\userConfig\sapi4_32-中文-简体_ Default (SimplifiedChinese) - IBM ViaVoice Text-to-Speech.dic"; DestDir: "{app}\speechDicts\voiceDicts.v1\sapi4_32"; Tasks: "VVTTSDicts"; Flags: ignoreversion
 Source: "..\Resource\speech\spchapi.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
 Source: "..\Resource\speech\IBM_ViaVoice_TTS_Runtime.exe"; DestDir: "{tmp}"; DestName: "VVTTS.exe"; Flags: deleteafterinstall ignoreversion; Components: "Voices\VVTTS"
 Source: "..\Resource\Addons\SunshineAISound*"; DestDir: "{tmp}\Addons"; Flags: deleteafterinstall ignoreversion; Components: "Voices\SunshineAISound"
