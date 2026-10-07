@@ -25,8 +25,8 @@ jobs:
             URL: https://dl.nvdacn.com/NVDA-Addons/TTS/SunshineAISound-0.1.1.nvda-addon
             sha256: 59c5cbaed26b9491ff379b6abdafb6499a91d78f066ff9c950c04ba42fb0f179
           - Name: vocalizer_expressive2_driver.nvda-addon
-            URL: https://gitcode.com/nvdacn/NVDA_resource_files/releases/download/vocalizer_expressive2_driver-2026.6.6-2606131647/vocalizer_expressive2_driver-2026.6.6.nvda-addon
-            sha256: E52E0A6CFA1714E217E988F27007EF2E1757706C872877117076233D52D6E98B
+            URL: https://dl.nvdacn.com/NVDA-Addons/TTS/Vocalizer2.2Mod/vocalizer_expressive2_driver-2026.7.21.nvda-addon
+            sha256: 0BB2D397BFDE27D2861982477D737AAC47736F660028120DC4EAB42AD2BFBE46
           - Name: vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
             URL: https://gitcode.com/nvdacn/NVDA_resource_files/releases/download/vocalizer-expressive2-voice-zh-en-Compact-2.2-2606131654/vocalizer-expressive2-voice-zh-en-Compact-2.2.nvda-addon
             sha256: 0068fe40392dbe9339c84536dffd54641ff54ab37af7044d64d4653ff0335073
