@@ -55,7 +55,6 @@ jobs:
           - addonId: addonsTools
           - addonId: audioManager
           - addonId: nvdaClipboard
-            channel: beta
           - addonId: DragAndDrop
             channel: dev
           - addonId: goldenCursor
